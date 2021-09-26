@@ -1,6 +1,8 @@
-﻿namespace Business.Abstract
+﻿using Entities.Concrete;
+
+namespace Business.Abstract
 {
-    public interface IWriterService
+    public interface IWriterService:IGenericRepositoryService<Writer>
     {
         
     }

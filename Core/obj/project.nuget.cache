@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qEM61axaUtOK6NANOslxy2UWYNVI4ZF0KTJwJliuAEv7HhC/aYjuk6bXv4qoAecn8ZRFjk8dzowYiUsEGFKaUA==",
+  "dgSpecHash": "49fq8Yvu2xNB4nlhQ4iiu1YFpYUVvAXNUJ9NRKEYDPRL9gF4hYG2gkM4u5kWCrRAmLN9v+85I2PmljfpRX/Yxg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sahin\\OneDrive\\Desktop\\CoreDemo\\Core\\Core.csproj",
+  "projectFilePath": "C:\\Users\\sahin\\OneDrive\\Desktop\\​‏       \\GithubProjects\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.10\\microsoft.entityframeworkcore.5.0.10.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.10\\microsoft.entityframeworkcore.abstractions.5.0.10.nupkg.sha512",

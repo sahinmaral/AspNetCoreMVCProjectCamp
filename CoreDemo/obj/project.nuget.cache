@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9tl1Qlu/anxofFQA6PhAT+MysCi+yYEmYmRZHmkvPuoQgL3Oa7Vvy3XPRl+ViubwIRQB3jYQskaqxPtXvZy9Sw==",
+  "dgSpecHash": "XUIvGCQ5Lc3z01q1ZQVeXqyEiEhAisJc4dfLbev4EcFS+4paCL4CYwyXH46vvMTRh3/EJFFMWNOQa/x45wIi/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sahin\\OneDrive\\Desktop\\CoreDemo\\CoreDemo\\CoreDemo.csproj",
+  "projectFilePath": "C:\\Users\\sahin\\OneDrive\\Desktop\\​‏       \\GithubProjects\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sahin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.8\\microsoft.aspnetcore.mvc.razor.extensions.5.0.8.nupkg.sha512",
