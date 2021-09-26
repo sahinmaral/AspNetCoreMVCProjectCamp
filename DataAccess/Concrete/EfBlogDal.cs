@@ -16,8 +16,8 @@ namespace DataAccess.Concrete
             using (Context context = new Context())
             {
                 return filter == null
-                    ? context.Blogs.Include(x => x.Category).Include(x => x.Comments).ToList()
-                    : context.Blogs.Include(x => x.Category).Include(x => x.Comments).Where(filter).ToList();
+                    ? context.Blogs.Include(x => x.Category).ToList()
+                    : context.Blogs.Include(x => x.Category).Where(filter).ToList();
             }
         }
     }

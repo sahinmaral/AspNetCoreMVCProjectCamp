@@ -837,3 +837,9 @@ C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNe
 C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\CoreDemo.Views.pdb
 C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\CoreDemo.csproj.CopyComplete
 C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\CoreDemo.genruntimeconfig.cache
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\Blog\GetById.cshtml.g.cs
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\UserLayout\FooterPartialView.cshtml.g.cs
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\UserLayout\LoginRegisterPartialView.cshtml.g.cs
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\UserLayout\NavbarPartialView.cshtml.g.cs
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\Blog\AddComment.cshtml.g.cs
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\Blog\GetCommentsByBlog.cshtml.g.cs
