@@ -2,42 +2,43 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace Business.Concrete
 {
     public class CommentManager:ICommentService
     {
-        private readonly ICommentService _commentService;
+        private readonly ICommentDal _commentDal;
         
-        public CommentManager(ICommentService commentService)
+        public CommentManager(ICommentDal commentDal)
         {
-            _commentService = commentService;
+            _commentDal = commentDal;
         }
         
         public List<Comment> GetAll(Expression<Func<Comment, bool>> filter = null)
         {
-            return _commentService.GetAll(filter);
+            return _commentDal.GetAll(filter);
         }
 
         public Comment Get(Expression<Func<Comment, bool>> filter = null)
         {
-            return _commentService.Get(filter);
+            return _commentDal.Get(filter);
         }
 
         public void Add(Comment entity)
         {
-            _commentService.Add(entity);
+            _commentDal.Add(entity);
         }
 
         public void Delete(Comment entity)
         {
-            _commentService.Delete(entity);
+            _commentDal.Delete(entity);
         }
 
         public void Update(Comment entity)
         {
-            _commentService.Update(entity);
+            _commentDal.Update(entity);
         }
     }
 }

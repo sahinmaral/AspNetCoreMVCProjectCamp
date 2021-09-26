@@ -2,42 +2,43 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace Business.Concrete
 {
     public class WriterManager:IWriterService
     {
-        private readonly IWriterService _writerService;
+        private readonly IWriterDal _writerDal;
         
-        public WriterManager(IWriterService writerService)
+        public WriterManager(IWriterDal writerDal)
         {
-            _writerService = writerService;
+            _writerDal = writerDal;
         }
         
         public List<Writer> GetAll(Expression<Func<Writer, bool>> filter = null)
         {
-            return _writerService.GetAll(filter);
+            return _writerDal.GetAll(filter);
         }
 
         public Writer Get(Expression<Func<Writer, bool>> filter = null)
         {
-            return _writerService.Get(filter);
+            return _writerDal.Get(filter);
         }
 
         public void Add(Writer entity)
         {
-            _writerService.Add(entity);
+            _writerDal.Add(entity);
         }
 
         public void Delete(Writer entity)
         {
-            _writerService.Delete(entity);
+            _writerDal.Delete(entity);
         }
 
         public void Update(Writer entity)
         {
-            _writerService.Update(entity);
+            _writerDal.Update(entity);
         }
     }
 }

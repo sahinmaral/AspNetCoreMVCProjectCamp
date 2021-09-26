@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +32,23 @@ namespace CoreDemo
         {
             services.AddSingleton<ICategoryService, CategoryManager>();
             services.AddSingleton<ICategoryDal, EfCategoryDal>();
+            
+            services.AddSingleton<ICommentService, CommentManager>();
+            services.AddSingleton<ICommentDal, EfCommentDal>();
+            
+            services.AddSingleton<IContactService, ContactManager>();
+            services.AddSingleton<IContactDal, EfContactDal>();
+            
+            services.AddSingleton<IBlogService, BlogManager>();
+            services.AddSingleton<IBlogDal, EfBlogDal>();
+            
+            services.AddSingleton<IWriterService, WriterManager>();
+            services.AddSingleton<IWriterDal, EfWriterDal>();
+            
+            services.AddSingleton<IAboutService, AboutManager>();
+            services.AddSingleton<IAboutDal, EfAboutDal>();
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }

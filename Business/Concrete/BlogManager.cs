@@ -2,42 +2,48 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace Business.Concrete
 {
     public class BlogManager:IBlogService
     {
-        private readonly IBlogService _blogService;
+        private readonly IBlogDal _blogDal;
         
-        public BlogManager(IBlogService blogService)
+        public BlogManager(IBlogDal blogDal)
         {
-            _blogService = blogService;
+            _blogDal = blogDal;
         }
         
         public List<Blog> GetAll(Expression<Func<Blog, bool>> filter = null)
         {
-            return _blogService.GetAll(filter);
+            return _blogDal.GetAll(filter);
         }
 
         public Blog Get(Expression<Func<Blog, bool>> filter = null)
         {
-            return _blogService.Get(filter);
+            return _blogDal.Get(filter);
         }
 
         public void Add(Blog entity)
         {
-            _blogService.Add(entity);
+            _blogDal.Add(entity);
         }
 
         public void Delete(Blog entity)
         {
-            _blogService.Delete(entity);
+            _blogDal.Delete(entity);
         }
 
         public void Update(Blog entity)
         {
-            _blogService.Update(entity);
+            _blogDal.Update(entity);
+        }
+
+        public List<Blog> GetAllByDetails(Expression<Func<Blog, bool>> filter = null)
+        {
+            return _blogDal.GetAllByDetails(filter);
         }
     }
 }

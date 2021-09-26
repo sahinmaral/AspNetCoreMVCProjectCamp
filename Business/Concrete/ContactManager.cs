@@ -2,42 +2,43 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace Business.Concrete
 {
     public class ContactManager:IContactService
     {
-        private readonly IContactService _contactService;
+        private readonly IContactDal _contactDal;
         
-        public ContactManager(IContactService contactService)
+        public ContactManager(IContactDal contactDal)
         {
-            _contactService = contactService;
+            _contactDal = contactDal;
         }
         
         public List<Contact> GetAll(Expression<Func<Contact, bool>> filter = null)
         {
-            return _contactService.GetAll(filter);
+            return _contactDal.GetAll(filter);
         }
 
         public Contact Get(Expression<Func<Contact, bool>> filter = null)
         {
-            return _contactService.Get(filter);
+            return _contactDal.Get(filter);
         }
 
         public void Add(Contact entity)
         {
-            _contactService.Add(entity);
+            _contactDal.Add(entity);
         }
 
         public void Delete(Contact entity)
         {
-            _contactService.Delete(entity);
+            _contactDal.Delete(entity);
         }
 
         public void Update(Contact entity)
         {
-            _contactService.Update(entity);
+            _contactDal.Update(entity);
         }
     }
 }
