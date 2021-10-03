@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstract;
 using Business.Concrete;
+using CoreDemo.Models;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -49,7 +51,12 @@ namespace CoreDemo
             services.AddSingleton<IAboutDal, EfAboutDal>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            
+
+            services.AddFluentValidation(configuration =>
+            {
+                configuration.RegisterValidatorsFromAssemblyContaining<Startup>();
+            });
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 

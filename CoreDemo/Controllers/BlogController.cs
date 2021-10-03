@@ -29,6 +29,23 @@ namespace CoreDemo.Controllers
             List<BlogViewModel> blogViewModels = new List<BlogViewModel>();
 
             blogViewModels = _mapper.Map(blogs, blogViewModels);
+
+            //foreach (BlogViewModel blogViewModel in blogViewModels)
+            //{
+            //    blogViewModel.CommentViewModels = new List<CommentViewModel>();
+
+            //    foreach (Comment comment in _commentService.GetAll())
+            //    {
+            //        if (comment.BlogId == blogViewModel.BlogId)
+            //        {
+            //            CommentViewModel commentViewModel = new CommentViewModel();
+
+            //            blogViewModel.CommentViewModels.Add(_mapper.Map(comment,commentViewModel));
+            //        }
+            //    }
+            //}
+
+            
             
             return View(blogViewModels);
         }
@@ -37,13 +54,15 @@ namespace CoreDemo.Controllers
         {
             Blog blog = _blogService.Get(x => x.BlogId == id);
             List<Comment> comments = _commentService.GetAll(x => x.BlogId == id);
-            blog.Comments = comments;
+            
             
             BlogViewModel blogViewModel = new BlogViewModel();
             List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
 
             blogViewModel = _mapper.Map(blog, blogViewModel);
             commentViewModels = _mapper.Map(comments, commentViewModels);
+
+            blogViewModel.CommentViewModels = commentViewModels;
 
             return View(blogViewModel);
         }

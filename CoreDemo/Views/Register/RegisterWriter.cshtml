@@ -1,0 +1,71 @@
+﻿
+@model CoreDemo.Models.RegisterWriterViewModel
+
+@{
+    ViewBag.Title = "Kayıt Ol";
+    Layout = "_UserLayout";
+}
+
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Register Now</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
+
+                @using (Html.BeginForm("RegisterWriter", "Register", FormMethod.Post))
+                {
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>Ad Soyad</label>
+                            @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control", placeholder = "Adınız soyadınız" })
+                            @Html.ValidationMessageFor(x => x.WriterName, "", new { @style = "font-weight: bold; color: darkred;" })
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Email</label>
+                            @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control", placeholder = "Email" })
+                            @Html.ValidationMessageFor(x => x.WriterMail, "", new { @style = "font-weight: bold; color: darkred;" })
+
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Profil Resmi</label>
+                            @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control", placeholder = "Profil Resmi" })
+                            @Html.ValidationMessageFor(x => x.WriterImage, "", new { @style = "font-weight: bold; color: darkred;" })
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label>Şehirler</label>
+                            @Html.DropDownListFor(x => x.WriterAbout, (List<SelectListItem>)ViewBag.Cities, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Şifre</label>
+                            @Html.PasswordFor(x => x.WriterPassword, new { @class = "form-control", placeholder = "Şifre" })
+                            @Html.ValidationMessageFor(x => x.WriterPassword, "", new { @style = "font-weight: bold; color: darkred;" })
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Şifre Tekrarı</label>
+                            @Html.PasswordFor(x => x.WriterPasswordRepeat, new { @class = "form-control", placeholder = "Şifre Tekrarı" })
+                            @Html.ValidationMessageFor(x => x.WriterPasswordRepeat, "", new { @style = "font-weight: bold; color: darkred;" })
+                        </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary submit mb-4">Kayıt Ol</button>
+                    <p style="color: blue; cursor: pointer;" onclick="ShowAllPoliciesAlert()">
+                        <b>Tüm şartları okudum , kabul ediyorum.</b>
+                    </p>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function ShowAllPoliciesAlert() {
+        swal("Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta ve herhangi bir kullanıcının görmeyeceği şekilde veritabanlarımızda saklanmaktadır.");
+    }
+</script>

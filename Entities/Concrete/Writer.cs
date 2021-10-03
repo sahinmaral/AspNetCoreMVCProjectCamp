@@ -5,6 +5,11 @@ namespace Entities.Concrete
 {
     public class Writer:IEntity
     {
+        public Writer()
+        {
+            WriterStatus = true;
+        }
+
         [Key]
         public int WriterId { get; set; }
         public string WriterName { get; set; }
