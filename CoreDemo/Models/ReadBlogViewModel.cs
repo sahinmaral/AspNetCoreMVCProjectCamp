@@ -6,7 +6,7 @@ using Entities.Concrete;
 
 namespace CoreDemo.Models
 {
-    public class BlogViewModel
+    public class ReadBlogViewModel
     {
         public int BlogId { get; set; }
         public string BlogTitle { get; set; }
@@ -16,8 +16,8 @@ namespace CoreDemo.Models
         public string BlogCreateDate { get; set; }
         public bool BlogStatus { get; set; }
 
-
-        public CategoryViewModel CategoryViewModel { get; set; }
-        public List<CommentViewModel> CommentViewModels { get; set; }
+        public ReadWriterViewModel WriterViewModel { get; set; }
+        public ReadCategoryViewModel CategoryViewModel { get; set; }
+        public List<ReadCommentViewModel> CommentViewModels { get; set; }
     }
 }

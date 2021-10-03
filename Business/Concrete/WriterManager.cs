@@ -40,5 +40,6 @@ namespace Business.Concrete
         {
             _writerDal.Update(entity);
         }
+
     }
 }

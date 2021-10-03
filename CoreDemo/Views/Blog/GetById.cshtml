@@ -1,4 +1,4 @@
-﻿@model BlogViewModel
+﻿@model ReadBlogViewModel
 
 @{
     ViewData["Title"] = @Model.BlogTitle;
@@ -12,25 +12,25 @@
         <div class="blog-grid-top">
             <div class="b-grid-top">
                 <div class="blog_info_left_grid">
-                    <a href="single.html">
+                    <a href="">
                         <img src="@Model.BlogMainImage" class="img-fluid" alt="">
                     </a>
                 </div>
                 <div class="blog-info-middle">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="far fa-calendar-alt"></i> @Model.BlogCreateDate
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="#">
+                            <a href="">
                                 <i class="far fa-thumbs-up"></i> 0 Beğenme
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="far fa-comment"></i> 0 Yorum
+                            <a href="">
+                                <i class="far fa-comment"></i> @Model.CommentViewModels.Count Yorum
                             </a>
                         </li>
 
@@ -57,7 +57,6 @@
                 </div>
             </div>
 
-            @*@await Html.PartialAsync("../Blog/GetCommentsByBlog" , Model.CommentViewModels)*@
         </div>
         <div class="comment-top">
             @await Html.PartialAsync("../Blog/AddComment")
@@ -68,10 +67,7 @@
     <!--right-->
     <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
         <div class="right-blog-info text-left">
-            <div class="tech-btm">
-                <img src="images/banner1.jpg" class="img-fluid" alt="">
-            </div>
-            
+
 
             @*
                 İlk 5 favori kategoriler listelenebilir
@@ -97,45 +93,7 @@
                 
                 *@ 
             <div class="tech-btm">
-                <h4>Haftanın Blogları</h4>
-
-                <div class="blog-grids row mb-3">
-                    <div class="col-md-5 blog-grid-left">
-                        <a href="single.html">
-                            <img src="images/1.jpg" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-7 blog-grid-right">
-
-                        <h5>
-                            <a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
-                        </h5>
-                        <div class="sub-meta">
-                            <span>
-                                <i class="far fa-clock"></i> 20 Jan, 2018
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="blog-grids row mb-3">
-                    <div class="col-md-5 blog-grid-left">
-                        <a href="single.html">
-                            <img src="images/6.jpg" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-7 blog-grid-right">
-                        <h5>
-                            <a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
-                        </h5>
-                        <div class="sub-meta">
-                            <span>
-                                <i class="far fa-clock"></i> 20 Feb, 2018
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
+                @await Component.InvokeAsync("LatestPostsToWriter" , new {writerId = @Model.WriterViewModel.WriterId})
             </div>
             @* <div class="single-gd my-5 tech-btm"> *@
             @* 	<h4>Our Progress</h4> *@
@@ -162,7 +120,7 @@
             @* </div> *@
             <div class="single-gd tech-btm">
                 <h4>Bir Önceki Bloglar</h4>
-                <div class="blog-grids">
+                @*<div class="blog-grids">
                     <div class="blog-grid-left">
                         <a href="single.html">
                             <img src="images/b1.jpg" class="img-fluid" alt="">
@@ -175,7 +133,7 @@
                         </h5>
                     </div>
                     <div class="clearfix"> </div>
-                </div>
+                </div>*@
             </div>
         </div>
 

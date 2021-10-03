@@ -71,9 +71,14 @@ namespace DataAccess.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int>("WriterId")
+                        .HasColumnType("int");
+
                     b.HasKey("BlogId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("WriterId");
 
                     b.ToTable("Blogs");
                 });
@@ -118,12 +123,14 @@ namespace DataAccess.Migrations
                     b.Property<bool>("CommentStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("CommentUsername")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("WriterId")
+                        .HasColumnType("int");
 
                     b.HasKey("CommentId");
 
                     b.HasIndex("BlogId");
+
+                    b.HasIndex("WriterId");
 
                     b.ToTable("Comments");
                 });
@@ -183,6 +190,9 @@ namespace DataAccess.Migrations
                     b.Property<bool>("WriterStatus")
                         .HasColumnType("bit");
 
+                    b.Property<string>("WriterUsername")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("WriterId");
 
                     b.ToTable("Writers");
@@ -196,7 +206,15 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Concrete.Writer", "Writer")
+                        .WithMany("Blogs")
+                        .HasForeignKey("WriterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("Writer");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Comment", b =>
@@ -207,7 +225,15 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Concrete.Writer", "Writer")
+                        .WithMany("Comments")
+                        .HasForeignKey("WriterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Blog");
+
+                    b.Navigation("Writer");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
@@ -218,6 +244,13 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concrete.Category", b =>
                 {
                     b.Navigation("Blogs");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Writer", b =>
+                {
+                    b.Navigation("Blogs");
+
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

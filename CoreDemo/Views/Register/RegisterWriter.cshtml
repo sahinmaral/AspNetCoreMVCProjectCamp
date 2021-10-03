@@ -2,14 +2,14 @@
 @model CoreDemo.Models.RegisterWriterViewModel
 
 @{
-    ViewBag.Title = "Kayıt Ol";
+    ViewData["Title"] = "Kayıt Ol";
     Layout = "_UserLayout";
 }
 
 
 <section class="main-content-w3layouts-agileits">
     <div class="container">
-        <h3 class="tittle">Register Now</h3>
+        <h3 class="tittle">Kayıt Ol</h3>
         <div class="inner-sec">
             <div class="login p-5 bg-light mx-auto mw-100">
 
@@ -66,6 +66,6 @@
 
 <script>
     function ShowAllPoliciesAlert() {
-        swal("Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta ve herhangi bir kullanıcının görmeyeceği şekilde veritabanlarımızda saklanmaktadır.");
+        swal("Site Kabul Şartları","Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta ve herhangi bir kullanıcının görmeyeceği şekilde veritabanlarımızda saklanmaktadır.");
     }
 </script>

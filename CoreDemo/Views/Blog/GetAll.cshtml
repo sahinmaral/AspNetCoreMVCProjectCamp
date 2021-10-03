@@ -1,4 +1,4 @@
-﻿@model List<BlogViewModel>
+﻿@model List<ReadBlogViewModel>
 
 @{
     ViewData["Title"] = "Bloglar";
@@ -21,7 +21,7 @@
 			<div class="inner-sec">
 				<div class="left-blog-info-w3layouts-agileits text-left">
 					<div class="row">
-						@foreach (BlogViewModel blog in Model)
+						@foreach (ReadBlogViewModel blog in Model)
 						{
 							<div class="col-lg-4 card">
 								<a href="single.html">
@@ -30,15 +30,15 @@
 								<div class="card-body">
 									<ul class="blog-icons my-4">
 										<li>
-											<a href="#">
+                                            <a href="GetById/@blog.BlogId">
 												<i class="far fa-calendar-alt"></i>@blog.BlogCreateDate</a>
 										</li>
 										<li class="mx-2">
-											<a href="#">
+											<a href="GetById/@blog.BlogId">
                                                 <i class="far fa-comment"></i>@blog.CommentViewModels.Count</a>
 										</li>
 										<li>
-											<a href="#">
+                                            <a href="GetById/@blog.BlogId">
 												<i class="fas fa-eye"></i>@blog.CategoryViewModel.CategoryName</a>
 										</li>
 

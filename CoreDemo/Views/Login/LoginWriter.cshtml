@@ -1,0 +1,50 @@
+﻿@model LoginWriterViewModel
+
+@{
+    Layout = "_UserLayout";
+    ViewData["Title"] = "Giriş Yap";
+
+}
+
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Giriş Yap</h3>
+        <div class="row inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
+                @using (Html.BeginForm("LoginWriter", "Login", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label>Kullanıcı Adı</label>
+                        @Html.TextBoxFor(x => x.WriterUsername, new { @class = "form-control", placeholder = "Kullanıcı adı" })
+                    </div>
+                    <div class="form-group">
+                        <label>Şifre</label>
+                        @Html.PasswordFor(x => x.WriterPassword, new { @class = "form-control", placeholder = "Şifre" })
+                    </div>
+                    @*<div class="form-check mb-2">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>*@
+                    <button type="submit" class="btn btn-primary submit mb-4">Giriş Yap</button>
+                    <p><a href="/Register/RegisterWriter"> Hesabınız yok mu?</a></p>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    window.onload = function() {
+        var message = "@((string)ViewData["LoginError"])";
+        if (message !== "" && message !== null) {
+            swal("Uyarı",message);
+        }
+    }
+
+    
+
+
+</script>

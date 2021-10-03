@@ -41,9 +41,14 @@ namespace Business.Concrete
             _blogDal.Update(entity);
         }
 
-        public List<Blog> GetAllByDetails(Expression<Func<Blog, bool>> filter = null)
+        public List<Blog> GetAllWithDetails(Expression<Func<Blog, bool>> filter = null)
         {
-            return _blogDal.GetAllByDetails(filter);
+            return _blogDal.GetAllWithDetails(filter);
+        }
+
+        public Blog GetByBlogIdWithDetails(int blogId)
+        {
+            return _blogDal.GetByBlogIdWithDetails(blogId);
         }
     }
 }

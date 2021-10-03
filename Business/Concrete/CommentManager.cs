@@ -40,5 +40,10 @@ namespace Business.Concrete
         {
             _commentDal.Update(entity);
         }
+
+        public List<Comment> GetAllWithDetails(Expression<Func<Comment, bool>> filter = null)
+        {
+            return _commentDal.GetAllWithDetails(filter);
+        }
     }
 }

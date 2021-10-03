@@ -13,12 +13,14 @@ namespace Entities.Concrete
         
         [Key]
         public int CommentId { get; set; }
-        public string CommentUsername { get; set; }
         public string CommentAbout { get; set; }
         public DateTime CommentCreateDate { get; set; }
         public bool CommentStatus { get; set; }
 
         public Blog Blog { get; set; }
         public int BlogId { get; set; }
+
+        public int WriterId { get; set; }
+        public Writer Writer { get; set; }
     }
 }

@@ -6,21 +6,18 @@ using CoreDemo.Models;
 
 using Entities.Concrete;
 
-using FluentValidation.Results;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using System.Collections.Generic;
 using System.Linq;
-using CoreDemo.ValidationRules;
 
 namespace CoreDemo.Controllers
 {
     public class RegisterController : Controller
     {
-        private IMapper _mapper;
-        private IWriterService _writerService;
+        private readonly IMapper _mapper;
+        private readonly IWriterService _writerService;
         public RegisterController(IMapper mapper, IWriterService writerService)
         {
             _mapper = mapper;
@@ -66,7 +63,6 @@ namespace CoreDemo.Controllers
 
             if (!ModelState.IsValid)
             {
-                var message = ModelState.ToList();
 
                 GetCities();
 

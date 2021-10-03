@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
 using Entities.Abstract;
 
 namespace Entities.Concrete
@@ -26,5 +27,8 @@ namespace Entities.Concrete
         public Category Category { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
+
+        public int WriterId { get; set; }
+        public Writer Writer { get; set; }
     }
 }

@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using AutoMapper;
+﻿using AutoMapper;
+
 using Business.Abstract;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+
 using CoreDemo.Models;
+
 using Entities.Concrete;
+
+using Microsoft.AspNetCore.Mvc;
+
+using System.Collections.Generic;
 
 namespace CoreDemo.Controllers
 {
@@ -15,7 +18,7 @@ namespace CoreDemo.Controllers
         private readonly ICommentService _commentService;
         private readonly IMapper _mapper;
         
-        public BlogController( IBlogService blogService, ICommentService commentService , IMapper mapper)
+        public BlogController(IBlogService blogService, ICommentService commentService , IMapper mapper)
         {
             _blogService = blogService;
             _commentService = commentService;
@@ -24,40 +27,41 @@ namespace CoreDemo.Controllers
 
         public IActionResult GetAll()
         {
-            List<Blog> blogs = _blogService.GetAllByDetails();
+            List<Blog> blogs = _blogService.GetAllWithDetails();
 
-            List<BlogViewModel> blogViewModels = new List<BlogViewModel>();
+            List<ReadBlogViewModel> blogViewModels = new List<ReadBlogViewModel>();
+
+            foreach (Blog blog in blogs)
+            {
+                blog.Comments = new List<Comment>();
+
+                foreach (Comment comment in _commentService.GetAll())
+                {
+                    if (comment.BlogId == blog.BlogId)
+                    {
+                        blog.Comments.Add(comment);
+                    }
+                }
+            }
 
             blogViewModels = _mapper.Map(blogs, blogViewModels);
 
-            //foreach (BlogViewModel blogViewModel in blogViewModels)
-            //{
-            //    blogViewModel.CommentViewModels = new List<CommentViewModel>();
-
-            //    foreach (Comment comment in _commentService.GetAll())
-            //    {
-            //        if (comment.BlogId == blogViewModel.BlogId)
-            //        {
-            //            CommentViewModel commentViewModel = new CommentViewModel();
-
-            //            blogViewModel.CommentViewModels.Add(_mapper.Map(comment,commentViewModel));
-            //        }
-            //    }
-            //}
-
             
-            
+
+
+
             return View(blogViewModels);
         }
 
-        public IActionResult GetById([FromRoute]int id)
+        [Route("/Blog/GetById/{blogId}")]
+        public IActionResult GetById(int blogId)
         {
-            Blog blog = _blogService.Get(x => x.BlogId == id);
-            List<Comment> comments = _commentService.GetAll(x => x.BlogId == id);
+            Blog blog = _blogService.GetByBlogIdWithDetails(blogId);
+            List<Comment> comments = _commentService.GetAllWithDetails(x => x.BlogId == blogId);
             
             
-            BlogViewModel blogViewModel = new BlogViewModel();
-            List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+            ReadBlogViewModel blogViewModel = new ReadBlogViewModel();
+            List<ReadCommentViewModel> commentViewModels = new List<ReadCommentViewModel>();
 
             blogViewModel = _mapper.Map(blog, blogViewModel);
             commentViewModels = _mapper.Map(comments, commentViewModels);
@@ -65,11 +69,6 @@ namespace CoreDemo.Controllers
             blogViewModel.CommentViewModels = commentViewModels;
 
             return View(blogViewModel);
-        }
-
-        public PartialViewResult GetCommentsByBlog()
-        {
-            return PartialView();
         }
 
         public PartialViewResult AddComment()

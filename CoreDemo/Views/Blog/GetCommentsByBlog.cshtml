@@ -1,17 +1,17 @@
-﻿@model List<CommentViewModel>
+﻿@model List<ReadCommentViewModel>
 
 <h4>Yorumlar</h4>
 <div class="media">
     <div class="media-body">
                     
-        @foreach (CommentViewModel comment in Model)
+        @foreach (ReadCommentViewModel comment in Model)
         {
             <div class="media mt-3">
                 @* <a class="d-flex pr-3" href="#"> *@
                 @*     <img src="images/t2.jpg" alt="" class="img-fluid"/> *@
                 @* </a> *@
                 <div class="media-body">
-                    <h5 class="mt-0">@comment.CommentUsername</h5>
+                    <h5 class="mt-0">@comment.WriterViewModel.WriterUsername</h5>
                     <p>
                         @comment.CommentAbout
                     </p>

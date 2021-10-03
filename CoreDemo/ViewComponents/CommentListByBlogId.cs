@@ -9,8 +9,8 @@ namespace CoreDemo.ViewComponents
 {
     public class CommentListByBlogId : ViewComponent
     {
-        private ICommentService _commentService;
-        private IMapper _mapper;
+        private readonly ICommentService _commentService;
+        private readonly IMapper _mapper;
 
         public CommentListByBlogId(ICommentService commentService, IMapper mapper)
         {
@@ -20,9 +20,9 @@ namespace CoreDemo.ViewComponents
 
         public IViewComponentResult Invoke(int id)
         {
-            List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+            List<ReadCommentViewModel> commentViewModels = new List<ReadCommentViewModel>();
 
-            commentViewModels = _mapper.Map(_commentService.GetAll(x => x.BlogId == id), commentViewModels);
+            commentViewModels = _mapper.Map(_commentService.GetAllWithDetails(x => x.BlogId == id), commentViewModels);
 
             return View(commentViewModels);
         }
