@@ -26,13 +26,13 @@ namespace CoreDemo.Controllers
         
 
         [HttpPost]
-        public IActionResult SubscribeEmail(CreateNewsLetterViewModel viewModel)
+        public IActionResult SubscribeEmailAtBlog(CreateNewsLetterViewModel viewModel)
         {
             NewsLetter searchedNewsLetter = _newsLetterService.Get(x => x.Email == viewModel.Email);
 
             if (searchedNewsLetter != null)
             {
-                TempData["Message"] = Notification.Show("Böyle bir email var", position: Position.BottomRight, type: ToastType.error);
+                TempData["Message"] = Notification.Show("Böyle bir email zaten abone olmuş.", position: Position.BottomRight, type: ToastType.error);
 
                 return RedirectToRoute(new
                 {
@@ -46,7 +46,7 @@ namespace CoreDemo.Controllers
 
             _newsLetterService.Add(searchedNewsLetter);
 
-            TempData["Message"] = Notification.Show("Başarıyla abone oldunuz", position:Position.BottomRight , type:ToastType.success);
+            TempData["Message"] = Notification.Show("Başarıyla abone oldunuz.", position:Position.BottomRight , type:ToastType.success);
 
                 return RedirectToRoute(new
                 {
@@ -54,6 +54,35 @@ namespace CoreDemo.Controllers
                     action = "GetById",
                     blogId = TempData["BlogId"]
                 });
+        }
+
+        [HttpPost]
+        public IActionResult SubscribeEmailAtAbout(CreateNewsLetterViewModel viewModel)
+        {
+            NewsLetter searchedNewsLetter = _newsLetterService.Get(x => x.Email == viewModel.Email);
+
+            if (searchedNewsLetter != null)
+            {
+                TempData["Message"] = Notification.Show("Böyle bir email zaten abone olmuş.", position: Position.BottomRight, type: ToastType.error);
+
+                return RedirectToRoute(new
+                {
+                    controller = "About",
+                    action = "Index"
+                });
+            }
+
+            searchedNewsLetter = _mapper.Map(viewModel, searchedNewsLetter);
+
+            _newsLetterService.Add(searchedNewsLetter);
+
+            TempData["Message"] = Notification.Show("Başarıyla abone oldunuz.", position: Position.BottomRight, type: ToastType.success);
+
+            return RedirectToRoute(new
+            {
+                controller = "About",
+                action = "Index"
+            });
         }
     }
 }

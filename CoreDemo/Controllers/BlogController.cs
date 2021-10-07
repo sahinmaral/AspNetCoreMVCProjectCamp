@@ -48,10 +48,6 @@ namespace CoreDemo.Controllers
 
             blogViewModels = _mapper.Map(blogs, blogViewModels);
 
-            
-
-
-
             return View(blogViewModels);
         }
 

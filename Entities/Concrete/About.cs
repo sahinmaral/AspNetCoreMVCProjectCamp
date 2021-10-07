@@ -3,7 +3,7 @@ using Entities.Abstract;
 
 namespace Entities.Concrete
 {
-    public class About:IEntity
+    public class About: IEntity
     {
         [Key]
         public int AboutId { get; set; }

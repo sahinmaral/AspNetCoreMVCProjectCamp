@@ -95,10 +95,9 @@
              </div>
 
                 *@ 
+
             
-            @*@await Html.PartialAsync("../NewsLetter/SubscribeEmail" , new CreateNewsLetterViewModel())*@
-            
-            @await Component.InvokeAsync("SubscribeEmail")
+            @await Component.InvokeAsync("SubscribeEmailAtBlog")
 
             <div class="tech-btm">
                 @await Component.InvokeAsync("LatestPostsToWriter" , new {writerId = @Model.WriterViewModel.WriterId})

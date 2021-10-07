@@ -895,6 +895,9 @@ C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNe
 C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\Shared\Components\LatestPosts\Default.cshtml.g.cs
 C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\Shared\Components\LatestPostsToWriter\Default.cshtml.g.cs
 C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\NewsLetter\SubscribeEmail.cshtml.g.cs
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\Shared\Components\SubscribeEmail\Default.cshtml.g.cs
 C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\CoreDemo.csprojAssemblyReference.cache
 C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\ErrorPage\ErrorPage.cshtml.g.cs
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\About\Index.cshtml.g.cs
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\Shared\Components\SubscribeEmailAtAbout\Default.cshtml.g.cs
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\Shared\Components\SubscribeEmailAtBlog\Default.cshtml.g.cs
+C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\net5.0\Razor\Views\Shared\Components\AboutSocialMedia\Default.cshtml.g.cs

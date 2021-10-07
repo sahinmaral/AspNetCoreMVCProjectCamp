@@ -24,6 +24,8 @@ namespace CoreDemo.Mapping.AutoMapper
             CreateMap<CreateCommentViewModel, Comment>();
 
             CreateMap<RegisterWriterViewModel, Writer>();
+
+            CreateMap<About, ReadAboutViewModel>();
         }
     }
 }

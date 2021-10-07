@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.ViewComponents
 {
-    public class SubscribeEmail:ViewComponent
+    public class SubscribeEmailAtBlog:ViewComponent
     {
         
         public IViewComponentResult Invoke()

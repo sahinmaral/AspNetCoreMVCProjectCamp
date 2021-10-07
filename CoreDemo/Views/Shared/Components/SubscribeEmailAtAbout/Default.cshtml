@@ -12,12 +12,11 @@
     <h4>Mail Bültenine Abone Olun</h4>
     <p>Bloglarımızı takip etmek için abone olunuz.</p>
 
-    @using (Html.BeginForm("SubscribeEmail", "NewsLetter"))
+    @using (Html.BeginForm("SubscribeEmailAtAbout", "NewsLetter"))
     {
         <input type="text" class="form-control" placeholder="Email" name="Email" />
         <br />
         <button type="submit" class="btn btn-primary submit" id="subscribeEmailButton">Abone Ol</button>
-
 
     }
 
@@ -30,7 +29,7 @@
 
     $("subscribeEmailButton").click(function() {
         $.ajax({
-            url: '@Url.Action("SubscribeEmail", "NewsLetter")',
+            url: '@Url.Action("SubscribeEmailAtAbout", "NewsLetter")',
             type: 'POST',
             dataType: 'json',
             data: { @Html.Raw(Model) }
