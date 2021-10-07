@@ -26,6 +26,10 @@ namespace CoreDemo.Mapping.AutoMapper
             CreateMap<RegisterWriterViewModel, Writer>();
 
             CreateMap<About, ReadAboutViewModel>();
+
+            CreateMap<CreateContactViewModel, Contact>()
+                .ForMember(obj => obj.ContactSurname , opt => opt.MapFrom(src=>src.ContactSurname.ToUpper()));
+
         }
     }
 }
