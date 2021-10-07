@@ -83,6 +83,8 @@ namespace CoreDemo
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/ErrorPage","?code={0}");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
