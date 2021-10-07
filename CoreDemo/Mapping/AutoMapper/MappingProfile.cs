@@ -20,7 +20,8 @@ namespace CoreDemo.Mapping.AutoMapper
             CreateMap<Category, ReadCategoryViewModel>();
             CreateMap<Writer, ReadWriterViewModel>();
 
-           
+            CreateMap<CreateNewsLetterViewModel, NewsLetter>();
+            CreateMap<CreateCommentViewModel, Comment>();
 
             CreateMap<RegisterWriterViewModel, Writer>();
         }

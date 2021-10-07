@@ -1,25 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text.Encodings.Web;
-using System.Text.Unicode;
-using System.Threading.Tasks;
 using AutoMapper;
+
 using Business.Abstract;
 using Business.Concrete;
-using CoreDemo.Models;
+
 using DataAccess.Abstract;
 using DataAccess.Concrete;
-using Entities.Concrete;
+
 using FluentValidation.AspNetCore;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.WebEncoders;
+
+using System.Reflection;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace CoreDemo
 {
@@ -52,6 +50,9 @@ namespace CoreDemo
             
             services.AddSingleton<IAboutService, AboutManager>();
             services.AddSingleton<IAboutDal, EfAboutDal>();
+
+            services.AddSingleton<INewsLetterService, NewsLetterManager>();
+            services.AddSingleton<INewsLetterDal, EfNewsLetterDal>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

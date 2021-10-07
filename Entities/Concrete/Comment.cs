@@ -9,6 +9,7 @@ namespace Entities.Concrete
         public Comment()
         {
             CommentCreateDate = DateTime.Now;
+            CommentStatus = true;
         }
         
         [Key]

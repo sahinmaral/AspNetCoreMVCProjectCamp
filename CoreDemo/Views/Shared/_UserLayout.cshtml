@@ -1,181 +1,183 @@
 ﻿@{
-	Layout = null;
+    Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
-	<title>@ViewData["Title"] | ASP.NET Core MVC</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8">
-	<meta name="keywords" content="Weblog a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+    <title>@ViewData["Title"] | ASP.NET Core MVC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Weblog a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-	<link href="~/weblogTemplate/web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="~/weblogTemplate/web/css/single.css">
-	<link href="~/weblogTemplate/web/css/style.css" rel='stylesheet' type='text/css' />
-	<link href="~/weblogTemplate/web/css/fontawesome-all.css" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
-	    rel="stylesheet">
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link href="~/weblogTemplate/web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/weblogTemplate/web/css/single.css">
+    <link href="~/weblogTemplate/web/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/lib/toastr/toastr.min.css" rel='stylesheet' type='text/css' />
+    <link href="~/weblogTemplate/web/css/fontawesome-all.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+          rel="stylesheet">
 </head>
 
 <body>
-	<!--Header-->
+    <!--Header-->
 
-	<header>
-		<div class="top-bar_sub_w3layouts container-fluid">
-			<div class="row">
-				<div class="col-md-4 logo text-left">
-					<a class="navbar-brand" href="/Blog/GetAll">
-						<i class="fab fa-linode"></i> Weblog</a>
-				</div>
-				
-				@await Html.PartialAsync("../UserLayout/LoginRegisterPartialView")
-				
-				<!-- social media -->
-				<div class="col-md-4 log-icons text-right">
+    <header>
+        <div class="top-bar_sub_w3layouts container-fluid">
+            <div class="row">
+                <div class="col-md-4 logo text-left">
+                    <a class="navbar-brand" href="/Blog/GetAll">
+                        <i class="fab fa-linode"></i> Weblog
+                    </a>
+                </div>
 
-					<ul class="social_list1 mt-3">
+                @await Html.PartialAsync("../UserLayout/LoginRegisterPartialView")
 
-						<li>
-							<a href="#" class="facebook1 mx-2">
-								<i class="fab fa-facebook-f"></i>
+                <!-- social media -->
+                <div class="col-md-4 log-icons text-right">
 
-							</a>
-						</li>
-						<li>
-							<a href="#" class="twitter2">
-								<i class="fab fa-twitter"></i>
+                    <ul class="social_list1 mt-3">
 
-							</a>
-						</li>
-						<li>
-							<a href="#" class="dribble3 mx-2">
-								<i class="fab fa-dribbble"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#" class="pin">
-								<i class="fab fa-pinterest-p"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<!-- //social media -->
-				
-			</div>
-		</div>
+                        <li>
+                            <a href="#" class="facebook1 mx-2">
+                                <i class="fab fa-facebook-f"></i>
 
-		<div class="header_top" id="home">
-		
-			@await Html.PartialAsync("../UserLayout/NavbarPartialView")
-			
-		</div>
-	</header>
-	<!--//header-->
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="twitter2">
+                                <i class="fab fa-twitter"></i>
 
-<!--/main-->
-	<section class="main-content-w3layouts-agileits">
-		<div class="container">
-			@RenderBody()
-		</div>
-	</section>
-	<!--//main-->
-	<!--footer-->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 footer-grid-agileits-w3ls text-left">
-					<h3>About US</h3>
-					<p>urabitur non nulla sit amet nisl tempus convallis quis ac lectus. lacinia eget consectetur sed, convallis at tellus..</p>
-					<div class="read">
-						<a href="single.html" class="btn btn-primary read-m">Read More</a>
-					</div>
-				</div>
-				<div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dribble3 mx-2">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="pin">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //social media -->
 
-					<div class="tech-btm">
+            </div>
+        </div>
+
+        <div class="header_top" id="home">
+
+            @await Html.PartialAsync("../UserLayout/NavbarPartialView")
+
+        </div>
+    </header>
+    <!--//header-->
+    <!--/main-->
+    <section class="main-content-w3layouts-agileits">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+    <!--//main-->
+    <!--footer-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+                    <h3>About US</h3>
+                    <p>urabitur non nulla sit amet nisl tempus convallis quis ac lectus. lacinia eget consectetur sed, convallis at tellus..</p>
+                    <div class="read">
+                        <a href="single.html" class="btn btn-primary read-m">Read More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+
+                    <div class="tech-btm">
                         @await Component.InvokeAsync("LatestPosts")
-					</div>
-				</div>
-				<!-- subscribe -->
-				<div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
-					<h2>Signup to our newsletter</h2>
-					<div class="subscribe-main text-left">
-						<div class="subscribe-form">
-							<form action="#" method="post" class="subscribe_form">
-								<input class="form-control" type="email" placeholder="Enter your email..." required="">
-								<button type="submit" class="btn btn-primary submit">Submit</button>
-							</form>
-							<div class="clearfix"> </div>
-						</div>
-						<p>We respect your privacy.No spam ever!</p>
-					</div>
-					<!-- //subscribe -->
-				</div>
-			</div>
-			<!-- footer -->
-			@await Html.PartialAsync("../UserLayout/FooterPartialView")
-			<!-- //footer -->
+                    </div>
+                </div>
+                <!-- subscribe -->
+                <div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
+                    <h2>Signup to our newsletter</h2>
+                    <div class="subscribe-main text-left">
+                        <div class="subscribe-form">
+                            <form action="#" method="post" class="subscribe_form">
+                                <input class="form-control" type="email" placeholder="Enter your email..." required="">
+                                <button type="submit" class="btn btn-primary submit">Submit</button>
+                            </form>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <p>We respect your privacy.No spam ever!</p>
+                    </div>
+                    <!-- //subscribe -->
+
+                </div>
+            </div>
+            <!-- footer -->
+            @await Html.PartialAsync("../UserLayout/FooterPartialView")
+            <!-- //footer -->
 
 
-		</div>
-	</footer>
-	<!---->
+        </div>
+    </footer>
+    <!---->
+    <!-- js -->
+    <script src="~/weblogTemplate/web/js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!--/ start-smoth-scrolling -->
+    <script src="~/weblogTemplate/web/js/move-top.js"></script>
+    <script src="~/weblogTemplate/web/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 900);
+            });
+        });
+    </script>
+    <!--// end-smoth-scrolling -->
 
-	<!-- js -->
-	<script src="~/weblogTemplate/web/js/jquery-2.2.3.min.js"></script>
-	<!-- //js -->
-	<!--/ start-smoth-scrolling -->
-	<script src="~/weblogTemplate/web/js/move-top.js"></script>
-	<script src="~/weblogTemplate/web/js/easing.js"></script>
-	<script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 900);
-			});
-		});
-	</script>
-	<!--// end-smoth-scrolling -->
+    <script>
+        $(document).ready(function () {
+            /*
+                                    var defaults = {
+                                            containerID: 'toTop', // fading element id
+                                        containerHoverID: 'toTopHover', // fading element hover id
+                                        scrollSpeed: 1200,
+                                        easingType: 'linear'
+                                        };
+                                    */
 
-	<script>
-		$(document).ready(function () {
-			/*
-									var defaults = {
-							  			containerID: 'toTop', // fading element id
-										containerHoverID: 'toTopHover', // fading element hover id
-										scrollSpeed: 1200,
-										easingType: 'linear' 
-							 		};
-									*/
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
 
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+        });
+    </script>
+    <a href="#home" class="scroll" id="toTop" style="display: block;">
+        <span id="toTopHover" style="opacity: 1;"> </span>
+    </a>
 
-		});
-	</script>
-	<a href="#home" class="scroll" id="toTop" style="display: block;">
-		<span id="toTopHover" style="opacity: 1;"> </span>
-	</a>
-
-	<!-- //Custom-JavaScript-File-Links -->
-	<script src="~/weblogTemplate/web/js/bootstrap.js"></script>
-	<script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
-
+    <!-- //Custom-JavaScript-File-Links -->
+    <script src="~/weblogTemplate/web/js/bootstrap.js"></script>
+    <script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/lib/toastr/toastr.min.js"></script>
+    <script></script>
 </body>
 
 </html>

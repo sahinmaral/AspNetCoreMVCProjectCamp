@@ -9,6 +9,8 @@ using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Collections.Generic;
+using Core.Helper.Toastr;
+using Core.Helper.Toastr.OptionEnums;
 
 namespace CoreDemo.Controllers
 {
@@ -56,10 +58,11 @@ namespace CoreDemo.Controllers
         [Route("/Blog/GetById/{blogId}")]
         public IActionResult GetById(int blogId)
         {
+            TempData["BlogId"] = blogId;
+
             Blog blog = _blogService.GetByBlogIdWithDetails(blogId);
-            List<Comment> comments = _commentService.GetAllWithDetails(x => x.BlogId == blogId);
-            
-            
+            List<Comment> comments = _commentService.GetAllWithDetails(x => x.BlogId == blogId);    
+
             ReadBlogViewModel blogViewModel = new ReadBlogViewModel();
             List<ReadCommentViewModel> commentViewModels = new List<ReadCommentViewModel>();
 
@@ -71,9 +74,35 @@ namespace CoreDemo.Controllers
             return View(blogViewModel);
         }
 
+        [HttpGet]
         public PartialViewResult AddComment()
         {
             return PartialView();
         }
+
+        [HttpPost]
+        public IActionResult AddComment(CreateCommentViewModel viewModel)
+        {
+            viewModel.WriterId = 4;
+
+            Comment addedComment = new Comment();
+
+            addedComment = _mapper.Map(viewModel, addedComment);
+
+            _commentService.Add(addedComment);
+
+            TempData["Message"] = Notification.Show("Bşarıyla yorum gönderdiniz", position: Position.BottomRight, type: ToastType.success);
+
+            return RedirectToRoute(new
+            {
+                controller = "Blog",
+                action = "GetById",
+                blogId = viewModel.BlogId
+            });
+        }
+
+
+
+
     }
 }

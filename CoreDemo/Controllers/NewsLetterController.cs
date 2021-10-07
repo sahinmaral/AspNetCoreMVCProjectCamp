@@ -1,0 +1,59 @@
+﻿using AutoMapper;
+
+using Business.Abstract;
+
+using Core.Helper.Toastr;
+using Core.Helper.Toastr.OptionEnums;
+
+using CoreDemo.Models;
+
+using Entities.Concrete;
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace CoreDemo.Controllers
+{
+    public class NewsLetterController : Controller
+    {
+
+        private readonly INewsLetterService _newsLetterService;
+        private readonly IMapper _mapper;
+        public NewsLetterController(INewsLetterService newsLetterService, IMapper mapper)
+        {
+            _newsLetterService = newsLetterService;
+            _mapper = mapper;
+        }
+        
+
+        [HttpPost]
+        public IActionResult SubscribeEmail(CreateNewsLetterViewModel viewModel)
+        {
+            NewsLetter searchedNewsLetter = _newsLetterService.Get(x => x.Email == viewModel.Email);
+
+            if (searchedNewsLetter != null)
+            {
+                TempData["Message"] = Notification.Show("Böyle bir email var", position: Position.BottomRight, type: ToastType.error);
+
+                return RedirectToRoute(new
+                {
+                    controller = "Blog",
+                    action = "GetById",
+                    blogId = TempData["BlogId"]
+                });
+            }
+
+            searchedNewsLetter = _mapper.Map(viewModel, searchedNewsLetter);
+
+            _newsLetterService.Add(searchedNewsLetter);
+
+            TempData["Message"] = Notification.Show("Başarıyla abone oldunuz", position:Position.BottomRight , type:ToastType.success);
+
+                return RedirectToRoute(new
+                {
+                    controller = "Blog",
+                    action = "GetById",
+                    blogId = TempData["BlogId"]
+                });
+        }
+    }
+}
