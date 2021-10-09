@@ -3,8 +3,8 @@ using System;
 using DataAccess.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataAccess.Migrations
 {
@@ -15,64 +15,78 @@ namespace DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
+                .HasAnnotation("ProductVersion", "3.1.15")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Entities.Concrete.About", b =>
                 {
                     b.Property<int>("AboutId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("about_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("AboutDetails")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("AboutDetail")
+                        .HasColumnName("about_detail")
+                        .HasColumnType("text");
 
                     b.Property<string>("AboutImage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("about_image")
+                        .HasColumnType("text");
 
                     b.Property<string>("AboutMapLocation")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("about_map_location")
+                        .HasColumnType("text");
 
                     b.Property<bool>("AboutStatus")
-                        .HasColumnType("bit");
+                        .HasColumnName("about_status")
+                        .HasColumnType("boolean");
 
                     b.HasKey("AboutId");
 
-                    b.ToTable("Abouts");
+                    b.ToTable("abouts");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
                 {
                     b.Property<int>("BlogId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("blog_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("BlogContent")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("blog_content")
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("BlogCreateDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("BlogCreatedDate")
+                        .HasColumnName("blog_created_date")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("BlogMainImage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("blog_main_image")
+                        .HasColumnType("text");
 
                     b.Property<bool>("BlogStatus")
-                        .HasColumnType("bit");
+                        .HasColumnName("blog_status")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("BlogThumbnailImage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("blog_thumbnail_image")
+                        .HasColumnType("text");
 
                     b.Property<string>("BlogTitle")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("blog_title")
+                        .HasColumnType("text");
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                        .HasColumnName("category_id")
+                        .HasColumnType("integer");
 
                     b.Property<int>("WriterId")
-                        .HasColumnType("int");
+                        .HasColumnName("writer_id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlogId");
 
@@ -80,51 +94,61 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("WriterId");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("blogs");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("category_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("CategoryDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("category_description")
+                        .HasColumnType("text");
 
                     b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("category_name")
+                        .HasColumnType("text");
 
                     b.Property<bool>("CategoryStatus")
-                        .HasColumnType("bit");
+                        .HasColumnName("category_status")
+                        .HasColumnType("boolean");
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("categories");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Comment", b =>
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("comment_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("BlogId")
-                        .HasColumnType("int");
+                        .HasColumnName("blog_id")
+                        .HasColumnType("integer");
 
                     b.Property<string>("CommentAbout")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("comment_about")
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("CommentCreateDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("CommentCreatedDate")
+                        .HasColumnName("comment_created_date")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("CommentStatus")
-                        .HasColumnType("bit");
+                        .HasColumnName("comment_status")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("WriterId")
-                        .HasColumnType("int");
+                        .HasColumnName("writer_id")
+                        .HasColumnType("integer");
 
                     b.HasKey("CommentId");
 
@@ -132,91 +156,114 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("WriterId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("comments");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Contact", b =>
                 {
                     b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("contact_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<DateTime>("ContactCreateDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("ContactCreatedDate")
+                        .HasColumnName("contact_created_date")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ContactMail")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("contact_mail")
+                        .HasColumnType("text");
 
                     b.Property<string>("ContactMessage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("contact_message")
+                        .HasColumnType("text");
 
                     b.Property<string>("ContactName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("contact_name")
+                        .HasColumnType("text");
 
                     b.Property<bool>("ContactStatus")
-                        .HasColumnType("bit");
+                        .HasColumnName("contact_status")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("ContactSubject")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("contact_subject")
+                        .HasColumnType("text");
 
                     b.Property<string>("ContactSurname")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("contact_surname")
+                        .HasColumnType("text");
 
                     b.HasKey("ContactId");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("contacts");
                 });
 
             modelBuilder.Entity("Entities.Concrete.NewsLetter", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("NewsLetterId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("newsletter_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("NewsLetterMail")
+                        .HasColumnName("newsletter_mail")
+                        .HasColumnType("text");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<bool>("NewsLetterStatus")
+                        .HasColumnName("newsletter_status")
+                        .HasColumnType("boolean");
 
-                    b.HasKey("Id");
+                    b.HasKey("NewsLetterId");
 
-                    b.ToTable("NewsLetters");
+                    b.ToTable("newsletters");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Writer", b =>
                 {
                     b.Property<int>("WriterId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("writer_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("WriterAbout")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("writer_about")
+                        .HasColumnType("text");
 
                     b.Property<string>("WriterImage")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("writer_image")
+                        .HasColumnType("text");
 
                     b.Property<string>("WriterMail")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("writer_mail")
+                        .HasColumnType("text");
 
                     b.Property<string>("WriterName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("writer_name")
+                        .HasColumnType("text");
 
                     b.Property<string>("WriterPassword")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("writer_password")
+                        .HasColumnType("text");
 
                     b.Property<bool>("WriterStatus")
-                        .HasColumnType("bit");
+                        .HasColumnName("writer_status")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("WriterSurname")
+                        .HasColumnName("writer_surname")
+                        .HasColumnType("text");
 
                     b.Property<string>("WriterUsername")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnName("writer_username")
+                        .HasColumnType("text");
 
                     b.HasKey("WriterId");
 
-                    b.ToTable("Writers");
+                    b.ToTable("writers");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
@@ -232,10 +279,6 @@ namespace DataAccess.Migrations
                         .HasForeignKey("WriterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Writer");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Comment", b =>
@@ -251,27 +294,6 @@ namespace DataAccess.Migrations
                         .HasForeignKey("WriterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Blog");
-
-                    b.Navigation("Writer");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.Blog", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.Category", b =>
-                {
-                    b.Navigation("Blogs");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.Writer", b =>
-                {
-                    b.Navigation("Blogs");
-
-                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

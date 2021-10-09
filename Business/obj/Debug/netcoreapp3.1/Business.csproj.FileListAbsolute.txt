@@ -1,32 +1,49 @@
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\bin\Debug\netcoreapp3.1\Business.deps.json
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\bin\Debug\netcoreapp3.1\Business.dll
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\bin\Debug\netcoreapp3.1\Business.pdb
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\obj\Debug\netcoreapp3.1\Business.AssemblyInfoInputs.cache
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\obj\Debug\netcoreapp3.1\Business.AssemblyInfo.cs
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\obj\Debug\netcoreapp3.1\Business.csproj.CoreCompileInputs.cache
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\obj\Debug\netcoreapp3.1\Business.dll
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\obj\Debug\netcoreapp3.1\Business.pdb
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\bin\Debug\netcoreapp3.1\DataAccess.dll
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\bin\Debug\netcoreapp3.1\Entities.dll
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\bin\Debug\netcoreapp3.1\DataAccess.pdb
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\bin\Debug\netcoreapp3.1\Entities.pdb
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\obj\Debug\netcoreapp3.1\Business.csproj.CopyComplete
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\bin\Debug\netcoreapp3.1\Core.dll
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\bin\Debug\netcoreapp3.1\Core.pdb
-C:\Users\sahin\OneDrive\Desktop\CoreDemo\Business\obj\Debug\netcoreapp3.1\Business.csproj.AssemblyReference.cache
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\bin\Debug\netcoreapp3.1\Business.deps.json
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\bin\Debug\netcoreapp3.1\Business.dll
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\bin\Debug\netcoreapp3.1\Business.pdb
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\bin\Debug\netcoreapp3.1\Core.dll
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\bin\Debug\netcoreapp3.1\DataAccess.dll
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\bin\Debug\netcoreapp3.1\Entities.dll
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\bin\Debug\netcoreapp3.1\DataAccess.pdb
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\bin\Debug\netcoreapp3.1\Entities.pdb
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\bin\Debug\netcoreapp3.1\Core.pdb
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\obj\Debug\netcoreapp3.1\Business.AssemblyInfoInputs.cache
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\obj\Debug\netcoreapp3.1\Business.AssemblyInfo.cs
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\obj\Debug\netcoreapp3.1\Business.csproj.CoreCompileInputs.cache
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\obj\Debug\netcoreapp3.1\Business.csproj.CopyComplete
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\obj\Debug\netcoreapp3.1\Business.dll
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\obj\Debug\netcoreapp3.1\Business.pdb
-C:\Users\sahin\OneDrive\Desktop\​‏       \GithubProjects\AspNetCoreMVCProjectCamp\Business\obj\Debug\netcoreapp3.1\Business.csprojAssemblyReference.cache
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/bin/Debug/netcoreapp3.1/Business.deps.json
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/bin/Debug/netcoreapp3.1/Business.dll
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/bin/Debug/netcoreapp3.1/Business.pdb
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/obj/Debug/netcoreapp3.1/Business.AssemblyInfoInputs.cache
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/obj/Debug/netcoreapp3.1/Business.AssemblyInfo.cs
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/obj/Debug/netcoreapp3.1/Business.csproj.CoreCompileInputs.cache
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/obj/Debug/netcoreapp3.1/Business.dll
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/obj/Debug/netcoreapp3.1/Business.pdb
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/bin/Debug/netcoreapp3.1/DataAccess.dll
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/bin/Debug/netcoreapp3.1/Entities.dll
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/bin/Debug/netcoreapp3.1/DataAccess.pdb
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/bin/Debug/netcoreapp3.1/Entities.pdb
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/obj/Debug/netcoreapp3.1/Business.csproj.CopyComplete
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/bin/Debug/netcoreapp3.1/Core.dll
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/bin/Debug/netcoreapp3.1/Core.pdb
+C:/Users/sahin/OneDrive/Desktop/CoreDemo/Business/obj/Debug/netcoreapp3.1/Business.csproj.AssemblyReference.cache
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Business.deps.json
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Business.dll
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Business.pdb
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Core.dll
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/DataAccess.dll
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Entities.dll
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/DataAccess.pdb
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Entities.pdb
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Core.pdb
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.AssemblyInfoInputs.cache
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.AssemblyInfo.cs
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.csproj.CoreCompileInputs.cache
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.csproj.CopyComplete
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.dll
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.pdb
+C:/Users/sahin/OneDrive/Desktop/​‏       /GithubProjects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.csprojAssemblyReference.cache
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Business.deps.json
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Business.dll
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Business.pdb
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Core.dll
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/DataAccess.dll
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Entities.dll
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/DataAccess.pdb
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Entities.pdb
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/bin/Debug/netcoreapp3.1/Core.pdb
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.csproj.AssemblyReference.cache
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.GeneratedMSBuildEditorConfig.editorconfig
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.AssemblyInfoInputs.cache
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.AssemblyInfo.cs
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.csproj.CoreCompileInputs.cache
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.csproj.CopyComplete
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.dll
+/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/obj/Debug/netcoreapp3.1/Business.pdb

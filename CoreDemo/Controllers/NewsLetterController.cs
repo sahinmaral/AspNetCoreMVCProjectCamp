@@ -28,7 +28,7 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult SubscribeEmailAtBlog(CreateNewsLetterViewModel viewModel)
         {
-            NewsLetter searchedNewsLetter = _newsLetterService.Get(x => x.Email == viewModel.Email);
+            NewsLetter searchedNewsLetter = _newsLetterService.Get(x => x.NewsLetterMail == viewModel.Email);
 
             if (searchedNewsLetter != null)
             {
@@ -59,7 +59,7 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult SubscribeEmailAtAbout(CreateNewsLetterViewModel viewModel)
         {
-            NewsLetter searchedNewsLetter = _newsLetterService.Get(x => x.Email == viewModel.Email);
+            NewsLetter searchedNewsLetter = _newsLetterService.Get(x => x.NewsLetterMail == viewModel.Email);
 
             if (searchedNewsLetter != null)
             {
