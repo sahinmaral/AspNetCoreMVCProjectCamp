@@ -9,13 +9,18 @@ namespace Entities.Concrete
     {
         public NewsLetter()
         {
-            Status = true;
+            NewsLetterStatus = true;
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public bool Status { get; set; }
+        [Column("newsletter_id")]
+        public int NewsLetterId { get; set; }
+        
+        [Column("newsletter_mail")]
+        public string NewsLetterMail { get; set; }
+        
+        [Column("newsletter_status")]
+        public bool NewsLetterStatus { get; set; }
     }
 }

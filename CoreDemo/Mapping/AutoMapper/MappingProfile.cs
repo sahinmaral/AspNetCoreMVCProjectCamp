@@ -9,7 +9,7 @@ namespace CoreDemo.Mapping.AutoMapper
         public MappingProfile()
         {
             CreateMap<Blog, ReadBlogViewModel>()
-                .ForMember(obj => obj.BlogCreateDate, opt => opt.MapFrom(src => src.BlogCreateDate.ToShortDateString()))
+                .ForMember(obj => obj.BlogCreateDate, opt => opt.MapFrom(src => src.BlogCreatedDate.ToShortDateString()))
                 .ForMember(obj => obj.CategoryViewModel, opt => opt.MapFrom(src => src.Category))
                 .ForMember(obj => obj.WriterViewModel, opt => opt.MapFrom(src => src.Writer))
                 .ForMember(x => x.CommentViewModels, opt => opt.MapFrom(src => src.Comments));

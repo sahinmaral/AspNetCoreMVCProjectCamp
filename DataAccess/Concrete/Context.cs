@@ -7,7 +7,18 @@ namespace DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=SAHINMARAL;Database=CoreBlogDb;Trusted_Connection=true");
+            optionsBuilder.UseNpgsql("Host=localhost;Database=core_blog_db;Username=postgres;Password=319528");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<About>().ToTable("abouts");
+            modelBuilder.Entity<Blog>().ToTable("blogs");
+            modelBuilder.Entity<Writer>().ToTable("writers");
+            modelBuilder.Entity<Category>().ToTable("categories");
+            modelBuilder.Entity<Comment>().ToTable("comments");
+            modelBuilder.Entity<Contact>().ToTable("contacts");
+            modelBuilder.Entity<NewsLetter>().ToTable("newsletters");
         }
 
         public DbSet<About> Abouts { get; set; }
