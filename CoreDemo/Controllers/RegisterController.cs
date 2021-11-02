@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         private readonly IMapper _mapper;

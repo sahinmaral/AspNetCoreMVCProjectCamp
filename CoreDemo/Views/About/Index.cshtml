@@ -20,8 +20,8 @@
                 <h3>
                     Biz Kimiz & Misyonumuz & Vizyonumuz
                 </h3>
-                <p>
-                    @Model.AboutDetails
+                <p style="margin-bottom:0">
+                    @Model.AboutDetail
                 </p>
             </div>
 
@@ -30,9 +30,6 @@
         <!--right-->
         <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
             <div class="right-blog-info text-left">
-                <div class="tech-btm">
-                    <img src="~/weblogTemplate/web/images/banner1.jpg" class="img-fluid" alt="">
-                </div>
                 <div class="tech-btm">
                     @await Component.InvokeAsync("SubscribeEmailAtAbout")
 

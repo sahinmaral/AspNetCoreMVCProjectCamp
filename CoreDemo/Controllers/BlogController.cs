@@ -1,16 +1,13 @@
 ﻿using AutoMapper;
-
 using Business.Abstract;
-
 using CoreDemo.Models;
-
 using Entities.Concrete;
-
 using Microsoft.AspNetCore.Mvc;
-
 using System.Collections.Generic;
+using System.Linq;
 using Core.Helper.Toastr;
 using Core.Helper.Toastr.OptionEnums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreDemo.Controllers
 {
@@ -19,14 +16,18 @@ namespace CoreDemo.Controllers
         private readonly IBlogService _blogService;
         private readonly ICommentService _commentService;
         private readonly IMapper _mapper;
-        
-        public BlogController(IBlogService blogService, ICommentService commentService , IMapper mapper)
+        private readonly IWriterService _writerService;
+
+        public BlogController(IBlogService blogService, ICommentService commentService, IMapper mapper,
+            IWriterService writerService)
         {
             _blogService = blogService;
             _commentService = commentService;
             _mapper = mapper;
+            _writerService = writerService;
         }
 
+        [AllowAnonymous]
         public IActionResult GetAll()
         {
             List<Blog> blogs = _blogService.GetAllWithDetails();
@@ -51,13 +52,14 @@ namespace CoreDemo.Controllers
             return View(blogViewModels);
         }
 
+        [AllowAnonymous]
         [Route("/Blog/GetById/{blogId}")]
         public IActionResult GetById(int blogId)
         {
             TempData["BlogId"] = blogId;
 
             Blog blog = _blogService.GetByBlogIdWithDetails(blogId);
-            List<Comment> comments = _commentService.GetAllWithDetails(x => x.BlogId == blogId);    
+            List<Comment> comments = _commentService.GetAllWithDetails(x => x.BlogId == blogId);
 
             ReadBlogViewModel blogViewModel = new ReadBlogViewModel();
             List<ReadCommentViewModel> commentViewModels = new List<ReadCommentViewModel>();
@@ -70,6 +72,7 @@ namespace CoreDemo.Controllers
             return View(blogViewModel);
         }
 
+
         [HttpGet]
         public PartialViewResult AddComment()
         {
@@ -79,7 +82,25 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult AddComment(CreateCommentViewModel viewModel)
         {
-            viewModel.WriterId = 4;
+            if (!ModelState.IsValid)
+            {
+                // TODO - ModelState uyarı verince , toplam uyarılar mesajın içerisinde olsun.
+                TempData["Message"] = Notification.Show("message", position: Position.BottomRight,
+                    type: ToastType.error);
+                
+                return RedirectToRoute(new
+                {
+                    controller = "Blog",
+                    action = "GetById",
+                    blogId = viewModel.BlogId
+                });
+            }
+
+            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
+
+            Writer writer = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+
+            viewModel.WriterId = writer.WriterId;
 
             Comment addedComment = new Comment();
 
@@ -87,7 +108,8 @@ namespace CoreDemo.Controllers
 
             _commentService.Add(addedComment);
 
-            TempData["Message"] = Notification.Show("Bşarıyla yorum gönderdiniz", position: Position.BottomRight, type: ToastType.success);
+            TempData["Message"] = Notification.Show("Başarıyla yorum gönderdiniz", position: Position.BottomRight,
+                type: ToastType.success);
 
             return RedirectToRoute(new
             {
@@ -96,9 +118,5 @@ namespace CoreDemo.Controllers
                 blogId = viewModel.BlogId
             });
         }
-
-
-
-
     }
 }

@@ -18,11 +18,13 @@ namespace CoreDemo.ViewComponents
             _mapper = mapper;
         }
 
-        public IViewComponentResult Invoke(int writerId)
+        public IViewComponentResult Invoke(int writerId,int currentBlogId)
         {
             List<ReadBlogViewModel> viewModels = new List<ReadBlogViewModel>();
 
             List<Blog> last3Blogs = _blogService.GetAllWithDetails(x=>x.WriterId == writerId).TakeLast(3).ToList();
+
+            last3Blogs.Remove(last3Blogs.Single(x=>x.BlogId == currentBlogId));
 
             viewModels = _mapper.Map(last3Blogs, viewModels);
 

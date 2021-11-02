@@ -14,6 +14,8 @@ namespace CoreDemo.Mapping.AutoMapper
                 .ForMember(obj => obj.WriterViewModel, opt => opt.MapFrom(src => src.Writer))
                 .ForMember(x => x.CommentViewModels, opt => opt.MapFrom(src => src.Comments));
 
+            CreateMap<CreateBlogViewModel, Blog>();
+            
             CreateMap<Comment, ReadCommentViewModel>()
                 .ForMember(obj => obj.WriterViewModel, opt => opt.MapFrom(src => src.Writer));
 

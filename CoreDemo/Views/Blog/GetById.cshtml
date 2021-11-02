@@ -59,7 +59,8 @@
 
         </div>
         <div class="comment-top">
-            @await Html.PartialAsync("../Blog/AddComment" , new CreateCommentViewModel()
+
+            @await Html.PartialAsync("../Blog/AddComment", new CreateCommentViewModel()
             {
                 BlogId = Model.BlogId
             })
@@ -94,13 +95,13 @@
              		  </ul> 
              </div>
 
-                *@ 
+                *@
 
-            
+
             @await Component.InvokeAsync("SubscribeEmailAtBlog")
 
             <div class="tech-btm">
-                @await Component.InvokeAsync("LatestPostsToWriter" , new {writerId = @Model.WriterViewModel.WriterId})
+                @await Component.InvokeAsync("LatestPostsToWriter" , new {writerId = @Model.WriterViewModel.WriterId , currentBlogId = @Model.BlogId})
             </div>
             @* <div class="single-gd my-5 tech-btm"> *@
             @* 	<h4>Our Progress</h4> *@
@@ -153,4 +154,5 @@
     window.onload = function () {
         @Html.Raw(TempData["Message"])
     }
+    
 </script>

@@ -5,10 +5,12 @@ using Core.Helper.Toastr;
 using Core.Helper.Toastr.OptionEnums;
 using CoreDemo.Models;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         private readonly IContactService _contactService;

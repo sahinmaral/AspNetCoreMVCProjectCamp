@@ -1,36 +1,44 @@
 {
   "format": 1,
   "restore": {
-    "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/Business.csproj": {}
+    "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj": {}
   },
   "projects": {
-    "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/Business.csproj": {
+    "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/Business.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/Business.csproj",
-        "packagesPath": "/home/sahinmaral/.nuget/packages/",
-        "outputPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Business/obj/",
+        "projectPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj",
+        "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
+        ],
         "configFilePaths": [
-          "/home/sahinmaral/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/DataAccess/DataAccess.csproj": {
-                "projectPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/DataAccess/DataAccess.csproj"
+              "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj"
               },
-              "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj": {
-                "projectPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj"
+              "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj"
               }
             }
           }
@@ -59,34 +67,42 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Core/Core.csproj": {
+    "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Core/Core.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Core/Core.csproj",
-        "packagesPath": "/home/sahinmaral/.nuget/packages/",
-        "outputPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Core/obj/",
+        "projectPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
+        ],
         "configFilePaths": [
-          "/home/sahinmaral/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj": {
-                "projectPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj"
+              "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj"
               }
             }
           }
@@ -121,37 +137,45 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/DataAccess/DataAccess.csproj": {
+    "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/DataAccess/DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/DataAccess/DataAccess.csproj",
-        "packagesPath": "/home/sahinmaral/.nuget/packages/",
-        "outputPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/DataAccess/obj/",
+        "projectPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
+        ],
         "configFilePaths": [
-          "/home/sahinmaral/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Core/Core.csproj": {
-                "projectPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Core/Core.csproj"
+              "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj"
               },
-              "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj": {
-                "projectPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj"
+              "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj"
               }
             }
           }
@@ -202,26 +226,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj": {
+    "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj",
-        "packagesPath": "/home/sahinmaral/.nuget/packages/",
-        "outputPath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/obj/",
+        "projectPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
+        ],
         "configFilePaths": [
-          "/home/sahinmaral/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -254,7 +286,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -18,6 +18,9 @@ using Microsoft.Extensions.WebEncoders;
 using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace CoreDemo
 {
@@ -67,6 +70,20 @@ namespace CoreDemo
             });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+            services.AddMvc();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+            {
+                //x.LoginPath = "/ErrorPage/ErrorPage/401";
+                x.LoginPath = "/Login/LoginWriter";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,14 +100,17 @@ namespace CoreDemo
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithReExecute("/ErrorPage/ErrorPage","?code={0}");
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/ErrorPage/{0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

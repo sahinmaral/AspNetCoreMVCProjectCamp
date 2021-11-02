@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstract;
 using CoreDemo.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class AboutController : Controller
     {
         private readonly IAboutService _aboutService;

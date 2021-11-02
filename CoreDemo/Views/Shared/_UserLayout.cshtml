@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="row">
                 <div class="col-md-4 logo text-left">
                     <a class="navbar-brand" href="/Blog/GetAll">
-                        <i class="fab fa-linode"></i> Weblog
+                        <i class="fab fa-linode"></i> ASP.NET Core 5.0 Kampı
                     </a>
                 </div>
 
@@ -93,46 +93,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </section>
     <!--//main-->
     <!--footer-->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
-                    <h3>About US</h3>
-                    <p>urabitur non nulla sit amet nisl tempus convallis quis ac lectus. lacinia eget consectetur sed, convallis at tellus..</p>
-                    <div class="read">
-                        <a href="single.html" class="btn btn-primary read-m">Read More</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
-
-                    <div class="tech-btm">
-                        @await Component.InvokeAsync("LatestPosts")
-                    </div>
-                </div>
-                <!-- subscribe -->
-                <div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
-                    <h2>Signup to our newsletter</h2>
-                    <div class="subscribe-main text-left">
-                        <div class="subscribe-form">
-                            <form action="#" method="post" class="subscribe_form">
-                                <input class="form-control" type="email" placeholder="Enter your email..." required="">
-                                <button type="submit" class="btn btn-primary submit">Submit</button>
-                            </form>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <p>We respect your privacy.No spam ever!</p>
-                    </div>
-                    <!-- //subscribe -->
-
-                </div>
-            </div>
-            <!-- footer -->
-            @await Html.PartialAsync("../UserLayout/FooterPartialView")
+   
+        @await Html.PartialAsync("../UserLayout/FooterPartialView")
             <!-- //footer -->
-
-
-        </div>
-    </footer>
+    
     <!---->
     <!-- js -->
     <script src="~/weblogTemplate/web/js/jquery-2.2.3.min.js"></script>

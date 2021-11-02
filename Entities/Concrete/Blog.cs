@@ -12,6 +12,7 @@ namespace Entities.Concrete
         public Blog()
         {
             BlogCreatedDate = DateTime.Now;
+            BlogStatus = true;
         }
 
         [Key]

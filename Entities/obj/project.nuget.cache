@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Z4TbH79TAMVz41t6eagTrWUkAGmzjP74IYKhC9Nwk0Wo1kQDl4A8NKV/7a4jcZ3iaSWwPk2O052+Sr4WAzk9yw==",
+  "dgSpecHash": "5S3KVKkmQxvQ6u2lXdTWv0eB+2L7JpwHd5w4ph0KrjnreOwGHIPANIjgB5mgAPkN6RiJ7V1YBYHr26PErOHK0g==",
   "success": true,
-  "projectFilePath": "/home/sahinmaral/Desktop/Projects/AspNetCoreMVCProjectCamp/Entities/Entities.csproj",
+  "projectFilePath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

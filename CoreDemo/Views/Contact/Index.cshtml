@@ -12,8 +12,8 @@
 <p class="sub text-center">Fikirlerinizi almayı çok isteriz.</p>
 <div class="contact-map inner-sec">
 
-    <iframe src="@TempData["MapLocation"]"
-            class="map" style="border:0" allowfullscreen=""></iframe>
+  @Html.Raw(TempData["MapLocation"])
+
 </div>
 <div class="ad-inf-sec bg-light">
     <div class="container">

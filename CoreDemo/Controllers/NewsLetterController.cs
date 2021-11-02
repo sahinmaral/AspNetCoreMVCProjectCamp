@@ -8,11 +8,12 @@ using Core.Helper.Toastr.OptionEnums;
 using CoreDemo.Models;
 
 using Entities.Concrete;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class NewsLetterController : Controller
     {
 
@@ -83,6 +84,11 @@ namespace CoreDemo.Controllers
                 controller = "About",
                 action = "Index"
             });
+        }
+
+        public IActionResult SubscribeEmailAtFooter()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
