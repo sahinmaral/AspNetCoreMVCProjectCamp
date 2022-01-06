@@ -15,13 +15,10 @@ namespace DataAccess.Concrete
     {
         public List<Comment> GetAllWithDetails(Expression<Func<Comment, bool>> filter = null)
         {
-            using (Context context = new Context())
-            {
-                return filter == null
-                    ? context.Comments.Include(x => x.Writer).ToList()
-                    : context.Comments.Include(x => x.Writer).Where(filter).ToList();
-            }
-
+            using Context context = new Context();
+            return filter == null
+                ? context.Comments.Include(x => x.Writer).Include(x=>x.Blog).ToList()
+                : context.Comments.Include(x => x.Writer).Include(x => x.Blog).Where(filter).ToList();
         }
     }
 

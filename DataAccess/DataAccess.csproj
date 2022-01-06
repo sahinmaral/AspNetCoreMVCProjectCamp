@@ -5,25 +5,40 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Migrations\20220105212736_updated_relationship_between_blog_and_blogratio.cs" />
+      <Compile Remove="Migrations\20220105212736_updated_relationship_between_blog_and_blogratio.Designer.cs" />
+      <Compile Remove="Migrations\20220106081939_changed_database_postgresql_to_mssql.cs" />
+      <Compile Remove="Migrations\20220106081939_changed_database_postgresql_to_mssql.Designer.cs" />
+      <Compile Remove="Migrations\20220106082342_changed_database_postgresql_to_mssql.cs" />
+      <Compile Remove="Migrations\20220106082342_changed_database_postgresql_to_mssql.Designer.cs" />
+      <Compile Remove="Migrations\20220106082845_changed_database_postgresql_to_mssql.cs" />
+      <Compile Remove="Migrations\20220106082845_changed_database_postgresql_to_mssql.Designer.cs" />
+      <Compile Remove="Migrations\20220106084314_changed_database_postgresql_to_mssql.cs" />
+      <Compile Remove="Migrations\20220106084314_changed_database_postgresql_to_mssql.Designer.cs" />
+      <Compile Remove="Migrations\20220106090936_changed_columns_and_foreignkeys.cs" />
+      <Compile Remove="Migrations\20220106090936_changed_columns_and_foreignkeys.Designer.cs" />
+      <Compile Remove="Migrations\20220106091331_changed_columns_and_foreignkeys.cs" />
+      <Compile Remove="Migrations\20220106091331_changed_columns_and_foreignkeys.Designer.cs" />
+      <Compile Remove="Migrations\20220106100155_asdasdsad.cs" />
+      <Compile Remove="Migrations\20220106100155_asdasdsad.Designer.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.11">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.11">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.11" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Core\Core.csproj" />
       <ProjectReference Include="..\Entities\Entities.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Migrations" />
     </ItemGroup>
 
 </Project>

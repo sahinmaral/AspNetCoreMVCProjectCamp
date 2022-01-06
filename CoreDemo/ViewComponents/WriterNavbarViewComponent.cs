@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using AutoMapper;
 using Business.Abstract;
 using CoreDemo.Models;
@@ -27,7 +28,7 @@ namespace CoreDemo.ViewComponents
             ReadWriterViewModel writerViewModel = new ReadWriterViewModel();
 
             writerViewModel = _mapper.Map(writer, writerViewModel);
-            
+
             return View(writerViewModel);
         }
     }

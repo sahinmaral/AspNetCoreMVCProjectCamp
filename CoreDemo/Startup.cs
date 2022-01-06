@@ -81,7 +81,6 @@ namespace CoreDemo
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
             {
-                //x.LoginPath = "/ErrorPage/ErrorPage/401";
                 x.LoginPath = "/Login/LoginWriter";
             });
         }

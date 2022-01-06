@@ -1,0 +1,36 @@
+﻿@model ReadWriterViewModel
+
+@{
+    ViewData["Title"] = "Profili Düzenle";
+    Layout = "_WriterLayout";
+}
+
+<h2 class="ml-5">Profili Düzenle</h2>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("ChangeProfile", "Writer", FormMethod.Post))
+            {
+                @Html.HiddenFor(x=>x.WriterId)
+
+                <div class="form-group">
+                    <label for="exampleTextarea1">Ad</label>
+                    @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control", style = "border:1px solid black", placeholder = "Ad", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.WriterName, "", new { style = "color:darkred" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea1">Soyad</label>
+                    @Html.TextBoxFor(x => x.WriterSurname, new { @class = "form-control", style = "border:1px solid black", placeholder = "Soyad", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.WriterSurname, "", new { style = "color:darkred" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea1">Hakkında</label>
+                    @Html.TextAreaFor(x => x.WriterAbout, new { @class = "form-control", style = "border:1px solid black", placeholder = "Soyad", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.WriterAbout, "", new { style = "color:darkred" })
+                </div>
+                <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
+            }
+        </div>
+    </div>
+</div>

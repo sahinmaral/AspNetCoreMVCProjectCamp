@@ -3,8 +3,8 @@ using System;
 using DataAccess.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataAccess.Migrations
 {
@@ -15,33 +15,28 @@ namespace DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.15")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Entities.Concrete.About", b =>
                 {
                     b.Property<int>("AboutId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("about_id")
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AboutDetail")
-                        .HasColumnName("about_detail")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AboutImage")
-                        .HasColumnName("about_image")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AboutMapLocation")
-                        .HasColumnName("about_map_location")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("AboutStatus")
-                        .HasColumnName("about_status")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.HasKey("AboutId");
 
@@ -52,41 +47,34 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("BlogId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("blog_id")
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BlogContent")
-                        .HasColumnName("blog_content")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("BlogCreatedDate")
-                        .HasColumnName("blog_created_date")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("BlogMainImage")
-                        .HasColumnName("blog_main_image")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("BlogStatus")
-                        .HasColumnName("blog_status")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("BlogThumbnailImage")
-                        .HasColumnName("blog_thumbnail_image")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BlogTitle")
-                        .HasColumnName("blog_title")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryId")
-                        .HasColumnName("category_id")
-                        .HasColumnType("integer");
+                        .HasColumnName("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<int>("WriterId")
-                        .HasColumnName("writer_id")
-                        .HasColumnType("integer");
+                        .HasColumnName("WriterId")
+                        .HasColumnType("int");
 
                     b.HasKey("BlogId");
 
@@ -97,25 +85,48 @@ namespace DataAccess.Migrations
                     b.ToTable("blogs");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.BlogRatio", b =>
+                {
+                    b.Property<int>("BlogRatioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("DislikeRatio")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("LikeRatio")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TotalCommentsCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("BlogRatioId");
+
+                    b.HasIndex("BlogId")
+                        .IsUnique();
+
+                    b.ToTable("blog_ratios");
+                });
+
             modelBuilder.Entity("Entities.Concrete.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("category_id")
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CategoryDescription")
-                        .HasColumnName("category_description")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CategoryName")
-                        .HasColumnName("category_name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("CategoryStatus")
-                        .HasColumnName("category_status")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.HasKey("CategoryId");
 
@@ -126,29 +137,28 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("comment_id")
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BlogId")
-                        .HasColumnName("blog_id")
-                        .HasColumnType("integer");
+                        .HasColumnName("BlogId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CommentAbout")
-                        .HasColumnName("comment_about")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CommentCreatedDate")
-                        .HasColumnName("comment_created_date")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("CommentStatus")
-                        .HasColumnName("comment_status")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
-                    b.Property<int>("WriterId")
-                        .HasColumnName("writer_id")
-                        .HasColumnType("integer");
+                    b.Property<bool>("LikeOrDislikeStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("WriterId")
+                        .HasColumnName("WriterId")
+                        .HasColumnType("int");
 
                     b.HasKey("CommentId");
 
@@ -163,37 +173,29 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("contact_id")
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("ContactCreatedDate")
-                        .HasColumnName("contact_created_date")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ContactMail")
-                        .HasColumnName("contact_mail")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContactMessage")
-                        .HasColumnName("contact_message")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContactName")
-                        .HasColumnName("contact_name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ContactStatus")
-                        .HasColumnName("contact_status")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("ContactSubject")
-                        .HasColumnName("contact_subject")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContactSurname")
-                        .HasColumnName("contact_surname")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContactId");
 
@@ -204,17 +206,14 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("NewsLetterId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("newsletter_id")
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("NewsLetterMail")
-                        .HasColumnName("newsletter_mail")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("NewsLetterStatus")
-                        .HasColumnName("newsletter_status")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.HasKey("NewsLetterId");
 
@@ -225,41 +224,32 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("WriterId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("writer_id")
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("WriterAbout")
-                        .HasColumnName("writer_about")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WriterImage")
-                        .HasColumnName("writer_image")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WriterMail")
-                        .HasColumnName("writer_mail")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WriterName")
-                        .HasColumnName("writer_name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WriterPassword")
-                        .HasColumnName("writer_password")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("WriterStatus")
-                        .HasColumnName("writer_status")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("WriterSurname")
-                        .HasColumnName("writer_surname")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WriterUsername")
-                        .HasColumnName("writer_username")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("WriterId");
 
@@ -281,6 +271,15 @@ namespace DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Entities.Concrete.BlogRatio", b =>
+                {
+                    b.HasOne("Entities.Concrete.Blog", "Blog")
+                        .WithOne("BlogRatio")
+                        .HasForeignKey("Entities.Concrete.BlogRatio", "BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Entities.Concrete.Comment", b =>
                 {
                     b.HasOne("Entities.Concrete.Blog", "Blog")
@@ -290,10 +289,8 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("Entities.Concrete.Writer", "Writer")
-                        .WithMany("Comments")
-                        .HasForeignKey("WriterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("WriterId");
                 });
 #pragma warning restore 612, 618
         }

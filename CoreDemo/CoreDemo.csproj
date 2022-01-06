@@ -5,11 +5,19 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Content Remove="Views\Shared\Components\LatestTenPostsToWriter\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="AutoMapper" Version="10.0.0" />
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
       <PackageReference Include="FluentValidation" Version="10.3.3" />
       <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.18" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.11">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
       <PackageReference Include="toastr" Version="2.1.1" />
     </ItemGroup>
@@ -22,7 +30,20 @@
 
     <ItemGroup>
       <Folder Include="Views\Shared\Components\Components" />
+      <Folder Include="wwwroot\writerProfileImages\" />
       <Folder Include="wwwroot\weblogTemplate" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Views\Shared\Components\LatestTenPostsToWriter\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Shared\Components\LatestTenPostsToWriter\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Views\Shared\Components\LatestTenPostsToWriter\Default.cshtml" />
     </ItemGroup>
 
 </Project>

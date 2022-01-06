@@ -17,35 +17,30 @@ namespace Entities.Concrete
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("blog_id")]
         public int BlogId { get; set; }
-        
-        [Column("blog_title")]
+
         public string BlogTitle { get; set; }
         
-        [Column("blog_content")]
         public string BlogContent { get; set; }
-        
-        [Column("blog_thumbnail_image")]
+
         public string BlogThumbnailImage { get; set; }
         
-        [Column("blog_main_image")]
         public string BlogMainImage { get; set; }
         
-        [Column("blog_created_date")]
         public DateTime BlogCreatedDate { get; set; }
         
-        [Column("blog_status")]
         public bool BlogStatus { get; set; }
 
-        [Column("category_id")]
+        [Column("CategoryId")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
 
-        [Column("writer_id")]
+        [Column("WriterId")]
         public int WriterId { get; set; }
         public Writer Writer { get; set; }
+
+        public BlogRatio BlogRatio { get; set; }
     }
 }

@@ -101,7 +101,7 @@
             @await Component.InvokeAsync("SubscribeEmailAtBlog")
 
             <div class="tech-btm">
-                @await Component.InvokeAsync("LatestPostsToWriter" , new {writerId = @Model.WriterViewModel.WriterId , currentBlogId = @Model.BlogId})
+                @await Component.InvokeAsync("LatestThreePostsToWriter" , new {writerId = @Model.WriterViewModel.WriterId , currentBlogId = @Model.BlogId})
             </div>
             @* <div class="single-gd my-5 tech-btm"> *@
             @* 	<h4>Our Progress</h4> *@

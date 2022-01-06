@@ -14,13 +14,10 @@ namespace Entities.Concrete
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("newsletter_id")]
         public int NewsLetterId { get; set; }
         
-        [Column("newsletter_mail")]
         public string NewsLetterMail { get; set; }
         
-        [Column("newsletter_status")]
         public bool NewsLetterStatus { get; set; }
     }
 }

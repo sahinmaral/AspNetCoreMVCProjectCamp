@@ -7,7 +7,8 @@ namespace DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=core_blog_db;Username=postgres;Password=319528");
+            optionsBuilder.UseSqlServer("Server=SAHINMARAL;Database=CoreBlogDb;Trusted_Connection=True;");
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,6 +20,7 @@ namespace DataAccess.Concrete
             modelBuilder.Entity<Comment>().ToTable("comments");
             modelBuilder.Entity<Contact>().ToTable("contacts");
             modelBuilder.Entity<NewsLetter>().ToTable("newsletters");
+            modelBuilder.Entity<BlogRatio>().ToTable("blog_ratios");
         }
 
         public DbSet<About> Abouts { get; set; }
@@ -28,5 +30,6 @@ namespace DataAccess.Concrete
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<NewsLetter> NewsLetters { get; set; }
+        public DbSet<BlogRatio> BlogRatios { get; set; }
     }
 }
