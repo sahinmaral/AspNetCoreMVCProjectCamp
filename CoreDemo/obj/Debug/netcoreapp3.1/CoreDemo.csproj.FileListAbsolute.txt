@@ -1341,3 +1341,7 @@ C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\WriterMessages\Default.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Message\GetMessageDetail.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Message\ViewInbox.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Homepage.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\AdminSidebar\Default.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\AdminNavbar\Default.cshtml.g.cs

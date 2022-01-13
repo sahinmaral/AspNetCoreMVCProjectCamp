@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewData["Title"] | ASP.NET Core MVC</title>
+
+    <link href="~/adminTemplate/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/adminTemplate/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/adminTemplate/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="~/adminTemplate/css/animate.css" rel="stylesheet">
+    <link href="~/adminTemplate/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        @await Component.InvokeAsync("AdminSidebar")
+
+        <div id="page-wrapper" class="gray-bg">
+            
+           @await Component.InvokeAsync("AdminNavbar")
+
+            @RenderBody()
+
+            
+
+            <div class="footer">
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2018
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="~/adminTemplate/js/jquery-3.1.1.min.js"></script>
+    <script src="~/adminTemplate/js/popper.min.js"></script>
+    <script src="~/adminTemplate/js/bootstrap.js"></script>
+    <script src="~/adminTemplate/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/adminTemplate/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Peity -->
+    <script src="~/adminTemplate/js/plugins/peity/jquery.peity.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="~/adminTemplate/js/inspinia.js"></script>
+    <script src="~/adminTemplate/js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="~/adminTemplate/js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Peity -->
+    <script src="~/adminTemplate/js/demo/peity-demo.js"></script>
+
+    <script>$(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green'
+            });
+        });</script>
+
+</body>
+
+</html>
