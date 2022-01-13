@@ -66,6 +66,9 @@ namespace CoreDemo
 
             //NotificationType and NotificationSymbol will be added
 
+            services.AddSingleton<IMessageService, MessageManager>();
+            services.AddSingleton<IMessageDal, EfMessageDal>();
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.Configure<WebEncoderOptions>(options =>

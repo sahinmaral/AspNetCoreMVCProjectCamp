@@ -1,0 +1,33 @@
+﻿@model Entities.Concrete.Message
+
+@{
+    ViewBag.Title = "Mesaj Detayı";
+    Layout = "_WriterLayout";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="margin-bottom:3em">Mesaj Detayı</h4>
+            <div class="form-group">
+                <label>Konu</label>
+                @Html.TextBoxFor(x => x.MessageSubject, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "Konu" })
+            </div>
+            <div class="form-group">
+                <label>Gönderen</label>
+                @Html.TextBoxFor(x => x.Sender.WriterUsername, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "Gönderen" })
+            </div>
+            <div class="form-group">
+                <label>Gönderilen Tarih</label>
+                @Html.TextBoxFor(x => x.MessageDateTime, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "Gönderilen Tarih" })
+            </div>
+            <div class="form-group">
+                <label>İçerik</label>
+                @Html.TextAreaFor(x => x.MessageDetail, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "İçerik" })
+            </div>
+            <a class="btn btn-dark" href="/Message/ViewInbox">Gelen Mesajlara Geri Dön</a>
+        </div>
+    </div>
+
+    
+</div>

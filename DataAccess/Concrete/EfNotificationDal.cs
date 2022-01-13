@@ -12,7 +12,7 @@ namespace DataAccess.Concrete
 {
     public class EfNotificationDal:EfEntityRepositoryBase<Notification, Context> , INotificationDal
     {
-        public List<Notification> GetAll(Expression<Func<Notification, bool>> filter = null)
+        public new List<Notification> GetAll(Expression<Func<Notification, bool>> filter = null)
         {
             using Context context = new Context();
             var notifications =  context.Notifications

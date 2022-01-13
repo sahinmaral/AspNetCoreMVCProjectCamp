@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Entities.Abstract;
 
 namespace Entities.Concrete
@@ -7,6 +8,7 @@ namespace Entities.Concrete
     public class NotificationSymbol:IEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NotificationSymbolId { get; set; }
         public string SymbolName { get; set; }
 

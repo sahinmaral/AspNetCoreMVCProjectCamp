@@ -1,9 +1,10 @@
 ﻿using Entities.Concrete;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete
 {
-    public class Context:DbContext
+    public class Context : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,6 +22,6 @@ namespace DataAccess.Concrete
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<NotificationSymbol> NotificationSymbols { get; set; }
         public DbSet<NotificationType> NotificationTypes { get; set; }
-
+        public DbSet<Message> Messages { get; set; }
     }
 }

@@ -21,6 +21,12 @@
       <Compile Remove="Migrations\20220106091331_changed_columns_and_foreignkeys.Designer.cs" />
       <Compile Remove="Migrations\20220106100155_asdasdsad.cs" />
       <Compile Remove="Migrations\20220106100155_asdasdsad.Designer.cs" />
+      <Compile Remove="Migrations\20220113093126_added_message_class.cs" />
+      <Compile Remove="Migrations\20220113093126_added_message_class.Designer.cs" />
+      <Compile Remove="Migrations\20220113093237_added_message_class.cs" />
+      <Compile Remove="Migrations\20220113093237_added_message_class.Designer.cs" />
+      <Compile Remove="Migrations\20220113093436_added_message_class.cs" />
+      <Compile Remove="Migrations\20220113093436_added_message_class.Designer.cs" />
     </ItemGroup>
 
     <ItemGroup>

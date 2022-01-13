@@ -202,6 +202,42 @@ namespace DataAccess.Migrations
                     b.ToTable("Contacts");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.Message", b =>
+                {
+                    b.Property<int>("MessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("MessageDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MessageDetail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("MessageOpened")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MessageSubject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReceiverId")
+                        .HasColumnName("ReceiverId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SenderId")
+                        .HasColumnName("SenderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("Entities.Concrete.NewsLetter", b =>
                 {
                     b.Property<int>("NewsLetterId")
@@ -355,6 +391,17 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.Writer", "Writer")
                         .WithMany()
                         .HasForeignKey("WriterId");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Message", b =>
+                {
+                    b.HasOne("Entities.Concrete.Writer", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverId");
+
+                    b.HasOne("Entities.Concrete.Writer", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Notification", b =>
