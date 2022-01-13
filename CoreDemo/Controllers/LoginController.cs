@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Business.Abstract;
 using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +60,17 @@ namespace CoreDemo.Controllers
             await HttpContext.SignInAsync(principal);
             
             return RedirectToAction("GetAll","Blog");
+        }
+
+        public async Task<IActionResult> LogOutWriter()
+        {
+            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
+
+            Writer writer = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("GetAll", "Blog");
         }
     }
 }

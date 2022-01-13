@@ -85,7 +85,7 @@ namespace CoreDemo.Controllers
             if (!ModelState.IsValid)
             {
                 // TODO - ModelState uyarı verince , toplam uyarılar mesajın içerisinde olsun.
-                TempData["Message"] = Notification.Show("message", position: Position.BottomRight,
+                TempData["Message"] = ToastrNotification.Show("message", position: Position.BottomRight,
                     type: ToastType.error);
                 
                 return RedirectToRoute(new
@@ -108,7 +108,7 @@ namespace CoreDemo.Controllers
 
             _commentService.Add(addedComment);
 
-            TempData["Message"] = Notification.Show("Başarıyla yorum gönderdiniz", position: Position.BottomRight,
+            TempData["Message"] = ToastrNotification.Show("Başarıyla yorum gönderdiniz", position: Position.BottomRight,
                 type: ToastType.success);
 
             return RedirectToRoute(new

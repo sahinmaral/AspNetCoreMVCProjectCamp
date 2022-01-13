@@ -1,0 +1,32 @@
+﻿@model CoreDemo.Models.ReadWriterViewModel
+
+<div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+    <span>Hoşgeldiniz </span>
+    <span class="mx-lg-4 mx-md-2  mx-1">
+        @if (Model.WriterUsername == null)
+        {
+            <a href="/Login/LoginWriter">
+                <i class="fas fa-lock"></i> Giriş yap
+            </a>
+        }
+        else
+        {
+            @Model.WriterUsername
+        }
+
+    </span>
+    <span>
+        @if (Model.WriterUsername == null)
+        {
+            <a href="/Register/RegisterWriter">
+                <i class="far fa-user"></i> Kayıt ol
+            </a>
+        }
+        else
+        {
+            <a href="/Login/LogOutWriter">
+                <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+            </a>
+        }
+    </span>
+</div>

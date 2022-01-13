@@ -1335,3 +1335,6 @@ C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Writer\ChangeProfile.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Writer\ChangePassword.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Writer\ChangeProfileImage.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\LatestPostsToWriter\Default.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\LoginRegisterNavbar\Default.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\NotificationList\Default.cshtml.g.cs

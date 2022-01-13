@@ -30,6 +30,7 @@
 
     <ItemGroup>
       <Folder Include="Views\Shared\Components\Components" />
+      <Folder Include="wwwroot\blogThumbnailImages\" />
       <Folder Include="wwwroot\writerProfileImages\" />
       <Folder Include="wwwroot\weblogTemplate" />
     </ItemGroup>

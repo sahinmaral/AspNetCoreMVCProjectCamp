@@ -40,7 +40,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("AboutId");
 
-                    b.ToTable("abouts");
+                    b.ToTable("Abouts");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
@@ -82,7 +82,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("WriterId");
 
-                    b.ToTable("blogs");
+                    b.ToTable("Blogs");
                 });
 
             modelBuilder.Entity("Entities.Concrete.BlogRatio", b =>
@@ -109,7 +109,7 @@ namespace DataAccess.Migrations
                     b.HasIndex("BlogId")
                         .IsUnique();
 
-                    b.ToTable("blog_ratios");
+                    b.ToTable("BlogRatios");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Category", b =>
@@ -130,7 +130,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("categories");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Comment", b =>
@@ -166,7 +166,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("WriterId");
 
-                    b.ToTable("comments");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Contact", b =>
@@ -199,7 +199,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("ContactId");
 
-                    b.ToTable("contacts");
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Entities.Concrete.NewsLetter", b =>
@@ -217,7 +217,71 @@ namespace DataAccess.Migrations
 
                     b.HasKey("NewsLetterId");
 
-                    b.ToTable("newsletters");
+                    b.ToTable("NewsLetters");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Notification", b =>
+                {
+                    b.Property<int>("NotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("NotificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NotificationDetail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NotificationHeader")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("NotificationStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("NotificationSymbolId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NotificationTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("NotificationId");
+
+                    b.HasIndex("NotificationSymbolId");
+
+                    b.HasIndex("NotificationTypeId");
+
+                    b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.NotificationSymbol", b =>
+                {
+                    b.Property<int>("NotificationSymbolId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("SymbolName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NotificationSymbolId");
+
+                    b.ToTable("NotificationSymbols");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.NotificationType", b =>
+                {
+                    b.Property<int>("NotificationTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NotificationTypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NotificationTypeId");
+
+                    b.ToTable("NotificationTypes");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Writer", b =>
@@ -253,7 +317,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("WriterId");
 
-                    b.ToTable("writers");
+                    b.ToTable("Writers");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
@@ -291,6 +355,21 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.Writer", "Writer")
                         .WithMany()
                         .HasForeignKey("WriterId");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Notification", b =>
+                {
+                    b.HasOne("Entities.Concrete.NotificationSymbol", "NotificationSymbol")
+                        .WithMany("Notifications")
+                        .HasForeignKey("NotificationSymbolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concrete.NotificationType", "NotificationType")
+                        .WithMany("Notifications")
+                        .HasForeignKey("NotificationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

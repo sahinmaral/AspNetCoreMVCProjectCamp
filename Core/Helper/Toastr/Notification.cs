@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Core.Helper.Toastr
 {
-    public static class Notification
+    public static class ToastrNotification
     {
         #region HELPERS
         private static string stringValueOf(Enum value)

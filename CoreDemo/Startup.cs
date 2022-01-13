@@ -18,6 +18,7 @@ using Microsoft.Extensions.WebEncoders;
 using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -56,6 +57,14 @@ namespace CoreDemo
 
             services.AddSingleton<INewsLetterService, NewsLetterManager>();
             services.AddSingleton<INewsLetterDal, EfNewsLetterDal>();
+
+            services.AddSingleton<INotificationService, NotificationManager>();
+            services.AddSingleton<INotificationDal, EfNotificationDal>();
+
+            services.AddSingleton<INotificationService, NotificationManager>();
+            services.AddSingleton<INotificationDal, EfNotificationDal>();
+
+            //NotificationType and NotificationSymbol will be added
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

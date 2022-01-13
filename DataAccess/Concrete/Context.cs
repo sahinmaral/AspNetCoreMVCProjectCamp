@@ -8,19 +8,6 @@ namespace DataAccess.Concrete
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=SAHINMARAL;Database=CoreBlogDb;Trusted_Connection=True;");
-            
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<About>().ToTable("abouts");
-            modelBuilder.Entity<Blog>().ToTable("blogs");
-            modelBuilder.Entity<Writer>().ToTable("writers");
-            modelBuilder.Entity<Category>().ToTable("categories");
-            modelBuilder.Entity<Comment>().ToTable("comments");
-            modelBuilder.Entity<Contact>().ToTable("contacts");
-            modelBuilder.Entity<NewsLetter>().ToTable("newsletters");
-            modelBuilder.Entity<BlogRatio>().ToTable("blog_ratios");
         }
 
         public DbSet<About> Abouts { get; set; }
@@ -31,5 +18,9 @@ namespace DataAccess.Concrete
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<NewsLetter> NewsLetters { get; set; }
         public DbSet<BlogRatio> BlogRatios { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<NotificationSymbol> NotificationSymbols { get; set; }
+        public DbSet<NotificationType> NotificationTypes { get; set; }
+
     }
 }

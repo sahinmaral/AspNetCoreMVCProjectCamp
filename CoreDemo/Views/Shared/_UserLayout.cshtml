@@ -41,8 +41,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <i class="fab fa-linode"></i> ASP.NET Core 5.0 Kampı
                     </a>
                 </div>
-
-                @await Html.PartialAsync("../UserLayout/LoginRegisterPartialView")
+                
+                @await Component.InvokeAsync("LoginRegisterNavbar")
 
                 <!-- social media -->
                 <div class="col-md-4 log-icons text-right">
@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="header_top" id="home">
 
-            @await Html.PartialAsync("../UserLayout/NavbarPartialView")
+            @*@await Html.PartialAsync("../UserLayout/NavbarPartialView")*@
 
         </div>
     </header>
@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--//main-->
     <!--footer-->
    
-        @await Html.PartialAsync("../UserLayout/FooterPartialView")
+        @*@await Html.PartialAsync("../UserLayout/FooterPartialView")*@
             <!-- //footer -->
     
     <!---->

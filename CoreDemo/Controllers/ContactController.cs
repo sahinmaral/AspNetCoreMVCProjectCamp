@@ -41,7 +41,7 @@ namespace CoreDemo.Controllers
 
             _contactService.Add(contact);
 
-            TempData["Message"] = Notification.Show("Mesajınız başarılı bir şekilde yollandı.", position: Position.BottomRight, type: ToastType.success);
+            TempData["Message"] = ToastrNotification.Show("Mesajınız başarılı bir şekilde yollandı.", position: Position.BottomRight, type: ToastType.success);
 
             return RedirectToAction("Index");
         }

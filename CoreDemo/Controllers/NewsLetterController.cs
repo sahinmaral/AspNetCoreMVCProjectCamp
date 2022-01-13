@@ -33,7 +33,7 @@ namespace CoreDemo.Controllers
 
             if (searchedNewsLetter != null)
             {
-                TempData["Message"] = Notification.Show("Böyle bir email zaten abone olmuş.", position: Position.BottomRight, type: ToastType.error);
+                TempData["Message"] = ToastrNotification.Show("Böyle bir email zaten abone olmuş.", position: Position.BottomRight, type: ToastType.error);
 
                 return RedirectToRoute(new
                 {
@@ -47,7 +47,7 @@ namespace CoreDemo.Controllers
 
             _newsLetterService.Add(searchedNewsLetter);
 
-            TempData["Message"] = Notification.Show("Başarıyla abone oldunuz.", position:Position.BottomRight , type:ToastType.success);
+            TempData["Message"] = ToastrNotification.Show("Başarıyla abone oldunuz.", position:Position.BottomRight , type:ToastType.success);
 
                 return RedirectToRoute(new
                 {
@@ -64,7 +64,7 @@ namespace CoreDemo.Controllers
 
             if (searchedNewsLetter != null)
             {
-                TempData["Message"] = Notification.Show("Böyle bir email zaten abone olmuş.", position: Position.BottomRight, type: ToastType.error);
+                TempData["Message"] = ToastrNotification.Show("Böyle bir email zaten abone olmuş.", position: Position.BottomRight, type: ToastType.error);
 
                 return RedirectToRoute(new
                 {
@@ -77,7 +77,7 @@ namespace CoreDemo.Controllers
 
             _newsLetterService.Add(searchedNewsLetter);
 
-            TempData["Message"] = Notification.Show("Başarıyla abone oldunuz.", position: Position.BottomRight, type: ToastType.success);
+            TempData["Message"] = ToastrNotification.Show("Başarıyla abone oldunuz.", position: Position.BottomRight, type: ToastType.success);
 
             return RedirectToRoute(new
             {

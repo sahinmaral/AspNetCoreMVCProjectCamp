@@ -1,12 +1,30 @@
-﻿
+﻿@model Entities.Concrete.Writer
+
 <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
     <span>Hoşgeldiniz </span>
     <span class="mx-lg-4 mx-md-2  mx-1">
-        <a href="/Login/LoginWriter">
-            <i class="fas fa-lock"></i> Giriş yap</a>
+        @if (Model == null)
+        {
+            <a href="/Login/LoginWriter">
+                <i class="fas fa-lock"></i> Giriş yap</a>
+        }
+        else
+        {
+            @Model.WriterUsername
+        }
+        
     </span>
     <span>
-        <a href="/Register/RegisterWriter">
-            <i class="far fa-user"></i> Kayıt ol</a>
+        @if (Model == null)
+        {
+            <a href="/Register/RegisterWriter">
+                <i class="far fa-user"></i> Kayıt ol</a>
+        }
+        else
+        {
+            <a href="/Register/LogOutWriter">
+                <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+            </a>
+        }
     </span>
 </div>
