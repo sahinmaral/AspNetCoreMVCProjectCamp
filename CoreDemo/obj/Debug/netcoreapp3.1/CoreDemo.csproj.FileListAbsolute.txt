@@ -1276,7 +1276,6 @@ C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Blog\GetCommentsByBlog.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\ErrorPage\ErrorPage.cshtml.g.cs
-C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Login\LoginWriter.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\NewsLetter\SubscribeEmail.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Register\RegisterWriter.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\AboutSocialMedia\Default.cshtml.g.cs
@@ -1345,3 +1344,18 @@ C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Homepage.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\AdminSidebar\Default.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\AdminNavbar\Default.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\GetCategories.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Login\Login.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\JetBrains.Annotations.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\X.PagedList.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\X.PagedList.Mvc.Core.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\AddCategory.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\ClosedXML.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\Spire.Common.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\Spire.License.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\Spire.Pdf.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\Spire.XLS.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Statistic\GetStatistics.cshtml.g.cs

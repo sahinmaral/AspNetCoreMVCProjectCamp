@@ -27,6 +27,8 @@
       <Compile Remove="Migrations\20220113093237_added_message_class.Designer.cs" />
       <Compile Remove="Migrations\20220113093436_added_message_class.cs" />
       <Compile Remove="Migrations\20220113093436_added_message_class.Designer.cs" />
+      <Compile Remove="Migrations\20220115103524_added_relationship_between_user_and_writer.cs" />
+      <Compile Remove="Migrations\20220115103524_added_relationship_between_user_and_writer.Designer.cs" />
     </ItemGroup>
 
     <ItemGroup>

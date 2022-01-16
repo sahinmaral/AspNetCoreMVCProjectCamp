@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Entities.Concrete;
 using CoreDemo.Models;
 using Entities.Concrete;
 
@@ -25,16 +26,29 @@ namespace CoreDemo.Mapping.AutoMapper
 
             CreateMap<CreateBlogViewModel, Blog>();
 
+            CreateMap<Writer, ReadWriterViewModel>()
+                .ForMember(obj => obj.UserViewModel, opt => opt.MapFrom(src => src.User))
+                ;
+
+            CreateMap<ReadWriterViewModel, Writer>();
+
             CreateMap<Comment, ReadCommentViewModel>()
-                .ForMember(obj => obj.WriterViewModel, opt =>
+                .ForMember(obj => obj.BlogId, opt => opt.MapFrom(src => src.Blog.BlogId))
+                .ForMember(obj => obj.WriterViewModel, opt => opt.MapFrom(src => src.Writer))
+                .ForPath(obj => obj.WriterViewModel.UserViewModel, opt =>
                 {
-                    opt.MapFrom(src => src.Writer);
+                    opt.MapFrom(src => new User()
+                    {
+                        UserFirstName = src.Writer.User.UserFirstName,
+                        UserLastName = src.Writer.User.UserLastName,
+                        Username = src.Writer.User.Username,
+                        UserId = src.Writer.User.UserId,
+                    });
                 });
-                
 
             CreateMap<Category, ReadCategoryViewModel>();
-            CreateMap<Writer, ReadWriterViewModel>();
-            CreateMap<ReadWriterViewModel, Writer>();
+
+            CreateMap<CreateCategoryViewModel, Category>();
 
             CreateMap<CreateNewsLetterViewModel, NewsLetter>();
             CreateMap<CreateCommentViewModel, Comment>();
@@ -43,9 +57,16 @@ namespace CoreDemo.Mapping.AutoMapper
 
             CreateMap<About, ReadAboutViewModel>();
 
+            CreateMap<User, ReadUserViewModel>()
+                .ForMember(obj => obj.UserFirstName, opt => opt.MapFrom(src => src.UserFirstName))
+                .ForMember(obj => obj.UserLastName, opt => opt.MapFrom(src => src.UserLastName))
+                .ForMember(obj => obj.Username, opt => opt.MapFrom(src => src.Username))
+                .ForMember(obj => obj.UserId, opt => opt.MapFrom(src => src.UserId));
+
             CreateMap<CreateContactViewModel, Contact>()
                 .ForMember(obj => obj.ContactSurname , opt => opt.MapFrom(src=>src.ContactSurname.ToUpper()));
 
+            CreateMap<Message, ReadMessageViewModel>();
         }
     }
 }

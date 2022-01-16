@@ -1,4 +1,4 @@
-﻿@model Entities.Concrete.Message
+﻿@model ReadMessageViewModel
 
 @{
     ViewBag.Title = "Mesaj Detayı";
@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 <label>Gönderen</label>
-                @Html.TextBoxFor(x => x.Sender.WriterUsername, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "Gönderen" })
+                @Html.TextBoxFor(x => x.Sender.UserViewModel.UserFirstName, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "Gönderen" })
             </div>
             <div class="form-group">
                 <label>Gönderilen Tarih</label>

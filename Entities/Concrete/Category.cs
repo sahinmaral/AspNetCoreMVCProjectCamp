@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Entities.Abstract;
+using Core.Entities.Abstract;
 
 namespace Entities.Concrete
 {
     public class Category:IEntity
     {
+        public Category()
+        {
+            CategoryStatus = true;
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryId { get; set; }

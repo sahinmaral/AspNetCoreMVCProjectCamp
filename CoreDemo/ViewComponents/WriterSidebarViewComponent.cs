@@ -20,9 +20,9 @@ namespace CoreDemo.ViewComponents
         
         public IViewComponentResult Invoke()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
 
-            Writer writer = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
             ReadWriterViewModel writerViewModel = new ReadWriterViewModel();
 

@@ -16,13 +16,13 @@
 
                 <div class="form-group">
                     <label for="exampleTextarea1">Ad</label>
-                    @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control", style = "border:1px solid black", placeholder = "Ad", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.WriterName, "", new { style = "color:darkred" })
+                    @Html.TextBoxFor(x => x.UserViewModel.UserFirstName, new { @class = "form-control", style = "border:1px solid black", placeholder = "Ad", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.UserViewModel.UserFirstName, "", new { style = "color:darkred" })
                 </div>
                 <div class="form-group">
                     <label for="exampleTextarea1">Soyad</label>
-                    @Html.TextBoxFor(x => x.WriterSurname, new { @class = "form-control", style = "border:1px solid black", placeholder = "Soyad", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.WriterSurname, "", new { style = "color:darkred" })
+                    @Html.TextBoxFor(x => x.UserViewModel.UserLastName, new { @class = "form-control", style = "border:1px solid black", placeholder = "Soyad", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.UserViewModel.UserLastName, "", new { style = "color:darkred" })
                 </div>
                 <div class="form-group">
                     <label for="exampleTextarea1">Hakkında</label>

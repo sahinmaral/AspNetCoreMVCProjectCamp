@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using AutoMapper;
 using Business.Abstract;
+using Core.Utilities.Security.Hashing;
 using CoreDemo.Models;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +17,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace CoreDemo.Controllers
 {
 
+    [Authorize(Policy = "Writer")]
     public class WriterController : Controller
     {
         private readonly IWriterService _writerService;
@@ -37,17 +40,17 @@ namespace CoreDemo.Controllers
         
         public IActionResult Homepage()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
-            Writer writer = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
             return View(_mapper.Map(writer, new ReadWriterViewModel()));
         }
 
         public IActionResult MyBlog()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
-            Writer writer = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
-            List<Blog> writerBlogs = _blogService.GetAllWithDetails(x => x.Writer.WriterId == writer.WriterId).Where(x=>x.BlogStatus).ToList();
+            List<Blog> writerBlogs = _blogService.GetAllWithDetails(x => x.Writer.User.UserId == writer.User.UserId).Where(x=>x.BlogStatus).ToList();
 
             List<ReadBlogViewModel> readBlogViewModels = new List<ReadBlogViewModel>();
             
@@ -59,8 +62,8 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult ChangeProfile()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
-            Writer writer = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
             ReadWriterViewModel model = new ReadWriterViewModel();
 
@@ -77,11 +80,11 @@ namespace CoreDemo.Controllers
                 return View(model);
             }
 
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
-            Writer updatedWriter = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            Writer updatedWriter = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
-            updatedWriter.WriterSurname = model.WriterSurname;
-            updatedWriter.WriterName = model.WriterName;
+            updatedWriter.User.UserLastName = model.UserViewModel.UserLastName;
+            updatedWriter.User.UserFirstName = model.UserViewModel.UserFirstName;
             updatedWriter.WriterAbout = model.WriterAbout;
 
             _writerService.Update(updatedWriter);
@@ -103,16 +106,21 @@ namespace CoreDemo.Controllers
                 return View(model);
             }
 
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
-            Writer updatedWriter = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            Writer updatedWriter = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
-            if (updatedWriter.WriterPassword != model.OldPassword)
+            if (HashingHelper.VerifyPasswordHash(model.OldPassword, updatedWriter.User.UserPasswordHash,
+                updatedWriter.User.UserPasswordSalt))
             {
                 ModelState.AddModelError("OldPassword", "Yanlış şifre girdiniz");
                 return View(model);
             }
 
-            updatedWriter.WriterPassword = model.NewPassword;
+            HashingHelper.CreatePasswordHash(model.NewPassword, out var newPasswordHash,
+                out var newPasswordSalt);
+
+            updatedWriter.User.UserPasswordHash = newPasswordHash;
+            updatedWriter.User.UserPasswordSalt = newPasswordSalt;
 
             _writerService.Update(updatedWriter);
 
@@ -132,9 +140,9 @@ namespace CoreDemo.Controllers
             {
                 return View(model);
             }
-
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
-            Writer updatedWriter = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            Writer updatedWriter = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
             RemoveOldProfilePicture(updatedWriter.WriterImage);
 
@@ -191,12 +199,12 @@ namespace CoreDemo.Controllers
                 return View(viewModel);
             }
 
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
-            Writer writer = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
             Blog blog = new Blog
             {
-                WriterId = writer.WriterId,
+                WriterId = writer.User.UserId,
                 CategoryId = viewModel.CategoryId
             };
 
@@ -240,12 +248,12 @@ namespace CoreDemo.Controllers
                 return View(blogViewModel);
             }
 
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
-            Writer writer = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
             Blog blog = _blogService.Get(x => x.BlogId == blogViewModel.BlogId);
 
-            blog.WriterId = writer.WriterId;
+            blog.WriterId = writer.User.UserId;
             blog.CategoryId = blogViewModel.CategoryViewModel.CategoryId;
 
             blog = _mapper.Map(blogViewModel, blog);

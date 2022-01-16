@@ -28,12 +28,12 @@
         @await Component.InvokeAsync("AdminSidebar")
 
         <div id="page-wrapper" class="gray-bg">
-            
-           @await Component.InvokeAsync("AdminNavbar")
+
+            @await Component.InvokeAsync("AdminNavbar")
 
             @RenderBody()
 
-            
+
 
             <div class="footer">
                 <div>
@@ -66,7 +66,11 @@
     <!-- Peity -->
     <script src="~/adminTemplate/js/demo/peity-demo.js"></script>
 
-    <script>$(document).ready(function(){
+    <!-- Sweet Alert -->
+    <script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green'

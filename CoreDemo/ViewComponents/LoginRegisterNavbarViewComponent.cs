@@ -25,13 +25,15 @@ namespace CoreDemo.ViewComponents
                 return View(new ReadWriterViewModel());
             }
             
-            string loggedWriterUsername = HttpContext.User.Claims.Single().Subject.Name;
+            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
 
-            Writer writer = _writerService.Get(x => x.WriterUsername == loggedWriterUsername);
+            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
             ReadWriterViewModel viewModel = new ReadWriterViewModel();
 
             viewModel = _mapper.Map(writer, viewModel);
+
+            viewModel.UserViewModel = _mapper.Map(writer.User, viewModel.UserViewModel);
 
             return View(viewModel);
 

@@ -1,8 +1,8 @@
 ﻿namespace CoreDemo.Models
 {
-    public class LoginWriterViewModel
+    public class LoginUserViewModel
     {
-        public string WriterUsername { get; set; }
-        public string WriterPassword { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

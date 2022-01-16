@@ -17,8 +17,14 @@ namespace DataAccess.Concrete
         {
             using Context context = new Context();
             return filter == null
-                ? context.Comments.Include(x => x.Writer).Include(x=>x.Blog).ToList()
-                : context.Comments.Include(x => x.Writer).Include(x => x.Blog).Where(filter).ToList();
+                ? context.Comments.Include(x => x.Writer)
+                    .Include(x=>x.Blog)
+                    .Include(x=>x.Writer.User)
+                    .ToList()
+                : context.Comments.Include(x => x.Writer)
+                    .Include(x => x.Blog)
+                    .Include(x => x.Writer.User)
+                    .Where(filter).ToList();
         }
     }
 

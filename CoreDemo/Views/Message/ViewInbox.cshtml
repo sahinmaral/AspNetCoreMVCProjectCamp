@@ -1,5 +1,5 @@
 ﻿@using Entities.Concrete
-@model List<Entities.Concrete.Message>
+@model List<ReadMessageViewModel>
 
 @{
     ViewBag.Title = "Gelen Mesajlar";
@@ -28,13 +28,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach (Message message in Model)
+                @foreach (ReadMessageViewModel message in Model)
                 {
                     <tr>
                         <td> @message.MessageId </td>
                         <td> @message.MessageSubject </td>
                         <td> @ShrinkMessageDetail(message.MessageSubject)</td>
-                        <td> @message.Sender.WriterUsername </td>
+                        <td> @message.Sender.UserViewModel,,
+                            .Username </td>
                         <td> @message.MessageDateTime.ToShortDateString() </td>
                         <td>
                             <a href="GetMessageDetail/@message.MessageId" class="btn btn-primary">Mesaj Detayı</a>

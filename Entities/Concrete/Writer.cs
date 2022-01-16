@@ -2,37 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Entities.Abstract;
+using Core.Entities.Abstract;
+using Core.Entities.Concrete;
 
 namespace Entities.Concrete
 {
-    public class Writer:IEntity
+    public class Writer : IEntity
     {
-        public Writer()
-        {
-            WriterStatus = true;
-        }
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int WriterId { get; set; }
-        
-        public string WriterUsername { get; set; }
-        
-        public string WriterName { get; set; }
-
-        public string WriterSurname { get; set; }
-        
         public string WriterAbout { get; set; }
-        
         public string WriterImage { get; set; }
-        
         public string WriterMail { get; set; }
-        
-        public string WriterPassword { get; set; }
-        
-        public bool WriterStatus { get; set; }
 
+        public int WriterId { get; set; }
+        public User User { get; set; }
         public ICollection<Blog> Blogs { get; set; }
     }
 }

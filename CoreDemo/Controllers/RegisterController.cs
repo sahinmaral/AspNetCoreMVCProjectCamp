@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 
 using Business.Abstract;
 
@@ -10,8 +11,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using Core.Entities.Concrete;
+using Core.Utilities.Security.Hashing;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace CoreDemo.Controllers
 {
@@ -75,10 +80,45 @@ namespace CoreDemo.Controllers
 
             writer = _mapper.Map(viewModel, writer);
 
+            string[] splittedNameSurname = viewModel.WriterName.Split(' ');
+
+            writer.User = new User();
+
+            writer.User.Username = viewModel.WriterUsername;
+            writer.User.UserFirstName = splittedNameSurname[0];
+
+            if (splittedNameSurname.Length == 2)
+                writer.User.UserLastName = splittedNameSurname[1];
+            else if(splittedNameSurname.Length > 2)
+                writer.User.UserLastName = splittedNameSurname[1] + " " + splittedNameSurname[2];
+            else
+            {
+                ModelState.AddModelError("WriterName", "Soyadı yazmanız gerekiyor.");
+            }
+
+            writer.WriterImage = AssignFormFileAndReturnName(viewModel.WriterImage);
+
+            HashingHelper.CreatePasswordHash(viewModel.WriterPassword,out var passwordHash,out var passwordSalt);
+
+            writer.User.UserPasswordSalt = passwordSalt;
+            writer.User.UserPasswordHash = passwordHash;
+
             _writerService.Add(writer);
 
             return RedirectToAction("GetAll", "Blog");
 
+        }
+
+        private string AssignFormFileAndReturnName(IFormFile file)
+        {
+            var extension = Path.GetExtension(file.FileName);
+
+            var newName = Guid.NewGuid() + extension;
+            var location = Path.Combine(Directory.GetCurrentDirectory() + @"\wwwroot\writerProfileImages\", newName);
+            var stream = new FileStream(location, FileMode.Create);
+            file.CopyTo(stream);
+
+            return newName;
         }
 
     }

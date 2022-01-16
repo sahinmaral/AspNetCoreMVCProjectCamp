@@ -22,7 +22,9 @@ namespace CoreDemo.ViewComponents
         {
             List<ReadCommentViewModel> commentViewModels = new List<ReadCommentViewModel>();
 
-            commentViewModels = _mapper.Map(_commentService.GetAllWithDetails(x => x.BlogId == id), commentViewModels);
+            var comments = _commentService.GetAllWithDetails(x => x.BlogId == id);
+
+            commentViewModels = _mapper.Map(comments, commentViewModels);
 
             return View(commentViewModels);
         }

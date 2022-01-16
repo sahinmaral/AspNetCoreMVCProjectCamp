@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Core.Entities.Abstract;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using Entities.Abstract;
 
 namespace Entities.Concrete
 {

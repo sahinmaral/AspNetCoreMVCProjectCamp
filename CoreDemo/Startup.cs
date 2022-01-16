@@ -16,11 +16,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.WebEncoders;
 
 using System.Reflection;
+using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace CoreDemo
@@ -51,7 +54,13 @@ namespace CoreDemo
             
             services.AddSingleton<IWriterService, WriterManager>();
             services.AddSingleton<IWriterDal, EfWriterDal>();
-            
+
+            services.AddSingleton<IAdminService, AdminManager>();
+            services.AddSingleton<IAdminDal, EfAdminDal>();
+
+            services.AddSingleton<IUserService, UserManager>();
+            services.AddSingleton<IUserDal, EfUserDal>();
+
             services.AddSingleton<IAboutService, AboutManager>();
             services.AddSingleton<IAboutDal, EfAboutDal>();
 
@@ -89,11 +98,26 @@ namespace CoreDemo
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
-            services.AddMvc();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
             {
-                x.LoginPath = "/Login/LoginWriter";
+                x.LoginPath = "/Login/Login";
+                x.AccessDeniedPath = "/ErrorPage/ErrorPage/403";
+                x.LoginPath = "/Blog/GetAll";
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy =>
+                {
+                    policy.RequireRole("Admin");
+                    policy.RequireClaim(ClaimTypes.Name, "Admin");
+                });
+
+                options.AddPolicy("Writer", policy =>
+                {
+                    policy.RequireRole("Writer");
+                });
             });
         }
 
@@ -126,8 +150,13 @@ namespace CoreDemo
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Category}/{action=GetCategories}/{id?}"
+                );
+
+                endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Blog}/{action=GetAll}/{id?}");
             });
         }
     }

@@ -13,14 +13,17 @@ namespace CoreDemo.Controllers
         {
             ErrorMessageViewModel viewModel = new ErrorMessageViewModel();
 
+            viewModel.StatusCode = code;
+
             switch (code)
             {
                 case 404:
-                    viewModel.StatusCode = code;
                     viewModel.ErrorMessage = "Oops! Sayfa Bulunamadı!";
                     break;
+                case 403:
+                    viewModel.ErrorMessage = "Oops! Bu sayfaya gitmeniz için yetkiniz yok.";
+                    break;
                 case 401:
-                    viewModel.StatusCode = code;
                     viewModel.ErrorMessage = "Oops! Giriş Yapmanız Gerekiyor!";
                     break;
             }

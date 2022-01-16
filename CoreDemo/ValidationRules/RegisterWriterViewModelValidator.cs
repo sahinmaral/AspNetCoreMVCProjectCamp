@@ -20,6 +20,7 @@ namespace CoreDemo.ValidationRules
 
             RuleFor(x => x.WriterPasswordRepeat).NotNull().WithMessage("Şifre tekrarı boş bırakılamaz");
             RuleFor(x => x.WriterMail).NotNull().WithMessage("Email boş bırakılamaz");
+            RuleFor(x => x.WriterUsername).NotNull().WithMessage("Kullanıcı adı boş bırakılamaz");
             RuleFor(x => x.WriterImage).NotNull().WithMessage("Resim yüklenmesi gerekir");
 
 

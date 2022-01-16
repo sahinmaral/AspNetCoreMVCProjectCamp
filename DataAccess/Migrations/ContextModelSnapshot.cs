@@ -19,6 +19,36 @@ namespace DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Core.Entities.Concrete.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("UserPasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("UserPasswordSalt")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Entities.Concrete.About", b =>
                 {
                     b.Property<int>("AboutId")
@@ -41,6 +71,23 @@ namespace DataAccess.Migrations
                     b.HasKey("AboutId");
 
                     b.ToTable("Abouts");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AdminId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
@@ -327,6 +374,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("WriterAbout")
                         .HasColumnType("nvarchar(max)");
 
@@ -336,24 +386,18 @@ namespace DataAccess.Migrations
                     b.Property<string>("WriterMail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WriterName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WriterPassword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("WriterStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("WriterSurname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WriterUsername")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("WriterId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Writers");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Admin", b =>
+                {
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
@@ -417,6 +461,13 @@ namespace DataAccess.Migrations
                         .HasForeignKey("NotificationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Writer", b =>
+                {
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

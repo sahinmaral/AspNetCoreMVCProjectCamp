@@ -1,0 +1,109 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model IPagedList<CoreDemo.Models.ReadCategoryViewModel>
+
+@{
+    ViewBag.Title = "Kategoriler | ";
+    Layout = "_AdminLayout";
+}
+
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="ibox ">
+            <div class="ibox-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Kategori Adı</th>
+                            <th>Aktif Yap</th>
+                            <th>Pasif Yap</th>
+                            <th>Düzenle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CategoryId</td>
+                                <td>@item.CategoryName</td>
+                                @if (item.CategoryStatus)
+                                {
+                                    <td><a class="btn btn-danger disabled text-white">Aktif Yap</a></td>
+                                    <td><a class="btn btn-warning text-white" onclick="confirmActiveDeactive(true,@item.CategoryId)">Pasif Yap</a></td>
+                                }
+                                else
+                                {
+                                    <td><a class="btn btn-danger text-white" onclick="confirmActiveDeactive(false,@item.CategoryId)">Aktif Yap</a></td>
+                                    <td><a class="btn btn-warning text-white disabled">Pasif Yap</a></td>
+                                }
+
+                                <td><a href="#" class="btn btn-success">Düzenle</a></td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin: auto; width: 50%; margin-left: 40%;">
+    @Html.PagedListPager(Model, pageNumber => Url.Action("GetCategories", new { page = pageNumber }))
+</div>
+
+<script>
+
+    function confirmActiveDeactive(status, id) {
+
+        if (status === true) {
+            swal({
+                title: "Uyarı",
+                text: "Pasif hale getirmek istediğinize emin misiniz ?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Kategori pasif hale getirildi", { icon: "success" });
+                            $.ajax({
+                                url: "/Admin/Category/DisableCategory/" + id,
+                                type: 'GET',
+                                success: function () {
+                                    window.location.href = "/Admin/Category/GetCategories";
+                                }
+                            });
+                    }
+
+                });
+        }
+        else {
+            swal({
+                    title: "Uyarı",
+                    text: "Aktif hale getirmek istediğinize emin misiniz ?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Kategori aktif hale getirildi", { icon: "success" });
+                        $.ajax({
+                            url: "/Admin/Category/EnableCategory/" + id,
+                            type: 'GET',
+                            success: function () {
+                                window.location.href = "/Admin/Category/GetCategories";
+                            }
+                        });
+                    }
+
+                });
+        }
+
+
+    }
+</script>

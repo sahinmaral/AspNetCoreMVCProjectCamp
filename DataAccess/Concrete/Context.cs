@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -23,5 +24,7 @@ namespace DataAccess.Concrete
         public DbSet<NotificationSymbol> NotificationSymbols { get; set; }
         public DbSet<NotificationType> NotificationTypes { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }
