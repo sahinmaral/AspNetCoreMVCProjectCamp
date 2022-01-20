@@ -12449,6 +12449,40 @@
         }
       },
       {
+        "HashCode": 1330820933,
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__AdminNavbarViewComponentTagHelper",
+        "AssemblyName": "CoreDemo",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:admin-navbar"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__AdminNavbarViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "AdminNavbar"
+        }
+      },
+      {
+        "HashCode": 1067567707,
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__AdminSidebarViewComponentTagHelper",
+        "AssemblyName": "CoreDemo",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:admin-sidebar"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__AdminSidebarViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "AdminSidebar"
+        }
+      },
+      {
         "HashCode": 350488186,
         "Kind": "MVC.ViewComponent",
         "Name": "__Generated__CommentListByBlogIdViewComponentTagHelper",
@@ -12633,6 +12667,23 @@
         }
       },
       {
+        "HashCode": 121360769,
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__NotificationListViewComponentTagHelper",
+        "AssemblyName": "CoreDemo",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:notification-list"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__NotificationListViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "NotificationList"
+        }
+      },
+      {
         "HashCode": -1717365477,
         "Kind": "MVC.ViewComponent",
         "Name": "__Generated__SubscribeEmailAtAboutViewComponentTagHelper",
@@ -12681,6 +12732,23 @@
           "Runtime.Name": "ITagHelper",
           "Common.TypeName": "__Generated__SubscribeEmailAtFooterViewComponentTagHelper",
           "MVC.ViewComponent.Name": "SubscribeEmailAtFooter"
+        }
+      },
+      {
+        "HashCode": -1205311587,
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__WriterMessagesViewComponentTagHelper",
+        "AssemblyName": "CoreDemo",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:writer-messages"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__WriterMessagesViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "WriterMessages"
         }
       },
       {
@@ -14730,8 +14798,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Login\\LoginWriter.cshtml",
-      "TargetPath": "Views\\Login\\LoginWriter.cshtml",
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Shared\\Components\\AdminNavbar\\Default.cshtml",
+      "TargetPath": "Views\\Shared\\Components\\AdminNavbar\\Default.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14765,8 +14833,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Areas\\Admin\\Views\\Statistic\\GetStatistics.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Statistic\\GetStatistics.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Writer\\UpdateBlog.cshtml",
       "TargetPath": "Views\\Writer\\UpdateBlog.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Message\\GetMessageDetail.cshtml",
+      "TargetPath": "Views\\Message\\GetMessageDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Shared\\_AdminLayout.cshtml",
+      "TargetPath": "Views\\Shared\\_AdminLayout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Message\\ViewInbox.cshtml",
+      "TargetPath": "Views\\Message\\ViewInbox.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14785,6 +14873,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Shared\\Components\\AdminSidebar\\Default.cshtml",
+      "TargetPath": "Views\\Shared\\Components\\AdminSidebar\\Default.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Writer\\WriterProfile.cshtml",
       "TargetPath": "Views\\Writer\\WriterProfile.cshtml",
       "FileKind": "mvc"
@@ -14795,6 +14888,21 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Login\\Login.cshtml",
+      "TargetPath": "Views\\Login\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Admin\\Homepage.cshtml",
+      "TargetPath": "Views\\Admin\\Homepage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Areas\\Admin\\Views\\Category\\GetCategories.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Category\\GetCategories.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Shared\\Components\\WriterStatistics\\Default.cshtml",
       "TargetPath": "Views\\Shared\\Components\\WriterStatistics\\Default.cshtml",
       "FileKind": "mvc"
@@ -14802,6 +14910,11 @@
     {
       "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Shared\\Components\\NotificationList\\Default.cshtml",
+      "TargetPath": "Views\\Shared\\Components\\NotificationList\\Default.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14830,6 +14943,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Shared\\Components\\WriterMessages\\Default.cshtml",
+      "TargetPath": "Views\\Shared\\Components\\WriterMessages\\Default.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\UserLayout\\FooterPartialView.cshtml",
       "TargetPath": "Views\\UserLayout\\FooterPartialView.cshtml",
       "FileKind": "mvc"
@@ -14842,6 +14960,11 @@
     {
       "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Views\\Writer\\ChangeProfile.cshtml",
       "TargetPath": "Views\\Writer\\ChangeProfile.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\Areas\\Admin\\Views\\Category\\AddCategory.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Category\\AddCategory.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -43,21 +43,6 @@
           "lib/netstandard2.0/ClosedXML.dll": {}
         }
       },
-      "ClosedXML_Excel/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/Spire.Common.dll": {},
-          "lib/Spire.License.dll": {},
-          "lib/Spire.Pdf.dll": {},
-          "lib/Spire.XLS.dll": {}
-        },
-        "runtime": {
-          "lib/Spire.Common.dll": {},
-          "lib/Spire.License.dll": {},
-          "lib/Spire.Pdf.dll": {},
-          "lib/Spire.XLS.dll": {}
-        }
-      },
       "DocumentFormat.OpenXml/2.7.2": {
         "type": "package",
         "dependencies": {
@@ -2942,21 +2927,6 @@
         "lib/netstandard2.0/ClosedXML.pdb",
         "lib/netstandard2.0/ClosedXML.xml",
         "nuget-logo.png"
-      ]
-    },
-    "ClosedXML_Excel/1.0.0": {
-      "sha512": "4HwWGjE+ntzD3wN0Yzn0DgZtrVcCGHohnaDlo4kmA56eQPgvmk+8mBReG73XySOoDF8fxF33fBwzlhZmA08INQ==",
-      "type": "package",
-      "path": "closedxml_excel/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "closedxml_excel.1.0.0.nupkg.sha512",
-        "closedxml_excel.nuspec",
-        "lib/Spire.Common.dll",
-        "lib/Spire.License.dll",
-        "lib/Spire.Pdf.dll",
-        "lib/Spire.XLS.dll"
       ]
     },
     "DocumentFormat.OpenXml/2.7.2": {
@@ -9172,7 +9142,6 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 7.0.0",
       "Business >= 1.0.0",
       "ClosedXML >= 0.95.4",
-      "ClosedXML_Excel >= 1.0.0",
       "DataAccess >= 1.0.0",
       "Entities >= 1.0.0",
       "FluentValidation >= 10.3.3",
@@ -9255,10 +9224,6 @@
             "target": "Package",
             "version": "[0.95.4, )"
           },
-          "ClosedXML_Excel": {
-            "target": "Package",
-            "version": "[1.0.0, )"
-          },
           "FluentValidation": {
             "target": "Package",
             "version": "[10.3.3, )"
@@ -9312,20 +9277,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'ClosedXML_Excel 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "ClosedXML_Excel",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  }
 }

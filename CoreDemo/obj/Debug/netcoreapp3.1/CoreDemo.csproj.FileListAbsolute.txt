@@ -1351,11 +1351,9 @@ C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\X.PagedList.Mvc.Core.dll
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\AddCategory.cshtml.g.cs
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\ClosedXML.dll
-C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\Spire.Common.dll
-C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\Spire.License.dll
-C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\Spire.Pdf.dll
-C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\Spire.XLS.dll
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
 C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Statistic\GetStatistics.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Chart\CategoryChart.cshtml.g.cs
+C:\Users\sahin\Desktop\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Writer\GetWriters.cshtml.g.cs

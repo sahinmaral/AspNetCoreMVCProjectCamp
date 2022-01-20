@@ -103,7 +103,7 @@ namespace CoreDemo
             {
                 x.LoginPath = "/Login/Login";
                 x.AccessDeniedPath = "/ErrorPage/ErrorPage/403";
-                x.LoginPath = "/Blog/GetAll";
+                x.LogoutPath = "/Blog/GetAll";
             });
 
             services.AddAuthorization(options =>

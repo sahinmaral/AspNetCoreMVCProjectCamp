@@ -1,13 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "TB5FDHdmGRszJwOsf8LFLdNqbBZ5oCDqXkZ1nMeV5Kic9ew0qH0YecrlcsqPyO+60Fk01+Dj5GuUKyxQDS7FyA==",
+  "dgSpecHash": "wuAUg9ns2j5hdxwsvQBSuwdGOTvfjRlaQaNtrSekTyAgIRVfjUhAb28+6YSl8ejOn5YkdTAw46WwLfsJVVJ3QA==",
   "success": true,
   "projectFilePath": "C:\\Users\\sahin\\Desktop\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sahin\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\closedxml\\0.95.4\\closedxml.0.95.4.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\closedxml_excel\\1.0.0\\closedxml_excel.1.0.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\documentformat.openxml\\2.7.2\\documentformat.openxml.2.7.2.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\excelnumberformat\\1.0.10\\excelnumberformat.1.0.10.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\fluentvalidation\\10.3.3\\fluentvalidation.10.3.3.nupkg.sha512",
@@ -184,16 +183,5 @@
     "C:\\Users\\sahin\\.nuget\\packages\\x.pagedlist\\8.1.0\\x.pagedlist.8.1.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\x.pagedlist.mvc.core\\8.1.0\\x.pagedlist.mvc.core.8.1.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'ClosedXML_Excel 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "ClosedXML_Excel",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  "logs": []
 }

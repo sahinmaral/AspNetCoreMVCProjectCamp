@@ -12,7 +12,6 @@ using ClosedXML.Excel;
 using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
-using Spire.Xls.Core.Spreadsheet;
 using X.PagedList;
 
 namespace CoreDemo.Areas.Admin.Controllers
