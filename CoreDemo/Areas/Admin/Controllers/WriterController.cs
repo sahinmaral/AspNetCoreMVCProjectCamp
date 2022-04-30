@@ -15,14 +15,10 @@ namespace CoreDemo.Areas.Admin.Controllers
     [Area("Admin")]
     public class WriterController : Controller
     {
-        private readonly IWriterService _writerService;
-        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public WriterController(IWriterService writerService,IUserService userService,IMapper mapper)
+        public WriterController(IMapper mapper)
         {
-            _writerService = writerService;
-            _userService = userService;
             _mapper = mapper;
         }
         public IActionResult GetWriters()
@@ -32,33 +28,39 @@ namespace CoreDemo.Areas.Admin.Controllers
 
         public IActionResult GetWritersJson()
         {
-            var writers = _mapper.Map(_writerService.GetAll(), new List<ReadWriterViewModel>());
+            //TODO : Writer rolu olan kullanicilari getir
 
-            var jsonWriters = JsonConvert.SerializeObject(writers);
+            //var jsonWriters = JsonConvert.SerializeObject(writers);
 
-            return Json(jsonWriters);
+            //return Json(jsonWriters);
+
+            return Json(null);
         }
 
 
         public IActionResult GetWriterByIdJson(int id)
         {
-            var writer = _mapper.Map(_writerService.Get(x=>x.WriterId == id), new ReadWriterViewModel());
+            //TODO : Writer rolu olan kullaniciyi ID'ye gore getir
 
-            var jsonWriter = JsonConvert.SerializeObject(writer);
+            //var jsonWriters = JsonConvert.SerializeObject(writers);
 
-            return Json(jsonWriter);
+            //return Json(jsonWriters);
+
+            return Json(null);
         }
 
         public void EnableOrDisableWriter(int id)
         {
-            Writer writer = _writerService.Get(x => x.WriterId == id);
+            //TODO : Kullaniciyi banlama veya rolunu silme 
 
-            if (writer.User.Status)
-                writer.User.Status = false;
-            else
-                writer.User.Status = true;
+            //Writer writer = _writerService.Get(x => x.WriterId == id);
 
-            _userService.Update(writer.User);
+            //if (writer.User.Status)
+            //    writer.User.Status = false;
+            //else
+            //    writer.User.Status = true;
+
+            //_userService.Update(writer.User);
 
         }
     }

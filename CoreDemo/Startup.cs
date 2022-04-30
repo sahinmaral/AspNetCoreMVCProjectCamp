@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -42,24 +43,15 @@ namespace CoreDemo
         {
             services.AddSingleton<ICategoryService, CategoryManager>();
             services.AddSingleton<ICategoryDal, EfCategoryDal>();
-            
+
             services.AddSingleton<ICommentService, CommentManager>();
             services.AddSingleton<ICommentDal, EfCommentDal>();
-            
+
             services.AddSingleton<IContactService, ContactManager>();
             services.AddSingleton<IContactDal, EfContactDal>();
-            
+
             services.AddSingleton<IBlogService, BlogManager>();
             services.AddSingleton<IBlogDal, EfBlogDal>();
-            
-            services.AddSingleton<IWriterService, WriterManager>();
-            services.AddSingleton<IWriterDal, EfWriterDal>();
-
-            services.AddSingleton<IAdminService, AdminManager>();
-            services.AddSingleton<IAdminDal, EfAdminDal>();
-
-            services.AddSingleton<IUserService, UserManager>();
-            services.AddSingleton<IUserDal, EfUserDal>();
 
             services.AddSingleton<IAboutService, AboutManager>();
             services.AddSingleton<IAboutDal, EfAboutDal>();
@@ -99,12 +91,20 @@ namespace CoreDemo
             });
 
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
-            {
-                x.LoginPath = "/Login/Login";
-                x.AccessDeniedPath = "/ErrorPage/ErrorPage/403";
-                x.LogoutPath = "/Blog/GetAll";
-            });
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+            //{
+            //    x.LoginPath = new PathString("/Login/Login");
+            //    x.AccessDeniedPath = new PathString("/ErrorPage/ErrorPage/403");
+            //    x.LogoutPath = new PathString("Blog/GetAll");
+            //});
+
+            services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme,
+                options =>
+                {
+                    options.AccessDeniedPath = "/ErrorPage/ErrorPage/403";
+                    options.LoginPath = "/Login/Login";
+                    options.LogoutPath = "/Blog/GetAll";
+                });
 
             services.AddAuthorization(options =>
             {
@@ -119,6 +119,12 @@ namespace CoreDemo
                     policy.RequireRole("Writer");
                 });
             });
+
+            services.AddDbContext<Context>();
+            services.AddIdentity<AppUser, AppRole>(x =>
+            {
+
+            }).AddEntityFrameworkStores<Context>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -145,7 +151,7 @@ namespace CoreDemo
             app.UseRouting();
 
             app.UseAuthorization();
-            
+
 
             app.UseEndpoints(endpoints =>
             {

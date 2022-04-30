@@ -1,35 +1,35 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstract;
 using CoreDemo.Models;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.ViewComponents
 {
     public class WriterNavbarViewComponent : ViewComponent
     {
-        private readonly IWriterService _writerService;
+        private readonly UserManager<AppUser> _userManager; 
         private readonly IMapper _mapper;
 
-        public WriterNavbarViewComponent(IMapper mapper, IWriterService writerService)
+        public WriterNavbarViewComponent(IMapper mapper, UserManager<AppUser> userManager)
         {
             _mapper = mapper;
-            _writerService = writerService;
+            _userManager = userManager;
         }
         
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
+            ReadUserViewModel viewModel = new ReadUserViewModel();
 
-            ReadWriterViewModel writerViewModel = new ReadWriterViewModel();
+            viewModel = _mapper.Map(user, viewModel);
 
-            writerViewModel = _mapper.Map(writer, writerViewModel);
-
-            return View(writerViewModel);
+            return View(viewModel);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace CoreDemo.ViewComponents
         {
             List<ReadBlogViewModel> viewModels = new List<ReadBlogViewModel>();
 
-            List<Blog> last10Blogs = _blogService.GetAllWithDetails(x => x.WriterId == writerId).Take(10).ToList();
+            List<Blog> last10Blogs = _blogService.GetAllWithDetails(x => x.UserId == writerId).Take(10).ToList();
 
             viewModels = _mapper.Map(last10Blogs, viewModels);
 

@@ -35,7 +35,6 @@ CodeMirror.defineMode("gfm", function(config, modeConfig) {
     token: function(stream, state) {
       state.combineTokens = null;
 
-      // Hack to prevent formatting override inside code blocks (block and inline)
       if (state.codeBlock) {
         if (stream.match(/^```/)) {
           state.codeBlock = false;

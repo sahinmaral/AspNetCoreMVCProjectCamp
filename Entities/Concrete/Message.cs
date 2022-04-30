@@ -10,6 +10,7 @@ namespace Entities.Concrete
         public Message()
         {
             MessageOpened = false;
+            MessageDateTime = DateTime.Now;
         }
 
         [Key]
@@ -18,11 +19,11 @@ namespace Entities.Concrete
 
         [Column("SenderId")]
         public int? SenderId { get; set; }
-        public Writer Sender { get; set; }
+        public AppUser Sender { get; set; }
 
         [Column("ReceiverId")]
         public int? ReceiverId { get; set; }
-        public Writer Receiver { get; set; }
+        public AppUser Receiver { get; set; }
 
         public string MessageSubject { get; set; }
         public string MessageDetail { get; set; }

@@ -8,28 +8,27 @@ using AutoMapper;
 using Business.Abstract;
 using CoreDemo.Models;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoreDemo.Controllers
 {
     public class MessageController : Controller
     {
         private readonly IMessageService _messageService;
-        private readonly IWriterService _writerService;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
 
-        public MessageController(IMessageService messageService, IWriterService writerService, IMapper mapper)
+        public MessageController(IMessageService messageService, IMapper mapper, UserManager<AppUser> userManager)
         {
             _messageService = messageService;
-            _writerService = writerService;
             _mapper = mapper;
+            _userManager = userManager;
         }
-        public IActionResult ViewInbox()
+        public async Task<IActionResult> ViewInbox()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
-
-            var messages = _messageService.GetAll(x => x.ReceiverId == writer.User.UserId);
+            var messages = _messageService.GetAll(x => x.ReceiverId == user.Id);
 
             List<ReadMessageViewModel> viewModels = new List<ReadMessageViewModel>(messages.Count);
 
@@ -45,7 +44,46 @@ namespace CoreDemo.Controllers
 
         public IActionResult GetMessageDetail(int id)
         {
-            return View(_mapper.Map(_messageService.Get(x => x.MessageId == id), new ReadMessageViewModel()));
+            Message message = _messageService.Get(x => x.MessageId == id);
+            ReadMessageViewModel viewModel = _mapper.Map(message, new ReadMessageViewModel());
+            message.MessageOpened = true;
+            _messageService.Update(message);
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        [Route("/Message/SendMessage/{receiverUsername}")]
+        public async Task<IActionResult> SendMessage(string receiverUsername)
+        {
+            AppUser receiverUser = await _userManager.FindByNameAsync(receiverUsername);
+            AppUser senderUser = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            CreateMessageViewModel viewModel = new CreateMessageViewModel();
+            ReadUserViewModel receiverViewModel = _mapper.Map(receiverUser, new ReadUserViewModel());
+            ReadUserViewModel senderViewModel = _mapper.Map(senderUser, new ReadUserViewModel());
+
+            viewModel.Receiver = receiverViewModel;
+            viewModel.Sender = senderViewModel;
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult SendMessage(CreateMessageViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            Message newMessage = _mapper.Map(viewModel, new Message());
+            newMessage.ReceiverId = viewModel.Receiver.UserId;
+            newMessage.SenderId = viewModel.Sender.UserId;
+
+            _messageService.Add(newMessage);
+
+            return RedirectToAction("Homepage", "Writer");
+            
         }
     }
 }

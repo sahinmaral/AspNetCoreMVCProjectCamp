@@ -16,7 +16,7 @@ namespace CoreDemo.Models
         public string BlogCreateDate { get; set; }
         public bool BlogStatus { get; set; }
 
-        public ReadWriterViewModel WriterViewModel { get; set; }
+        public ReadUserViewModel UserViewModel { get; set; }
         public ReadCategoryViewModel CategoryViewModel { get; set; }
         public List<ReadCommentViewModel> CommentViewModels { get; set; }
     }

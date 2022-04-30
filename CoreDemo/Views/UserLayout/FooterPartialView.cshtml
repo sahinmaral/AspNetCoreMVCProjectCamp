@@ -17,7 +17,12 @@
                 </div>
             </div>
             <!-- subscribe -->
-            @await Component.InvokeAsync("SubscribeEmailAtFooter")
+            <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
+
+                <div class="tech-btm">
+                    @await Html.PartialAsync("../NewsLetter/SubscribeEmail" , new CreateNewsLetterViewModel())
+                </div>
+            </div>
             <!-- //subscribe -->
         </div>
     </div>

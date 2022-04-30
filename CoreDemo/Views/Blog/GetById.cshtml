@@ -12,9 +12,7 @@
         <div class="blog-grid-top">
             <div class="b-grid-top">
                 <div class="blog_info_left_grid">
-                    <a href="">
-                        <img src="@Model.BlogMainImage" class="img-fluid" alt="">
-                    </a>
+                    <img src="~/images/@Model.BlogMainImage" class="img-fluid" alt="">
                 </div>
                 <div class="blog-info-middle">
                     <ul>
@@ -98,10 +96,10 @@
                 *@
 
 
-            @await Component.InvokeAsync("SubscribeEmailAtBlog")
+            @await Html.PartialAsync("../NewsLetter/SubscribeEmail" , new CreateNewsLetterViewModel())
 
             <div class="tech-btm">
-                @await Component.InvokeAsync("LatestThreePostsToWriter" , new {writerId = @Model.WriterViewModel.WriterId , currentBlogId = @Model.BlogId})
+                @await Component.InvokeAsync("LatestThreePostsToWriter" , new {writerId = @Model.UserViewModel.UserId , currentBlogId = @Model.BlogId})
             </div>
             @* <div class="single-gd my-5 tech-btm"> *@
             @* 	<h4>Our Progress</h4> *@

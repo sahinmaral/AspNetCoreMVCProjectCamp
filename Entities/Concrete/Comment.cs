@@ -24,12 +24,12 @@ namespace Entities.Concrete
         public bool CommentStatus { get; set; }
 
         [Column("BlogId")]
-        public int BlogId { get; set; }
+        public int? BlogId { get; set; }
         public Blog Blog { get; set; }
 
-        [Column("WriterId")]
-        public int? WriterId { get; set; }
-        public Writer Writer { get; set; }
+        [Column("UserId")]
+        public int? UserId { get; set; }
+        public AppUser User { get; set; }
 
         public bool LikeOrDislikeStatus { get; set; }
     }

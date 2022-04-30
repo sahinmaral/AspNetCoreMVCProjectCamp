@@ -18,7 +18,7 @@ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain Vie
  
    $.fn.justifiedGallery = function(options){
 
-   		//TODO fare impostazione 'rel' che sostituisce tutti i link con il rel specificato
+   		
 
 		var settings = $.extend( {
 			'sizeRangeSuffixes' : {'lt100':'_t', 'lt240':'_m', 'lt320':'_n', 'lt500':'', 'lt640':'_z', 'lt1024':'_b'},

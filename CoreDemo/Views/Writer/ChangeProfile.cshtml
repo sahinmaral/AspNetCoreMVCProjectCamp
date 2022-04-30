@@ -1,4 +1,4 @@
-﻿@model ReadWriterViewModel
+﻿@model ReadUserViewModel
 
 @{
     ViewData["Title"] = "Profili Düzenle";
@@ -12,22 +12,17 @@
         <div class="card-body">
             @using (Html.BeginForm("ChangeProfile", "Writer", FormMethod.Post))
             {
-                @Html.HiddenFor(x=>x.WriterId)
+                @Html.HiddenFor(x=>x.UserId)
 
                 <div class="form-group">
-                    <label for="exampleTextarea1">Ad</label>
-                    @Html.TextBoxFor(x => x.UserViewModel.UserFirstName, new { @class = "form-control", style = "border:1px solid black", placeholder = "Ad", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.UserViewModel.UserFirstName, "", new { style = "color:darkred" })
-                </div>
-                <div class="form-group">
-                    <label for="exampleTextarea1">Soyad</label>
-                    @Html.TextBoxFor(x => x.UserViewModel.UserLastName, new { @class = "form-control", style = "border:1px solid black", placeholder = "Soyad", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.UserViewModel.UserLastName, "", new { style = "color:darkred" })
+                    <label for="exampleTextarea1">Ad Soyad</label>
+                    @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control", style = "border:1px solid black", placeholder = "Ad Soyad", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.NameSurname, "", new { style = "color:darkred" })
                 </div>
                 <div class="form-group">
                     <label for="exampleTextarea1">Hakkında</label>
-                    @Html.TextAreaFor(x => x.WriterAbout, new { @class = "form-control", style = "border:1px solid black", placeholder = "Soyad", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.WriterAbout, "", new { style = "color:darkred" })
+                    @Html.TextAreaFor(x => x.UserAbout, new { @class = "form-control", style = "border:1px solid black", placeholder = "Hakkinda", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.UserAbout, "", new { style = "color:darkred" })
                 </div>
                 <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
             }

@@ -36,9 +36,9 @@ namespace Entities.Concrete
 
         public ICollection<Comment> Comments { get; set; }
 
-        [Column("WriterId")]
-        public int WriterId { get; set; }
-        public Writer Writer { get; set; }
+        [Column("UserId")]
+        public int UserId { get; set; }
+        public AppUser User { get; set; }
 
         public BlogRatio BlogRatio { get; set; }
     }

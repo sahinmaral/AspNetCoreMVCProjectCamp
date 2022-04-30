@@ -1,4 +1,4 @@
-﻿@model LoginUserViewModel
+﻿@model UserSignInViewModel
 
 @{
     Layout = "_UserLayout";
@@ -15,19 +15,16 @@
                 @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                 {
                     <div class="form-group">
-                        <label>Kullanıcı Adı</label>
+                        @Html.LabelFor(x=>x.Username , "Kullanici adi")
                         @Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = "Kullanıcı adı" })
                     </div>
                     <div class="form-group">
-                        <label>Şifre</label>
+                        @Html.LabelFor(x=>x.Password , "Sifre")
                         @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "Şifre" })
                     </div>
-                    @*<div class="form-check mb-2">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>*@
+
                     <button type="submit" class="btn btn-primary submit mb-4">Giriş Yap</button>
-                    <p><a href="/Register/RegisterWriter"> Hesabınız yok mu?</a></p>
+                    <p><a href="/Register/RegisterUser"> Hesabınız yok mu?</a></p>
                 }
 
             </div>

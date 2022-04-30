@@ -1,4 +1,5 @@
 ﻿using CoreDemo.Models;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,13 +8,14 @@ namespace CoreDemo.Controllers
     [AllowAnonymous]
     public class ErrorPageController : Controller
     {
-        
+
         [Route("/ErrorPage/ErrorPage/{code}")]
         public IActionResult ErrorPage(int code)
         {
-            ErrorMessageViewModel viewModel = new ErrorMessageViewModel();
-
-            viewModel.StatusCode = code;
+            ErrorMessageViewModel viewModel = new ErrorMessageViewModel
+            {
+                StatusCode = code
+            };
 
             switch (code)
             {
@@ -28,7 +30,9 @@ namespace CoreDemo.Controllers
                     break;
             }
 
+
             return View(viewModel);
+
         }
     }
 }

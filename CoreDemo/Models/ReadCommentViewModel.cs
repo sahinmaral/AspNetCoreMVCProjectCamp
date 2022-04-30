@@ -8,6 +8,6 @@
         public bool CommentStatus { get; set; }
         public int BlogId { get; set; }
 
-        public ReadWriterViewModel WriterViewModel { get; set; }
+        public ReadUserViewModel UserViewModel { get; set; }
     }
 }

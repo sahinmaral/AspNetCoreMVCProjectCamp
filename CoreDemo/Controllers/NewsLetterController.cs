@@ -8,6 +8,7 @@ using Core.Helper.Toastr.OptionEnums;
 using CoreDemo.Models;
 
 using Entities.Concrete;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,71 +25,16 @@ namespace CoreDemo.Controllers
             _newsLetterService = newsLetterService;
             _mapper = mapper;
         }
-        
 
         [HttpPost]
-        public IActionResult SubscribeEmailAtBlog(CreateNewsLetterViewModel viewModel)
+        public PartialViewResult SubscribeEmail(CreateNewsLetterViewModel viewModel)
         {
-            NewsLetter searchedNewsLetter = _newsLetterService.Get(x => x.NewsLetterMail == viewModel.Email);
+            NewsLetter newsLetter = new NewsLetter();
+            newsLetter = _mapper.Map(viewModel, newsLetter);
+            _newsLetterService.Add(newsLetter);
 
-            if (searchedNewsLetter != null)
-            {
-                TempData["Message"] = ToastrNotification.Show("Böyle bir email zaten abone olmuş.", position: Position.BottomRight, type: ToastType.error);
-
-                return RedirectToRoute(new
-                {
-                    controller = "Blog",
-                    action = "GetById",
-                    blogId = TempData["BlogId"]
-                });
-            }
-
-            searchedNewsLetter = _mapper.Map(viewModel, searchedNewsLetter);
-
-            _newsLetterService.Add(searchedNewsLetter);
-
-            TempData["Message"] = ToastrNotification.Show("Başarıyla abone oldunuz.", position:Position.BottomRight , type:ToastType.success);
-
-                return RedirectToRoute(new
-                {
-                    controller = "Blog",
-                    action = "GetById",
-                    blogId = TempData["BlogId"]
-                });
+            return PartialView();
         }
 
-        [HttpPost]
-        public IActionResult SubscribeEmailAtAbout(CreateNewsLetterViewModel viewModel)
-        {
-            NewsLetter searchedNewsLetter = _newsLetterService.Get(x => x.NewsLetterMail == viewModel.Email);
-
-            if (searchedNewsLetter != null)
-            {
-                TempData["Message"] = ToastrNotification.Show("Böyle bir email zaten abone olmuş.", position: Position.BottomRight, type: ToastType.error);
-
-                return RedirectToRoute(new
-                {
-                    controller = "About",
-                    action = "Index"
-                });
-            }
-
-            searchedNewsLetter = _mapper.Map(viewModel, searchedNewsLetter);
-
-            _newsLetterService.Add(searchedNewsLetter);
-
-            TempData["Message"] = ToastrNotification.Show("Başarıyla abone oldunuz.", position: Position.BottomRight, type: ToastType.success);
-
-            return RedirectToRoute(new
-            {
-                controller = "About",
-                action = "Index"
-            });
-        }
-
-        public IActionResult SubscribeEmailAtFooter()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

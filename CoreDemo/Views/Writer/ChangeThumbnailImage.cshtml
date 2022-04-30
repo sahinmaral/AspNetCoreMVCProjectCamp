@@ -1,0 +1,29 @@
+﻿@model UserPictureViewModel
+
+@{
+    ViewBag.Title = "Profil Fotoğrafı Düzenle";
+    Layout = "_WriterLayout";
+}
+
+<h2 class="ml-5">Profil Fotoğrafı Düzenle</h2>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("ChangeProfileImage", "Writer", FormMethod.Post , new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label for="exampleTextarea1">Profil Fotoğrafı</label>
+                    
+                    @Html.TextBoxFor(x=>x.ProfilePhoto , new { @class = "form-control border border-dark", type = "file"})
+                    
+                    @*<input type="file" name="ProfilePhoto" class="form-control">*@
+
+                    @Html.ValidationMessageFor(x => x.ProfilePhoto, "", new { style = "color:darkred" })
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
+            }
+        </div>
+    </div>
+</div>

@@ -13,6 +13,6 @@ namespace CoreDemo.Models
         public DateTime CommentCreateDate { get; set; }
         public bool CommentStatus { get; set; }
         public int BlogId { get; set; }
-        public int WriterId { get; set; }
+        public int UserId { get; set; }
     }
 }

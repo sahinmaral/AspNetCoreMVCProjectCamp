@@ -13,10 +13,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Core.Entities.Concrete;
-using Core.Utilities.Security.Hashing;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoreDemo.Controllers
 {
@@ -24,11 +24,11 @@ namespace CoreDemo.Controllers
     public class RegisterController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IWriterService _writerService;
-        public RegisterController(IMapper mapper, IWriterService writerService)
+        private readonly UserManager<AppUser> _userManager;
+        public RegisterController(IMapper mapper, UserManager<AppUser> userManager)
         {
             _mapper = mapper;
-            _writerService = writerService;
+            _userManager = userManager;
         }
 
         public void GetCities()
@@ -46,6 +46,8 @@ namespace CoreDemo.Controllers
                 "Bartın", "Ardahan", "Iğdır", "Yalova", "Karabük", "Kilis", "Osmaniye", "Düzce"
             };
 
+            cities.Sort();
+
             List<SelectListItem> citieSelectListItems = (from x in cities
                                                          select new SelectListItem()
                                                          {
@@ -57,7 +59,7 @@ namespace CoreDemo.Controllers
         }
 
         [HttpGet]
-        public IActionResult RegisterWriter()
+        public IActionResult Register()
         {
             GetCities();
 
@@ -65,48 +67,30 @@ namespace CoreDemo.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegisterWriter(RegisterWriterViewModel viewModel)
+        public async Task<IActionResult> Register(UserSignUpViewModel viewModel)
         {
-
-            if (!ModelState.IsValid)
+            if (!viewModel.IsPoliciesAccepted)
             {
-
-                GetCities();
-
+                ModelState.AddModelError("IsPoliciesAccepted",
+                    "Sayfamıza kayıt olabilmek için gizlilik sözleşmesini kabul etmeniz gerekmektedir.");
                 return View(viewModel);
             }
 
-            Writer writer = new Writer();
+            AppUser newUser = _mapper.Map<AppUser>(viewModel);
+            newUser.ImageUrl = AssignFormFileAndReturnName(viewModel.ProfileImage);
 
-            writer = _mapper.Map(viewModel, writer);
-
-            string[] splittedNameSurname = viewModel.WriterName.Split(' ');
-
-            writer.User = new User();
-
-            writer.User.Username = viewModel.WriterUsername;
-            writer.User.UserFirstName = splittedNameSurname[0];
-
-            if (splittedNameSurname.Length == 2)
-                writer.User.UserLastName = splittedNameSurname[1];
-            else if(splittedNameSurname.Length > 2)
-                writer.User.UserLastName = splittedNameSurname[1] + " " + splittedNameSurname[2];
-            else
+            var result = await _userManager.CreateAsync(newUser, viewModel.Password);
+            if (result.Succeeded)
             {
-                ModelState.AddModelError("WriterName", "Soyadı yazmanız gerekiyor.");
+                return RedirectToAction("Login", "Login");
             }
 
-            writer.WriterImage = AssignFormFileAndReturnName(viewModel.WriterImage);
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(error.Code, error.Description);
+            }
 
-            HashingHelper.CreatePasswordHash(viewModel.WriterPassword,out var passwordHash,out var passwordSalt);
-
-            writer.User.UserPasswordSalt = passwordSalt;
-            writer.User.UserPasswordHash = passwordHash;
-
-            _writerService.Add(writer);
-
-            return RedirectToAction("GetAll", "Blog");
-
+            return View(viewModel);
         }
 
         private string AssignFormFileAndReturnName(IFormFile file)
@@ -114,12 +98,14 @@ namespace CoreDemo.Controllers
             var extension = Path.GetExtension(file.FileName);
 
             var newName = Guid.NewGuid() + extension;
-            var location = Path.Combine(Directory.GetCurrentDirectory() + @"\wwwroot\writerProfileImages\", newName);
+            var location = Path.Combine(Directory.GetCurrentDirectory() + @"\wwwroot\images", newName);
             var stream = new FileStream(location, FileMode.Create);
             file.CopyTo(stream);
 
             return newName;
         }
+
+
 
     }
 

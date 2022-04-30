@@ -1,1 +1,34 @@
-﻿
+﻿@model CoreDemo.Models.CreateNewsLetterViewModel
+
+
+<div class="mb-3">
+    <h3 style="text-align: center;" class="mb-3">Mail bultenine abone olun</h3>
+    <form method="post">
+        <input type="text" class="form-control" placeholder="Email" name="Email" id="emailText" />
+        <br />
+        <button type="submit" class="btn btn-primary submit" id="subscribeButton">Abone Ol</button>
+    </form>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $("#subscribeButton").click(function () {
+        values = {
+            Email : $("#emailText").val()
+        }
+
+        $.ajax({
+            url: '@Url.Action("SubscribeEmail","NewsLetter")',
+            type: 'POST',
+            dataType: 'json',
+            data: values,
+            success: function (func) {
+                result = JSON.parse(func);
+            }
+        });
+    });
+
+</script>
+

@@ -16,8 +16,6 @@ namespace DataAccess.Concrete
             using Context context = new Context();
             var messages = context.Messages
                 .Include(x => x.Sender)
-                .Include(x => x.Sender.User)
-                .Include(x => x.Receiver.User)
                 .Include(x => x.Receiver);
 
             return filter == null ? messages.ToList() : messages.Where(filter).ToList();
@@ -28,8 +26,6 @@ namespace DataAccess.Concrete
             using Context context = new Context();
             var message = context.Set<Message>()
                 .Include(x => x.Sender)
-                .Include(x => x.Sender.User)
-                .Include(x => x.Receiver.User)
                 .Include(x => x.Receiver)
                 .SingleOrDefault(filter);
 

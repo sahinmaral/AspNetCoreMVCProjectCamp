@@ -1,0 +1,31 @@
+﻿@using CoreDemo.Models
+@model System.Collections.Generic.List<CoreDemo.Models.EmployeeModel>
+
+@{
+    ViewBag.Title = "Employee Test ";
+    Layout = "_AdminLayout";
+}
+
+
+<table class="table table-bordered mt-3">
+    <tr>
+        <th>#</th>
+        <th>Ad Soyad</th>
+        <th>Sil</th>
+        <th>Duzenle</th>
+    </tr>
+    
+    
+    @foreach (EmployeeModel employee in Model)
+    {
+        <tr>
+            <td>@employee.Id</td>
+            <td>@employee.Name</td>
+            <td><a href="/EmployeeTest/DeleteEmployee?id=@employee.Id" class="btn btn-outline-danger">Sil</a></td>
+            <td><a href="/EmployeeTest/EditEmployee?id=@employee.Id" class="btn btn-outline-success">Duzenle</a></td>
+        </tr>
+    }
+
+</table>
+
+<a href="AddEmployee" class="btn btn-outline-success">Yeni Calisan Olustur</a>

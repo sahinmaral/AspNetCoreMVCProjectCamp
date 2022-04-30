@@ -7,6 +7,5 @@
         public string ContactMail { get; set; }
         public string ContactSubject { get; set; }
         public string ContactMessage { get; set; }
-        public bool ContactStatus { get; set; }
     }
 }

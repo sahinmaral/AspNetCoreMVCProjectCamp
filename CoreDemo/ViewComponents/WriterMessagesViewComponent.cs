@@ -6,6 +6,7 @@ using AutoMapper;
 using Business.Abstract;
 using CoreDemo.Models;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.ViewComponents
@@ -13,22 +14,20 @@ namespace CoreDemo.ViewComponents
     public class WriterMessagesViewComponent : ViewComponent
     {
         private readonly IMessageService _messageService;
-        private readonly IWriterService _writerService;
         private readonly IMapper _mapper;
+        private readonly UserManager<AppUser> _userManager;
 
-        public WriterMessagesViewComponent(IMessageService messageService,IWriterService writerService,IMapper mapper)
+        public WriterMessagesViewComponent(IMessageService messageService,IMapper mapper,UserManager<AppUser> userManager)
         {
             _messageService = messageService;
-            _writerService = writerService;
             _mapper = mapper;
+            _userManager = userManager;
         }
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
-
-            var messages = _messageService.GetAll(x => x.ReceiverId == writer.User.UserId);
+            var messages = _messageService.GetAll(x => x.ReceiverId == user.Id && !x.MessageOpened);
 
             List<ReadMessageViewModel> viewModels = new List<ReadMessageViewModel>(messages.Count);
 

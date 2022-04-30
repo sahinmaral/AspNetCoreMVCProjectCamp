@@ -1,0 +1,26 @@
+﻿@model EmployeeModel
+
+@{
+    ViewBag.Title = "Calisan Duzenleme";
+    Layout = "_AdminLayout";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="margin-bottom:3em">Calisan Duzenleme</h4>
+            @using (Html.BeginForm("EditEmployee", "EmployeeTest", FormMethod.Post))
+            {
+                @Html.HiddenFor(x=>x.Id)
+                <div class="form-group">
+                    <label>Ad Soyad</label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", style = "border:1px solid black", placeholder = "Başlık" })
+                    @Html.ValidationMessageFor(x => x.Name, "", new { style = "color:darkred" })
+                </div>
+                <button type="submit" class="btn btn-gradient-primary mr-2">Guncelle</button>
+                <button type="reset" class="btn btn-light">İptal Et</button>
+            }
+        </div>
+    </div>
+</div>
+

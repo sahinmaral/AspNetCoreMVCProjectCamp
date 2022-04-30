@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstract;
-using Core.Utilities.Security.Hashing;
 using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,20 +19,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace CoreDemo.Controllers
 {
 
-    [Authorize(Policy = "Writer")]
+    //[Authorize(Policy = "Writer")]
     public class WriterController : Controller
     {
-        private readonly IWriterService _writerService;
         private readonly ICategoryService _categoryService;
         private readonly IBlogService _blogService;
         private readonly IMapper _mapper;
+        private readonly UserManager<AppUser> _userManager;
 
-        public WriterController(IWriterService writerService, IBlogService blogService, IMapper mapper, ICategoryService categoryService)
+        public WriterController(IBlogService blogService, IMapper mapper, ICategoryService categoryService, UserManager<AppUser> userManager)
         {
-            _writerService = writerService;
             _blogService = blogService;
             _mapper = mapper;
             _categoryService = categoryService;
+            _userManager = userManager;
         }
 
         public IActionResult WriterProfile()
@@ -38,19 +40,18 @@ namespace CoreDemo.Controllers
             return View();
         }
         
-        public IActionResult Homepage()
+        public async Task<IActionResult> Homepage()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
-            return View(_mapper.Map(writer, new ReadWriterViewModel()));
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            return View(_mapper.Map(user, new ReadUserViewModel()));
         }
 
-        public IActionResult MyBlog()
+        public async Task<IActionResult> MyBlog()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            List<Blog> writerBlogs = _blogService.GetAllWithDetails(x => x.Writer.User.UserId == writer.User.UserId).Where(x=>x.BlogStatus).ToList();
+            List<Blog> writerBlogs = _blogService.GetAllWithDetails(x => x.UserId == user.Id).Where(x=>x.BlogStatus).ToList();
 
             List<ReadBlogViewModel> readBlogViewModels = new List<ReadBlogViewModel>();
             
@@ -60,34 +61,27 @@ namespace CoreDemo.Controllers
         }
 
         [HttpGet]
-        public IActionResult ChangeProfile()
+        public async Task<IActionResult> ChangeProfile()
         {
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            ReadWriterViewModel model = new ReadWriterViewModel();
+            ReadUserViewModel viewModel = _mapper.Map(user, new ReadUserViewModel());
 
-            model = _mapper.Map(writer, model);
-
-            return View(model);
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult ChangeProfile(ReadWriterViewModel model)
+        public async Task<IActionResult> ChangeProfile(ReadUserViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View(viewModel);
             }
 
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-            Writer updatedWriter = _writerService.Get(x => x.User.Username == loggedWriterUsername);
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            user.UserAbout = viewModel.UserAbout;
 
-            updatedWriter.User.UserLastName = model.UserViewModel.UserLastName;
-            updatedWriter.User.UserFirstName = model.UserViewModel.UserFirstName;
-            updatedWriter.WriterAbout = model.WriterAbout;
-
-            _writerService.Update(updatedWriter);
+            await _userManager.UpdateAsync(user);
 
             return RedirectToAction("Homepage", "Writer");
         }
@@ -99,63 +93,50 @@ namespace CoreDemo.Controllers
         }
 
         [HttpPost]
-        public IActionResult ChangePassword(WriterPasswordViewModel model)
+        public async Task<IActionResult> ChangePassword(UserPasswordViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View(viewModel);
             }
 
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-            Writer updatedWriter = _writerService.Get(x => x.User.Username == loggedWriterUsername);
-
-            if (HashingHelper.VerifyPasswordHash(model.OldPassword, updatedWriter.User.UserPasswordHash,
-                updatedWriter.User.UserPasswordSalt))
-            {
-                ModelState.AddModelError("OldPassword", "Yanlış şifre girdiniz");
-                return View(model);
-            }
-
-            HashingHelper.CreatePasswordHash(model.NewPassword, out var newPasswordHash,
-                out var newPasswordSalt);
-
-            updatedWriter.User.UserPasswordHash = newPasswordHash;
-            updatedWriter.User.UserPasswordSalt = newPasswordSalt;
-
-            _writerService.Update(updatedWriter);
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, viewModel.NewPassword);
+            
+            await _userManager.UpdateAsync(user);
 
             return RedirectToAction("Homepage", "Writer");
         }
 
         [HttpGet]
-        public IActionResult ChangeProfileImage()
+        public IActionResult ChangeThumbnailImage()
         {
-            return View(new WriterProfilePhotoViewModel());
+            return View(new UserPictureViewModel());
         }
 
         [HttpPost]
-        public IActionResult ChangeProfileImage(WriterProfilePhotoViewModel model)
+        public async Task<IActionResult> ChangeThumbnailImage(UserPictureViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View(viewModel);
             }
-            
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-            Writer updatedWriter = _writerService.Get(x => x.User.Username == loggedWriterUsername);
 
-            RemoveOldProfilePicture(updatedWriter.WriterImage);
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            updatedWriter.WriterImage = AssignFormFileAndReturnName(model.ProfilePhoto);
+            if(user.ImageUrl != null)
+                RemoveOldProfilePicture(user.ImageUrl);
 
-            _writerService.Update(updatedWriter);
+            user.ImageUrl = AssignFormFileAndReturnName(viewModel.ProfilePhoto);
+
+            await _userManager.UpdateAsync(user);
 
             return RedirectToAction("Homepage","Writer");
         }
 
         private void RemoveOldProfilePicture(string path)
         {
-            System.IO.File.Delete(Directory.GetCurrentDirectory()+ @"\wwwroot\writerProfileImages\" + path);
+            System.IO.File.Delete(Directory.GetCurrentDirectory()+ @"\wwwroot\images" + path);
         }
 
         private string AssignFormFileAndReturnName(IFormFile file)
@@ -163,9 +144,10 @@ namespace CoreDemo.Controllers
             var extension = Path.GetExtension(file.FileName);
 
             var newName =  Guid.NewGuid()+ extension;
-            var location = Path.Combine(Directory.GetCurrentDirectory() + @"\wwwroot\writerProfileImages\", newName);
+            var location = Path.Combine(Directory.GetCurrentDirectory() + @"\wwwroot\images", newName);
             var stream = new FileStream(location, FileMode.Create);
             file.CopyTo(stream);
+            stream.Close();
 
             return newName;
         }
@@ -191,7 +173,7 @@ namespace CoreDemo.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBlog(CreateBlogViewModel viewModel)
+        public async Task<IActionResult> AddBlog(CreateBlogViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -199,18 +181,17 @@ namespace CoreDemo.Controllers
                 return View(viewModel);
             }
 
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            Blog blog = new Blog
-            {
-                WriterId = writer.User.UserId,
-                CategoryId = viewModel.CategoryId
-            };
+            string thumbnailImageName = AssignFormFileAndReturnName(viewModel.BlogThumbnailImage);
+            string mainImageName = AssignFormFileAndReturnName(viewModel.BlogMainImage);
 
-            _mapper.Map(viewModel, blog);
-            
-            _blogService.Add(blog);
+            Blog newBlog= _mapper.Map(viewModel, new Blog());
+            newBlog.BlogMainImage = mainImageName;
+            newBlog.BlogThumbnailImage = thumbnailImageName;
+            newBlog.User = user;
+
+            _blogService.Add(newBlog);
             
             return RedirectToAction("MyBlog");
         }
@@ -232,7 +213,25 @@ namespace CoreDemo.Controllers
 
             UpdateBlogViewModel blogViewModel = new UpdateBlogViewModel();
 
-            blogViewModel = _mapper.Map(editedBlog, blogViewModel);
+            //TODO : Gelen dosyalari file input kismina koymamiz gerekiyor.
+            //using (var stream = System.IO.File.OpenRead(Directory.GetCurrentDirectory() + @"\wwwroot\images\" + editedBlog.BlogMainImage))
+            //    blogViewModel.BlogMainImage = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name));
+
+            //using (var stream = System.IO.File.OpenRead(Directory.GetCurrentDirectory() + @"\wwwroot\images\" + editedBlog.BlogThumbnailImage))
+            //    blogViewModel.BlogThumbnailImage = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name));
+
+            //TODO : IFormFile maplerken sorun cikariyor. Simdilik elle yazilacak
+            //blogViewModel = _mapper.Map(editedBlog, blogViewModel);
+
+            blogViewModel.BlogId = editedBlog.BlogId;
+            blogViewModel.BlogTitle = editedBlog.BlogTitle;
+            blogViewModel.BlogContent = editedBlog.BlogContent;
+            blogViewModel.BlogCreateDate = Convert.ToString(editedBlog.BlogCreatedDate, CultureInfo.InvariantCulture);
+            blogViewModel.BlogStatus = editedBlog.BlogStatus;
+
+            blogViewModel.CategoryViewModel = _mapper.Map(editedBlog.Category, new ReadCategoryViewModel());
+            blogViewModel.WriterViewModel = _mapper.Map(editedBlog.User, new ReadUserViewModel());
+            blogViewModel.CommentViewModels = _mapper.Map(editedBlog.Comments, new List<ReadCommentViewModel>());
             
             GetCategories();
 
@@ -240,7 +239,7 @@ namespace CoreDemo.Controllers
         }
         
         [HttpPost]
-        public IActionResult UpdateBlog(UpdateBlogViewModel blogViewModel)
+        public async Task<IActionResult> UpdateBlog(UpdateBlogViewModel blogViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -248,16 +247,20 @@ namespace CoreDemo.Controllers
                 return View(blogViewModel);
             }
 
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
+            string thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.BlogThumbnailImage);
+            string mainImageName = AssignFormFileAndReturnName(blogViewModel.BlogMainImage);
+
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             Blog blog = _blogService.Get(x => x.BlogId == blogViewModel.BlogId);
 
-            blog.WriterId = writer.User.UserId;
+            blog.UserId = user.Id;
+            blog.BlogContent = blogViewModel.BlogContent;
+            blog.BlogTitle = blogViewModel.BlogTitle;
             blog.CategoryId = blogViewModel.CategoryViewModel.CategoryId;
+            blog.BlogMainImage = mainImageName;
+            blog.BlogThumbnailImage = thumbnailImageName;
 
-            blog = _mapper.Map(blogViewModel, blog);
-            
             _blogService.Update(blog);
             
             return RedirectToAction("MyBlog", "Writer");

@@ -110,8 +110,7 @@ CodeMirror.defineMode("rust", function() {
       }
       escaped = !escaped && ch == "\\";
     }
-    // Hack to not confuse the parser when a string is split in
-    // pieces.
+
     return r("op", "string");
   }
 

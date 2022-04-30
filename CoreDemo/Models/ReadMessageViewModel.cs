@@ -9,8 +9,8 @@ namespace CoreDemo.Models
     public class ReadMessageViewModel
     {
         public int MessageId { get; set; }
-        public ReadWriterViewModel Sender { get; set; }
-        public ReadWriterViewModel Receiver { get; set; }
+        public ReadUserViewModel Sender { get; set; }
+        public ReadUserViewModel Receiver { get; set; }
 
         public string MessageSubject { get; set; }
         public string MessageDetail { get; set; }

@@ -6,55 +6,74 @@
 }
 
 @{
-	string CheckBlogContent(string content)
-	{
-		if (content != null && content.Length > 50)
-		{
-			return content.Substring(0, 50) + " ...";
-		}
+    string CheckBlogContent(string content)
+    {
+        if (content != null && content.Length > 50)
+        {
+            return content.Substring(0, 50) + " ...";
+        }
 
-		return content;
-	}
+        return content;
+    }
 }
 
 <h3 class="tittle">Blog Postları</h3>
-			<div class="inner-sec">
-				<div class="left-blog-info-w3layouts-agileits text-left">
-					<div class="row">
-						@foreach (ReadBlogViewModel blog in Model)
-						{
-							<div class="col-lg-4 card">
-								<a href="single.html">
-									<img src="@blog.BlogThumbnailImage" class="card-img-top img-fluid" alt="">
-								</a>
-								<div class="card-body">
-									<ul class="blog-icons my-4">
-										<li>
-                                            <a href="GetById/@blog.BlogId">
-												<i class="far fa-calendar-alt"></i>@blog.BlogCreateDate</a>
-										</li>
-										<li class="mx-2">
-											<a href="GetById/@blog.BlogId">
-                                                <i class="far fa-comment"></i>@blog.CommentViewModels.Count</a>
-										</li>
-										<li>
-                                            <a href="GetById/@blog.BlogId">
-												<i class="fas fa-eye"></i>@blog.CategoryViewModel.CategoryName</a>
-										</li>
+<div class="inner-sec">
+    <div class="left-blog-info-w3layouts-agileits text-left">
+        <div class="row">
+            @foreach (ReadBlogViewModel blog in Model)
+            {
+                <div class="col-lg-4 card">
+                    <img src="~/images/@blog.BlogThumbnailImage" class="card-img-top img-fluid" alt="">
+                    <div class="card-body">
+                        <ul class="blog-icons my-4 mx-1">
+                            <li>
+                                <a href="GetById/@blog.BlogId">
+                                    <i class="far fa-calendar-alt"></i>@blog.BlogCreateDate
+                                </a>
+                            </li>
+                            <li>
+                                <a href="GetById/@blog.BlogId">
+                                    <i class="far fa-comment"></i>@blog.CommentViewModels.Count
+                                </a>
+                            </li>
+                            <li>
+                                <a href="GetById/@blog.BlogId">
+                                    <i class="fas fa-eye"></i>@blog.CategoryViewModel.CategoryName
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="blog-icons my-4">
+                            <li class="nav-item dropdown">
+                                Yazar :
+                                <a class="mx-1 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user"></i>@blog.UserViewModel.Username
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Profili Goruntule</a>
+                                    @* //TODO : Eger gonderilecek kisi ile su anki kisi ayniysa alert gondersin. *@
+                                    <a class="dropdown-item" href="/Message/SendMessage/@blog.UserViewModel.Username">Mesaj Gonder</a>
 
-									</ul>
-									<h5 class="card-title">
-										<a href="GetById/@blog.BlogId">@blog.BlogTitle</a>
-									</h5>
-									<p class="card-text mb-3">
-										@CheckBlogContent(blog.BlogContent)
-									</p>
-									<a href="/Blog/GetById/@blog.BlogId" class="btn btn-primary read-m">Daha Fazlası </a>
-								</div>
-							</div>
-						}
-						</div>
-					<!--//left-->
-				</div>
-			</div>
+
+                                    @*<div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>*@
+                                </div>
+                            </li>
+                        </ul>
+                        <h5 class="card-title">
+                            <a href="GetById/@blog.BlogId">@blog.BlogTitle</a>
+                        </h5>
+                        <p class="card-text mb-3">
+                            @CheckBlogContent(blog.BlogContent)
+                        </p>
+                        <a href="/Blog/GetById/@blog.BlogId" class="btn btn-primary read-m">Daha Fazlası </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--//left-->
+    </div>
+</div>
+
+
 

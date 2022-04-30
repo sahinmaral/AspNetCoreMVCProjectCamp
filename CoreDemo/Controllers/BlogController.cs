@@ -5,9 +5,11 @@ using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Core.Helper.Toastr;
 using Core.Helper.Toastr.OptionEnums;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoreDemo.Controllers
 {
@@ -16,15 +18,14 @@ namespace CoreDemo.Controllers
         private readonly IBlogService _blogService;
         private readonly ICommentService _commentService;
         private readonly IMapper _mapper;
-        private readonly IWriterService _writerService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public BlogController(IBlogService blogService, ICommentService commentService, IMapper mapper,
-            IWriterService writerService)
+        public BlogController(IBlogService blogService, ICommentService commentService, IMapper mapper, UserManager<AppUser> userManager)
         {
             _blogService = blogService;
             _commentService = commentService;
             _mapper = mapper;
-            _writerService = writerService;
+            _userManager = userManager;
         }
 
         [AllowAnonymous]
@@ -34,18 +35,7 @@ namespace CoreDemo.Controllers
 
             List<ReadBlogViewModel> blogViewModels = new List<ReadBlogViewModel>();
 
-            foreach (Blog blog in blogs)
-            {
-                blog.Comments = new List<Comment>();
-
-                foreach (Comment comment in _commentService.GetAll())
-                {
-                    if (comment.BlogId == blog.BlogId)
-                    {
-                        blog.Comments.Add(comment);
-                    }
-                }
-            }
+            //TODO : Blog icerisinde yorumlar iliskisi varken neden burada foreach yazdim ?
 
             blogViewModels = _mapper.Map(blogs, blogViewModels);
 
@@ -53,10 +43,12 @@ namespace CoreDemo.Controllers
         }
 
         [AllowAnonymous]
-        [Route("/Blog/GetById/{blogId}")]
+        [Route("/Blog/GetById/{blogId}")] 
         public IActionResult GetById(int blogId)
         {
             TempData["BlogId"] = blogId;
+
+            //TODO : Bloglari aldigi zaman neden yorumlari da almiyor , incele.
 
             Blog blog = _blogService.GetByBlogIdWithDetails(blogId);
             List<Comment> comments = _commentService.GetAllWithDetails(x => x.BlogId == blogId);
@@ -64,10 +56,15 @@ namespace CoreDemo.Controllers
             ReadBlogViewModel blogViewModel = new ReadBlogViewModel();
             List<ReadCommentViewModel> commentViewModels = new List<ReadCommentViewModel>();
 
+            ReadUserViewModel userViewModel = new ReadUserViewModel();
+            
+
             blogViewModel = _mapper.Map(blog, blogViewModel);
+            userViewModel = _mapper.Map(blog.User, userViewModel);
             commentViewModels = _mapper.Map(comments, commentViewModels);
 
             blogViewModel.CommentViewModels = commentViewModels;
+            blogViewModel.UserViewModel = userViewModel;
 
             return View(blogViewModel);
         }
@@ -80,14 +77,13 @@ namespace CoreDemo.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddComment(CreateCommentViewModel viewModel)
+        public async Task<IActionResult> AddComment(CreateCommentViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                // TODO - ModelState uyarı verince , toplam uyarılar mesajın içerisinde olsun.
                 TempData["Message"] = ToastrNotification.Show("message", position: Position.BottomRight,
                     type: ToastType.error);
-                
+
                 return RedirectToRoute(new
                 {
                     controller = "Blog",
@@ -96,11 +92,8 @@ namespace CoreDemo.Controllers
                 });
             }
 
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-
-            Writer writer = _writerService.Get(x => x.User.UserFirstName == loggedWriterUsername);
-
-            viewModel.WriterId = writer.User.UserId;
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            viewModel.UserId = user.Id;
 
             Comment addedComment = new Comment();
 

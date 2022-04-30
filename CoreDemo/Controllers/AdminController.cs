@@ -7,24 +7,20 @@ using System.Threading.Tasks;
 using Business.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoreDemo.Controllers
 {
-    [Authorize(Roles = "Admin,Writer")]
+    [AllowAnonymous]
     public class AdminController : Controller
     {
-        private readonly IAdminService _adminService;
-
-        public AdminController(IAdminService adminService)
+        private readonly UserManager<AppUser> _userManager;
+        public AdminController(UserManager<AppUser> userManager)
         {
-            _adminService = adminService;
+            _userManager = userManager;
         }
         public IActionResult Homepage()
         {
-            string loggedAdminUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
-            Admin admin = _adminService.Get(x => x.User.Username == loggedAdminUsername);
-
-
             return View();
         }
     }

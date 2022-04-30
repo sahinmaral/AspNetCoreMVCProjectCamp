@@ -33,7 +33,7 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult AddContact(CreateContactViewModel viewModel)
         {
-            //Spam engellemek için süre konulabilir 
+            //TODO : Spam engellemek için süre konulabilir 
 
             Contact contact = new Contact();
 

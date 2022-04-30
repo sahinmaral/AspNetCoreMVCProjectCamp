@@ -2182,7 +2182,6 @@ var WrappedRange = /** @class */ (function () {
         pred = pred || func.ok;
         var includeAncestor = options && options.includeAncestor;
         var fullyContains = options && options.fullyContains;
-        // TODO compare points and sort
         var startPoint = this.getStartPoint();
         var endPoint = this.getEndPoint();
         var nodes = [];

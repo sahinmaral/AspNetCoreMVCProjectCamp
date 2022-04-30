@@ -4,13 +4,14 @@ using System.Net.NetworkInformation;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
+using AutoMapper;
+
 using Business.Abstract;
 
-using Core.Entities.Concrete;
-using Core.Utilities.Security.Hashing;
+
 
 using CoreDemo.Models;
-
+using DocumentFormat.OpenXml.Drawing;
 using Entities.Concrete;
 
 using Microsoft.AspNetCore.Authentication;
@@ -26,14 +27,10 @@ namespace CoreDemo.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        private readonly IUserService _userService;
-        private readonly IAdminService _adminService;
-        private readonly IWriterService _writerService;
-        public LoginController(IUserService userService, IAdminService adminService, IWriterService writerService)
+        private readonly SignInManager<AppUser> _signInManager;
+        public LoginController(SignInManager<AppUser> signInManager)
         {
-            _userService = userService;
-            _adminService = adminService;
-            _writerService = writerService;
+            _signInManager = signInManager;
         }
 
         [HttpGet]
@@ -43,76 +40,27 @@ namespace CoreDemo.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginUserViewModel viewModel)
+        public async Task<IActionResult> Login(UserSignInViewModel viewModel)
         {
-            User searchedUser = _userService.Get(x => x.Username == viewModel.Username);
-
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                foreach (var keyValuePair in ModelState.Values.Where(x => x.ValidationState == ModelValidationState.Invalid))
+                var result = await _signInManager.PasswordSignInAsync(viewModel.Username, viewModel.Password, false, true);
+                if (result.Succeeded)
                 {
-                    foreach (ModelError modelError in keyValuePair.Errors)
-                    {
-                        if (ViewData["LoginError"] != null)
-                            ViewData["LoginError"] = ViewData["LoginError"] + modelError.ErrorMessage;
-                        else
-                            ViewData["LoginError"] = modelError.ErrorMessage;
-                    }
+                    return RedirectToAction("GetAll", "Blog");  
                 }
 
                 return View(viewModel);
             }
-
-            if (searchedUser == null)
-            {
-                ViewData["LoginError"] = "Böyle bir hesap bulunamadı";
-
-                return View(viewModel);
-            }
-
-            if (HashingHelper.VerifyPasswordHash(viewModel.Password, searchedUser.UserPasswordHash,
-                searchedUser.UserPasswordSalt))
-            {
-                ViewData["LoginError"] = "Kullanıcı adınızı veya şifrenizini kontrol ediniz";
-
-                return View(viewModel);
-            }
-
-            await HttpContext.SignInAsync(AssignClaimsToUser(searchedUser));
-
-            return RedirectToAction("GetAll", "Blog");
-        }
-
-        public ClaimsPrincipal AssignClaimsToUser(User searchedUser)
-        {
-            Writer searchedWriter = _writerService.Get(x => x.User.UserId == searchedUser.UserId);
-            Admin searchedAdmin = _adminService.Get(x => x.User.UserId == searchedUser.UserId);
-
-            ClaimsIdentity userIdentity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            List<Claim> claims = new List<Claim> { new Claim(ClaimTypes.Name, searchedUser.Username) };
-
-            if (searchedAdmin != null)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, "Admin", CookieAuthenticationDefaults.AuthenticationScheme));
-            }
-
-            if (searchedWriter != null)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, "Writer", CookieAuthenticationDefaults.AuthenticationScheme));
-            }
-
-
-            userIdentity.AddClaims(claims);
-            var principal = new ClaimsPrincipal(userIdentity);
+                
             
-
-            return principal;
+            return View(viewModel);
         }
+
 
         public async Task<IActionResult> LogOut()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _signInManager.SignOutAsync();
 
             return RedirectToAction("GetAll", "Blog");
         }

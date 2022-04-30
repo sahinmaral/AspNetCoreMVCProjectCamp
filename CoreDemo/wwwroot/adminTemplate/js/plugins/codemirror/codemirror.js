@@ -6521,8 +6521,7 @@
     },
 
     getHistory: function() {
-      return {done: copyHistoryArray(this.history.done),
-              undone: copyHistoryArray(this.history.undone)};
+      return {done: copyHistoryArray(this.history.done),undone: copyHistoryArray(this.history.undone)};
     },
     setHistory: function(histData) {
       var hist = this.history = new History(this.history.maxGeneration);

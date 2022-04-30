@@ -1,4 +1,4 @@
-﻿@model ReadWriterViewModel 
+﻿@model ReadUserViewModel 
 
 @{
     ViewData["Title"] = "Anasayfa";
@@ -11,7 +11,7 @@
     
         <div class="row">
             
-            @await Component.InvokeAsync("WriterStatistics",new {currentWriterId = @Model.WriterId}) 
+            @await Component.InvokeAsync("WriterStatistics",new {currentWriterId = @Model.UserId}) 
            
         </div>
         <div class="row">
@@ -32,7 +32,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @await Component.InvokeAsync("LatestTenPostsToWriter", new { writerId = @Model.WriterId })
+                                @await Component.InvokeAsync("LatestTenPostsToWriter", new { writerId = @Model.UserId })
                                 </tbody>
                             </table>
                         </div>
@@ -47,11 +47,11 @@
                     <h4 class="card-title mt-5 ml-5">Hakkınızda</h4>
                     <div class="card-body">
                         <div class="d-flex">
-                            <img src="~/writerProfileImages/@Model.WriterImage" class="img-sm rounded-circle mr-3">
+                            <img src="~/images/@Model.ImageUrl" class="img-sm rounded-circle mr-3">
                             <div class="mb-0 flex-grow">
-                                <h5 class="mr-2 mb-2">@Model.UserViewModel.UserFirstName @Model.UserViewModel.UserLastName - @Model.UserViewModel.Username</h5>
+                                <h5 class="mr-2 mb-2">@Model.NameSurname - @Model.Username</h5>
                                 <p class="mb-0 font-weight-light">
-                                    @Model.WriterAbout
+                                    @Model.UserAbout
                                 </p>
                             </div>
                             <div class="ml-auto">

@@ -1,42 +1,38 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstract;
+using Business.Concrete;
 using CoreDemo.Models;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.ViewComponents
 {
     public class LoginRegisterNavbarViewComponent : ViewComponent
     {
-        private readonly IWriterService _writerService;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
 
-        public LoginRegisterNavbarViewComponent(IMapper mapper, IWriterService writerService)
+        public LoginRegisterNavbarViewComponent(IMapper mapper, UserManager<AppUser> userManager)
         {
             _mapper = mapper;
-            _writerService = writerService;
+            _userManager = userManager;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            if (!HttpContext.User.Claims.Any())
-            {
-                return View(new ReadWriterViewModel());
-            }
-            
-            string loggedWriterUsername = HttpContext.User.Claims.ToArray()[0].Subject.Name;
+            if (User.Identity.Name == null)
+                return View(new ReadUserViewModel());
 
-            Writer writer = _writerService.Get(x => x.User.Username == loggedWriterUsername);
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            ReadWriterViewModel viewModel = new ReadWriterViewModel();
+            ReadUserViewModel viewModel = new ReadUserViewModel();
 
-            viewModel = _mapper.Map(writer, viewModel);
-
-            viewModel.UserViewModel = _mapper.Map(writer.User, viewModel.UserViewModel);
+            viewModel = _mapper.Map(user, viewModel);
 
             return View(viewModel);
-
         }
     }
 }

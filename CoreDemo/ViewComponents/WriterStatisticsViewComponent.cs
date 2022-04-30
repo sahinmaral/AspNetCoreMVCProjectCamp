@@ -14,7 +14,6 @@ namespace CoreDemo.ViewComponents
         private readonly IBlogService _blogService;
         private readonly IMapper _mapper;
 
-
         public WriterStatisticsViewComponent(IBlogService blogService,IMapper mapper)
         {
             _blogService = blogService;
@@ -22,7 +21,7 @@ namespace CoreDemo.ViewComponents
         }
         public IViewComponentResult Invoke(int currentWriterId)
         {
-            List<Blog> writerBlogs = _blogService.GetAllWithDetails(x => x.WriterId == currentWriterId);
+            List<Blog> writerBlogs = _blogService.GetAllWithDetails(x => x.UserId == currentWriterId);
 
             Dictionary<string, int> categoriesOfWritedBlogs = new Dictionary<string, int>();
 
@@ -42,7 +41,7 @@ namespace CoreDemo.ViewComponents
                 
             }
 
-            string favouriteCategoryName = categoriesOfWritedBlogs.First(x => x.Value == categoriesOfWritedBlogs.Values.Max()).Key;
+            string favouriteCategoryName = categoriesOfWritedBlogs.Count == 0 ? "Yok" : categoriesOfWritedBlogs.First(x => x.Value == categoriesOfWritedBlogs.Values.Max()).Key;
 
 
             WriterStatisticsViewModel model = new WriterStatisticsViewModel

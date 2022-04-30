@@ -11,6 +11,11 @@
     }
     
 }
+<style>
+    .unreaded-message-td {
+        font-weight: bold;
+    }
+</style>
 
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -19,7 +24,6 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th> # </th>
                         <th> Konu </th>
                         <th> İçerik </th>
                         <th> Gönderen </th>
@@ -28,20 +32,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach (ReadMessageViewModel message in Model)
-                {
-                    <tr>
-                        <td> @message.MessageId </td>
-                        <td> @message.MessageSubject </td>
-                        <td> @ShrinkMessageDetail(message.MessageSubject)</td>
-                        <td> @message.Sender.UserViewModel,,
-                            .Username </td>
-                        <td> @message.MessageDateTime.ToShortDateString() </td>
-                        <td>
-                            <a href="GetMessageDetail/@message.MessageId" class="btn btn-primary">Mesaj Detayı</a>
-                        </td>
-                    </tr>
-                }
+                    @foreach (ReadMessageViewModel message in Model)
+                    {
+                        if (!message.MessageOpened)
+                        {
+                            <tr>
+                                <td class="unreaded-message-td"> @message.MessageSubject </td>
+                                <td class="unreaded-message-td"> @ShrinkMessageDetail(message.MessageSubject)</td>
+                                <td class="unreaded-message-td"> @message.Sender.Username </td>
+                                <td class="unreaded-message-td"> @message.MessageDateTime.ToShortDateString() </td>
+                                <td class="unreaded-message-td">
+                                    <a href="GetMessageDetail/@message.MessageId" class="btn btn-primary">Mesaj Detayı</a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td> @message.MessageSubject </td>
+                                <td> @ShrinkMessageDetail(message.MessageSubject)</td>
+                                <td> @message.Sender.Username </td>
+                                <td> @message.MessageDateTime.ToShortDateString() </td>
+                                <td>
+                                    <a href="GetMessageDetail/@message.MessageId" class="btn btn-primary">Mesaj Detayı</a>
+                                </td>
+                            </tr>
+                        }
+                    }
                 </tbody>
             </table>
             
