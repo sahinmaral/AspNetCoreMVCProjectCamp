@@ -1,0 +1,74 @@
+﻿@using CoreDemo.Models
+@model List<CoreDemo.Models.ReadBlogViewModel>
+
+@{
+    ViewBag.Title = "Bloglar ";
+    Layout = "_AdminLayout";
+}
+
+<div class="row">
+    @foreach (ReadBlogViewModel blog in Model)
+    {
+        <div class="col-md-3">
+            <div class="ibox">
+                <div class="ibox-content product-box">
+
+                    <div class="product-imitation" style="height:400px">
+                        <img class="img-fluid" src="~/images/@blog.BlogThumbnailImage" alt="blog-image" />
+                    </div>
+                    <div class="product-desc">
+                        <span class="product-price">
+                            Yazar : @blog.UserViewModel.Username
+                        </span>
+                        <small class="text-muted">@blog.CategoryViewModel.CategoryName</small>
+                        <a href="#" class="product-name"> @blog.BlogTitle</a>
+
+                        <div class="small m-t-xs">
+                            @blog.CommentViewModels.Count Yorum
+                            @blog.CommentViewModels.Count(x => x.LikeOrDislikeStatus) Begenme
+                        </div>
+                        <div class="m-t text-right">
+                            <a href="/Admin/Comment/GetCommentsByBlog/@blog.BlogId" class="btn btn-xs btn text-white btn-warning">Yorumlari Goster</a>
+                            <a onclick="sendToastrQuestion(@blog.BlogId)" class="btn btn-xs btn text-white btn-danger">Blogu Sil </a>
+                            <a href="/Admin/Blog/GetBlogDetails/@blog.BlogId" class="btn btn-xs btn-outline btn-primary">Detaya Git <i class="fa fa-long-arrow-right"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+
+
+    function sendToastrQuestion(id) {
+        swal("Blogu silmek istediğinize emin misiniz", {
+            buttons: {
+                yes: {
+                    text: "Evet",
+                    value: "true",
+                },
+                no: {
+                    text: "Hayır",
+                    value: "false",
+                },
+            },
+        })
+            .then(async (value) => {
+
+                switch (value) {
+                    case "true":
+                        toastr.success("Seçtiğiniz blog silinmiştir", "", {
+                            "positionClass": "toast-bottom-right"
+                        });
+                        //Just like Thread.Sleep
+                        await new Promise(resolve => setTimeout(resolve, 3000));
+                        window.location.href = "/Admin/Blog/DeleteBlog/" + id
+                        break;
+                    case "false":
+                        break;
+                }
+            });
+    }
+</script>

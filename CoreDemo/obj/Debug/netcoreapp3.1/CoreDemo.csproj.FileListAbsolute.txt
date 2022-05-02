@@ -449,7 +449,6 @@ C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDem
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\GetCategories.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Chart\CategoryChart.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Statistic\GetStatistics.cshtml.g.cs
-C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Writer\GetWriters.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Homepage.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Blog\AddComment.cshtml.g.cs
@@ -467,8 +466,6 @@ C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDem
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\NewsLetter\SubscribeEmail.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Register\Register.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\AboutSocialMedia\Default.cshtml.g.cs
-C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\AdminNavbar\Default.cshtml.g.cs
-C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\AdminSidebar\Default.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\CommentListByBlogId\Default.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\LatestPostsToWriter\Default.cshtml.g.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\LatestPosts\Default.cshtml.g.cs
@@ -501,3 +498,17 @@ C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDem
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\CoreDemo.RazorTargetAssemblyInfo.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\CoreDemo.Views.pdb
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Views\Message\SendMessage.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\UpdateCategory.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Message\ViewInbox.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\Components\MessageSideBar\Default.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\Components\AdminNavbar\Default.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\Components\AdminSidebar\Default.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Message\ViewSendBox.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Message\GetMessageDetail.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Message\SendMessage.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Blog\GetBlogs.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Blog\GetBlogDetails.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Comment\GetCommentsByBlog.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Comment\UpdateComment.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\User\GetUsers.cshtml.g.cs
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\User\UpdateRolesToUser.cshtml.g.cs

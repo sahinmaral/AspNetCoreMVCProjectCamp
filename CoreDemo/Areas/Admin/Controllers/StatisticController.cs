@@ -17,9 +17,11 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreDemo.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class StatisticController : Controller
     {
@@ -50,6 +52,7 @@ namespace CoreDemo.Areas.Admin.Controllers
                                                          weatherAppViewModel.WeatherObjects[0].Icon + ".png";
 
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            ReadUserViewModel userViewModel = _mapper.Map(user, new ReadUserViewModel());
 
             ReadBlogViewModel lastBlogViewModel = new ReadBlogViewModel();
             lastBlogViewModel = _mapper.Map(_blogService.GetAllWithDetails().OrderByDescending(x => x.BlogCreatedDate).First(), lastBlogViewModel);
@@ -61,7 +64,8 @@ namespace CoreDemo.Areas.Admin.Controllers
                 NewContactCount = _contactService.GetAll(x=>x.ContactStatus).Count,
                 NewMessageCount = _messageService.GetAll(x=>x.Receiver.UserName == user.UserName && x.MessageOpened == false).Count,
                 TotalCommentCount = _commentService.GetAll(x=>x.CommentStatus).Count,
-                LastBlog = lastBlogViewModel
+                LastBlogViewModel = lastBlogViewModel,
+                UserViewModel = userViewModel
             };
             return View(viewModel);
         }

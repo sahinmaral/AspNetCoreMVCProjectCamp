@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class BlogController : Controller
     {
         private readonly IBlogService _blogService;
@@ -28,40 +29,31 @@ namespace CoreDemo.Controllers
             _userManager = userManager;
         }
 
-        [AllowAnonymous]
+
         public IActionResult GetAll()
         {
             List<Blog> blogs = _blogService.GetAllWithDetails();
 
             List<ReadBlogViewModel> blogViewModels = new List<ReadBlogViewModel>();
 
-            //TODO : Blog icerisinde yorumlar iliskisi varken neden burada foreach yazdim ?
-
             blogViewModels = _mapper.Map(blogs, blogViewModels);
 
             return View(blogViewModels);
         }
 
-        [AllowAnonymous]
+
         [Route("/Blog/GetById/{blogId}")] 
         public IActionResult GetById(int blogId)
         {
             TempData["BlogId"] = blogId;
 
-            //TODO : Bloglari aldigi zaman neden yorumlari da almiyor , incele.
-
             Blog blog = _blogService.GetByBlogIdWithDetails(blogId);
-            List<Comment> comments = _commentService.GetAllWithDetails(x => x.BlogId == blogId);
-
+           
             ReadBlogViewModel blogViewModel = new ReadBlogViewModel();
-            List<ReadCommentViewModel> commentViewModels = new List<ReadCommentViewModel>();
-
-            ReadUserViewModel userViewModel = new ReadUserViewModel();
-            
-
             blogViewModel = _mapper.Map(blog, blogViewModel);
-            userViewModel = _mapper.Map(blog.User, userViewModel);
-            commentViewModels = _mapper.Map(comments, commentViewModels);
+
+            ReadUserViewModel userViewModel = _mapper.Map(blog.User, new ReadUserViewModel());
+            List<ReadCommentViewModel> commentViewModels = _mapper.Map(blog.Comments, new List<ReadCommentViewModel>());
 
             blogViewModel.CommentViewModels = commentViewModels;
             blogViewModel.UserViewModel = userViewModel;
@@ -75,6 +67,7 @@ namespace CoreDemo.Controllers
         {
             return PartialView();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> AddComment(CreateCommentViewModel viewModel)
@@ -92,6 +85,19 @@ namespace CoreDemo.Controllers
                 });
             }
 
+            if (User.Identity.Name == null)
+            {
+                TempData["Message"] = ToastrNotification.Show("Yorum yapmak icin giris yapiniz.", position: Position.BottomRight,
+                    type: ToastType.error);
+
+                return RedirectToRoute(new
+                {
+                    controller = "Blog",
+                    action = "GetById",
+                    blogId = viewModel.BlogId
+                });
+            }
+            
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
             viewModel.UserId = user.Id;
 

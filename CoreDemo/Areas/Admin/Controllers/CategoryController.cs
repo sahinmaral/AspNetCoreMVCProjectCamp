@@ -16,7 +16,7 @@ using X.PagedList;
 
 namespace CoreDemo.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin,Writer")]
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class CategoryController : Controller
     {
@@ -30,6 +30,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         }
         public IActionResult GetCategories(int page = 1)
         {
+            
             List<ReadCategoryViewModel> viewModels = new List<ReadCategoryViewModel>();
 
             foreach (Category category in _categoryService.GetAll())
@@ -58,6 +59,26 @@ namespace CoreDemo.Areas.Admin.Controllers
             _categoryService.Add(category);
 
             return RedirectToAction("GetCategories", "Category");
+        }
+
+        [HttpGet]
+        public IActionResult UpdateCategory(int id)
+        {
+            return View(_mapper.Map(_categoryService.Get(x=>x.CategoryId == id),new ReadCategoryViewModel()));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCategory(ReadCategoryViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            Category category = _mapper.Map(viewModel, new Category());
+            _categoryService.Update(category);
+
+            return RedirectToAction("GetCategories");
         }
 
         [HttpGet]
@@ -90,6 +111,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             worksheet.Cell(1, 1).Value = "Kategori Id";
             worksheet.Cell(1, 2).Value = "Kategori Adı";
             worksheet.Cell(1, 3).Value = "Kategori Açıklaması";
+            worksheet.Cell(1, 4).Value = "Kategori Durumu";
 
             int count = 2;
             List<Category> categories = _categoryService.GetAll();

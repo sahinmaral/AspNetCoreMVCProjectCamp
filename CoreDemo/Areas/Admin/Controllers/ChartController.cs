@@ -9,9 +9,11 @@ using Business.Abstract;
 using CoreDemo.Areas.Admin.Models;
 using CoreDemo.Models;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreDemo.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class ChartController : Controller
     {

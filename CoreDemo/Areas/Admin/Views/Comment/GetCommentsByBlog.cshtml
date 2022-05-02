@@ -1,0 +1,158 @@
+﻿@using CoreDemo.Models
+@model List<CoreDemo.Models.ReadCommentViewModel>
+
+@{
+    ViewBag.Title = "Yorumlar ";
+    Layout = "_AdminLayout";
+
+    string ShrinkMessageDetail(string messageDetail)
+    {
+        return messageDetail.Length < 15 ? messageDetail : messageDetail.Substring(0, 15) + "...";
+    }
+}
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    
+    <h2>@Model[0].BlogViewModel.BlogTitle basligindaki yorumlar</h2>
+
+    @*<div class="ibox-content m-b-sm border-bottom">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="col-form-label" for="product_name">Product Name</label>
+                    <input type="text" id="product_name" name="product_name" value="" placeholder="Product Name" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="col-form-label" for="price">Price</label>
+                    <input type="text" id="price" name="price" value="" placeholder="Price" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="col-form-label" for="quantity">Quantity</label>
+                    <input type="text" id="quantity" name="quantity" value="" placeholder="Quantity" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="col-form-label" for="status">Status</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value="1" selected>Enabled</option>
+                        <option value="0">Disabled</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+
+                                <th>Blog Basligi</th>
+                                <th>Yorumu Yazan Kisi</th>
+                                <th>Yorum</th>
+                                <th>Yorumun Atildigi Tarih</th>
+                                <th>Begendi / Begenmedi Durumu</th>
+                                <th>Islemler</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ReadCommentViewModel comment in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @comment.BlogViewModel.BlogTitle
+                                </td>
+                                <td>
+                                    @comment.UserViewModel.Username
+                                </td>
+                                <td>
+                                    @ShrinkMessageDetail(comment.CommentAbout)
+                                </td>
+                                <td>
+                                    @comment.CommentCreatedDate
+                                </td>
+                                <td>
+                                    @if (comment.LikeOrDislikeStatus)
+                                    {
+                                    <span class="label label-primary">
+                                        Begendi
+                                    </span>
+                                    }
+                                    else
+                                    {
+                                    <span class="label label-danger">
+                                        Begenmedi
+                                    </span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a onclick="sendToastrQuestion(@comment.CommentId)" class="btn-danger text-white btn btn-xs">Yorumu Sil</a>
+                                        <a href="/Admin/Comment/UpdateComment/@comment.CommentId" class="btn-primary btn btn-xs text-white">Yorumu Guncelle</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script>
+
+
+    function sendToastrQuestion(id) {
+        swal("Blogu silmek istediğinize emin misiniz", {
+                buttons: {
+                    yes: {
+                        text: "Evet",
+                        value: "true",
+                    },
+                    no: {
+                        text: "Hayır",
+                        value: "false",
+                    },
+                },
+            })
+            .then(async (value) => {
+
+                switch (value) {
+                case "true":
+                    toastr.success("Seçtiğiniz blog silinmiştir", "", {
+                        "positionClass": "toast-bottom-right"
+                    });
+                    //Just like Thread.Sleep
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    window.location.href = "/Admin/Comment/DeleteComment/" + id
+                    break;
+                case "false":
+                    break;
+                }
+            });
+    }
+</script>

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using AutoMapper;
-
+using CoreDemo.Areas.Admin.Models;
 using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
@@ -28,6 +28,7 @@ namespace CoreDemo.Mapping.AutoMapper
             CreateMap<CreateBlogViewModel, Blog>();
 
             CreateMap<Category, ReadCategoryViewModel>();
+            CreateMap<ReadCategoryViewModel, Category>();
 
             CreateMap<CreateCategoryViewModel, Category>();
 
@@ -37,8 +38,12 @@ namespace CoreDemo.Mapping.AutoMapper
             CreateMap<CreateCommentViewModel, Comment>();
 
             CreateMap<Comment, ReadCommentViewModel>()
-                .ForMember(obj => obj.UserViewModel, opt => opt.MapFrom(src => src.User));
+                .ForMember(obj => obj.UserViewModel, opt => opt.MapFrom(src => src.User))
+                .ForMember(obj => obj.BlogViewModel, opt => opt.MapFrom(src => src.Blog));
 
+            CreateMap<Comment, UpdateCommentViewModel>()
+                .ForMember(obj => obj.BlogTitle, opt => opt.MapFrom(src => src.Blog.BlogTitle))
+                .ForMember(obj => obj.BlogId, opt => opt.MapFrom(src => src.Blog.BlogId));
 
             CreateMap<About, ReadAboutViewModel>();
 
@@ -52,7 +57,6 @@ namespace CoreDemo.Mapping.AutoMapper
             CreateMap<ReadUserViewModel, AppUser>();
 
             CreateMap<AppUser, ReadUserViewModel>()
-                .ForMember(obj => obj.NameSurname, opt => opt.MapFrom(src => src.NameSurname))
                 .ForMember(obj => obj.Username, opt => opt.MapFrom(src => src.UserName))
                 .ForMember(obj => obj.UserId, opt => opt.MapFrom(src => src.Id));
 

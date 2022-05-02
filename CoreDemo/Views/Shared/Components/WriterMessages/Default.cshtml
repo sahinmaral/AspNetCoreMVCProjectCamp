@@ -10,7 +10,7 @@
     int totalSubstractNumber = 0;
     string totalSubstractText = "";
 
-    void calculateSubstract(DateTime messageSentDate)
+    void CalculateSubstract(DateTime messageSentDate)
     {
         if (DateTime.Now.Subtract(messageSentDate).TotalSeconds < 60)
         {
@@ -43,7 +43,7 @@
     <h6 class="p-3 mb-0">Mesajlar</h6>
     @foreach (ReadMessageViewModel message in Model)
     {
-        calculateSubstract(message.MessageDateTime);
+        CalculateSubstract(message.MessageDateTime);
 
         <a class="dropdown-item preview-item" href="/Message/GetMessageDetail/@message.MessageId">
             <div class="preview-thumbnail">

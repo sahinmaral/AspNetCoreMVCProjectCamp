@@ -1,0 +1,36 @@
+﻿@model CoreDemo.Models.CreateMessageViewModel
+
+@{
+    ViewBag.Title = "Mesaj Gonderme";
+    Layout = "_AdminLayout";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title" style="margin-bottom:3em">@Model.Receiver.Username kullanici adli kisiye mesaj gonderme</h3>
+            @using (Html.BeginForm("SendMessage", "Message", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.Receiver.UserId)
+                @Html.HiddenFor(x => x.Sender.UserId)
+
+                <div class="form-group">
+                    <label>Gonderilen kisinin kullanici adi</label>
+                    @Html.TextBoxFor(x => x.Receiver.Username, new { @class = "form-control", style = "border:1px solid black", disabled = "true" })
+                </div>
+
+                <div class="form-group">
+                    <label>Baslik</label>
+                    @Html.TextBoxFor(x => x.MessageSubject, new { @class = "form-control", style = "border:1px solid black", placeholder = "Baslik", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.MessageSubject, "", new { style = "color:darkred" })
+                </div>
+                <div class="form-group">
+                    <label>Icerik</label>
+                    @Html.TextAreaFor(x => x.MessageDetail, new { @class = "form-control", style = "border:1px solid black", placeholder = "Icerik", rows = "4" })
+                </div>
+                <button type="submit" class="btn btn-gradient-primary mr-2">Gonder</button>
+            }
+        </div>
+    </div>
+</div>
+

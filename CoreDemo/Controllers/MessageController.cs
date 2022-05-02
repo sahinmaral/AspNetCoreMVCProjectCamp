@@ -8,10 +8,12 @@ using AutoMapper;
 using Business.Abstract;
 using CoreDemo.Models;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace CoreDemo.Controllers
 {
+    [Authorize("Writer")]
     public class MessageController : Controller
     {
         private readonly IMessageService _messageService;
@@ -32,12 +34,14 @@ namespace CoreDemo.Controllers
 
             List<ReadMessageViewModel> viewModels = new List<ReadMessageViewModel>(messages.Count);
 
-            foreach (var message in messages)
-            {
-                ReadMessageViewModel viewModel = new ReadMessageViewModel();
-                viewModel = _mapper.Map(message, viewModel);
-                viewModels.Add(viewModel);
-            }
+            viewModels = _mapper.Map(messages, viewModels);
+
+            //foreach (var message in messages)
+            //{
+            //    ReadMessageViewModel viewModel = new ReadMessageViewModel();
+            //    viewModel = _mapper.Map(message, viewModel);
+            //    viewModels.Add(viewModel);
+            //}
 
             return View(viewModels);
         }
@@ -83,7 +87,6 @@ namespace CoreDemo.Controllers
             _messageService.Add(newMessage);
 
             return RedirectToAction("Homepage", "Writer");
-            
         }
     }
 }

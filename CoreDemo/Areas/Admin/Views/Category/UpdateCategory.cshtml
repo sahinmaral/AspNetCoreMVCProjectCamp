@@ -1,0 +1,32 @@
+﻿@model CoreDemo.Models.ReadCategoryViewModel
+
+@{
+    ViewBag.Title = "Kategoriler | ";
+    Layout = "_AdminLayout";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="margin-bottom:3em">@Model.CategoryName adli kategoriyi duzenleyin</h4>
+            @using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(x => x.CategoryId)
+                @Html.HiddenFor(x => x.CategoryStatus)
+
+                <div class="form-group">
+                    <label>Kategori Adi</label>
+                    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", style = "border:1px solid black", placeholder = "Kategori Adi" })
+                    @Html.ValidationMessageFor(x => x.CategoryName, "", new { style = "color:darkred" })
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleTextarea1">Aciklama</label>
+                    @Html.TextAreaFor(x => x.CategoryDescription, new { @class = "form-control", style = "border:1px solid black", placeholder = "Aciklama", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.CategoryDescription, "", new { style = "color:darkred" })
+                </div>
+                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">Guncelle</button>
+            }
+        </div>
+    </div>
+</div>

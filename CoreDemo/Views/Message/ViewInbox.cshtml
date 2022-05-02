@@ -7,7 +7,7 @@
 
     string ShrinkMessageDetail(string messageDetail)
     {
-        return messageDetail.Length < 15 ? messageDetail : messageDetail.Substring(0, 15);
+        return messageDetail.Length < 15 ? messageDetail : messageDetail.Substring(0, 15) + "...";
     }
     
 }

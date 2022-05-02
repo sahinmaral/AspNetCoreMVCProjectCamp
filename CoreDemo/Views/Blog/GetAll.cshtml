@@ -46,13 +46,20 @@
                         <ul class="blog-icons my-4">
                             <li class="nav-item dropdown">
                                 Yazar :
-                                <a class="mx-1 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="mx-1 dropdown-toggle text-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
                                     <i class="fas fa-user"></i>@blog.UserViewModel.Username
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Profili Goruntule</a>
                                     @* //TODO : Eger gonderilecek kisi ile su anki kisi ayniysa alert gondersin. *@
-                                    <a class="dropdown-item" href="/Message/SendMessage/@blog.UserViewModel.Username">Mesaj Gonder</a>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <a class="dropdown-item" href="/Admin/Message/SendMessage/@blog.UserViewModel.Username">Mesaj Gonder</a>
+                                    }
+                                    @if (User.IsInRole("Writer"))
+                                    {
+                                        <a class="dropdown-item" href="/Message/SendMessage/@blog.UserViewModel.Username">Mesaj Gonder</a>
+                                    }
 
 
                                     @*<div class="dropdown-divider"></div>

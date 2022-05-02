@@ -1,20 +1,37 @@
 ﻿@model CoreDemo.Models.ReadUserViewModel
 
-<div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+<div class="col-md-4 top-forms mt-lg-3 mt-md-1 mt-0 d-flex">
     <span>Hoşgeldiniz </span>
-    <span class="mx-lg-4 mx-md-2  mx-1">
+    <div class="mx-lg-4 mx-md-2 mx-1">
         @if (Model.Username == null)
         {
-            <a href="/Login/Login">
+            <a href="/Login/Login" style="color:gray">
                 <i class="fas fa-lock"></i> Giriş yap
             </a>
         }
         else
         {
-            <a href="/Writer/Homepage">@Model.Username</a>
-        }
+            <ul class="blog-icons">
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>@Model.Username
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="dropdown-item" href="/Admin/Category/GetCategories">Admin Arayuzu</a>
+                        }
 
-    </span>
+                        @if (User.IsInRole("Writer"))
+                        {
+                            <a class="dropdown-item" href="/Writer/Homepage">Yazar Arayuzu</a>
+                        }
+
+                    </div>
+                </li>
+            </ul>
+        }
+    </div>
     <span>
         @if (Model.Username == null)
         {

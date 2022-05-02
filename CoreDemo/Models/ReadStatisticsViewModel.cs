@@ -12,7 +12,8 @@ namespace CoreDemo.Models
         public int NewContactCount { get; set; }
         public int NewMessageCount { get; set; }
         public int TotalCommentCount { get; set; }
-        public ReadBlogViewModel LastBlog { get; set; }
+        public ReadBlogViewModel LastBlogViewModel { get; set; }
         public WeatherAppViewModel WeatherAppViewModel { get; set; }
+        public ReadUserViewModel UserViewModel { get; set; }
     }
 }

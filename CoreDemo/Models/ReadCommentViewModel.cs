@@ -4,10 +4,11 @@
     {
         public int CommentId { get; set; }
         public string CommentAbout { get; set; }
-        public string CommentCreateDate { get; set; }
+        public string CommentCreatedDate { get; set; }
         public bool CommentStatus { get; set; }
-        public int BlogId { get; set; }
+        public bool LikeOrDislikeStatus { get; set; }
 
+        public ReadBlogViewModel BlogViewModel { get; set; }
         public ReadUserViewModel UserViewModel { get; set; }
     }
 }

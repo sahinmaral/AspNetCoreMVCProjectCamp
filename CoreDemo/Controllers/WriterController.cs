@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace CoreDemo.Controllers
 {
 
-    //[Authorize(Policy = "Writer")]
+    [Authorize(Policy = "Writer")]
     public class WriterController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -211,28 +211,26 @@ namespace CoreDemo.Controllers
         {
             Blog editedBlog = _blogService.GetByBlogIdWithDetails(blogId);
 
-            UpdateBlogViewModel blogViewModel = new UpdateBlogViewModel();
-
-            //TODO : Gelen dosyalari file input kismina koymamiz gerekiyor.
-            //using (var stream = System.IO.File.OpenRead(Directory.GetCurrentDirectory() + @"\wwwroot\images\" + editedBlog.BlogMainImage))
-            //    blogViewModel.BlogMainImage = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name));
-
-            //using (var stream = System.IO.File.OpenRead(Directory.GetCurrentDirectory() + @"\wwwroot\images\" + editedBlog.BlogThumbnailImage))
-            //    blogViewModel.BlogThumbnailImage = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name));
-
-            //TODO : IFormFile maplerken sorun cikariyor. Simdilik elle yazilacak
             //blogViewModel = _mapper.Map(editedBlog, blogViewModel);
+            //TODO : IFormFile maplerken sorun cikariyor. Simdilik elle yazilacak
+            //    blogViewModel.BlogThumbnailImage = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name));
+            //using (var stream = System.IO.File.OpenRead(Directory.GetCurrentDirectory() + @"\wwwroot\images\" + editedBlog.BlogThumbnailImage))
+            //    blogViewModel.BlogMainImage = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name));
+            //using (var stream = System.IO.File.OpenRead(Directory.GetCurrentDirectory() + @"\wwwroot\images\" + editedBlog.BlogMainImage))
+            //TODO : Gelen dosyalari file input kismina koymamiz gerekiyor.
 
-            blogViewModel.BlogId = editedBlog.BlogId;
-            blogViewModel.BlogTitle = editedBlog.BlogTitle;
-            blogViewModel.BlogContent = editedBlog.BlogContent;
-            blogViewModel.BlogCreateDate = Convert.ToString(editedBlog.BlogCreatedDate, CultureInfo.InvariantCulture);
-            blogViewModel.BlogStatus = editedBlog.BlogStatus;
+            UpdateBlogViewModel blogViewModel = new UpdateBlogViewModel
+            {
+                BlogId = editedBlog.BlogId,
+                BlogTitle = editedBlog.BlogTitle,
+                BlogContent = editedBlog.BlogContent,
+                BlogCreateDate = Convert.ToString(editedBlog.BlogCreatedDate, CultureInfo.InvariantCulture),
+                BlogStatus = editedBlog.BlogStatus,
+                CategoryViewModel = _mapper.Map(editedBlog.Category, new ReadCategoryViewModel()),
+                WriterViewModel = _mapper.Map(editedBlog.User, new ReadUserViewModel()),
+                CommentViewModels = _mapper.Map(editedBlog.Comments, new List<ReadCommentViewModel>())
+            };
 
-            blogViewModel.CategoryViewModel = _mapper.Map(editedBlog.Category, new ReadCategoryViewModel());
-            blogViewModel.WriterViewModel = _mapper.Map(editedBlog.User, new ReadUserViewModel());
-            blogViewModel.CommentViewModels = _mapper.Map(editedBlog.Comments, new List<ReadCommentViewModel>());
-            
             GetCategories();
 
             return View(blogViewModel);
@@ -247,6 +245,7 @@ namespace CoreDemo.Controllers
                 return View(blogViewModel);
             }
 
+            //TODO : Eger resimlerde degisiklik olmussa eskilerini silmek gerekir.
             string thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.BlogThumbnailImage);
             string mainImageName = AssignFormFileAndReturnName(blogViewModel.BlogMainImage);
 

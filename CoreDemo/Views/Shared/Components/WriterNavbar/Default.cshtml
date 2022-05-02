@@ -46,11 +46,6 @@
                     </a>
                 </div>
             </li>
-            <li class="nav-item d-none d-lg-block full-screen-link">
-                <a class="nav-link">
-                    <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
-                </a>
-            </li>
             <li class="nav-item dropdown">
                 @await Component.InvokeAsync("WriterMessages")
             </li>
@@ -58,13 +53,8 @@
                 @await Component.InvokeAsync("NotificationList")
             </li>
             <li class="nav-item nav-logout d-none d-lg-block">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/Login/LogOut">
                     <i class="mdi mdi-power"></i>
-                </a>
-            </li>
-            <li class="nav-item nav-settings d-none d-lg-block">
-                <a class="nav-link" href="#">
-                    <i class="mdi mdi-format-line-spacing"></i>
                 </a>
             </li>
         </ul>

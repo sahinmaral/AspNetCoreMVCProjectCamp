@@ -1,0 +1,32 @@
+﻿@model CoreDemo.Areas.Admin.Models.UserRoleViewModel
+
+@{
+    ViewBag.Title = @Model.UserViewModel.Username + " kullanici adli kullacinin rollerini duzenleme";
+    Layout = "_AdminLayout";
+}
+
+@using (Html.BeginForm("UpdateRolesToUser", "User", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.UserViewModel.UserId)
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">@Model.UserViewModel.Username kullanici adli kullacinin rollerini duzenleme</h2>
+                @for (int i = 0; i < Model.RoleViewModels.Count; i++)
+                {
+                    <div class="form-check">
+                        @Html.HiddenFor(x => x.RoleViewModels[i].RoleName)
+                        @Html.CheckBoxFor(x => x.RoleViewModels[i].IsInRole, new { @class = "form-check-input", style = "width: 20px; height: 20px;" })
+                        <span style="font-size:20px">
+                            @Html.DisplayFor(x => x.RoleViewModels[i].RoleName)
+                        </span>
+                    </div>
+                }
+
+                <button type="submit" class="btn btn-gradient-primary mr-2 w-100 mt-3" style="height:40px">Guncelle</button>
+
+            </div>
+        </div>
+    </div>
+}
