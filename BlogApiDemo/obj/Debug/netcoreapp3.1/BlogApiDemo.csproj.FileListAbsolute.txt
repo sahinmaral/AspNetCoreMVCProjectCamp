@@ -132,7 +132,6 @@ C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApi
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\netcoreapp3.1\BlogApiDemo.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\netcoreapp3.1\BlogApiDemo.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\netcoreapp3.1\staticwebassets\BlogApiDemo.StaticWebAssets.Manifest.cache
-C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\netcoreapp3.1\staticwebassets\BlogApiDemo.StaticWebAssets.xml
-C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\netcoreapp3.1\scopedcss\bundle\BlogApiDemo.styles.css
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\netcoreapp3.1\BlogApiDemo.RazorTargetAssemblyInfo.cache
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\netcoreapp3.1\BlogApiDemo.csproj.CopyComplete
+C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\netcoreapp3.1\BlogApiDemo.StaticWebAssets.xml

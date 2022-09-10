@@ -1,82 +1,85 @@
 ﻿@model CoreDemo.Models.UserSignUpViewModel
 
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Kayıt Ol";
+    ViewData["Title"] = Localizer["Register"];
     Layout = "_UserLayout";
 }
 
 
 <section class="main-content-w3layouts-agileits">
-        <div class="container">
-            <h3 class="tittle">Yazar Kayit Sayfasi</h3>
-            <div class="inner-sec">
-                <div class="login p-5 bg-light mx-auto mw-100">
-                    @using (Html.BeginForm("Register", "Register", FormMethod.Post , new {enctype="multipart/form-data"}))
-                    {
-                        <div class="form-row">
-                            <div class="form-group col-md-6 mb-3">
-                                @Html.LabelFor(x=>x.NameSurname,"Ad Soyad")
-                                @Html.TextBoxFor(x=>x.NameSurname , new {@class="form-control mb-2" , placeholder="Ad Soyad"})
-                                @Html.ValidationMessageFor(x => x.NameSurname, "", new { @style = "font-weight: bold; color: darkred;" })
-                            </div>
-                            
-                            <div class="form-group col-md-6 mb-3">
-                                @Html.LabelFor(x=>x.Username,"Kullanici adi")
-                                @Html.TextBoxFor(x=>x.Username , new {@class="form-control mb-2" , placeholder="Kullanici adi"})
-                                @Html.ValidationMessageFor(x => x.Username, "", new { @style = "font-weight: bold; color: darkred;" })
-                            </div>
+    <div class="container">
+        <h3 class="tittle">@Localizer["RegisterTitle"]</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
+                @using (Html.BeginForm("Register", "Register", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-3">
+                            @Html.LabelFor(x=>x.NameSurname,Localizer["NameSurname"].Value)
+                            @Html.TextBoxFor(x=>x.NameSurname , new {@class="form-control mb-2" , placeholder=""})
+                            @Html.ValidationMessageFor(x => x.NameSurname, "", new { @style = "font-weight: bold; color: darkred;" })
                         </div>
 
-                        <div class="form-row">
-                            <div class="col-md-6 mb-3">
-                                @Html.LabelFor(x=>x.Mail,"E-mail")
-                                @Html.TextBoxFor(x=>x.Mail , new {@class="form-control mb-2" , placeholder="E-mail"})
-                                @Html.ValidationMessageFor(x => x.Mail, "", new { @style = "font-weight: bold; color: darkred;" })
-                            </div>
-                            
-                            <div class="col-md-6 mb-3">
-                                @Html.LabelFor(x=>x.ProfileImage,"Profil Fotografi")
-                                @Html.TextBoxFor(x=>x.ProfileImage , new {@class="form-control mb-2" , placeholder="Profil Fotografi" , type="file"})
-                                @Html.ValidationMessageFor(x => x.ProfileImage, "", new { @style = "font-weight: bold; color: darkred;" })
-                            </div>
+                        <div class="form-group col-md-6 mb-3">
+                            @Html.LabelFor(x=>x.Username,Localizer["Username"].Value)
+                            @Html.TextBoxFor(x=>x.Username , new {@class="form-control mb-2" , placeholder=""})
+                            @Html.ValidationMessageFor(x => x.Username, "", new { @style = "font-weight: bold; color: darkred;" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            @Html.LabelFor(x=>x.Mail,Localizer["Email"].Value)
+                            @Html.TextBoxFor(x=>x.Mail , new {@class="form-control mb-2" , placeholder=""})
+                            @Html.ValidationMessageFor(x => x.Mail, "", new { @style = "font-weight: bold; color: darkred;" })
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                @Html.LabelFor(x=>x.Password,"Sifre")
-                                @Html.PasswordFor(x=>x.Password , new {@class="form-control" , placeholder="Sifre"})
-                            </div>
-                            <div class="form-group col-md-6">
-                                @Html.LabelFor(x=>x.ConfirmPassword,"Sifre Tekrar")
-                                @Html.PasswordFor(x=>x.ConfirmPassword , new {@class="form-control mb-2" , placeholder="Sifre Tekrar"})
-                                @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @style = "font-weight: bold; color: darkred;" })
-                            </div>
+                        <div class="col-md-6 mb-3">
+                            @Html.LabelFor(x=>x.ProfileImage,Localizer["ProfilePhoto"].Value)
+                            @Html.TextBoxFor(x=>x.ProfileImage , new {@class="form-control mb-2" , placeholder="" , type="file"})
+                            @Html.ValidationMessageFor(x => x.ProfileImage, "", new { @style = "font-weight: bold; color: darkred;" })
                         </div>
+                    </div>
 
-                        <div class="form-row mb-2">
-                            <div class="form-check mb-2 ml-1">
-                                @Html.CheckBoxFor(x=>x.IsPoliciesAccepted,new {@class="form-check-input"})
-                                <p style="color: blue; cursor: pointer;" onclick="ShowAllPoliciesAlert()">
-                                    <b>Tüm şartları okudum , kabul ediyorum.</b>
-                                </p>
-                                @Html.ValidationMessageFor(x => x.IsPoliciesAccepted, "", new { @style = "font-weight: bold; color: darkred;" })
-                            </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(x=>x.Password,Localizer["Password"].Value)
+                            @Html.PasswordFor(x=>x.Password , new {@class="form-control mb-2" , placeholder=""})
+                            @Html.ValidationMessageFor(x => x.Password, "", new { @style = "font-weight: bold; color: darkred;" })
                         </div>
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(x=>x.ConfirmPassword,Localizer["ConfirmPassword"].Value)
+                            @Html.PasswordFor(x=>x.ConfirmPassword , new {@class="form-control mb-2" , placeholder=""})
+                            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @style = "font-weight: bold; color: darkred;" })
+                        </div>
+                    </div>
 
-                        <button type="submit" id="submit-button" class="btn btn-primary submit mb-5">Kayit ol</button>
+                    <div class="form-row mb-2">
+                        <div class="form-check mb-2 ml-1">
+                            @Html.CheckBoxFor(x=>x.IsPoliciesAccepted,new {@class="form-check-input"})
+                            <p style="color: blue; cursor: pointer;" onclick="ShowAllPoliciesAlert()">
+                                <b>@Localizer["AcceptedPolicies"]</b>
+                            </p>
+                            @Html.ValidationMessageFor(x => x.IsPoliciesAccepted, "", new { @style = "font-weight: bold; color: darkred;" })
+                        </div>
+                    </div>
 
-                        @Html.ValidationSummary(false, "", new { @style = "font-weight: bold; color: darkred;" })
+                    <button type="submit" id="submit-button" class="btn btn-primary submit mb-5">@Localizer["Register"]</button>
 
-                    }
+                    @Html.ValidationSummary(false, "", new { @style = "font-weight: bold; color: darkred;" })
+
+                }
 
 
-                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 <script>
     function ShowAllPoliciesAlert() {
-        swal("Site Kabul Şartları", "Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta ve herhangi bir kullanıcının görmeyeceği şekilde veritabanlarımızda saklanmaktadır.");
+        swal("@Localizer["SitePoliciesTitle"]", "@Localizer["SitePoliciesContent"]");
     }
 </script>

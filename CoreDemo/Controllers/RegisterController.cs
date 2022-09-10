@@ -14,9 +14,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Helper.Toastr;
+using Core.Helper.Toastr.OptionEnums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Localization;
 
 namespace CoreDemo.Controllers
 {
@@ -25,10 +28,12 @@ namespace CoreDemo.Controllers
     {
         private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
-        public RegisterController(IMapper mapper, UserManager<AppUser> userManager)
+        private readonly IStringLocalizer<RegisterController> _localizer;
+        public RegisterController(IMapper mapper, UserManager<AppUser> userManager, IStringLocalizer<RegisterController> localizer)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _localizer = localizer;
         }
 
         public void GetCities()
@@ -69,25 +74,22 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserSignUpViewModel viewModel)
         {
-            if (!viewModel.IsPoliciesAccepted)
-            {
-                ModelState.AddModelError("IsPoliciesAccepted",
-                    "Sayfamıza kayıt olabilmek için gizlilik sözleşmesini kabul etmeniz gerekmektedir.");
-                return View(viewModel);
-            }
+            if (!ModelState.IsValid) return View(viewModel);
 
             AppUser newUser = _mapper.Map<AppUser>(viewModel);
+            
             newUser.ImageUrl = AssignFormFileAndReturnName(viewModel.ProfileImage);
 
             var result = await _userManager.CreateAsync(newUser, viewModel.Password);
+            
             if (result.Succeeded)
             {
-                return RedirectToAction("Login", "Login");
-            }
+                await _userManager.AddToRoleAsync(newUser, "User");
 
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(error.Code, error.Description);
+                TempData["Message"] = ToastrNotification.Show(_localizer["RegisteredSuccessfully"], position: Position.BottomRight,
+                    type: ToastType.success);
+
+                return RedirectToAction("Login", "Login");
             }
 
             return View(viewModel);

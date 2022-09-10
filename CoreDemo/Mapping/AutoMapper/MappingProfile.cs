@@ -12,7 +12,7 @@ namespace CoreDemo.Mapping.AutoMapper
         public MappingProfile()
         {
             CreateMap<Blog, ReadBlogViewModel>()
-                .ForMember(obj => obj.BlogCreateDate, opt => opt.MapFrom(src => src.BlogCreatedDate.ToShortDateString()))
+                .ForMember(obj => obj.BlogCreateDate, opt => opt.MapFrom(src => src.BlogCreatedDate.ToString("dd-MMM-yyyy")))
                 .ForMember(obj => obj.CategoryViewModel, opt => opt.MapFrom(src => src.Category))
                 .ForMember(x => x.CommentViewModels, opt => opt.MapFrom(src => src.Comments))
                 .ForMember(x => x.UserViewModel, opt => opt.MapFrom(src => src.User));
@@ -48,7 +48,7 @@ namespace CoreDemo.Mapping.AutoMapper
             CreateMap<About, ReadAboutViewModel>();
 
             CreateMap<CreateContactViewModel, Contact>()
-                .ForMember(obj => obj.ContactSurname , opt => opt.MapFrom(src=>src.ContactSurname.ToUpper()));
+                .ForMember(obj => obj.ContactNameSurname , opt => opt.MapFrom(src=>src.ContactNameSurname));
 
             CreateMap<Message, ReadMessageViewModel>();
 

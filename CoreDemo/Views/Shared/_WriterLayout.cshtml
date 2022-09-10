@@ -23,11 +23,11 @@
 <body>
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    @await Component.InvokeAsync("WriterNavbar")
+        @await Component.InvokeAsync("WriterNavbar")
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        @await Component.InvokeAsync("WriterSidebar")
+            @await Html.PartialAsync("../Home/WriterSidebar")
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">

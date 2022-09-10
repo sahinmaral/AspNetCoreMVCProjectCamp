@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 
 using Business.Abstract;
-
-
-
+using Core.Helper.Toastr;
+using Core.Helper.Toastr.OptionEnums;
 using CoreDemo.Models;
 using DocumentFormat.OpenXml.Drawing;
 using Entities.Concrete;
@@ -21,6 +20,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Position = Core.Helper.Toastr.OptionEnums.Position;
 
 namespace CoreDemo.Controllers
 {
@@ -47,6 +47,9 @@ namespace CoreDemo.Controllers
                 var result = await _signInManager.PasswordSignInAsync(viewModel.Username, viewModel.Password, false, true);
                 if (result.Succeeded)
                 {
+                    TempData["Message"] = ToastrNotification.Show("Logined successfully", position: Position.BottomRight,
+                        type: ToastType.success);
+
                     return RedirectToAction("GetAll", "Blog");  
                 }
 

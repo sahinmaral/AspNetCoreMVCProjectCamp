@@ -1,9 +1,18 @@
-﻿@{
+﻿@using Microsoft.Extensions.Options
+
+@inject IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> LocOptions
+
+@{
     Layout = null;
+
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+
+    var culture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureList = LocOptions.Value.SupportedUICultures.Select(x => new SelectListItem { Value = x.Name, Text = x.Name }).ToList();
 }
 
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 
 <head>
     <title>@ViewData["Title"] | ASP.NET Core MVC</title>
@@ -33,6 +42,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <!--Header-->
 
+
+
     <header>
         <div class="top-bar_sub_w3layouts container-fluid">
             <div class="row">
@@ -47,31 +58,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!-- social media -->
                 <div class="col-md-4 log-icons text-right">
 
-                    <ul class="social_list1 mt-3">
+                    @*                    <form asp-action="SetLanguage" asp-controller="UserLayout">
 
-                        <li>
-                            <a href="#" class="facebook1 mx-2">
-                                <i class="fab fa-facebook-f"></i>
+                        <input type="hidden" name="returnUrl" value=@returnUrl />
 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="twitter2">
-                                <i class="fab fa-twitter"></i>
+                        <select name="culture">
+                            <option value="tr-TR">TR</option>
+                            <option value="en-US">EN</option>
+                        </select>
+                    </form>*@
+                    
+                    <form asp-action="SetLanguage" asp-controller="UserLayout" method="post" 
+                          asp-route-returnUrl="@returnUrl">
+                        <select name="culture" 
+                                asp-for="@culture.RequestCulture.UICulture.Name"
+                                asp-items="cultureList"
+                                onchange="this.form.submit();">
 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dribble3 mx-2">
-                                <i class="fab fa-dribbble"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="pin">
-                                <i class="fab fa-pinterest-p"></i>
-                            </a>
-                        </li>
-                    </ul>
+                        </select>
+                    </form>
+
                 </div>
                 <!-- //social media -->
 
@@ -93,7 +99,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </section>
     <!--//main-->
     <!--footer-->
-
     @await Html.PartialAsync("../UserLayout/FooterPartialView")
     <!-- //footer -->
     <!---->
@@ -146,3 +151,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 
 </html>
+
+<script>
+
+    window.onload = function () {
+    @Html.Raw(TempData["Message"])
+            }
+
+</script>

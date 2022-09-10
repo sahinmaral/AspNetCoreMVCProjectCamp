@@ -62,13 +62,6 @@ namespace CoreDemo.Controllers
         }
 
 
-        [HttpGet]
-        public PartialViewResult AddComment()
-        {
-            return PartialView();
-        }
-
-
         [HttpPost]
         public async Task<IActionResult> AddComment(CreateCommentViewModel viewModel)
         {

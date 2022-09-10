@@ -1,0 +1,71 @@
+﻿
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/Home/Homepage">
+                <span class="menu-title">@ViewLocalizer["Homepage"]</span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#my-profile" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">@ViewLocalizer["MyProfile"]</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-account-settings menu-icon"></i>
+            </a>
+            <div class="collapse" id="my-profile">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Writer/Home/ChangeProfile">
+                            <span class="menu-title">@ViewLocalizer["ChangeProfileInfos"]</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Writer/Home/ChangePassword">
+                            <span class="menu-title">@ViewLocalizer["ChangePassword"]</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Writer/Home/ChangeProfilePhoto">
+                            <span class="menu-title">@ViewLocalizer["ChangeProfilePhoto"]</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#blog-processes" aria-expanded="false" aria-controls="general-pages">
+                <span class="menu-title">@ViewLocalizer["BlogProcesses"]</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+            <div class="collapse" id="blog-processes">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Writer/Blog/MyBlog">
+                            <span class="menu-title">@ViewLocalizer["MyBlogs"]</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Writer/Blog/AddBlog">
+                            <span class="menu-title">@ViewLocalizer["NewBlog"]</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/Message/ViewInbox">
+                <span class="menu-title">@ViewLocalizer["Messages"]</span>
+                <i class="mdi mdi-message menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Blog/GetAll">
+                <span class="menu-title">@ViewLocalizer["GoBackToSite"]</span>
+                <i class="mdi mdi-table-large menu-icon"></i>
+            </a>
+        </li>
+    </ul>
+</nav>

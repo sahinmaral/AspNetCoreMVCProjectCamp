@@ -7,6 +7,7 @@ using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace CoreDemo.Controllers
 {
@@ -16,11 +17,13 @@ namespace CoreDemo.Controllers
         private readonly IContactService _contactService;
         private readonly IAboutService _aboutService;
         private readonly IMapper _mapper;
-        public ContactController(IContactService contactService, IMapper mapper, IAboutService aboutService)
+        private readonly IStringLocalizer<ContactController> _localizer;
+        public ContactController(IContactService contactService, IMapper mapper, IAboutService aboutService, IStringLocalizer<ContactController> localizer)
         {
             _contactService = contactService;
             _mapper = mapper;
             _aboutService = aboutService;
+            _localizer = localizer;
         }
 
         public IActionResult Index()
@@ -41,9 +44,11 @@ namespace CoreDemo.Controllers
 
             _contactService.Add(contact);
 
-            TempData["Message"] = ToastrNotification.Show("Mesajınız başarılı bir şekilde yollandı.", position: Position.BottomRight, type: ToastType.success);
+            TempData["Message"] = ToastrNotification.Show(_localizer["SentSuccessfully"], position: Position.BottomRight, type: ToastType.success);
 
             return RedirectToAction("Index");
         }
+
+
     }
 }

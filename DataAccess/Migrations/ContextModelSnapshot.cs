@@ -290,16 +290,13 @@ namespace DataAccess.Migrations
                     b.Property<string>("ContactMessage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContactName")
+                    b.Property<string>("ContactNameSurname")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ContactStatus")
                         .HasColumnType("bit");
 
                     b.Property<string>("ContactSubject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactSurname")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContactId");

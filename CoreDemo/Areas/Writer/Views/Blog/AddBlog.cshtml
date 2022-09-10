@@ -1,0 +1,44 @@
+﻿@model CreateBlogViewModel
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title"];
+    Layout = "_WriterLayout";
+}
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title"]</h4>
+            @using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post , new {enctype="multipart/form-data"}))
+            {
+                <div class="form-group">
+                    <label>@ViewLocalizer["BlogTitle"]</label>
+                    @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control", style = "border:1px solid black", placeholder = "" })
+                    @Html.ValidationMessageFor(x => x.BlogTitle, "", new { style = "color:darkred" })
+                </div>
+
+                <div class="form-group">
+                    <label>@ViewLocalizer["BlogContent"]</label>
+                    @Html.TextAreaFor(x => x.BlogContent, new { @class = "form-control", style = "border:1px solid black", placeholder = "", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.BlogContent, "", new { style = "color:darkred" })
+                </div>
+                <div class="form-group">
+                    <label>@ViewLocalizer["Category"]</label>
+                    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewData["Categories"], new { @class = "form-control", style = "border:1px solid black" })
+                </div>
+                <div class="form-group">
+                    <label>@ViewLocalizer["BlogThumbnailImage"]</label>
+                    @Html.TextBoxFor(x=>x.BlogThumbnailImage,new{type="file" , @class="form-control"})
+                    @Html.ValidationMessageFor(x => x.BlogThumbnailImage, "", new { style = "color:darkred" })
+                </div>
+                <div class="form-group">
+                    <label>@ViewLocalizer["BlogMainImage"]</label>
+                    @Html.TextBoxFor(x=>x.BlogMainImage,new{type="file" , @class="form-control"})
+                    @Html.ValidationMessageFor(x => x.BlogMainImage, "", new { style = "color:darkred" })
+                </div>
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+            }
+        </div>
+    </div>
+</div>

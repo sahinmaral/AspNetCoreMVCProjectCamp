@@ -440,8 +440,6 @@ C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDem
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\CoreDemo.RazorAssemblyInfo.cache
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\CoreDemo.RazorAssemblyInfo.cs
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\staticwebassets\CoreDemo.StaticWebAssets.Manifest.cache
-C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\staticwebassets\CoreDemo.StaticWebAssets.xml
-C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\scopedcss\bundle\CoreDemo.styles.css
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\CoreDemo.TagHelpers.input.cache
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\CoreDemo.TagHelpers.output.cache
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\CoreDemo\obj\Debug\netcoreapp3.1\CoreDemo.RazorCoreGenerate.cache

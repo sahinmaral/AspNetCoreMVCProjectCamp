@@ -8,7 +8,6 @@ namespace CoreDemo.Controllers
     [AllowAnonymous]
     public class ErrorPageController : Controller
     {
-
         [Route("/ErrorPage/ErrorPage/{code}")]
         public IActionResult ErrorPage(int code)
         {
@@ -32,7 +31,10 @@ namespace CoreDemo.Controllers
 
 
             return View(viewModel);
-
         }
+
+
+
+
     }
 }

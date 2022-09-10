@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Globalization;
 using AutoMapper;
 
 using Business.Abstract;
@@ -26,6 +28,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace CoreDemo
 {
@@ -82,13 +86,37 @@ namespace CoreDemo
                 configuration.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
 
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
 
-            services.AddMvc(config =>
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            CultureInfo[] supportedCultures = new[]
             {
-                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                config.Filters.Add(new AuthorizeFilter(policy));
+                new CultureInfo("en-US"),
+                new CultureInfo("tr-TR")
+            };
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new RequestCulture("tr-TR","tr-TR");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+                options.RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+                    new QueryStringRequestCultureProvider(),
+                    new CookieRequestCultureProvider()
+                };
             });
+
+
+            //services.AddMvc(config =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            //    config.Filters.Add(new AuthorizeFilter(policy));
+            //});
 
 
             //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
@@ -117,14 +145,13 @@ namespace CoreDemo
                 options.AddPolicy("Writer", policy =>
                 {
                     policy.RequireRole("Writer");
+                    policy.RequireClaim(ClaimTypes.Name, "Writer");
                 });
             });
 
             services.AddDbContext<Context>();
-            services.AddIdentity<AppUser, AppRole>(x =>
-            {
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
 
-            }).AddEntityFrameworkStores<Context>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -152,6 +179,7 @@ namespace CoreDemo
 
             app.UseAuthorization();
 
+            app.UseRequestLocalization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -164,6 +192,8 @@ namespace CoreDemo
                     name: "default",
                     pattern: "{controller=Blog}/{action=GetAll}/{id?}");
             });
+
+            
         }
     }
 }

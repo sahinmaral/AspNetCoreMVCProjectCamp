@@ -1,0 +1,102 @@
+﻿@model List<ReadBlogViewModel>
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title"];
+    Layout = "_WriterLayout";
+}
+
+@{
+    string SubStringBlogContent(string content)
+    {
+        if (content.Length < 15)
+        {
+            return content;
+        }
+
+        return content.Substring(15) + "...";
+    }
+}
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">@ViewLocalizer["Title"]</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th> # </th>
+                        <th> @ViewLocalizer["BlogTitle"] </th>
+                        <th> @ViewLocalizer["Category"] </th>
+                        <th> @ViewLocalizer["BlogContent"] </th>
+                        <th> @ViewLocalizer["PublishedDate"] </th>
+                        <th> @ViewLocalizer["State"] </th>
+                        <th> @ViewLocalizer["Processes"] </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ReadBlogViewModel blog in Model)
+                    {
+                        <tr>
+                            <td> @blog.BlogId </td>
+                            <td> @blog.BlogTitle </td>
+                            <td> @blog.CategoryViewModel.CategoryName </td>
+                            <td> @SubStringBlogContent(blog.BlogContent) </td>
+                            <td> @blog.BlogCreateDate </td>
+                            <td>
+                                @if (blog.BlogStatus)
+                                {
+                                    <span class="badge badge-success">@ViewLocalizer["Active"]</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger">@ViewLocalizer["Passive"]</span>
+                                }
+
+
+                            </td>
+                            <td>
+                                <a onclick="sendToastrQuestion(@blog.BlogId)" class="btn btn-danger">@ViewLocalizer["Delete"]</a>
+                                <a href="/Writer/UpdateBlog/@blog.BlogId" class="btn btn-warning">@ViewLocalizer["Edit"]</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    function sendToastrQuestion(id) {
+        swal("@ViewLocalizer["ConfirmDeletingBlog"]", {
+            buttons: {
+                yes: {
+                    text: "@ViewLocalizer["Yes"]",
+                    value: "true",
+                },
+                no: {
+                    text: "@ViewLocalizer["No"]",
+                    value: "false",
+                },
+            },
+        })
+            .then(async (value) => {
+
+                switch (value) {
+                    case "true":
+                        toastr.success("@ViewLocalizer["SuccessfullyDeletedBlog"]", "", {
+                            "positionClass": "toast-bottom-right"
+                        });
+                        //Just like Thread.Sleep
+                        await new Promise(resolve => setTimeout(resolve, 3000));
+                        window.location.href = "/Writer/DeleteBlog/" + id
+                        break;
+                    case "false":
+                        break;
+                }
+            });
+    }
+</script>

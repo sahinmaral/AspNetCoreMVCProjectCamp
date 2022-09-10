@@ -1,7 +1,9 @@
 ﻿@model List<ReadBlogViewModel>
 
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Bloglar";
+    ViewData["Title"] = Localizer["TabTitle"];
     Layout = "_UserLayout";
 }
 
@@ -10,14 +12,14 @@
     {
         if (content != null && content.Length > 50)
         {
-            return content.Substring(0, 50) + " ...";
+            return content.Substring(0, content.Substring(0,50).LastIndexOf(" ")) + " ...";
         }
 
         return content;
     }
 }
 
-<h3 class="tittle">Blog Postları</h3>
+<h3 class="tittle">@Localizer["MainTitle"]</h3>
 <div class="inner-sec">
     <div class="left-blog-info-w3layouts-agileits text-left">
         <div class="row">
@@ -28,37 +30,37 @@
                     <div class="card-body">
                         <ul class="blog-icons my-4 mx-1">
                             <li>
-                                <a href="GetById/@blog.BlogId">
-                                    <i class="far fa-calendar-alt"></i>@blog.BlogCreateDate
+                                <a href="Blog/GetById/@blog.BlogId">
+                                    <i class="far fa-calendar-alt"></i>&nbsp;@blog.BlogCreateDate
                                 </a>
                             </li>
                             <li>
-                                <a href="GetById/@blog.BlogId">
-                                    <i class="far fa-comment"></i>@blog.CommentViewModels.Count
+                                <a href="Blog/GetById/@blog.BlogId">
+                                    <i class="far fa-comment"></i>&nbsp;@blog.CommentViewModels.Count
                                 </a>
                             </li>
                             <li>
-                                <a href="GetById/@blog.BlogId">
-                                    <i class="fas fa-eye"></i>@blog.CategoryViewModel.CategoryName
+                                <a href="Blog/GetById/@blog.BlogId">
+                                    <i class="fas fa-eye"></i>&nbsp;@blog.CategoryViewModel.CategoryName
                                 </a>
                             </li>
                         </ul>
                         <ul class="blog-icons my-4">
                             <li class="nav-item dropdown">
-                                Yazar :
+                                @Localizer["Writer"] :
                                 <a class="mx-1 dropdown-toggle text-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
                                     <i class="fas fa-user"></i>@blog.UserViewModel.Username
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Profili Goruntule</a>
+                                    <a class="dropdown-item" href="#">@Localizer["ShowProfile"]</a>
                                     @* //TODO : Eger gonderilecek kisi ile su anki kisi ayniysa alert gondersin. *@
                                     @if (User.IsInRole("Admin"))
                                     {
-                                        <a class="dropdown-item" href="/Admin/Message/SendMessage/@blog.UserViewModel.Username">Mesaj Gonder</a>
+                                        <a class="dropdown-item" href="/Admin/Message/SendMessage/@blog.UserViewModel.Username">@Localizer["SendMessage"]</a>
                                     }
                                     @if (User.IsInRole("Writer"))
                                     {
-                                        <a class="dropdown-item" href="/Message/SendMessage/@blog.UserViewModel.Username">Mesaj Gonder</a>
+                                        <a class="dropdown-item" href="/Message/SendMessage/@blog.UserViewModel.Username">@Localizer["SendMessage"]</a>
                                     }
 
 
@@ -73,7 +75,7 @@
                         <p class="card-text mb-3">
                             @CheckBlogContent(blog.BlogContent)
                         </p>
-                        <a href="/Blog/GetById/@blog.BlogId" class="btn btn-primary read-m">Daha Fazlası </a>
+                        <a href="/Blog/GetById/@blog.BlogId" class="btn btn-primary read-m">@Localizer["BlogDetail"] </a>
                     </div>
                 </div>
             }

@@ -1,0 +1,27 @@
+﻿@model UserPictureViewModel
+
+@{
+    ViewBag.Title = ViewLocalizer["Title"];
+    Layout = "_WriterLayout";
+}
+
+<h2 class="ml-5">@ViewLocalizer["Title"]</h2>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("ChangeProfileImage", "Home", FormMethod.Post , new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label for="exampleTextarea1">@ViewLocalizer["ProfilePhoto"]</label>
+                    
+                    @Html.TextBoxFor(x=>x.ProfilePhoto , new { @class = "form-control border border-dark", type = "file"})
+
+                    @Html.ValidationMessageFor(x => x.ProfilePhoto, "", new { style = "color:darkred" })
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+            }
+        </div>
+    </div>
+</div>

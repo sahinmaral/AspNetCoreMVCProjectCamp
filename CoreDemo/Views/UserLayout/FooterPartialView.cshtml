@@ -1,13 +1,15 @@
-﻿<footer>
+﻿@inject IStringLocalizer<UserLayoutController> Localizer
+
+<footer>
     <div class="container">
         <div class="row">
             <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
-                <h3>Hakkımızda</h3>
+                <h3>@Localizer["About"]</h3>
                 <p>
-                    Blog, genellikle güncelden eskiye doğru sıralanmış yazı ve yorumların yayınlandığı, web tabanlı bir yayını belirtir. Çoğunlukla her gönderinin sonunda yazarın adı ve gönderi zamanı belirtilir. Yayıncının seçimine göre okuyucular yazılara yorum yapılabilir. Yorumlar, blog kültürünün çok önemli bir dinamiğidir; bu sayede yazar ve okuyucular ...
+                    @Localizer["FooterSiteAbout"]
                 </p>
                 <div class="read">
-                    <a href="/About/Index" class="btn btn-primary read-m">Daha Fazlası</a>
+                    <a href="/About/Index" class="btn btn-primary read-m">@Localizer["More"]</a>
                 </div>
             </div>
             <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
@@ -20,7 +22,7 @@
             <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
 
                 <div class="tech-btm">
-                    @await Html.PartialAsync("../NewsLetter/SubscribeEmail" , new CreateNewsLetterViewModel())
+                    @await Html.PartialAsync("../NewsLetter/SubscribeEmail", new CreateNewsLetterViewModel())
                 </div>
             </div>
             <!-- //subscribe -->
@@ -31,27 +33,28 @@
             <div class="copyrighttop">
                 <ul>
                     <li class="mx-3">
-                        <a class="facebook" href="#">
-                            <i class="fab fa-facebook-f"></i>
-                            <span>Facebook</span>
+                        <a class="facebook" href="https://github.com/sahinmaral">
+                            <i class="fab fa-github"></i>
+                            <span>Github</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="facebook" href="#">
-                            <i class="fab fa-twitter"></i>
-                            <span>Twitter</span>
+
+                    <li class="mx-3">
+                        <a class="facebook" href="https://www.linkedin.com/in/sahinmaral/">
+                            <i class="fab fa-linkedin"></i>
+                            <span>Linked-in</span>
                         </a>
                     </li>
                     <li class="mx-3">
-                        <a class="facebook" href="#">
-                            <i class="fab fa-google-plus-g"></i>
-                            <span>Google+</span>
+                        <a class="facebook" href="mailto:sahinnmaral@gmail.com">
+                            <i class="fab fa-google"></i>
+                            <span>Gmail</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="facebook" href="#">
-                            <i class="fab fa-pinterest-p"></i>
-                            <span>Pinterest</span>
+                    <li class="mx-3">
+                        <a class="facebook" href="mailto:sahin.maral@hotmail.com">
+                            <i class="fa fa-envelope"></i>
+                            <span>Hotmail</span>
                         </a>
                     </li>
                 </ul>

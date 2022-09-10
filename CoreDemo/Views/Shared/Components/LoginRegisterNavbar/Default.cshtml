@@ -1,12 +1,14 @@
 ﻿@model CoreDemo.Models.ReadUserViewModel
 
+@inject IStringLocalizer<UserLayoutController> Localizer
+
 <div class="col-md-4 top-forms mt-lg-3 mt-md-1 mt-0 d-flex">
-    <span>Hoşgeldiniz </span>
+    <span>@Localizer["Welcome"] </span>
     <div class="mx-lg-4 mx-md-2 mx-1">
         @if (Model.Username == null)
         {
             <a href="/Login/Login" style="color:gray">
-                <i class="fas fa-lock"></i> Giriş yap
+                <i class="fas fa-lock"></i> @Localizer["Login"]
             </a>
         }
         else
@@ -19,12 +21,12 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @if (User.IsInRole("Admin"))
                         {
-                            <a class="dropdown-item" href="/Admin/Category/GetCategories">Admin Arayuzu</a>
+                            <a class="dropdown-item" href="/Admin/Category/GetCategories">@Localizer["AdminPanel"]</a>
                         }
 
                         @if (User.IsInRole("Writer"))
                         {
-                            <a class="dropdown-item" href="/Writer/Homepage">Yazar Arayuzu</a>
+                            <a class="dropdown-item" href="/Writer/Home/Homepage">@Localizer["WriterPanel"]</a>
                         }
 
                     </div>
@@ -36,13 +38,13 @@
         @if (Model.Username == null)
         {
             <a href="/Register/Register">
-                <i class="far fa-user"></i> Kayıt ol
+                <i class="far fa-user"></i> @Localizer["Signup"]
             </a>
         }
         else
         {
             <a href="/Login/LogOut">
-                <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                <i class="fas fa-sign-out-alt"></i> @Localizer["Logout"]
             </a>
         }
     </span>

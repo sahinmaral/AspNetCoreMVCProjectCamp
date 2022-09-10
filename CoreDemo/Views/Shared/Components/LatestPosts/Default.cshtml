@@ -1,10 +1,19 @@
 ﻿@model List<ReadBlogViewModel>
+@inject IStringLocalizer<UserLayoutController> Localizer
+
+<style>
+    .blog-grid-left a:hover {
+        color: antiquewhite !important;
+    }
+
+</style>
+
 
 @{
     Layout = null;
 }
 
-<h3>Son Postlar</h3>
+<h3>@Localizer["LatestPosts"]</h3>
 
 @foreach (ReadBlogViewModel blog in Model)
 {
@@ -14,7 +23,7 @@
                 <img src="~/images/@blog.BlogThumbnailImage" class="card-img-top img-fluid" alt="">
             </a>
         </div>
-        <div class="col-md-7 blog-grid-right">
+        <div class="col-md-7 blog-grid-left">
             <h5>
                 <a href="/Blog/GetById/@blog.BlogId">@blog.BlogTitle</a>
             </h5>

@@ -1,7 +1,9 @@
 ﻿@model ReadBlogViewModel
 
-@{ ViewData["Title"] = @Model.BlogTitle;
-                Layout = "_UserLayout"; }
+@{
+    ViewData["Title"] = @Model.BlogTitle;
+    Layout = "_UserLayout";
+}
 
 
 <div class="row">
@@ -58,7 +60,7 @@
 
             @await Html.PartialAsync("../Blog/AddComment", new CreateCommentViewModel()
             {
-                BlogId = Model.BlogId
+            BlogId = Model.BlogId
             })
         </div>
     </div>
@@ -70,26 +72,26 @@
 
 
             @*
-                   İlk 5 favori kategoriler listelenebilir
+            İlk 5 favori kategoriler listelenebilir
 
 
-                   <div class="tech-btm">
-                   <h4>Categories</h4>
-                   <ul class="list-group single">
-                           <li class="list-group-item d-flex justify-content-between align-items-center">
-                             Cras justo odio
-                             <span class="badge badge-primary badge-pill">14</span>
-                           </li>
-                           <li class="list-group-item d-flex justify-content-between align-items-center">
-                             Dapibus ac facilisis in
-                             <span class="badge badge-primary badge-pill">2</span>
-                           </li>
-                           <li class="list-group-item d-flex justify-content-between align-items-center">
-                             Morbi leo risus
-                             <span class="badge badge-primary badge-pill">1</span>
-                           </li>
-                         </ul>
-                </div>
+            <div class="tech-btm">
+            <h4>Categories</h4>
+            <ul class="list-group single">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            Cras justo odio
+            <span class="badge badge-primary badge-pill">14</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            Dapibus ac facilisis in
+            <span class="badge badge-primary badge-pill">2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            Morbi leo risus
+            <span class="badge badge-primary badge-pill">1</span>
+            </li>
+            </ul>
+            </div>
 
             *@
 
@@ -125,19 +127,19 @@
             <div class="single-gd tech-btm">
                 <h4>Bir Önceki Bloglar</h4>
                 @*<div class="blog-grids">
-                        <div class="blog-grid-left">
-                            <a href="single.html">
-                                <img src="images/b1.jpg" class="img-fluid" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-grid-right">
+                <div class="blog-grid-left">
+                <a href="single.html">
+                <img src="images/b1.jpg" class="img-fluid" alt="">
+                </a>
+                </div>
+                <div class="blog-grid-right">
 
-                            <h5>
-                                <a href="single.html">Pellentesque dui, non felis. Maecenas male</a>
-                            </h5>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>*@
+                <h5>
+                <a href="single.html">Pellentesque dui, non felis. Maecenas male</a>
+                </h5>
+                </div>
+                <div class="clearfix"> </div>
+                </div>*@
             </div>
         </div>
 
@@ -145,10 +147,3 @@
     <!--//right-->
 </div>
 
-<script>
-
-    window.onload = function () {
-        @Html.Raw(TempData["Message"])
-    }
-
-</script>
