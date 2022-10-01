@@ -123,32 +123,40 @@
             else {
                 var user = GetUser(id);
 
-                var tableHTML =
-                    "<table class='table table-bordered'>" +
-                    "<tr> " +
-                    "<th> # </td>" +
-                    "<th> Kullanici Adı Soyadi</td>" +
-                    "<th> Kullanici Kullanıcı Adı </td>" +
-                    "<th> Kullanici Islemleri </td>" +
-                    //"<th> Yazarın Durumu </td>" +
-                    //"<th> Yazarı Banla / Banını Kaldır </td>" +
-                    "</tr>";
-                tableHTML += "<tr>";
-                tableHTML += "<td>" + user.UserId + "</td>";
-                tableHTML += "<td>" + user.NameSurname + "</td>";
-                tableHTML += "<td>" + user.Username + "</td>";
-                tableHTML += "<td>";
-                tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + user.UserId + "' class='btn btn-success'>Kullanicinin Rollerini Getir</a>";
-                tableHTML += "</td> ";
-                //if (!foundWriter.LockoutEnabled)
-                //    tableHTML += "<td>Temiz</td>";
-                //else
-                //    tableHTML += "<td>Banlı</td>";
-                //tableHTML += "<td> <button type=button onClick=EnableOrDisableWriter(" + foundWriter.UserId + ") class='btn btn-warning' > Yazarı Banla / Banını Kaldır</button > </td > ";
-                tableHTML += "</tr>";
-                tableHTML += "</table>";
+                if(user !== null){
+                    var tableHTML =
+                        "<table class='table table-bordered'>" +
+                        "<tr> " +
+                        "<th> # </td>" +
+                        "<th> Kullanici Adı Soyadi</td>" +
+                        "<th> Kullanici Kullanıcı Adı </td>" +
+                        "<th> Kullanici Islemleri </td>" +
+                        //"<th> Yazarın Durumu </td>" +
+                        //"<th> Yazarı Banla / Banını Kaldır </td>" +
+                        "</tr>";
+                    tableHTML += "<tr>";
+                    tableHTML += "<td>" + user.UserId + "</td>";
+                    tableHTML += "<td>" + user.NameSurname + "</td>";
+                    tableHTML += "<td>" + user.Username + "</td>";
+                    tableHTML += "<td>";
+                    tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + user.UserId + "' class='btn btn-success'>Kullanicinin Rollerini Getir</a>";
+                    tableHTML += "</td> ";
+                    //if (!foundWriter.LockoutEnabled)
+                    //    tableHTML += "<td>Temiz</td>";
+                    //else
+                    //    tableHTML += "<td>Banlı</td>";
+                    //tableHTML += "<td> <button type=button onClick=EnableOrDisableWriter(" + foundWriter.UserId + ") class='btn btn-warning' > Yazarı Banla / Banını Kaldır</button > </td > ";
+                    tableHTML += "</tr>";
+                    tableHTML += "</table>";
 
-                $("#userList").html(tableHTML);
+                    $("#userList").html(tableHTML);
+                }
+                else{
+                    var emptyList = "<div class='alert alert-warning font-weight-bold'> Boyle birisi yok </div>"
+                    $("#userList").html(emptyList);
+                }
+
+                
             }
 
 

@@ -58,6 +58,8 @@ namespace CoreDemo.Controllers
 
             }
 
+
+
             TempData["Message"] = ToastrNotification.Show(_stringLocalizer["SubscribedSuccessfully"], position: Position.BottomRight,
                 type: ToastType.success);
 
@@ -67,24 +69,6 @@ namespace CoreDemo.Controllers
                 action = "GetAll",
             });
         }
-
-        //[HttpPost]
-        //public PartialViewResult SubscribeEmail(CreateNewsLetterViewModel viewModel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        TempData["Message"] = ToastrNotification.Show("test", position: Position.BottomRight,
-        //            type: ToastType.error);
-
-        //        return PartialView();
-        //    }
-
-        //    NewsLetter newsLetter = new NewsLetter();
-        //    newsLetter = _mapper.Map(viewModel, newsLetter);
-        //    _newsLetterService.Add(newsLetter);
-
-        //    return PartialView();
-        //}
 
     }
 }

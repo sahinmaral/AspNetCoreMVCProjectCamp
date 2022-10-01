@@ -41,7 +41,7 @@
                         <i class="mdi mdi-cached mr-2 text-success"></i> @ViewLocalizer["Processes"]
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/Login/LogOut">
+                    <a class="dropdown-item" href="/@nameof(UserController).Replace("Controller","")/@nameof(UserController.LogOut)">
                         <i class="mdi mdi-logout mr-2 text-primary"></i> @ViewLocalizer["Logout"]
                     </a>
                 </div>
@@ -53,7 +53,7 @@
                 @await Component.InvokeAsync("NotificationList")
             </li>
             <li class="nav-item nav-logout d-none d-lg-block">
-                <a class="nav-link" href="/Login/LogOut">
+                <a class="nav-link" href="/@nameof(UserController).Replace("Controller","")/@nameof(UserController.LogOut)">
                     <i class="mdi mdi-power"></i>
                 </a>
             </li>

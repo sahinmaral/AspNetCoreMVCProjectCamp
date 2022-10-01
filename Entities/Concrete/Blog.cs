@@ -38,7 +38,7 @@ namespace Entities.Concrete
 
         [Column("UserId")]
         public int UserId { get; set; }
-        public AppUser User { get; set; }
+        public User User { get; set; }
 
         public BlogRatio BlogRatio { get; set; }
     }

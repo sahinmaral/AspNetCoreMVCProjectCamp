@@ -13,11 +13,11 @@ namespace CoreDemo.Areas.Admin.ViewComponents
 {
     public class AdminSidebarViewComponent : ViewComponent
     {
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
         private readonly IMessageService _messageService;
 
-        public AdminSidebarViewComponent(UserManager<AppUser> userManager, IMapper mapper, IMessageService messageService)
+        public AdminSidebarViewComponent(UserManager<User> userManager, IMapper mapper, IMessageService messageService)
         {
             _userManager = userManager;
             _mapper = mapper;
@@ -25,7 +25,7 @@ namespace CoreDemo.Areas.Admin.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
             ReadUserViewModel userViewModel = _mapper.Map(user, new ReadUserViewModel());
 
             return View(userViewModel);

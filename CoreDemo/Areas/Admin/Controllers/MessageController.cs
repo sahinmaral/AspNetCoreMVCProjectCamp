@@ -18,10 +18,10 @@ namespace CoreDemo.Areas.Admin.Controllers
     [Area("Admin")]
     public class MessageController : Controller
     {
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
         private readonly IMessageService _messageService;
-        public MessageController(IMapper mapper, UserManager<AppUser> userManager, IMessageService messageService)
+        public MessageController(IMapper mapper, UserManager<User> userManager, IMessageService messageService)
         {
             _mapper = mapper;
             _userManager = userManager;
@@ -29,7 +29,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         }
         public async Task<IActionResult> ViewInbox()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             var messages = _messageService.GetAll(x => x.ReceiverId == user.Id);
 
@@ -42,7 +42,7 @@ namespace CoreDemo.Areas.Admin.Controllers
 
         public async Task<IActionResult> ViewSendBox()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             var messages = _messageService.GetAll(x => x.SenderId == user.Id);
 
@@ -66,8 +66,8 @@ namespace CoreDemo.Areas.Admin.Controllers
         [Route("/Admin/Message/SendMessage/{receiverUsername}")]
         public async Task<IActionResult> SendMessage(string receiverUsername)
         {
-            AppUser receiverUser = await _userManager.FindByNameAsync(receiverUsername);
-            AppUser senderUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            User receiverUser = await _userManager.FindByNameAsync(receiverUsername);
+            User senderUser = await _userManager.FindByNameAsync(User.Identity.Name);
 
             CreateMessageViewModel viewModel = new CreateMessageViewModel();
             ReadUserViewModel receiverViewModel = _mapper.Map(receiverUser, new ReadUserViewModel());

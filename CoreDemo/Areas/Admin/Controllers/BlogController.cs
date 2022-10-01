@@ -24,10 +24,10 @@ namespace CoreDemo.Areas.Admin.Controllers
     {
         private readonly IBlogService _blogService;
         private readonly IMapper _mapper;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly ICategoryService _categoryService;
         private readonly ICommentService _commentService;
-        public BlogController(IBlogService blogService, IMapper mapper, UserManager<AppUser> userManager, ICategoryService categoryService, ICommentService commentService)
+        public BlogController(IBlogService blogService, IMapper mapper, UserManager<User> userManager, ICategoryService categoryService, ICommentService commentService)
         {
             _blogService = blogService;
             _mapper = mapper;
@@ -102,7 +102,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             string thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.BlogThumbnailImage);
             string mainImageName = AssignFormFileAndReturnName(blogViewModel.BlogMainImage);
 
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             Blog blog = _blogService.Get(x => x.BlogId == blogViewModel.BlogId);
 

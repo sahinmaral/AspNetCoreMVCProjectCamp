@@ -19,9 +19,9 @@ namespace CoreDemo.Controllers
         private readonly IBlogService _blogService;
         private readonly ICommentService _commentService;
         private readonly IMapper _mapper;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public BlogController(IBlogService blogService, ICommentService commentService, IMapper mapper, UserManager<AppUser> userManager)
+        public BlogController(IBlogService blogService, ICommentService commentService, IMapper mapper, UserManager<User> userManager)
         {
             _blogService = blogService;
             _commentService = commentService;
@@ -91,7 +91,7 @@ namespace CoreDemo.Controllers
                 });
             }
             
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
             viewModel.UserId = user.Id;
 
             Comment addedComment = new Comment();

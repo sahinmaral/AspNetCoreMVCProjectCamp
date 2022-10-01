@@ -9,10 +9,10 @@ namespace CoreDemo.Areas.Writer.ViewComponents
 {
     public class WriterNavbarViewComponent : ViewComponent
     {
-        private readonly UserManager<AppUser> _userManager; 
+        private readonly UserManager<User> _userManager; 
         private readonly IMapper _mapper;
 
-        public WriterNavbarViewComponent(IMapper mapper, UserManager<AppUser> userManager)
+        public WriterNavbarViewComponent(IMapper mapper, UserManager<User> userManager)
         {
             _mapper = mapper;
             _userManager = userManager;
@@ -20,7 +20,7 @@ namespace CoreDemo.Areas.Writer.ViewComponents
         
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             ReadUserViewModel viewModel = new ReadUserViewModel();
 

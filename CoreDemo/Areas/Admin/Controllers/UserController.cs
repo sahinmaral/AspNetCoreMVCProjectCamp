@@ -23,10 +23,10 @@ namespace CoreDemo.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<AppRole> _roleManager;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Role> _roleManager;
 
-        public UserController(IMapper mapper, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
+        public UserController(IMapper mapper, UserManager<User> userManager, RoleManager<Role> roleManager)
         {
             _mapper = mapper;
             _userManager = userManager;
@@ -39,9 +39,9 @@ namespace CoreDemo.Areas.Admin.Controllers
 
         public async Task<IActionResult> GetUsersJson()
         {
-            IList<AppUser> users = await _userManager.GetUsersInRoleAsync("User");
+            ICollection<User> users = await _userManager.GetUsersInRoleAsync("User");
 
-            List<ReadUserViewModel> userViewModels = _mapper.Map(users, new List<ReadUserViewModel>());
+            List<ReadUserViewModel> userViewModels = _mapper.Map(users.Where(x=>x.UserName != User.Identity.Name), new List<ReadUserViewModel>());
 
             var jsonUsers = JsonConvert.SerializeObject(userViewModels);
 
@@ -51,24 +51,30 @@ namespace CoreDemo.Areas.Admin.Controllers
 
         public async Task<IActionResult> GetUserByIdJson(int id)
         {
-            AppUser user = await _userManager.FindByIdAsync(id.ToString());
-            ReadUserViewModel viewModel = _mapper.Map(user, new ReadUserViewModel());
+            User user = await _userManager.FindByIdAsync(id.ToString());
 
-            var jsonUsers = JsonConvert.SerializeObject(viewModel);
-
-            return Json(jsonUsers);
+            if(user.UserName != User.Identity.Name)
+            {
+                ReadUserViewModel viewModel = _mapper.Map(user, new ReadUserViewModel());
+                var jsonUsers = JsonConvert.SerializeObject(viewModel);
+                return Json(jsonUsers);
+            }
+            else
+            {
+                return Json(null);
+            }
 
         }
 
         [HttpGet]
         public async Task<IActionResult> UpdateRolesToUser(int id)
         {
-            AppUser user = await _userManager.FindByIdAsync(id.ToString());
-            List<AppRole> roles = _roleManager.Roles.ToList();
+            User user = await _userManager.FindByIdAsync(id.ToString());
+            List<Role> roles = _roleManager.Roles.ToList();
 
             List<RoleViewModel> roleViewModels = new List<RoleViewModel>();
 
-            foreach (AppRole role in roles)
+            foreach (Role role in roles)
             {
                 bool isInRole = await _userManager.IsInRoleAsync(user, role.Name);
                 roleViewModels.Add(new RoleViewModel()
@@ -91,7 +97,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateRolesToUser(UserRoleViewModel viewModel)
         {
-            AppUser user = await _userManager.FindByIdAsync(viewModel.UserViewModel.UserId.ToString());
+            User user = await _userManager.FindByIdAsync(viewModel.UserViewModel.UserId.ToString());
 
             foreach (RoleViewModel roleViewModel in viewModel.RoleViewModels)
             {

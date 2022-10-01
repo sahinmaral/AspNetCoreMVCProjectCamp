@@ -21,6 +21,11 @@ namespace Business.Concrete
             return _notificationDal.GetAll(filter);
         }
 
+        public List<Notification> GetAllWithDetails(Expression<Func<Notification, bool>> filter = null)
+        {
+            return _notificationDal.GetAllWithDetails(filter);
+        }
+
         public Notification Get(Expression<Func<Notification, bool>> filter = null)
         {
             return _notificationDal.Get(filter);

@@ -111,21 +111,6 @@ namespace CoreDemo
                 };
             });
 
-
-            //services.AddMvc(config =>
-            //{
-            //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-            //    config.Filters.Add(new AuthorizeFilter(policy));
-            //});
-
-
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
-            //{
-            //    x.LoginPath = new PathString("/Login/Login");
-            //    x.AccessDeniedPath = new PathString("/ErrorPage/ErrorPage/403");
-            //    x.LogoutPath = new PathString("Blog/GetAll");
-            //});
-
             services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme,
                 options =>
                 {
@@ -150,7 +135,7 @@ namespace CoreDemo
             });
 
             services.AddDbContext<Context>();
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+            services.AddIdentity<User, Role>().AddEntityFrameworkStores<Context>();
 
         }
 
@@ -183,10 +168,15 @@ namespace CoreDemo
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "areas",
-                    pattern: "{area:exists}/{controller=Category}/{action=GetCategories}/{id?}"
-                );
+                endpoints.MapAreaControllerRoute(
+                    "Admin",
+                    "Admin",
+                    "Admin/{controller=Category}/{action=GetCategories}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    "Writer",
+                    "Writer",
+                    "Writer/{controller=Home}/{action=Homepage}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

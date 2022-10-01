@@ -19,16 +19,16 @@ namespace CoreDemo.Areas.Admin.ViewComponents
 {
     public class MessageSideBarViewComponent : ViewComponent
     {
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IMessageService _messageService;
-        public MessageSideBarViewComponent(UserManager<AppUser> userManager, IMessageService messageService)
+        public MessageSideBarViewComponent(UserManager<User> userManager, IMessageService messageService)
         {
             _userManager = userManager;
             _messageService = messageService;
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             List<Message> messages = _messageService.GetAll();
 

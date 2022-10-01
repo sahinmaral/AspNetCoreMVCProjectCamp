@@ -19,11 +19,11 @@ namespace Entities.Concrete
 
         [Column("SenderId")]
         public int? SenderId { get; set; }
-        public AppUser Sender { get; set; }
+        public User Sender { get; set; }
 
         [Column("ReceiverId")]
         public int? ReceiverId { get; set; }
-        public AppUser Receiver { get; set; }
+        public User Receiver { get; set; }
 
         public string MessageSubject { get; set; }
         public string MessageDetail { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using AutoMapper;
 using CoreDemo.Areas.Admin.Models;
+using CoreDemo.Areas.Writer.Models;
 using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
@@ -54,16 +55,18 @@ namespace CoreDemo.Mapping.AutoMapper
 
             CreateMap<CreateMessageViewModel, Message>();
 
-            CreateMap<ReadUserViewModel, AppUser>();
+            CreateMap<ReadUserViewModel, User>();
 
-            CreateMap<AppUser, ReadUserViewModel>()
+            CreateMap<User, ReadUserViewModel>()
                 .ForMember(obj => obj.Username, opt => opt.MapFrom(src => src.UserName))
                 .ForMember(obj => obj.UserId, opt => opt.MapFrom(src => src.Id));
 
-            CreateMap<UserSignUpViewModel, AppUser>()
+            CreateMap<UserSignUpViewModel, User>()
                 .ForMember(obj => obj.NameSurname, opt => opt.MapFrom(src => src.NameSurname))
                 .ForMember(obj => obj.Email, opt => opt.MapFrom(src => src.Mail))
                 .ForMember(obj => obj.UserName, opt => opt.MapFrom(src => src.Username));
+
+            CreateMap<Notification, ReadNotificationViewModel>();
         }
     }
 }

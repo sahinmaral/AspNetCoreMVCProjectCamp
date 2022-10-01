@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using Core.DataAccess.EntityFramework;
@@ -10,14 +11,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete
 {
-    public class EfNotificationDal:EfEntityRepositoryBase<Notification, Context> , INotificationDal
+    public class EfNotificationDal : EfEntityRepositoryBase<Notification, Context>, INotificationDal
     {
-        public new List<Notification> GetAll(Expression<Func<Notification, bool>> filter = null)
+        public List<Notification> GetAllWithDetails(Expression<Func<Notification, bool>> filter = null)
         {
             using Context context = new Context();
-            var notifications =  context.Notifications
+            var notifications = context.Notifications
                 .Include(x => x.NotificationSymbol)
-                .Include(x => x.NotificationType);
+                .Include(r => r.NotificationInformations)
+                .ThenInclude(p => (p as NotificationInformation).Language)
+                .Include(x => x.NotificationType)
+                ;
 
             return filter == null ? notifications.ToList() : notifications.Where(filter).ToList();
         }

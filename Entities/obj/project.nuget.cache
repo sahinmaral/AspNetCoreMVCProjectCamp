@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B5Sghm+BFt5AA+l5+5WHPNcBrscIKid+a+j4RDEILWXGC78rO58DwmIzAvnvos+q9BocE+xGiKJxilRTll1/oQ==",
+  "dgSpecHash": "WKki8xDd1INi8lqmcUTP9svBcS5lvimeGsqpfpx9qtIjFP6Kk8PMbR9GJ+Cqxif4ZHEGZnRRFmoqPTRrtIJwsQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
@@ -53,10 +53,7 @@
     "C:\\Users\\sahin\\.nuget\\packages\\system.security.cryptography.xml\\4.5.0\\system.security.cryptography.xml.4.5.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+    "C:\\Users\\sahin\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

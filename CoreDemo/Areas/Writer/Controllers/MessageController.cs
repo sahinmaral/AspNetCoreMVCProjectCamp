@@ -18,10 +18,10 @@ namespace CoreDemo.Areas.Writer.Controllers
     public class MessageController : Controller
     {
         private readonly IMessageService _messageService;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
 
-        public MessageController(IMessageService messageService, IMapper mapper, UserManager<AppUser> userManager)
+        public MessageController(IMessageService messageService, IMapper mapper, UserManager<User> userManager)
         {
             _messageService = messageService;
             _mapper = mapper;
@@ -29,7 +29,7 @@ namespace CoreDemo.Areas.Writer.Controllers
         }
         public async Task<IActionResult> ViewInbox()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             var messages = _messageService.GetAll(x => x.ReceiverId == user.Id);
 
@@ -57,11 +57,11 @@ namespace CoreDemo.Areas.Writer.Controllers
         }
 
         [HttpGet]
-        [Route("/Message/SendMessage/{receiverUsername}")]
+        [Route("/Writer/Message/SendMessage/{receiverUsername}")]
         public async Task<IActionResult> SendMessage(string receiverUsername)
         {
-            AppUser receiverUser = await _userManager.FindByNameAsync(receiverUsername);
-            AppUser senderUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            User receiverUser = await _userManager.FindByNameAsync(receiverUsername);
+            User senderUser = await _userManager.FindByNameAsync(User.Identity.Name);
 
             CreateMessageViewModel viewModel = new CreateMessageViewModel();
             ReadUserViewModel receiverViewModel = _mapper.Map(receiverUser, new ReadUserViewModel());
@@ -87,7 +87,7 @@ namespace CoreDemo.Areas.Writer.Controllers
 
             _messageService.Add(newMessage);
 
-            return RedirectToAction("Homepage", "Writer");
+            return RedirectToAction("Homepage", "Home");
         }
     }
 }

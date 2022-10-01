@@ -4,6 +4,7 @@ using AutoMapper;
 using Business.Abstract;
 using Business.Concrete;
 using CoreDemo.Models;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,10 @@ namespace CoreDemo.ViewComponents
 {
     public class LoginRegisterNavbarViewComponent : ViewComponent
     {
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
 
-        public LoginRegisterNavbarViewComponent(IMapper mapper, UserManager<AppUser> userManager)
+        public LoginRegisterNavbarViewComponent(IMapper mapper, UserManager<User> userManager)
         {
             _mapper = mapper;
             _userManager = userManager;
@@ -26,7 +27,7 @@ namespace CoreDemo.ViewComponents
             if (User.Identity.Name == null)
                 return View(new ReadUserViewModel());
 
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             ReadUserViewModel viewModel = new ReadUserViewModel();
 

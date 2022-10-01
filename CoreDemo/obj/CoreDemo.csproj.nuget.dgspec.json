@@ -1,21 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj": {}
+    "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj": {
+    "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj",
         "projectName": "BlogApiDemo",
-        "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj",
+        "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj",
         "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\obj\\",
+        "outputPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -76,24 +75,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -102,22 +83,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj": {
+    "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj",
+        "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj",
         "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\obj\\",
+        "outputPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -136,11 +116,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj"
+              "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj"
               }
             }
           }
@@ -165,41 +145,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj": {
+    "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj",
         "projectName": "CoreDemo",
-        "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj",
+        "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj",
         "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\obj\\",
+        "outputPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -218,17 +183,17 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj": {
-                "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj"
+              "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj": {
+                "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\BlogApiDemo\\BlogApiDemo.csproj"
               },
-              "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj": {
-                "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj"
+              "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj": {
+                "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj"
               },
-              "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj"
+              "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj"
               }
             }
           }
@@ -317,22 +282,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj": {
+    "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\obj\\",
+        "outputPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -383,41 +347,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj",
+        "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -436,11 +385,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj"
+              "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj"
               },
-              "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj"
+              "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj"
               }
             }
           }
@@ -500,22 +449,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
+    "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\sahin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\sahin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -534,8 +482,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj"
+              "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj"
               }
             }
           }
@@ -566,26 +514,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

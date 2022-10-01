@@ -4,6 +4,13 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="Resources\Views\Shared\**" />
+      <Content Remove="Resources\Views\Shared\**" />
+      <EmbeddedResource Remove="Resources\Views\Shared\**" />
+      <None Remove="Resources\Views\Shared\**" />
+    </ItemGroup>
+
     <!--<ItemGroup>
       <Compile Remove="wwwroot\writerProfileImages\**" />
       <Content Remove="wwwroot\writerProfileImages\**" />
@@ -42,8 +49,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Areas\Writer\Models\" />
-      <Folder Include="Resources\Views\Shared\" />
       <Folder Include="Views\NewsLetter\" />      <Folder Include="wwwroot\weblogTemplate" />
     </ItemGroup>
 

@@ -14,8 +14,8 @@ namespace CoreDemo.Areas.Admin.ViewComponents
     {
         private readonly IMessageService _messageService;
         private readonly IMapper _mapper;
-        private readonly UserManager<AppUser> _userManager;
-        public AdminNavbarViewComponent(IMessageService messageService, IMapper mapper, UserManager<AppUser> userManager)
+        private readonly UserManager<User> _userManager;
+        public AdminNavbarViewComponent(IMessageService messageService, IMapper mapper, UserManager<User> userManager)
         {
             _messageService = messageService;
             _mapper = mapper;
@@ -23,7 +23,7 @@ namespace CoreDemo.Areas.Admin.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             List<Message> messages = _messageService.GetAll(x => x.ReceiverId == user.Id && !x.MessageOpened);
 

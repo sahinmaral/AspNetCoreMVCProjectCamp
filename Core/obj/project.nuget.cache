@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MyftCE2Ge1acEklRId3WoAkCJ93yVyLR4PmIVFxO9FvGuJqs0g2qPmIWBfY2kI7emHsF3/EPsf9iLYEsiXwduA==",
+  "dgSpecHash": "pV+VMlYbdBhe0/9m1BqGCC9sytUAeaCJoTeZ1hWCo1kfZMcy2o2Bfx6O+XuiXSIcxvbGMOc78CzX+76aD0za1A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj",
+  "projectFilePath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.10\\microsoft.aspnetcore.cryptography.internal.5.0.10.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.10\\microsoft.aspnetcore.cryptography.keyderivation.5.0.10.nupkg.sha512",
@@ -23,10 +23,7 @@
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\system.collections.immutable\\1.7.1\\system.collections.immutable.1.7.1.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+    "C:\\Users\\sahin\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512"
   ],
   "logs": []
 }

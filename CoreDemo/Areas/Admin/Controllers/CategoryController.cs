@@ -1,17 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Abstract;
 using ClosedXML.Excel;
 using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.IO;
 using X.PagedList;
 
 namespace CoreDemo.Areas.Admin.Controllers
@@ -33,10 +28,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             
             List<ReadCategoryViewModel> viewModels = new List<ReadCategoryViewModel>();
 
-            foreach (Category category in _categoryService.GetAll())
-            {
-                viewModels.Add(_mapper.Map(category, new ReadCategoryViewModel()));
-            }
+            viewModels = _mapper.Map(_categoryService.GetAll(), viewModels);
 
             return View(viewModels.ToPagedList(page, 5));
         }

@@ -11,7 +11,7 @@ namespace CoreDemo.ValidationRules
 {
     public class UserSignUpViewModelValidator : AbstractValidator<UserSignUpViewModel>
     {
-        public UserSignUpViewModelValidator(IStringLocalizer<RegisterController> localizer)
+        public UserSignUpViewModelValidator(IStringLocalizer<UserController> localizer)
         {
             var stringLocalizer = localizer;
 

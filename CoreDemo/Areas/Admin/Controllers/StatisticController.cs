@@ -30,13 +30,13 @@ namespace CoreDemo.Areas.Admin.Controllers
         private readonly IMessageService _messageService;
         private readonly ICommentService _commentService;
         private readonly IMapper _mapper;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
 
         public StatisticController(IBlogService blogService,
             IContactService contactService,
             IMessageService messageService,
             ICommentService commentService,
-            IMapper mapper, UserManager<AppUser> userManager)
+            IMapper mapper, UserManager<User> userManager)
         {
             _blogService = blogService;
             _contactService = contactService;
@@ -51,7 +51,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             weatherAppViewModel.WeatherObjects[0].Icon = "http://openweathermap.org/img/wn/" +
                                                          weatherAppViewModel.WeatherObjects[0].Icon + ".png";
 
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
             ReadUserViewModel userViewModel = _mapper.Map(user, new ReadUserViewModel());
 
             ReadBlogViewModel lastBlogViewModel = new ReadBlogViewModel();
@@ -79,9 +79,6 @@ namespace CoreDemo.Areas.Admin.Controllers
             webRequest.Method = "GET";
 
             HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
-
-            Console.WriteLine(webResponse.StatusCode);
-            Console.WriteLine(webResponse.Server);
 
             string jsonString;
             using (Stream stream = webResponse.GetResponseStream())  

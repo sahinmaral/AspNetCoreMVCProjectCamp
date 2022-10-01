@@ -21,8 +21,6 @@ namespace CoreDemo.Controllers
 
             var values = JsonConvert.DeserializeObject<List<EmployeeModel>>(jsonString);
 
-
-
             return View(values);
         }
 

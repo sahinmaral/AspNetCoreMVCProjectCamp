@@ -18,6 +18,5 @@ namespace Entities.Concrete
         public decimal LikeRatio { get; set; }
         public decimal DislikeRatio { get; set; }
 
-        public int TotalCommentsCount { get; set; }
     }
 }

@@ -13,9 +13,9 @@ namespace CoreDemo.Areas.Writer.ViewComponents
     {
         private readonly IMessageService _messageService;
         private readonly IMapper _mapper;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public WriterMessagesViewComponent(IMessageService messageService,IMapper mapper,UserManager<AppUser> userManager)
+        public WriterMessagesViewComponent(IMessageService messageService,IMapper mapper,UserManager<User> userManager)
         {
             _messageService = messageService;
             _mapper = mapper;
@@ -23,7 +23,7 @@ namespace CoreDemo.Areas.Writer.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             var messages = _messageService.GetAll(x => x.ReceiverId == user.Id && !x.MessageOpened);
 

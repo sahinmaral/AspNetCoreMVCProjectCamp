@@ -1,5 +1,4 @@
-﻿@using CoreDemo.Models
-@model List<CoreDemo.Models.ReadCommentViewModel>
+﻿@model List<ReadCommentViewModel>
 
 @{
     ViewBag.Title = "Yorumlar ";
@@ -13,7 +12,7 @@
 
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
     
-    <h2>@Model[0].BlogViewModel.BlogTitle basligindaki yorumlar</h2>
+    <h2>@ViewData["CommentBlogTitle"] basligindaki yorumlar</h2>
 
     @*<div class="ibox-content m-b-sm border-bottom">
         <div class="row">

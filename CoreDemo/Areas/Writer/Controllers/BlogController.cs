@@ -25,10 +25,10 @@ namespace CoreDemo.Areas.Writer.Controllers
     {
         private readonly IBlogService _blogService;
         private readonly IMapper _mapper;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly ICategoryService _categoryService;
 
-        public BlogController(IBlogService blogService, IMapper mapper,  UserManager<AppUser> userManager, ICategoryService categoryService)
+        public BlogController(IBlogService blogService, IMapper mapper,  UserManager<User> userManager, ICategoryService categoryService)
         {
             _blogService = blogService;
             _mapper = mapper;
@@ -37,7 +37,7 @@ namespace CoreDemo.Areas.Writer.Controllers
         }
         public async Task<IActionResult> MyBlog()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             List<Blog> writerBlogs = _blogService.GetAllWithDetails(x => x.UserId == user.Id).Where(x => x.BlogStatus).ToList();
 
@@ -77,7 +77,7 @@ namespace CoreDemo.Areas.Writer.Controllers
                 return View(viewModel);
             }
 
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             string thumbnailImageName = AssignFormFileAndReturnName(viewModel.BlogThumbnailImage);
             string mainImageName = AssignFormFileAndReturnName(viewModel.BlogMainImage);
@@ -145,7 +145,7 @@ namespace CoreDemo.Areas.Writer.Controllers
             string thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.BlogThumbnailImage);
             string mainImageName = AssignFormFileAndReturnName(blogViewModel.BlogMainImage);
 
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             Blog blog = _blogService.Get(x => x.BlogId == blogViewModel.BlogId);
 

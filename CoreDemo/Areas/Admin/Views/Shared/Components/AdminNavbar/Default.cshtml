@@ -1,4 +1,5 @@
-﻿@using CoreDemo.Models
+﻿@using CoreDemo.Controllers
+@using CoreDemo.Models
 @model CoreDemo.Areas.Admin.Models.AdminNavbarViewModel
 
 @{
@@ -111,7 +112,7 @@
 
 
         <li>
-            <a href="/Login/Logout">
+            <a href="/@nameof(UserController).Replace("Controller","")/@nameof(UserController.LogOut)">
                 <i class="fa fa-sign-out"></i> Cikis Yap
             </a>
         </li>

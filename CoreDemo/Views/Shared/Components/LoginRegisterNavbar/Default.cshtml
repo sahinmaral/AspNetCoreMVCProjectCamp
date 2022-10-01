@@ -7,7 +7,7 @@
     <div class="mx-lg-4 mx-md-2 mx-1">
         @if (Model.Username == null)
         {
-            <a href="/Login/Login" style="color:gray">
+            <a href="/@nameof(UserController).Replace("Controller", "")/@nameof(UserController.Login)" style="color:gray">
                 <i class="fas fa-lock"></i> @Localizer["Login"]
             </a>
         }
@@ -37,13 +37,13 @@
     <span>
         @if (Model.Username == null)
         {
-            <a href="/Register/Register">
+            <a href="/@nameof(UserController).Replace("Controller", "")/@nameof(UserController.Register)">
                 <i class="far fa-user"></i> @Localizer["Signup"]
             </a>
         }
         else
         {
-            <a href="/Login/LogOut">
+            <a href="/@nameof(UserController).Replace("Controller", "")/@nameof(UserController.LogOut)">
                 <i class="fas fa-sign-out-alt"></i> @Localizer["Logout"]
             </a>
         }

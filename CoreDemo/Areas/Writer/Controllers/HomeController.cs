@@ -29,9 +29,9 @@ namespace CoreDemo.Areas.Writer.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IBlogService _blogService;
         private readonly IMapper _mapper;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public HomeController(IBlogService blogService, IMapper mapper, ICategoryService categoryService, UserManager<AppUser> userManager)
+        public HomeController(IBlogService blogService, IMapper mapper, ICategoryService categoryService, UserManager<User> userManager)
         {
             _blogService = blogService;
             _mapper = mapper;
@@ -46,7 +46,7 @@ namespace CoreDemo.Areas.Writer.Controllers
 
         public async Task<IActionResult> Homepage()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             return View(_mapper.Map(user, new ReadUserViewModel()));
         }
@@ -54,7 +54,7 @@ namespace CoreDemo.Areas.Writer.Controllers
         [HttpGet]
         public async Task<IActionResult> ChangeProfile()
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             ReadUserViewModel viewModel = _mapper.Map(user, new ReadUserViewModel());
 
@@ -70,12 +70,12 @@ namespace CoreDemo.Areas.Writer.Controllers
                 return View(viewModel);
             }
 
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
             user.UserAbout = viewModel.UserAbout;
 
             await _userManager.UpdateAsync(user);
 
-            return RedirectToAction("Homepage", "Home");
+            return RedirectToAction(nameof(Homepage), nameof(BlogController).Replace("Controller", ""));
         }
 
         [HttpGet]
@@ -92,12 +92,12 @@ namespace CoreDemo.Areas.Writer.Controllers
                 return View(viewModel);
             }
 
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
             user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, viewModel.NewPassword);
 
             await _userManager.UpdateAsync(user);
 
-            return RedirectToAction("Homepage", "Home");
+            return RedirectToAction(nameof(Homepage), nameof(HomeController).Replace("Controller", ""));
         }
 
         [HttpGet]
@@ -114,7 +114,7 @@ namespace CoreDemo.Areas.Writer.Controllers
                 return View(viewModel);
             }
 
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             if (user.ImageUrl != null)
                 RemoveOldProfilePicture(user.ImageUrl);
@@ -123,7 +123,7 @@ namespace CoreDemo.Areas.Writer.Controllers
 
             await _userManager.UpdateAsync(user);
 
-            return RedirectToAction("Homepage", "Home");
+            return RedirectToAction(nameof(Homepage), nameof(HomeController).Replace("Controller", ""));
         }
 
         private void RemoveOldProfilePicture(string path)

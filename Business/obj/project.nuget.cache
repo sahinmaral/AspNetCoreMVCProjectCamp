@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BdwE6KJq5w8K6IKxL6Yg3ry76OxU8WOiye6oZaL+Ittc2nXsKKZEVTBXmhaGzCZsMqVXkL2zfHzNOUrJccsiAg==",
+  "dgSpecHash": "JVNGzEsl99RSZ+FqoMpkLDHaE87mdFFsnCtfvic9d1xPJ/Ngycot8a38N33Jn4YiMJMEo5Jz2fgkPZRYb75Zvw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sahin\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj",
+  "projectFilePath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
@@ -125,10 +125,7 @@
     "C:\\Users\\sahin\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\sahin\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+    "C:\\Users\\sahin\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -19,7 +19,7 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Controllers\RegisterController.en-US.resx">
+    <EmbeddedResource Update="Resources\Controllers\UserController.en-US.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

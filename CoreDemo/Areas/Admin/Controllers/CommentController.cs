@@ -31,6 +31,8 @@ namespace CoreDemo.Areas.Admin.Controllers
         {
             List<Comment> comments = _commentService.GetAllWithDetails(x => x.BlogId == id);
             List<ReadCommentViewModel> viewModels = _mapper.Map(comments, new List<ReadCommentViewModel>());
+
+            ViewData["CommentBlogTitle"] = _blogService.GetByBlogIdWithDetails(id).BlogTitle;
             return View(viewModels);
         }
 
