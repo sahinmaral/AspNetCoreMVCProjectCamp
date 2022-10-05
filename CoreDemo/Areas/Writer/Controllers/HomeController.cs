@@ -52,7 +52,7 @@ namespace CoreDemo.Areas.Writer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ChangeProfile()
+        public async Task<IActionResult> ChangeProfileInformations()
         {
             User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
@@ -63,7 +63,7 @@ namespace CoreDemo.Areas.Writer.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> ChangeProfile(ReadUserViewModel viewModel)
+        public async Task<IActionResult> ChangeProfileInformations(ReadUserViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace CoreDemo.Areas.Writer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeProfileImage(UserPictureViewModel viewModel)
+        public async Task<IActionResult> ChangeProfilePhoto(UserPictureViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {

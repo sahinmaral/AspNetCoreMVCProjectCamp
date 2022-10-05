@@ -19,6 +19,8 @@
     <link href="~/adminTemplate/css/animate.css" rel="stylesheet">
     <link href="~/adminTemplate/css/style.css" rel="stylesheet">
     <link href="~/adminTemplate/css/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/adminTemplate/css/popup.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/writerTemplate/assets/vendors/mdi/css/materialdesignicons.min.css">
 
 </head>
 
@@ -33,14 +35,6 @@
             @await Component.InvokeAsync("AdminNavbar")
 
             @RenderBody()
-
-
-
-            <div class="footer">
-                <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2018
-                </div>
-            </div>
 
         </div>
     </div>
@@ -59,7 +53,6 @@
 
     <!-- Custom and plugin javascript -->
     <script src="~/adminTemplate/js/inspinia.js"></script>
-    <script src="~/adminTemplate/js/plugins/pace/pace.min.js"></script>
 
     <!-- iCheck -->
     <script src="~/adminTemplate/js/plugins/iCheck/icheck.min.js"></script>

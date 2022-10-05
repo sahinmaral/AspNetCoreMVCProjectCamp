@@ -1,32 +1,31 @@
-﻿@model CoreDemo.Areas.Admin.Models.UpdateCommentViewModel
+﻿@model UpdateCommentViewModel
 
 @{
-    ViewBag.Title = "Yorum Duzenleme ";
+    ViewBag.Title = @ViewLocalizer["Title"];
     Layout = "_AdminLayout";
 }
 
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title" style="margin-bottom:3em">Yorum Duzenleme</h3>
-            @using (Html.BeginForm("UpdateComment", "Comment", FormMethod.Post))
-            {
-                @Html.HiddenFor(x => x.CommentId)
-                @Html.HiddenFor(x => x.BlogId)
+            <h3 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title"]</h3>
+            <form asp-controller="Comment" asp-area="Admin" asp-action="UpdateComment" method="post">
+                <input name="CommentId" value="@Model.CommentId" type="hidden" />
+                <input name="CommentId" value="@Model.CommentId" type="hidden" />
 
                 <div class="form-group">
-                    <label>Baslik</label>
+                    <label>@ViewLocalizer["BlogTitle"]</label>
                     @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control", style = "border:1px solid black", disabled = true })
                 </div>
 
                 <div class="form-group">
-                    <label>Yorum</label>
-                    @Html.TextAreaFor(x => x.CommentAbout, new { @class = "form-control", style = "border:1px solid black", placeholder = "Yorum", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.CommentAbout, "", new { style = "color:darkred" })
+                    <label>@ViewLocalizer["Comment"]</label>
+                    <textarea class="form-control" rows="4" style="border:1px solid black" name="CommentAbout" asp-for="CommentAbout"></textarea>
+                    <span asp-validation-for="CommentAbout" style="color:darkred"></span>
                 </div>
 
-                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">Guncelle</button>
-            }
+                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">@ViewLocalizer["Submit"]</button>
+            </form>
         </div>
     </div>
 </div>

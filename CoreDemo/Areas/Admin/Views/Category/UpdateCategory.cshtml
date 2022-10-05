@@ -1,32 +1,34 @@
-﻿@model CoreDemo.Models.ReadCategoryViewModel
+﻿@model ReadCategoryViewModel
 
 @{
-    ViewBag.Title = "Kategoriler | ";
+    ViewBag.Title = @ViewLocalizer["Title",Model.CategoryName];
     Layout = "_AdminLayout";
 }
 
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title" style="margin-bottom:3em">@Model.CategoryName adli kategoriyi duzenleyin</h4>
-            @using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.HiddenFor(x => x.CategoryId)
-                @Html.HiddenFor(x => x.CategoryStatus)
+            <h4 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title",Model.CategoryName]</h4>
+            <form asp-controller="Category" asp-action="UpdateCategory" asp-area="Admin" method="post">
+
+                <input type="hidden" value="@Model.CategoryId" name="CategoryId" />
+                <input type="hidden" value="@Model.CategoryStatus" name="CategoryStatus" />
 
                 <div class="form-group">
-                    <label>Kategori Adi</label>
-                    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", style = "border:1px solid black", placeholder = "Kategori Adi" })
-                    @Html.ValidationMessageFor(x => x.CategoryName, "", new { style = "color:darkred" })
+                    <label asp-for="CategoryName">@ViewLocalizer["CategoryName"]</label>
+                    <input type="text" class="form-control" name="CategoryName" style="border:1px solid black" asp-for="CategoryName"/>
+                    <span asp-validation-for="CategoryName" style="color:darkred"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleTextarea1">Aciklama</label>
-                    @Html.TextAreaFor(x => x.CategoryDescription, new { @class = "form-control", style = "border:1px solid black", placeholder = "Aciklama", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.CategoryDescription, "", new { style = "color:darkred" })
+                    <label asp-for="CategoryDescription">@ViewLocalizer["CategoryDescription"]</label>
+                    <textarea asp-for="CategoryDescription" name="CategoryDescription" class="form-control" style="border:1px solid black" rows="4"></textarea>
+                    <span asp-validation-for="CategoryDescription" style="color:darkred"></span>
                 </div>
-                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">Guncelle</button>
-            }
+                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">@ViewLocalizer["Update"]</button>
+            
+            </form>
+
         </div>
     </div>
 </div>

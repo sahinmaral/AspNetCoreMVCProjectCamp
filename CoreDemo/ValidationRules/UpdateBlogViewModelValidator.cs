@@ -7,8 +7,6 @@ namespace CoreDemo.ValidationRules
     {
         public UpdateBlogViewModelValidator()
         {
-            RuleFor(x => x.BlogMainImage).NotNull().WithMessage("Dosya yuklemeniz gerekiyor.");
-            RuleFor(x => x.BlogThumbnailImage).NotNull().WithMessage("Dosya yuklemeniz gerekiyor.");
 
             RuleFor(x => x.BlogMainImage).SetValidator(new ImageValidator());
             RuleFor(x => x.BlogThumbnailImage).SetValidator(new ImageValidator());

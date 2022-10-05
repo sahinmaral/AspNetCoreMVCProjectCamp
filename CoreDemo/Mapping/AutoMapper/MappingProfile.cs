@@ -28,6 +28,7 @@ namespace CoreDemo.Mapping.AutoMapper
 
             CreateMap<CreateBlogViewModel, Blog>();
 
+
             CreateMap<Category, ReadCategoryViewModel>();
             CreateMap<ReadCategoryViewModel, Category>();
 

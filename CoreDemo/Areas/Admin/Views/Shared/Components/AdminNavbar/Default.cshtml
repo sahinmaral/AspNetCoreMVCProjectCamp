@@ -1,34 +1,13 @@
-﻿@using CoreDemo.Controllers
-@using CoreDemo.Models
-@model CoreDemo.Areas.Admin.Models.AdminNavbarViewModel
+﻿
+@model AdminNavbarViewModel
+
+@inject IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> LocOptions
 
 @{
-    int totalSubstractNumber = 0;
-    string totalSubstractText = "";
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
 
-    void CalculateSubstract(DateTime messageSentDate)
-    {
-        if (DateTime.Now.Subtract(messageSentDate).TotalSeconds < 60)
-        {
-            totalSubstractNumber = (int)DateTime.Now.Subtract(messageSentDate).TotalSeconds;
-            totalSubstractText = totalSubstractNumber + " saniye önce";
-        }
-        else if (DateTime.Now.Subtract(messageSentDate).TotalMinutes < 60)
-        {
-            totalSubstractNumber = (int)DateTime.Now.Subtract(messageSentDate).TotalMinutes;
-            totalSubstractText = totalSubstractNumber + " dakika önce";
-        }
-        else if (DateTime.Now.Subtract(messageSentDate).TotalHours < 60)
-        {
-            totalSubstractNumber = (int)DateTime.Now.Subtract(messageSentDate).TotalHours;
-            totalSubstractText = totalSubstractNumber + " saat önce";
-        }
-        else
-        {
-            totalSubstractNumber = (int)DateTime.Now.Subtract(messageSentDate).TotalDays;
-            totalSubstractText = totalSubstractNumber + " gün önce";
-        }
-    }
+    var culture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureList = LocOptions.Value.SupportedUICultures.Select(x => new SelectListItem { Value = x.Name, Text = x.Name }).ToList();
 }
 
 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -36,80 +15,31 @@
         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
     </div>
     <ul class="nav navbar-top-links navbar-right">
+        
         <li class="dropdown">
-            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                <i class="fa fa-envelope"></i>  <span class="label label-warning">@Model.ReadMessageViewModels.Count</span>
-            </a>
-            <ul class="dropdown-menu dropdown-messages">
-                @foreach (ReadMessageViewModel message in Model.ReadMessageViewModels)
-                {
-                    CalculateSubstract(message.MessageDateTime);
-
-                    <li>
-                        <div class="dropdown-messages-box">
-                            <a class="dropdown-item float-left" href="#">
-                                <img alt="image" class="rounded-circle" src="~/images/@message.Sender.ImageUrl">
-                            </a>
-                            <div class="media-body">
-                                <strong>@message.Sender.Username</strong> size mesaj atti. <br>
-                                <small class="text-muted">@totalSubstractText</small>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dropdown-divider"></li>
-                }
-                <li>
-                    <div class="text-center link-block">
-                        <a href="/Admin/Message/ViewInbox" class="dropdown-item">
-                            <i class="fa fa-envelope"></i> <strong>Butun mesajlari oku</strong>
-                        </a>
-                    </div>
-                </li>
-            </ul>
+            <form asp-action="@nameof(UserLayoutController.SetLanguage)" asp-controller="@nameof(UserLayoutController).Replace("Controller","")" method="post"
+                  asp-route-returnUrl="@returnUrl" asp-area="">
+                <select name="culture" class="form-control" style="height:30px;"
+                        asp-for="@culture.RequestCulture.UICulture.Name"
+                        asp-items="cultureList"
+                        onchange="this.form.submit();">
+                </select>
+            </form>
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-            </a>
-            <ul class="dropdown-menu dropdown-alerts">
-                <li>
-                    <a href="mailbox.html" class="dropdown-item">
-                        <div>
-                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                            <span class="float-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li>
-                    <a href="profile.html" class="dropdown-item">
-                        <div>
-                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                            <span class="float-right text-muted small">12 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li>
-                    <a href="grid_options.html" class="dropdown-item">
-                        <div>
-                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                            <span class="float-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li>
-                    <div class="text-center link-block">
-                        <a href="notifications.html" class="dropdown-item">
-                            <strong>See All Alerts</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-                </li>
-            </ul>
+            @await Component.InvokeAsync(typeof(CoreDemo.Areas.Admin.ViewComponents.AdminMessagesViewComponent))
         </li>
+        
 
+        @{
+            //TODO : Notification Kismi eklenecek
+        }
+
+        
+        <li class="dropdown">
+            @await Component.InvokeAsync(typeof(CoreDemo.Areas.Admin.ViewComponents.NotificationListViewComponent))
+        </li>
+        
 
         <li>
             <a href="/@nameof(UserController).Replace("Controller","")/@nameof(UserController.LogOut)">

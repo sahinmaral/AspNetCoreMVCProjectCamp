@@ -1,35 +1,35 @@
 ﻿
 @{
-    ViewBag.Title = "Kullanicilar ";
+    ViewBag.Title = @ViewLocalizer["Title"];
     Layout = "_AdminLayout";
 }
 
-<h2>Kullanici Ajax İşlemleri</h2>
+<h2>@ViewLocalizer["PageTitle"]</h2>
 <br />
 
-<button type="button" id="btnGetUsers" class="btn btn-primary">Kullanicilari Listele</button>
+<button type="button" id="btnGetUsers" class="btn btn-primary">@ViewLocalizer["ListUsers"]</button>
 <button type="button" id="btnShowUserIdText"
         class="btn btn-primary">
-    Kullanicinin ID'ye göre Listele
+    @ViewLocalizer["ListUsersByUsername"]
 </button>
 <br />
 <br />
 
 <div id="userList">
     <label class="mt-2">
-        Buraya kullanicilar veya kullanici gelecek
+        @ViewLocalizer["ListAreaInfoText"]
     </label>
 </div>
 
 <div id="userIdDiv" style="display: none; ">
     <input type="text"
-           id="userIdText"
-           placeholder="Kullanicinin ID'sini giriniz"
+           id="userUsernameText"
+           placeholder="@ViewLocalizer["EnterUsername"]"
            class="form-control border border-dark mb-2"
            style="width: 200px" />
     <button type="button" id="btnGetUser"
             class="btn btn-primary">
-        Listele
+        @ViewLocalizer["ListButtonText"]
     </button>
 </div>
 
@@ -61,7 +61,7 @@
             return users;
         }
 
-        GetUser = function (id) {
+        GetUsersByUsername = function (username) {
             var foundUser = {};
 
             $.ajax({
@@ -69,7 +69,7 @@
                 contentType: "application/json",
                 dataType: "json",
                 type: "GET",
-                url: "/Admin/User/GetUserByIdJson?id=" + id,
+                url: "/Admin/User/GetUsersByUsernameJson?username=" + username,
                 success: function (data) {
                     foundUser = jQuery.parseJSON(data);
                 }
@@ -86,9 +86,9 @@
                 "<table class='table table-bordered'>" +
                 "<tr> " +
                 "<th> # </td>" +
-                "<th> Kullanici Adı Soyadi</td>" +
-                "<th> Kullanici Kullanıcı Adı </td>" +
-                "<th> Kullanici Islemleri </td>" +
+                "<th> @ViewLocalizer["UserNameSurname"] </td>" +
+                "<th> @ViewLocalizer["UserUsername"] </td>" +
+                "<th> @ViewLocalizer["UserProcesses"] </td>" +
                 //"<th> Yazarın Durumu </td>" +
                 //"<th> Yazarı Banla / Banını Kaldır </td>" +
                 "</tr>";
@@ -98,7 +98,7 @@
                 tableHTML += "<td>" + users[i].NameSurname + "</td>";
                 tableHTML += "<td>" + users[i].Username + "</td>";
                 tableHTML += "<td>";
-                tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + users[i].UserId + "' class='btn btn-success'>Kullanicinin Rollerini Getir</a>";
+                tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + users[i].UserId + "' class='btn btn-success'>@ViewLocalizer["GetRolesToUser"]</a>";
                 tableHTML += "</td> ";
                 //if (!writers[i].LockoutEnabled)
                 //    tableHTML += "<td>Temiz</td>";
@@ -114,48 +114,55 @@
             $("#userList").html(tableHTML);
         }
 
-        LoadToTableGetUser = function () {
+        LoadToTableGetUsersByUsername = function () {
 
-            var id = $("#userIdText").val();
+            var username = $("#userUsernameText").val();
 
-            if (id === "")
-                toastr.error('Kullanici Id kısmını doldurunuz');
+            if (username === "")
+                toastr.error("@ViewLocalizer["EnterUsername"]");
             else {
-                var user = GetUser(id);
 
-                if(user !== null){
+                var users = GetUsersByUsername(username);
+
+                if(users.length == 0){
+                    var emptyList = "<div class='alert alert-warning font-weight-bold'> @ViewLocalizer["NoUserHasBeenFoundByThisUsername"] </div>"
+                    $("#userList").html(emptyList);
+                }
+
+                else {
                     var tableHTML =
                         "<table class='table table-bordered'>" +
                         "<tr> " +
                         "<th> # </td>" +
-                        "<th> Kullanici Adı Soyadi</td>" +
-                        "<th> Kullanici Kullanıcı Adı </td>" +
-                        "<th> Kullanici Islemleri </td>" +
+                        "<th> @ViewLocalizer["UserNameSurname"] </td>" +
+                        "<th> @ViewLocalizer["UserUsername"] </td>" +
+                        "<th> @ViewLocalizer["UserProcesses"] </td>" +
                         //"<th> Yazarın Durumu </td>" +
                         //"<th> Yazarı Banla / Banını Kaldır </td>" +
                         "</tr>";
-                    tableHTML += "<tr>";
-                    tableHTML += "<td>" + user.UserId + "</td>";
-                    tableHTML += "<td>" + user.NameSurname + "</td>";
-                    tableHTML += "<td>" + user.Username + "</td>";
-                    tableHTML += "<td>";
-                    tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + user.UserId + "' class='btn btn-success'>Kullanicinin Rollerini Getir</a>";
-                    tableHTML += "</td> ";
-                    //if (!foundWriter.LockoutEnabled)
-                    //    tableHTML += "<td>Temiz</td>";
-                    //else
-                    //    tableHTML += "<td>Banlı</td>";
-                    //tableHTML += "<td> <button type=button onClick=EnableOrDisableWriter(" + foundWriter.UserId + ") class='btn btn-warning' > Yazarı Banla / Banını Kaldır</button > </td > ";
-                    tableHTML += "</tr>";
+                    for (var i = 0; i < users.length; i++) {
+                        tableHTML += "<tr>";
+                        tableHTML += "<td>" + users[i].UserId + "</td>";
+                        tableHTML += "<td>" + users[i].NameSurname + "</td>";
+                        tableHTML += "<td>" + users[i].Username + "</td>";
+                        tableHTML += "<td>";
+                        tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + users[i].UserId + "' class='btn btn-success'>@ViewLocalizer["GetRolesToUser"]</a>";
+                        tableHTML += "</td> ";
+                        //if (!writers[i].LockoutEnabled)
+                        //    tableHTML += "<td>Temiz</td>";
+                        //else
+                        //    tableHTML += "<td>Banlı</td>";
+
+                        //tableHTML += "<td> <button type=button onClick=EnableOrDisableWriter(" + writers[i].UserId + ") class='btn btn-warning' > Yazarı Banla / Banını Kaldır</button > </td > ";
+                        tableHTML += "</tr>";
+                    }
+
                     tableHTML += "</table>";
 
                     $("#userList").html(tableHTML);
                 }
-                else{
-                    var emptyList = "<div class='alert alert-warning font-weight-bold'> Boyle birisi yok </div>"
-                    $("#userList").html(emptyList);
-                }
 
+                
                 
             }
 
@@ -178,13 +185,13 @@
             if (element.style.display === "none")
                 LoadToTableGetUsers();
             else
-                LoadToTableGetUser();
+                LoadToTableGetUsersByUsername();
         }
 
         $("#btnShowUserIdText").click(function () {
 
 
-            document.getElementById("userList").innerHTML = "<label class='mt-2'>Buraya kullanicilar veya kullanici gelecek</label>";
+            document.getElementById("userList").innerHTML = "<label class='mt-2'>@ViewLocalizer["ListAreaInfoText"]</label>";
 
             var div = document.getElementById("userIdDiv");
 
@@ -208,7 +215,7 @@
         });
 
         $("#btnGetUser").click(function () {
-            LoadToTableGetUser();
+            LoadToTableGetUsersByUsername();
         });
 
 

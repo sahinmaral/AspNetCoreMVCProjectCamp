@@ -62,7 +62,7 @@ using Microsoft.Extensions.Options;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ccbc83a44197b9069ad0fb1b893896fc9b120139", @"/Views/UserLayout/FooterPartialView.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"659d55fab1232bf3352617e1dddadbee6c9688aa", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ceae66b0eacbcd0a14f6fc571acea0fa3aee05ba", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_UserLayout_FooterPartialView : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -164,6 +164,10 @@ using Microsoft.Extensions.Options;
         #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public IStringLocalizer<UserLayoutController> Localizer { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public IViewLocalizer ViewLocalizer { get; private set; } = default!;
         #nullable disable
         #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

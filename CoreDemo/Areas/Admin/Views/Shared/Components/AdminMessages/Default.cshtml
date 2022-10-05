@@ -1,0 +1,121 @@
+﻿@model List<ReadMessageViewModel>
+
+@{
+    LocalizedHtmlString messageNotificationTextLocStr;
+    if (Model.Count > 1)
+        messageNotificationTextLocStr = ViewLocalizer["NewMessages", Model.Count];
+    else
+        messageNotificationTextLocStr = ViewLocalizer["NewMessage", Model.Count]; ;
+
+    int totalSubstractNumber;
+    LocalizedHtmlString totalSubstractTextLocString;
+
+    void CalculateSubstract(DateTime messageSentDate)
+    {
+        if (DateTime.Now.Subtract(messageSentDate).TotalSeconds < 60)
+        {
+            totalSubstractNumber = (int)DateTime.Now.Subtract(messageSentDate).TotalSeconds;
+            totalSubstractTextLocString = totalSubstractNumber == 1 ? ViewLocalizer["SecondAgo", totalSubstractNumber] : ViewLocalizer["SecondsAgo", totalSubstractNumber];
+        }
+        else if (DateTime.Now.Subtract(messageSentDate).TotalMinutes < 60)
+        {
+            totalSubstractNumber = (int)DateTime.Now.Subtract(messageSentDate).TotalMinutes;
+            totalSubstractTextLocString = totalSubstractNumber == 1 ? ViewLocalizer["MinuteAgo", totalSubstractNumber] : ViewLocalizer["MinutesAgo", totalSubstractNumber];
+        }
+        else if (DateTime.Now.Subtract(messageSentDate).TotalHours < 60)
+        {
+            totalSubstractNumber = (int)DateTime.Now.Subtract(messageSentDate).TotalHours;
+            totalSubstractTextLocString = totalSubstractNumber == 1 ? ViewLocalizer["HourAgo", totalSubstractNumber] : ViewLocalizer["HoursAgo", totalSubstractNumber];
+        }
+        else
+        {
+            totalSubstractNumber = (int)DateTime.Now.Subtract(messageSentDate).TotalDays;
+            totalSubstractTextLocString = totalSubstractNumber == 1 ? ViewLocalizer["DayAgo", totalSubstractNumber] : ViewLocalizer["DaysAgo", totalSubstractNumber];
+        }
+    }
+}
+
+<style>
+    .preview-list .preview-item {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        padding: .75rem 1.5rem;
+        font-size: .875rem;
+    }
+
+    .preview-list .preview-item .preview-thumbnail {
+        color: #ffffff;
+        position: relative;
+    }
+
+    .preview-thumbnail img{
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+    }
+
+    .text-gray {
+        color: #8c8c8c;
+    }
+
+    .preview-list .preview-item .preview-thumbnail .preview-icon {
+        padding: 6px;
+        text-align: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .preview-list .preview-item .preview-item-content {
+        line-height: 1;
+        padding-left: 15px;
+    }
+
+    .preview-subject {
+        font-size: 15px;
+    }
+</style>
+
+
+
+<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" id="notificationDropdown">
+    <i class="mdi mdi-email-outline mdi-18px"></i>  @if (@Model.Count > 0)
+    {
+        <span class="label label-warning">@Model.Count</span>
+    }
+</a>
+<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+    <h6 class="p-3 mb-0" style="font-weight:bold; font-size:15px;">@ViewLocalizer["Messages"]</h6>
+    @foreach (ReadMessageViewModel message in Model)
+    {
+        CalculateSubstract(message.MessageDateTime);
+
+        <a class="dropdown-item preview-item" href="/Message/GetMessageDetail/@message.MessageId">
+            <div class="preview-thumbnail">
+                <img src="~/images/@message.Sender.ImageUrl" alt="image" class="profile-pic">
+            </div>
+            <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                <h6 class="preview-subject ellipsis mb-1 font-weight-normal">@ViewLocalizer["HasSentYouMessage",@message.Sender.NameSurname]</h6>
+                <p class="text-gray mb-0">@totalSubstractTextLocString</p>
+            </div>
+        </a>
+    }
+    <div class="dropdown-divider"></div>
+    <h6 class="p-3 mb-0 text-center">
+        <a href="/Admin/Message/ViewInbox" style="font-weight:bold">@messageNotificationTextLocStr</a>
+    </h6>
+</div>

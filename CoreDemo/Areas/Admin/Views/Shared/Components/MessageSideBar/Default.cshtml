@@ -1,12 +1,12 @@
-﻿@model CoreDemo.Areas.Admin.Models.MessageTypeCountViewModel
+﻿@model MessageTypeCountViewModel
 
     <div class="ibox ">
         <div class="ibox-content mailbox-content">
             <div class="file-manager">
-                <h5>Dosyalar</h5>
+                <h5>@ViewLocalizer["Messages"]</h5>
                 <ul class="folder-list m-b-md" style="padding: 0">
-                    <li><a href="/Admin/Message/ViewInbox"> <i class="fa fa-inbox "></i> Gelen Mesajlar <span class="label label-warning float-right">@Model.ReceivedMessageCount</span> </a></li>
-                    <li><a href="/Admin/Message/ViewSendBox"> <i class="fa fa-envelope "></i> Gonderilen Mesajlar <span class="label label-danger float-right">@Model.SentMessageCount</span> </a></li>
+                <li><a href="/Admin/Message/ViewInbox"> <i class="fa fa-inbox "></i>@ViewLocalizer["IncomingMessages"]<span class="label label-warning float-right">@Model.ReceivedMessageCount</span> </a></li>
+                <li><a href="/Admin/Message/ViewSendBox"> <i class="fa fa-envelope "></i>@ViewLocalizer["SentMessages"]<span class="label label-danger float-right">@Model.SentMessageCount</span> </a></li>
                 </ul>
                 <div class="clearfix"></div>
             </div>

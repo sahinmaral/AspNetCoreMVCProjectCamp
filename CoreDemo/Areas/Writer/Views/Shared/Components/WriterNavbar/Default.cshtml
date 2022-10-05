@@ -1,5 +1,16 @@
 ﻿@model ReadUserViewModel
 
+@inject IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> LocOptions
+
+@{
+    Layout = null;
+
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+
+    var culture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureList = LocOptions.Value.SupportedUICultures.Select(x => new SelectListItem { Value = x.Name, Text = x.Name }).ToList();
+}
+
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo" href="/Writer/Home/Homepage">
@@ -13,14 +24,14 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
         </button>
-        <div class="search-field d-none d-md-block">
-            <form class="d-flex align-items-center h-100" action="#">
-                <div class="input-group">
-                    <div class="input-group-prepend bg-transparent">
-                        <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                    </div>
-                    @*<input type="text" class="form-control bg-transparent border-0" placeholder="Search">*@
-                </div>
+        <div class="d-none d-sm-block">
+            <form asp-action="@nameof(UserLayoutController.SetLanguage)" asp-controller="@nameof(UserLayoutController).Replace("Controller","")" method="post"
+                  asp-route-returnUrl="@returnUrl" asp-area="">
+                <select name="culture" class="form-control" style="height:30px; margin-top:20px"
+                        asp-for="@culture.RequestCulture.UICulture.Name"
+                        asp-items="cultureList"
+                        onchange="this.form.submit();">
+                </select>
             </form>
         </div>
         <ul class="navbar-nav navbar-nav-right">
@@ -50,7 +61,7 @@
                 @await Component.InvokeAsync("WriterMessages")
             </li>
             <li class="nav-item dropdown">
-                @await Component.InvokeAsync("NotificationList")
+                @await Component.InvokeAsync(typeof(CoreDemo.Areas.Writer.ViewComponents.NotificationListViewComponent))
             </li>
             <li class="nav-item nav-logout d-none d-lg-block">
                 <a class="nav-link" href="/@nameof(UserController).Replace("Controller","")/@nameof(UserController.LogOut)">

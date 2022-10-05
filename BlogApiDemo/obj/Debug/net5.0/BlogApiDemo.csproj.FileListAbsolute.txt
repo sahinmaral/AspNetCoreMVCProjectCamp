@@ -81,7 +81,6 @@ C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCam
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -118,3 +117,4 @@ C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCam
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\net5.0\BlogApiDemo.pdb
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\net5.0\BlogApiDemo.genruntimeconfig.cache
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\net5.0\ref\BlogApiDemo.dll
+C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

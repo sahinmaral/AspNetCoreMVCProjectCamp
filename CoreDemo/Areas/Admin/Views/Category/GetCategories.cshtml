@@ -1,9 +1,10 @@
 ﻿@using X.PagedList;
 @using X.PagedList.Mvc.Core;
-@model IPagedList<CoreDemo.Models.ReadCategoryViewModel>
+
+@model IPagedList<ReadCategoryViewModel>
 
 @{
-    ViewBag.Title = "Kategoriler | ";
+    ViewBag.Title = ViewLocalizer["Title"];
     Layout = "_AdminLayout";
 }
 
@@ -16,10 +17,10 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Kategori Adı</th>
-                            <th>Aktif Yap</th>
-                            <th>Pasif Yap</th>
-                            <th>Düzenle</th>
+                            <th>@ViewLocalizer["CategoryName"]</th>
+                            <th>@ViewLocalizer["SetActive"]</th>
+                            <th>@ViewLocalizer["SetDeactive"]</th>
+                            <th>@ViewLocalizer["Edit"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,16 +31,16 @@
                                 <td>@item.CategoryName</td>
                                 @if (item.CategoryStatus)
                                 {
-                                    <td><a class="btn btn-danger disabled text-white">Aktif Yap</a></td>
-                                    <td><a class="btn btn-warning text-white" onclick="confirmActiveDeactive(true,@item.CategoryId)">Pasif Yap</a></td>
+                                    <td><a class="btn btn-danger disabled text-white">@ViewLocalizer["SetActive"]</a></td>
+                                    <td><a class="btn btn-warning text-white" onclick="confirmActiveDeactive(true,@item.CategoryId)">@ViewLocalizer["SetDeactive"]</a></td>
                                 }
                                 else
                                 {
-                                    <td><a class="btn btn-danger text-white" onclick="confirmActiveDeactive(false,@item.CategoryId)">Aktif Yap</a></td>
-                                    <td><a class="btn btn-warning text-white disabled">Pasif Yap</a></td>
+                                    <td><a class="btn btn-danger text-white" onclick="confirmActiveDeactive(false,@item.CategoryId)">@ViewLocalizer["SetActive"]</a></td>
+                                    <td><a class="btn btn-warning text-white disabled">@ViewLocalizer["SetDeactive"]</a></td>
                                 }
 
-                                <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Düzenle</a></td>
+                                <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">@ViewLocalizer["Edit"]</a></td>
 
                             </tr>
                         }
@@ -61,15 +62,16 @@
 
         if (status === true) {
             swal({
-                title: "Uyarı",
-                text: "Pasif hale getirmek istediğinize emin misiniz ?",
+                title: "@ViewLocalizer["SwalTitle"]",
+                text: "@ViewLocalizer["VerifyCategoryDeactiveMessage"]",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true
             })
-                .then((willDelete) => {
+                .then(async (willDelete) => {
                     if (willDelete) {
-                        swal("Kategori pasif hale getirildi", { icon: "success" });
+                        swal("@ViewLocalizer["CategorySuccessfullySetDeactive"]", { icon: "success" });
+                        await new Promise(resolve => setTimeout(resolve, 3000));
                             $.ajax({
                                 url: "/Admin/Category/DisableCategory/" + id,
                                 type: 'GET',
@@ -83,15 +85,16 @@
         }
         else {
             swal({
-                    title: "Uyarı",
-                    text: "Aktif hale getirmek istediğinize emin misiniz ?",
+                    title: "@ViewLocalizer["Title"]",
+                    text: "@ViewLocalizer["VerifyCategoryActiveMessage"]",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true
                 })
-                .then((willDelete) => {
+                .then(async (willDelete) => {
                     if (willDelete) {
-                        swal("Kategori aktif hale getirildi", { icon: "success" });
+                        swal("@ViewLocalizer["CategorySuccessfullySetActive"]", { icon: "success" });
+                        await new Promise(resolve => setTimeout(resolve, 3000));
                         $.ajax({
                             url: "/Admin/Category/EnableCategory/" + id,
                             type: 'GET',

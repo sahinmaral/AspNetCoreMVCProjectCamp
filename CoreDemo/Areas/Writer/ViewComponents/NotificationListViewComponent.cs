@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Abstract;
 using CoreDemo.Areas.Writer.Models;
-using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreDemo.Areas.Writer.ViewComponents
 {

@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreDemo.Areas.Admin.Controllers
 {
@@ -49,20 +50,15 @@ namespace CoreDemo.Areas.Admin.Controllers
         }
 
 
-        public async Task<IActionResult> GetUserByIdJson(int id)
+        public IActionResult GetUsersByUsernameJson(string username)
         {
-            User user = await _userManager.FindByIdAsync(id.ToString());
+            List<User> users = _userManager.Users.Where(x => x.NormalizedUserName.Contains(username.ToUpper())).ToList();
 
-            if(user.UserName != User.Identity.Name)
-            {
-                ReadUserViewModel viewModel = _mapper.Map(user, new ReadUserViewModel());
-                var jsonUsers = JsonConvert.SerializeObject(viewModel);
-                return Json(jsonUsers);
-            }
-            else
-            {
-                return Json(null);
-            }
+            List<ReadUserViewModel> userViewModels = _mapper.Map(users.Where(x => x.UserName != User.Identity.Name), new List<ReadUserViewModel>());
+
+            var jsonUsers = JsonConvert.SerializeObject(userViewModels);
+
+            return Json(jsonUsers);
 
         }
 

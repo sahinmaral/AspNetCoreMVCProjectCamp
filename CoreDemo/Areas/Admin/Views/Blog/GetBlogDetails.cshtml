@@ -1,52 +1,52 @@
-﻿@model CoreDemo.Models.UpdateBlogViewModel
+﻿
+@model UpdateBlogViewModel
 
 @{
-    ViewBag.Title = @Model.BlogTitle + " baslikli blogu duzenleme";
+    ViewBag.Title = @ViewLocalizer["Title",Model.BlogTitle];
     Layout = "_AdminLayout";
 }
 
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title" style="margin-bottom:3em">@Model.BlogTitle baslikli blogu duzenleme</h3>
-            @using (Html.BeginForm("GetBlogDetails", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.HiddenFor(x => x.BlogId)
+            <h3 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title",Model.BlogTitle]</h3>
+
+            <form asp-action="GetBlogDetails" asp-controller="Blog" asp-area="Admin" enctype="multipart/form-data" method="post">
+                <input type="hidden" asp-for="BlogId" value="@Model.BlogId" />
 
                 <div class="form-group">
-                    <label>Baslik</label>
-                    @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control", style = "border:1px solid black", placeholder = "Baslik" })
-                    @Html.ValidationMessageFor(x => x.BlogTitle, "", new { style = "color:darkred" })
+                    <label>@ViewLocalizer["BlogTitle"]</label>
+                    <input type="text" asp-for="@Model.BlogTitle" name="BlogTitle"  class="form-control" style="border:1px solid black" />
+                    <span asp-validation-for="BlogTitle" style="color:darkred"></span>        
                 </div>
 
                 <div class="form-group">
-                    <label>Icerik</label>
+                    <label>@ViewLocalizer["BlogContent"]</label>
                     @*//TODO : Text Editor ile yapilabilir.*@
 
-                    @Html.TextAreaFor(x => x.BlogContent, new { @class = "form-control", style = "border:1px solid black", placeholder = "Icerik", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.BlogContent, "", new { style = "color:darkred" })
+                    <textarea class = "form-control" style = "border:1px solid black" rows = "4" asp-for="BlogContent" name="BlogContent"></textarea>
+                    <span asp-validation-for="BlogContent" style="color:darkred"></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Kategori</label>
+                    <label>@ViewLocalizer["BlogCategory"]</label>
                     @Html.DropDownListFor(x => x.CategoryViewModel.CategoryId, (List<SelectListItem>)ViewData["Categories"], new { @class = "form-control", style = "border:1px solid black" })
                 </div>
 
-                //TODO : Eklenmis resimlerin buraya gelmesi gerekiyor
-
                 <div class="form-group">
-                    <label>Kapak resim</label>
-                    <input type="file" class="form-control" name="BlogThumbnailImage" />
-                    @Html.ValidationMessageFor(x => x.BlogThumbnailImage, "", new { style = "color:darkred" })
+                    <label>@ViewLocalizer["BlogThumbnailPhoto"]</label>
+                    <input type="file" class="form-control" name="BlogThumbnailImage"/>
+                    <span asp-validation-for="BlogThumbnailImage" style="color:darkred"></span>
                 </div>
                 <div class="form-group">
-                    <label>Ana resim</label>
-                    <input type="file" class="form-control" name="BlogMainImage" />
-                    @Html.ValidationMessageFor(x => x.BlogMainImage, "", new { style = "color:darkred" })
+                    <label>@ViewLocalizer["BlogMainPhoto"]</label>
+                    <input type="file" class="form-control" name="BlogMainImage"/>
+                    <span asp-validation-for="BlogMainImage" style="color:darkred"></span>
                 </div>
 
-                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">Guncelle</button>
-            }
+                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">@ViewLocalizer["SubmitText"]</button>
+            </form>
+
         </div>
     </div>
 </div>

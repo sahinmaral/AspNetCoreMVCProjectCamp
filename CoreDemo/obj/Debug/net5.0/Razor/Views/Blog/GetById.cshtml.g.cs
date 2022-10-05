@@ -62,7 +62,7 @@ using Microsoft.Extensions.Options;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f3e211b1e484f498cfd78daa8153cefd08bb3619", @"/Views/Blog/GetById.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"659d55fab1232bf3352617e1dddadbee6c9688aa", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ceae66b0eacbcd0a14f6fc571acea0fa3aee05ba", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Blog_GetById : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ReadBlogViewModel>
     #nullable disable
@@ -218,6 +218,10 @@ AddHtmlAttributeValue("", 384, Model.BlogMainImage, 384, 20, false);
             WriteLiteral("            </div>\r\n        </div>\r\n\r\n    </aside>\r\n    <!--//right-->\r\n</div>\r\n\r\n");
         }
         #pragma warning restore 1998
+        #nullable restore
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public IViewLocalizer ViewLocalizer { get; private set; } = default!;
+        #nullable disable
         #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;

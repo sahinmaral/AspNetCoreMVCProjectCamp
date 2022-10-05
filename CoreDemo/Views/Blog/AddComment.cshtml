@@ -1,13 +1,10 @@
 ﻿@model CreateCommentViewModel
 
-<h4>Yorum Bırak</h4>
+<h4>@ViewLocalizer["Title"]</h4>
 <div class="comment-bottom">
-    @using (Html.BeginForm("AddComment","Blog",FormMethod.Post))
-    {
-        @Html.HiddenFor(x=>x.BlogId)
-        
-        @Html.TextAreaFor(x=>x.CommentAbout , new {@class="form-control" , placeholder="Mesaj..."})
-        
-        <button id="addCommentButton" class="btn btn-primary" type="submit">Gönder</button>
-    }
+    <form asp-controller="@nameof(BlogController).Replace("Controller","")" method="post" asp-action="@nameof(BlogController.AddComment)">
+        <input type="hidden" value="@Model.BlogId" asp-for=BlogId name=BlogId />
+        <textarea asp-for="CommentAbout" class="form-control" name="CommentAbout"></textarea>
+        <button id="addCommentButton" class="btn btn-primary" type="submit">@ViewLocalizer["Submit"]</button>
+    </form>
 </div>

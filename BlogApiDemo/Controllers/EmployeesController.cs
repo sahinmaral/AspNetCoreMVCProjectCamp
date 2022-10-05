@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BlogApiDemo.DataAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-using System;
-using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
-using System.Threading.Tasks;
-using BlogApiDemo.DataAccess;
 
 namespace BlogApiDemo.Controllers
 {
@@ -13,6 +10,25 @@ namespace BlogApiDemo.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
+        private readonly IConfiguration _configuration;
+        public EmployeesController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+        [HttpGet("Login")]
+        public IActionResult Login()
+        {
+            return Created("", new BuildToken(_configuration).CreateToken());
+        }
+
+        [Authorize]
+        [HttpGet("Action")]
+        public IActionResult Page1()
+        {
+            return Ok("testing");
+        }
+
         [HttpGet("getEmployees")]
         public IActionResult GetEmployees()
         {

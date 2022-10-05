@@ -56,16 +56,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <!-- social media -->
                 <div class="col-md-4 log-icons text-right">
-
-                    @*                    <form asp-action="SetLanguage" asp-controller="UserLayout">
-
-                        <input type="hidden" name="returnUrl" value=@returnUrl />
-
-                        <select name="culture">
-                            <option value="tr-TR">TR</option>
-                            <option value="en-US">EN</option>
-                        </select>
-                    </form>*@
                     
                     <form asp-action="SetLanguage" asp-controller="UserLayout" method="post" 
                           asp-route-returnUrl="@returnUrl">

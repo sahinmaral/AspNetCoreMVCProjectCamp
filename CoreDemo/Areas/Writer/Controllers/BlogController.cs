@@ -107,14 +107,6 @@ namespace CoreDemo.Areas.Writer.Controllers
         {
             Blog editedBlog = _blogService.GetByBlogIdWithDetails(blogId);
 
-            //blogViewModel = _mapper.Map(editedBlog, blogViewModel);
-            //TODO : IFormFile maplerken sorun cikariyor. Simdilik elle yazilacak
-            //    blogViewModel.BlogThumbnailImage = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name));
-            //using (var stream = System.IO.File.OpenRead(Directory.GetCurrentDirectory() + @"\wwwroot\images\" + editedBlog.BlogThumbnailImage))
-            //    blogViewModel.BlogMainImage = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name));
-            //using (var stream = System.IO.File.OpenRead(Directory.GetCurrentDirectory() + @"\wwwroot\images\" + editedBlog.BlogMainImage))
-            //TODO : Gelen dosyalari file input kismina koymamiz gerekiyor.
-
             UpdateBlogViewModel blogViewModel = new UpdateBlogViewModel
             {
                 BlogId = editedBlog.BlogId,
@@ -133,7 +125,7 @@ namespace CoreDemo.Areas.Writer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateBlog(UpdateBlogViewModel blogViewModel)
+        public IActionResult UpdateBlog(UpdateBlogViewModel blogViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -141,20 +133,32 @@ namespace CoreDemo.Areas.Writer.Controllers
                 return View(blogViewModel);
             }
 
-            //TODO : Eger resimlerde degisiklik olmussa eskilerini silmek gerekir.
-            string thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.BlogThumbnailImage);
-            string mainImageName = AssignFormFileAndReturnName(blogViewModel.BlogMainImage);
-
-            User user = await _userManager.FindByNameAsync(User.Identity.Name);
-
             Blog blog = _blogService.Get(x => x.BlogId == blogViewModel.BlogId);
 
-            blog.UserId = user.Id;
+            string thumbnailImageName = "";
+            string mainImageName = "";
+
+            if (blogViewModel.BlogThumbnailImage != null)
+            {
+                if (System.IO.File.Exists($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogThumbnailImage}"))
+                    System.IO.File.Delete($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogThumbnailImage}");
+
+                thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.BlogThumbnailImage);
+                blog.BlogThumbnailImage = thumbnailImageName;
+            }
+
+            if (blogViewModel.BlogMainImage != null)
+            {
+                if (System.IO.File.Exists($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogMainImage}"))
+                    System.IO.File.Delete($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogMainImage}");
+
+                mainImageName = AssignFormFileAndReturnName(blogViewModel.BlogMainImage);
+                blog.BlogMainImage = mainImageName;
+            }
+
             blog.BlogContent = blogViewModel.BlogContent;
             blog.BlogTitle = blogViewModel.BlogTitle;
             blog.CategoryId = blogViewModel.CategoryViewModel.CategoryId;
-            blog.BlogMainImage = mainImageName;
-            blog.BlogThumbnailImage = thumbnailImageName;
 
             _blogService.Update(blog);
 

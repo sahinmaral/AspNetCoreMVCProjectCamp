@@ -8,7 +8,7 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title" style="margin-bottom:3em">@ViewLocalizer["SubTitle",@Model.Receiver.Username]</h3>
+            <h3 style="margin-bottom:2em; font-size:20px">@ViewLocalizer["SubTitle",@Model.Receiver.Username]</h3>
             @using (Html.BeginForm("SendMessage", "Message", FormMethod.Post))
             {
                 @Html.HiddenFor(x => x.Receiver.UserId)
@@ -28,10 +28,33 @@
                     @Html.LabelFor(x=>x.MessageDetail,ViewLocalizer["MessageContent"].Value)
                     @Html.TextAreaFor(x => x.MessageDetail, new { @class = "form-control", style = "border:1px solid black", placeholder = "", rows = "4" })
                 </div>
+
                 <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
             //TODO : Emin misiniz seklinde alert gonderebiliriz.
             }
+
+            
         </div>
     </div>
 </div>
 
+<script>
+    function VerifySendingMessage(e){
+        e.preventDefault();
+        swal({
+            title: "test",
+            text: "test",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    toastr.success("ok");
+                    setTimeout(function(){},2000)
+                    window.location.href = "/Writer/Blog/MyBlog";
+                }
+
+            });
+    }
+</script>

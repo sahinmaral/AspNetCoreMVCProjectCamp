@@ -1,0 +1,83 @@
+﻿@model List<ReadAboutViewModel>
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title"];
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="ibox ">
+            <div class="ibox-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>@ViewLocalizer["AboutDetail"]</th>
+                            <th>@ViewLocalizer["AboutStatus"]</th>
+                            <th>@ViewLocalizer["SetActive"]</th>
+                            <th>@ViewLocalizer["Edit"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.AboutId</td>
+                                <td>@item.AboutDetail</td>
+                                <td>@item.AboutStatus</td>
+                                <td>
+                                    @if(item.AboutStatus){
+                                       <button class="btn btn-primary text-white" onclick="setAboutActived(@item.AboutId,'true')">@ViewLocalizer["SetActive"]</button> 
+                                    }else{
+                                        <button class="btn btn-primary text-white" onclick="setAboutActived(@item.AboutId,'false')">@ViewLocalizer["SetActive"]</button>
+                                    }
+                                    
+                                </td>
+                                <td><a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn btn-success">@ViewLocalizer["Edit"]</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function setAboutActived(id, status) {
+
+        if (status === "true") {
+            toastr.options = {
+                "positionClass": "toast-bottom-right",
+            }
+            toastr.warning("@ViewLocalizer["AboutAlreadyActivated"]")
+        }
+        else {
+            swal({
+                title: "@ViewLocalizer["SwalTitle"]",
+                text: "@ViewLocalizer["VerifyAboutActiveMessage"]",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            })
+                .then(async (willDelete) => {
+                    if (willDelete) {
+                        swal("@ViewLocalizer["AboutSuccessfullyActive"]", { icon: "success" });
+                        await new Promise(resolve => setTimeout(resolve, 3000));
+                        $.ajax({
+                            url: "/Admin/About/EnableAbout/" + id,
+                            type: 'POST',
+                            success: function () {
+                                window.location.href = "/Admin/About/GetAbouts";
+                            }
+                        });
+                    }
+
+                });
+        }
+
+    }
+</script>

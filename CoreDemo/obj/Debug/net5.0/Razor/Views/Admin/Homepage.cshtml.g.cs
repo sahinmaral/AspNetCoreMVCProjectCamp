@@ -62,7 +62,7 @@ using Microsoft.Extensions.Options;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9a06100799c507a4cd47d8e80a70b6addf096ede", @"/Views/Admin/Homepage.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"659d55fab1232bf3352617e1dddadbee6c9688aa", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ceae66b0eacbcd0a14f6fc571acea0fa3aee05ba", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Admin_Homepage : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<object>
     #nullable disable
@@ -83,6 +83,10 @@ using Microsoft.Extensions.Options;
             WriteLiteral("\r\n<div class=\"row wrapper border-bottom white-bg page-heading ml-2\">\r\n    <h2>Anasayfa</h2>\r\n</div>\r\n\r\n<div class=\"wrapper wrapper-content animated fadeInRight ml-3\">\r\n\r\n    <div class=\"row\">\r\n        Anasayfaya hoşgeldiniz\r\n    </div>\r\n\r\n</div>");
         }
         #pragma warning restore 1998
+        #nullable restore
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public IViewLocalizer ViewLocalizer { get; private set; } = default!;
+        #nullable disable
         #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;

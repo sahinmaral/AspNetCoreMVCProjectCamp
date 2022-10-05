@@ -1,9 +1,8 @@
-﻿@using CoreDemo.Models
-@model List<CoreDemo.Models.ReadMessageViewModel>
+﻿@model List<ReadMessageViewModel>
 
 @{
     Layout = "_AdminLayout";
-    ViewBag.Title = "Gelen Mesajlar ";
+    ViewBag.Title = ViewLocalizer["Title"];
 
     string ShrinkMessageDetail(string messageDetail)
     {
@@ -18,7 +17,7 @@
     <div class="col-lg-10 animated fadeInRight">
         <div class="mail-box-header">
 
-            <form method="get" action="index.html" class="float-right mail-search">
+            @*<form method="get" action="index.html" class="float-right mail-search">
                 <div class="input-group">
                     <input type="text" class="form-control form-control-sm" name="search" placeholder="Search email">
                     <div class="input-group-btn">
@@ -27,9 +26,10 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form>*@
+
             <h2>
-                Gelen Kutusu (@Model.Count)
+                @ViewLocalizer["Title"] @(Model.Count(x => x.MessageOpened == false) > 0 ? String.Concat("(", Model.Count(x => x.MessageOpened == false), ")") : "")
             </h2>
             <div class="mail-tools tooltip-demo m-t-md">
                 <div class="btn-group float-right">
@@ -37,42 +37,23 @@
                     <button class="btn btn-white btn-sm"><i class="fa fa-arrow-right"></i></button>
 
                 </div>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Refresh inbox"><i class="fa fa-refresh"></i> Refresh</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mark as read"><i class="fa fa-eye"></i> </button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mark as important"><i class="fa fa-exclamation"></i> </button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to trash"><i class="fa fa-trash-o"></i> </button>
-
+                <a class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="@ViewLocalizer["Refresh"]" href="/Admin/Message/ViewInbox"><i class="fa fa-refresh"></i> @ViewLocalizer["Refresh"]</a>
+                @{
+                    //TODO : Mark as read kismi yapilacak
+                }
+                <a class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="@ViewLocalizer["MarkAsRead"]"><i class="fa fa-eye"></i> </a>
             </div>
         </div>
-
-        @*<tr class="unread">
-                <td class="check-mail">
-                    <input type="checkbox" class="i-checks">
-                </td>
-                <td class="mail-ontact"><a href="mail_detail.html">Anna Smith</a></td>
-                <td class="mail-subject"><a href="mail_detail.html">Lorem ipsum dolor noretek imit set.</a></td>
-                <td class=""><i class="fa fa-paperclip"></i></td>
-                <td class="text-right mail-date">6.10 AM</td>
-            </tr>
-            <tr class="unread">
-                <td class="check-mail">
-                    <input type="checkbox" class="i-checks" checked>
-                </td>
-                <td class="mail-ontact"><a href="mail_detail.html">Jack Nowak</a></td>
-                <td class="mail-subject"><a href="mail_detail.html">Aldus PageMaker including versions of Lorem Ipsum.</a></td>
-                <td class=""></td>
-                <td class="text-right mail-date">8.22 PM</td>
-            </tr>*@
 
         <div class="mail-box">
             <table class="table table-hover table-mail">
                 <thead>
                 <tr>
                     <td></td>
-                    <td>Gonderen</td>
-                    <td>Baslik</td>
-                    <td>Mesaj</td>
-                    <td>Gonderilen Tarih</td>
+                    <td>@ViewLocalizer["Sender"]</td>
+                    <td>@ViewLocalizer["MessageSubject"]</td>
+                    <td>@ViewLocalizer["MessageAbout"]</td>
+                    <td>@ViewLocalizer["SentAt"]</td>
                 </tr>
                 </thead>
                 <tbody>

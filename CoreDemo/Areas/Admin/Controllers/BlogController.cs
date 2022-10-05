@@ -90,7 +90,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GetBlogDetails(UpdateBlogViewModel blogViewModel)
+        public IActionResult GetBlogDetails(UpdateBlogViewModel blogViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -98,20 +98,32 @@ namespace CoreDemo.Areas.Admin.Controllers
                 return View(blogViewModel);
             }
 
-            //TODO : Eger resimlerde degisiklik olmussa eskilerini silmek gerekir.
-            string thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.BlogThumbnailImage);
-            string mainImageName = AssignFormFileAndReturnName(blogViewModel.BlogMainImage);
-
-            User user = await _userManager.FindByNameAsync(User.Identity.Name);
-
             Blog blog = _blogService.Get(x => x.BlogId == blogViewModel.BlogId);
 
-            blog.UserId = user.Id;
+            string thumbnailImageName = "";
+            string mainImageName = "";
+
+            if (blogViewModel.BlogThumbnailImage != null)
+            {
+                if (System.IO.File.Exists($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogThumbnailImage}"))
+                    System.IO.File.Delete($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogThumbnailImage}");
+                
+                thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.BlogThumbnailImage);
+                blog.BlogThumbnailImage = thumbnailImageName;
+            }
+
+            if (blogViewModel.BlogMainImage != null)
+            {
+                if (System.IO.File.Exists($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogMainImage}"))
+                    System.IO.File.Delete($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogMainImage}");
+
+                mainImageName = AssignFormFileAndReturnName(blogViewModel.BlogMainImage);
+                blog.BlogMainImage = mainImageName;
+            }
+
             blog.BlogContent = blogViewModel.BlogContent;
             blog.BlogTitle = blogViewModel.BlogTitle;
             blog.CategoryId = blogViewModel.CategoryViewModel.CategoryId;
-            blog.BlogMainImage = mainImageName;
-            blog.BlogThumbnailImage = thumbnailImageName;
 
             _blogService.Update(blog);
 

@@ -1,0 +1,31 @@
+﻿@model ReadUserViewModel
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title"];
+    Layout = "_WriterLayout";
+}
+
+<h2 class="ml-5">@ViewLocalizer["Title"]</h2>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("ChangeProfileInformations", "Home", FormMethod.Post))
+            {
+                @Html.HiddenFor(x=>x.UserId)
+
+                <div class="form-group">
+                    @Html.LabelFor(x=>x.NameSurname,ViewLocalizer["NameSurname"].Value)
+                    @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control", style = "border:1px solid black", placeholder = "", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.NameSurname, "", new { style = "color:darkred" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x=>x.UserAbout,ViewLocalizer["About"].Value)
+                    @Html.TextAreaFor(x => x.UserAbout, new { @class = "form-control", style = "border:1px solid black", placeholder = "", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.UserAbout, "", new { style = "color:darkred" })
+                </div>
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+            }
+        </div>
+    </div>
+</div>

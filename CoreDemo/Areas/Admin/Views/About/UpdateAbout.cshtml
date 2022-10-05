@@ -1,0 +1,45 @@
+﻿@model ReadAboutViewModel
+
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title"];
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title"]</h3>
+
+            <form asp-action="UpdateAbout" asp-controller="About" asp-area="Admin" method="post">
+
+                <input type="hidden" asp-for="AboutId" name="AboutId"/>
+
+                <div class="form-group">
+                    <label>@ViewLocalizer["AboutDetail"]</label>
+                    @*//TODO : Text Editor ile yapilabilir.*@
+
+                    <textarea class="form-control" style="border:1px solid black" rows="4" asp-for="AboutDetail" name="AboutDetail"></textarea>
+                    <span asp-validation-for="AboutDetail" style="color:darkred"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>@ViewLocalizer["AboutMapLocation"]</label>
+                    <input type="text" asp-for="@Model.AboutMapLocation" name="AboutMapLocation" class="form-control" style="border:1px solid black" />
+                    <span asp-validation-for="AboutMapLocation" style="color:darkred"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>@ViewLocalizer["AboutImage"]</label>
+                    <input type="text" asp-for="@Model.AboutImage" name="AboutImage" class="form-control" style="border:1px solid black" />
+                    <span asp-validation-for="AboutImage" style="color:darkred"></span>
+                </div>
+
+
+                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">@ViewLocalizer["Submit"]</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+

@@ -62,7 +62,7 @@ using CoreDemo.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8b2bde2a00e4580810a330fec38b0feb3681c4c4", @"/Views/EmployeeTest/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"659d55fab1232bf3352617e1dddadbee6c9688aa", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ceae66b0eacbcd0a14f6fc571acea0fa3aee05ba", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_EmployeeTest_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<System.Collections.Generic.List<CoreDemo.Models.EmployeeModel>>
     #nullable disable
@@ -138,6 +138,10 @@ WriteAttributeValue("", 660, employee.Id, 660, 12, false);
             WriteLiteral("\r\n</table>\r\n\r\n<a href=\"AddEmployee\" class=\"btn btn-outline-success\">Yeni Calisan Olustur</a>\r\n");
         }
         #pragma warning restore 1998
+        #nullable restore
+        [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
+        public IViewLocalizer ViewLocalizer { get; private set; } = default!;
+        #nullable disable
         #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;
