@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Models
 {
-    public class EmployeeModel
+    public class EmployeeModel : BaseViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

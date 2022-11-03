@@ -120,6 +120,9 @@
   <data name="Content" xml:space="preserve">
     <value>İçerik</value>
   </data>
+  <data name="Discard" xml:space="preserve">
+    <value>İptal et</value>
+  </data>
   <data name="FormTitle" xml:space="preserve">
     <value>{0} adlı kullanıcıya mesaj gönderme</value>
   </data>

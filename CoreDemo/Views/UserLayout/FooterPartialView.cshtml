@@ -4,13 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
-                <h3>@Localizer["About"]</h3>
-                <p>
-                    @Localizer["FooterSiteAbout"]
-                </p>
-                <div class="read">
-                    <a href="/About/Index" class="btn btn-primary read-m">@Localizer["More"]</a>
-                </div>
+                @await Component.InvokeAsync(nameof(CoreDemo.ViewComponents.TopFavouriteCategoriesViewComponent).Replace("ViewComponent",""))
             </div>
             <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
 
@@ -22,7 +16,7 @@
             <div class="col-lg-4 footer-grid-agileits-w3ls text-left">
 
                 <div class="tech-btm">
-                    @await Html.PartialAsync("../NewsLetter/SubscribeEmail", new CreateNewsLetterViewModel())
+                    @await Html.PartialAsync($"../{nameof(CoreDemo.Controllers.NewsLetterController).Replace("Controller","")}/{nameof(CoreDemo.Controllers.NewsLetterController.SubscribeEmail)}", new CreateNewsLetterViewModel())
                 </div>
             </div>
             <!-- //subscribe -->

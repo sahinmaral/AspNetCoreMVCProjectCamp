@@ -120,8 +120,17 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AddAbout" xml:space="preserve">
+    <value>Add About</value>
+  </data>
+  <data name="AddBlog" xml:space="preserve">
+    <value>Add Blog</value>
+  </data>
   <data name="AddNewCategory" xml:space="preserve">
     <value>Add New Category</value>
+  </data>
+  <data name="AddNotification" xml:space="preserve">
+    <value>Add Notification</value>
   </data>
   <data name="Blogs" xml:space="preserve">
     <value>Blogs</value>
@@ -131,6 +140,18 @@
   </data>
   <data name="CategoryDonutGraph" xml:space="preserve">
     <value>Category Donut Graph</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ChangeProfileInfos" xml:space="preserve">
+    <value>Change Profile Information</value>
+  </data>
+  <data name="ChangeProfilePhoto" xml:space="preserve">
+    <value>Change Profile Photo</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
   </data>
   <data name="DownloadCategoriesAsExcelFile" xml:space="preserve">
     <value>Download Categories As Excel File</value>
@@ -153,6 +174,15 @@
   <data name="Messages" xml:space="preserve">
     <value>Messages</value>
   </data>
+  <data name="MyBlogs" xml:space="preserve">
+    <value>My Blogs</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
   <data name="SentMessages" xml:space="preserve">
     <value>Sent Messages</value>
   </data>
@@ -162,7 +192,13 @@
   <data name="Users" xml:space="preserve">
     <value>Users</value>
   </data>
+  <data name="ViewAbouts" xml:space="preserve">
+    <value>View Abouts</value>
+  </data>
   <data name="ViewBlogs" xml:space="preserve">
     <value>View Blogs</value>
+  </data>
+  <data name="ViewNotifications" xml:space="preserve">
+    <value>View Notifications</value>
   </data>
 </root>

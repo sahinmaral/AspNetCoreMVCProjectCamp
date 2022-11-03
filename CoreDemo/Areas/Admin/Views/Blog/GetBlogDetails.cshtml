@@ -2,51 +2,59 @@
 @model UpdateBlogViewModel
 
 @{
-    ViewBag.Title = @ViewLocalizer["Title",Model.BlogTitle];
+    ViewBag.Title = @ViewLocalizer["Title",Model.Title];
     Layout = "_AdminLayout";
 }
 
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title",Model.BlogTitle]</h3>
+            <h3 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title",Model.Title]</h3>
 
             <form asp-action="GetBlogDetails" asp-controller="Blog" asp-area="Admin" enctype="multipart/form-data" method="post">
-                <input type="hidden" asp-for="BlogId" value="@Model.BlogId" />
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
 
                 <div class="form-group">
                     <label>@ViewLocalizer["BlogTitle"]</label>
-                    <input type="text" asp-for="@Model.BlogTitle" name="BlogTitle"  class="form-control" style="border:1px solid black" />
-                    <span asp-validation-for="BlogTitle" style="color:darkred"></span>        
+                    <input type="text" asp-for="@Model.Title"  class="form-control" style="border:1px solid black" />
+                    <span asp-validation-for="Title" class="validation-span"></span>        
                 </div>
 
                 <div class="form-group">
                     <label>@ViewLocalizer["BlogContent"]</label>
-                    @*//TODO : Text Editor ile yapilabilir.*@
-
-                    <textarea class = "form-control" style = "border:1px solid black" rows = "4" asp-for="BlogContent" name="BlogContent"></textarea>
-                    <span asp-validation-for="BlogContent" style="color:darkred"></span>
+                    <textarea asp-for="Content" class="ckeditor" id="blogContentForm"></textarea>
+                    <span asp-validation-for="Content" class="validation-span"></span>
                 </div>
 
                 <div class="form-group">
                     <label>@ViewLocalizer["BlogCategory"]</label>
-                    @Html.DropDownListFor(x => x.CategoryViewModel.CategoryId, (List<SelectListItem>)ViewData["Categories"], new { @class = "form-control", style = "border:1px solid black" })
+                    @Html.DropDownListFor(x => x.CategoryViewModel.Id, (List<SelectListItem>)ViewData["Categories"], new { @class = "form-control", style = "border:1px solid black" })
                 </div>
 
                 <div class="form-group">
                     <label>@ViewLocalizer["BlogThumbnailPhoto"]</label>
-                    <input type="file" class="form-control" name="BlogThumbnailImage"/>
-                    <span asp-validation-for="BlogThumbnailImage" style="color:darkred"></span>
+                    <input type="file" class="form-control" asp-for="ThumbnailImage"/>
+                    <span asp-validation-for="ThumbnailImage" class="validation-span"></span>
                 </div>
                 <div class="form-group">
                     <label>@ViewLocalizer["BlogMainPhoto"]</label>
-                    <input type="file" class="form-control" name="BlogMainImage"/>
-                    <span asp-validation-for="BlogMainImage" style="color:darkred"></span>
+                    <input type="file" class="form-control" asp-for="MainImage" />
+                    <span asp-validation-for="MainImage" class="validation-span"></span>
                 </div>
 
-                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">@ViewLocalizer["SubmitText"]</button>
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Discard"]</button>
             </form>
 
         </div>
     </div>
 </div>
+
+<script>
+
+    CKEDITOR.replace('blogContentForm',
+        {
+            toolbar: 'Basic',
+            uiColor: '#9AB8F3'
+        });
+</script>

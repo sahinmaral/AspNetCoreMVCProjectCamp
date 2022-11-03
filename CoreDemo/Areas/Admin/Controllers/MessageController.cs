@@ -40,7 +40,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             return View(viewModels);
         }
 
-        public async Task<IActionResult> ViewSendBox()
+        public async Task<IActionResult> ViewSentbox()
         {
             User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
@@ -55,10 +55,12 @@ namespace CoreDemo.Areas.Admin.Controllers
 
         public IActionResult GetMessageDetail(int id)
         {
-            Message message = _messageService.Get(x => x.MessageId == id);
+            Message message = _messageService.Get(x => x.Id == id);
             ReadMessageViewModel viewModel = _mapper.Map(message, new ReadMessageViewModel());
-            message.MessageOpened = true;
-            _messageService.Update(message);
+            if (viewModel.Sender.Username != User.Identity.Name)
+            {
+                message.IsMessageOpened = true; _messageService.Update(message);
+            }
             return View(viewModel);
         }
 
@@ -88,12 +90,12 @@ namespace CoreDemo.Areas.Admin.Controllers
             }
 
             Message newMessage = _mapper.Map(viewModel, new Message());
-            newMessage.ReceiverId = viewModel.Receiver.UserId;
-            newMessage.SenderId = viewModel.Sender.UserId;
+            newMessage.ReceiverId = viewModel.Receiver.Id;
+            newMessage.SenderId = viewModel.Sender.Id;
 
             _messageService.Add(newMessage);
 
-            return RedirectToAction("ViewSendBox");
+            return RedirectToAction(nameof(ViewInbox));
         }
     }
 }

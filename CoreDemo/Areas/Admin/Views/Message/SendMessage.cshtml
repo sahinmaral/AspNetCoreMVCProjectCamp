@@ -5,32 +5,44 @@
     Layout = "_AdminLayout";
 }
 
+<h2 class="card-title ml-3">@ViewLocalizer["FormTitle",Model.Sender.Username]</h2>
+
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title" style="margin-bottom:3em">@ViewLocalizer["FormTitle",Model.Sender.Username]</h3>
+            
             <form asp-action="SendMessage" asp-area="Admin" asp-controller="Message" method="post">
 
-                <input type="hidden" asp-for=Receiver.UserId value="@Model.Receiver.UserId" name="Receiver.UserId"/>
-                <input type="hidden" asp-for=Sender.UserId value="@Model.Sender.UserId" name="Sender.UserId" />
+                <input type="hidden" asp-for=Receiver.Id value="@Model.Receiver.Id"/>
+                <input type="hidden" asp-for=Sender.Id value="@Model.Sender.Id" />
 
                 <div class="form-group">
                     <label asp-for="Receiver.Username">@ViewLocalizer["Sender"]</label>
-                    <input type="text" asp-for="Receiver.Username" class="form-control" style="border:1px solid black" name="Receiver.Username" disabled="disabled">
+                    <input type="text" asp-for="Receiver.Username" class="form-control" disabled="disabled">
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="MessageSubject">@ViewLocalizer["Subject"]</label>
-                    <input type="text" asp-for="MessageSubject" class="form-control" style="border:1px solid black" name="MessageSubject" />
-                    <span asp-validation-for="MessageSubject" style="color:darkred"></span>
+                    <label asp-for="Subject">@ViewLocalizer["Subject"]</label>
+                    <input type="text" asp-for="Subject" class="form-control"/>
+                    <span asp-validation-for="Subject" class="validation-span"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="MessageDetail">@ViewLocalizer["Content"]</label>
-                    <textarea asp-for="MessageDetail" class="form-control" style="border:1px solid black" name="MessageDetail"></textarea>
+                    <label asp-for="Detail">@ViewLocalizer["Content"]</label>
+                    <textarea asp-for="Detail" class="ckeditor" id="messageContentForm"></textarea>
+                    <span asp-validation-for="Detail" class="validation-span"></span>
                 </div>
                 <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Discard"]</button>
             </form>
         </div>
     </div>
 </div>
 
+<script>
+
+    CKEDITOR.replace('messageContentForm',
+        {
+            toolbar: 'Basic',
+            uiColor: '#9AB8F3'
+        });
+</script>

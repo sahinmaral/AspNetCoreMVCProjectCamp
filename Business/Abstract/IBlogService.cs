@@ -8,6 +8,7 @@ namespace Business.Abstract
     public interface IBlogService:IGenericRepositoryService<Blog>
     {
         List<Blog> GetAllWithDetails(Expression<Func<Blog, bool>> filter = null);
-        Blog GetByBlogIdWithDetails(int blogId);
+        Blog GetBySlugWithDetails(string slug);
+        Blog GetByIdWithDetails(int id);
     }
 }

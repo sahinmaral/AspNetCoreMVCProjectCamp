@@ -6,6 +6,6 @@ namespace CoreDemo.Areas.Admin.Models
     public class UserRoleViewModel
     {
         public ReadUserViewModel UserViewModel { get; set; }
-        public List<RoleViewModel> RoleViewModels { get; set; }
+        public RoleViewModel RoleViewModel { get; set; }
     }
 }

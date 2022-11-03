@@ -26,7 +26,7 @@ namespace CoreDemo.Controllers
         {
             ReadAboutViewModel viewModel = new ReadAboutViewModel();
 
-            viewModel = _mapper.Map(_aboutService.Get(x => x.AboutStatus == true), viewModel);
+            viewModel = _mapper.Map(_aboutService.Get(x => x.Status == true), viewModel);
 
             return View(viewModel);
         }

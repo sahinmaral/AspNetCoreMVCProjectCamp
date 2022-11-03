@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = @ViewLocalizer["Title"];
     Layout = "_AdminLayout";
 }
@@ -38,8 +37,8 @@
     <script>
 
         window.onload = function () {
-            @Html.Raw(TempData["Message"])
-        }
+        @Html.Raw(TempData["Message"])
+                        }
 
         toastr.options.progressBar = true;
         toastr.options.positionClass = "toast-bottom-right";
@@ -85,27 +84,38 @@
             var tableHTML =
                 "<table class='table table-bordered'>" +
                 "<tr> " +
-                "<th> # </td>" +
                 "<th> @ViewLocalizer["UserNameSurname"] </td>" +
                 "<th> @ViewLocalizer["UserUsername"] </td>" +
+                "<th> @ViewLocalizer["UserState"] </td>" +
                 "<th> @ViewLocalizer["UserProcesses"] </td>" +
-                //"<th> Yazarın Durumu </td>" +
-                //"<th> Yazarı Banla / Banını Kaldır </td>" +
+
                 "</tr>";
             for (var i = 0; i < users.length; i++) {
                 tableHTML += "<tr>";
-                tableHTML += "<td>" + users[i].UserId + "</td>";
                 tableHTML += "<td>" + users[i].NameSurname + "</td>";
                 tableHTML += "<td>" + users[i].Username + "</td>";
-                tableHTML += "<td>";
-                tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + users[i].UserId + "' class='btn btn-success'>@ViewLocalizer["GetRolesToUser"]</a>";
-                tableHTML += "</td> ";
-                //if (!writers[i].LockoutEnabled)
-                //    tableHTML += "<td>Temiz</td>";
-                //else
-                //    tableHTML += "<td>Banlı</td>";
+                if (users[i].LockoutEnabled) {
+                    tableHTML += "<td><span class='badge badge-danger'>@ViewLocalizer["Banned"]</span></td>";
+                }
 
-                //tableHTML += "<td> <button type=button onClick=EnableOrDisableWriter(" + writers[i].UserId + ") class='btn btn-warning' > Yazarı Banla / Banını Kaldır</button > </td > ";
+                else {
+                    tableHTML += "<td><span class='badge badge-success'>@ViewLocalizer["Clear"]</span></td>";
+                }
+                tableHTML += "<td>";
+                tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + users[i].Id + "' class='btn btn-success'>@ViewLocalizer["GetRolesToUser"]</a>";
+                if (users[i].LockoutEnabled) {
+                    
+                    tableHTML += "<a onClick=RemoveBanFromUser(" + users[i].Id + ") class='btn btn-success text-white ml-2'>@ViewLocalizer["RemoveBanFromUser"]</a>";
+                }
+
+                else {
+                    
+                    tableHTML += "<a href=/Admin/User/BanUser/" + users[i].Id + " class='btn btn-danger ml-2'> @ViewLocalizer["BanUser"]</a>";
+                }
+
+                tableHTML += "</td> ";
+
+
                 tableHTML += "</tr>";
             }
 
@@ -124,7 +134,7 @@
 
                 var users = GetUsersByUsername(username);
 
-                if(users.length == 0){
+                if (users.length == 0) {
                     var emptyList = "<div class='alert alert-warning font-weight-bold'> @ViewLocalizer["NoUserHasBeenFoundByThisUsername"] </div>"
                     $("#userList").html(emptyList);
                 }
@@ -133,27 +143,35 @@
                     var tableHTML =
                         "<table class='table table-bordered'>" +
                         "<tr> " +
-                        "<th> # </td>" +
                         "<th> @ViewLocalizer["UserNameSurname"] </td>" +
                         "<th> @ViewLocalizer["UserUsername"] </td>" +
+                        "<th> @ViewLocalizer["UserState"] </td>" +
                         "<th> @ViewLocalizer["UserProcesses"] </td>" +
-                        //"<th> Yazarın Durumu </td>" +
-                        //"<th> Yazarı Banla / Banını Kaldır </td>" +
                         "</tr>";
                     for (var i = 0; i < users.length; i++) {
                         tableHTML += "<tr>";
-                        tableHTML += "<td>" + users[i].UserId + "</td>";
                         tableHTML += "<td>" + users[i].NameSurname + "</td>";
                         tableHTML += "<td>" + users[i].Username + "</td>";
-                        tableHTML += "<td>";
-                        tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + users[i].UserId + "' class='btn btn-success'>@ViewLocalizer["GetRolesToUser"]</a>";
-                        tableHTML += "</td> ";
-                        //if (!writers[i].LockoutEnabled)
-                        //    tableHTML += "<td>Temiz</td>";
-                        //else
-                        //    tableHTML += "<td>Banlı</td>";
+                        if (users[i].LockoutEnabled) {
+                            tableHTML += "<td><span class='badge badge-danger'>@ViewLocalizer["Banned"]</span></td>";
+                        }
 
-                        //tableHTML += "<td> <button type=button onClick=EnableOrDisableWriter(" + writers[i].UserId + ") class='btn btn-warning' > Yazarı Banla / Banını Kaldır</button > </td > ";
+                        else {
+                            tableHTML += "<td><span class='badge badge-success'>@ViewLocalizer["Clear"]</span></td>";
+                        }
+                        tableHTML += "<td>";
+                        tableHTML += "<a href='/Admin/User/UpdateRolesToUser/" + users[i].Id + "' class='btn btn-success'>@ViewLocalizer["GetRolesToUser"]</a>";
+                        if (users[i].LockoutEnabled) {
+
+                            tableHTML += "<a onClick=RemoveBanFromUser(" + users[i].Id + ") class='btn btn-success text-white ml-2'>@ViewLocalizer["RemoveBanFromUser"]</a>";
+                        }
+
+                        else {
+
+                            tableHTML += "<a href=/Admin/User/BanUser/" + users[i].Id + " class='btn btn-danger ml-2'> @ViewLocalizer["BanUser"]</a>";
+                        }
+
+
                         tableHTML += "</tr>";
                     }
 
@@ -162,30 +180,42 @@
                     $("#userList").html(tableHTML);
                 }
 
-                
-                
+
+
             }
 
 
         }
 
-        EnableOrDisableUser = function (id) {
-            $.ajax({
-                async: false,
-                contentType: "application/json",
-                dataType: "json",
-                type: "POST",
-                url: "/Admin/User/EnableOrDisableUser?id=" + id,
-            }).then(
-                toastr.success('Kullanici banlama / ban kaldırma işlemi başarılı')
-            );
 
-            var element = document.getElementById("userIdDiv");
+        function RemoveBanFromUser(id) {
+            swal("@ViewLocalizer["VerifyRemovingBanFromUser"]", {
+                buttons: {
+                    yes: {
+                        text: "@ViewLocalizer["Yes"]",
+                        value: "true",
+                    },
+                    no: {
+                        text: "@ViewLocalizer["No"]",
+                        value: "false",
+                    },
+                },
+            })
+                .then(async (value) => {
 
-            if (element.style.display === "none")
-                LoadToTableGetUsers();
-            else
-                LoadToTableGetUsersByUsername();
+                    switch (value) {
+                        case "true":
+                            toastr.success("@ViewLocalizer["UserBanSuccessfullyRemoved"]", "", {
+                                "positionClass": "toast-bottom-right"
+                            });
+                            //Just like Thread.Sleep
+                            await new Promise(resolve => setTimeout(resolve, 3000));
+                            window.location.href = "/Admin/User/RemoveBanFromUser?id=" + id
+                            break;
+                        case "false":
+                            break;
+                    }
+                });
         }
 
         $("#btnShowUserIdText").click(function () {

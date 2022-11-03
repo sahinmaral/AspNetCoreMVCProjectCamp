@@ -6,15 +6,15 @@ using Entities.Concrete;
 
 namespace CoreDemo.Models
 {
-    public class ReadMessageViewModel
+    public class ReadMessageViewModel : BaseViewModel
     {
-        public int MessageId { get; set; }
+        public int Id { get; set; }
         public ReadUserViewModel Sender { get; set; }
         public ReadUserViewModel Receiver { get; set; }
 
-        public string MessageSubject { get; set; }
-        public string MessageDetail { get; set; }
-        public DateTime MessageDateTime { get; set; }
-        public bool MessageOpened { get; set; }
+        public string Subject { get; set; }
+        public string Detail { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public bool IsMessageOpened { get; set; }
     }
 }

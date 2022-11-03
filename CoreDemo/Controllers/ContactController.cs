@@ -28,7 +28,7 @@ namespace CoreDemo.Controllers
 
         public IActionResult Index()
         {
-            TempData["MapLocation"] = _aboutService.Get(x => x.AboutStatus == true).AboutMapLocation;
+            TempData["MapLocation"] = _aboutService.Get(x => x.Status == true).MapLocation;
 
             return View();
         }
@@ -36,7 +36,6 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult AddContact(CreateContactViewModel viewModel)
         {
-            //TODO : Spam engellemek için süre konulabilir 
 
             Contact contact = new Contact();
 

@@ -254,6 +254,10 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "Slugify.Core": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "X.PagedList": {
               "target": "Package",
               "version": "[8.1.0, )"

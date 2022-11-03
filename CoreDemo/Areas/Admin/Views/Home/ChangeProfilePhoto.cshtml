@@ -1,0 +1,32 @@
+﻿@model UserImageViewModel
+
+@{
+    ViewBag.Title = ViewLocalizer["Title"];
+    Layout = "_AdminLayout";
+}
+
+<h1 class="card-title ml-3">@ViewLocalizer["Title"]</h1>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <form asp-area="@nameof(CoreDemo.Areas.Admin)"
+                  asp-action="@nameof(CoreDemo.Areas.Admin.Controllers.HomeController.ChangeProfilePhoto)"
+                  asp-controller="@nameof(CoreDemo.Areas.Admin.Controllers.HomeController).Replace("Controller","")"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label asp-for="ProfileImage">@ViewLocalizer["ProfilePhoto"]</label>
+                    <input type="file" class="form-control"
+                           asp-for="ProfileImage" />
+
+                    <span asp-validation-for="ProfileImage" class="validation-span"></span>
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Discard"]</button>
+            </form>
+        </div>
+    </div>
+</div>

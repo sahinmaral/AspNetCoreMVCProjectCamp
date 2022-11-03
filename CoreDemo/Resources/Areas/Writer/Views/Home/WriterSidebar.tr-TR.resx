@@ -135,6 +135,9 @@
   <data name="Homepage" xml:space="preserve">
     <value>Anasayfa</value>
   </data>
+  <data name="IncomingMessages" xml:space="preserve">
+    <value>Gelen Mesajlar</value>
+  </data>
   <data name="Messages" xml:space="preserve">
     <value>Mesajlar</value>
   </data>
@@ -146,5 +149,8 @@
   </data>
   <data name="NewBlog" xml:space="preserve">
     <value>Yeni Blog</value>
+  </data>
+  <data name="SentMessages" xml:space="preserve">
+    <value>Gönderilen Mesajlar</value>
   </data>
 </root>

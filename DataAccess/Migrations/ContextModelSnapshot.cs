@@ -21,62 +21,66 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.About", b =>
                 {
-                    b.Property<int>("AboutId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AboutDetail")
+                    b.Property<string>("Detail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AboutImage")
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AboutMapLocation")
+                    b.Property<string>("MapLocation")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("AboutStatus")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("AboutId");
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Abouts");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
                 {
-                    b.Property<int>("BlogId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BlogContent")
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("BlogCreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("BlogMainImage")
+                    b.Property<string>("MainImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("BlogStatus")
+                    b.Property<string>("Slug")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("BlogThumbnailImage")
+                    b.Property<string>("ThumbnailImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("BlogTitle")
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int")
-                        .HasColumnName("CategoryId");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserId");
+                        .HasColumnType("int");
 
-                    b.HasKey("BlogId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
@@ -87,7 +91,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.BlogRatio", b =>
                 {
-                    b.Property<int>("BlogRatioId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -101,7 +105,7 @@ namespace DataAccess.Migrations
                     b.Property<decimal>("LikeRatio")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("BlogRatioId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BlogId")
                         .IsUnique();
@@ -111,53 +115,54 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CategoryDescription")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CategoryName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("CategoryStatus")
+                    b.Property<string>("Slug")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Comment", b =>
                 {
-                    b.Property<int>("CommentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BlogId")
-                        .HasColumnType("int")
-                        .HasColumnName("BlogId");
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("CommentAbout")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CommentCreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("CommentStatus")
-                        .HasColumnType("bit");
+                    b.Property<string>("Detail")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LikeOrDislikeStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserId");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
-                    b.HasKey("CommentId");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("BlogId");
 
@@ -168,70 +173,70 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Contact", b =>
                 {
-                    b.Property<int>("ContactId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("ContactCreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ContactMail")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContactMessage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactNameSurname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("ContactStatus")
+                    b.Property<bool>("IsAnswered")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ContactSubject")
+                    b.Property<bool>("IsOpened")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ContactId");
+                    b.Property<string>("NameSurname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Language", b =>
                 {
-                    b.Property<int>("LanguageId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("LanguageName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LanguageShortName")
+                    b.Property<string>("ShortName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("LanguageId");
+                    b.HasKey("Id");
 
                     b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Message", b =>
                 {
-                    b.Property<int>("MessageId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("MessageDateTime")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MessageDetail")
+                    b.Property<string>("Detail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("MessageOpened")
+                    b.Property<bool>("IsMessageOpened")
                         .HasColumnType("bit");
-
-                    b.Property<string>("MessageSubject")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ReceiverId")
                         .HasColumnType("int")
@@ -241,7 +246,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("SenderId");
 
-                    b.HasKey("MessageId");
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ReceiverId");
 
@@ -252,34 +260,31 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.NewsLetter", b =>
                 {
-                    b.Property<int>("NewsLetterId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("NewsLetterMail")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("NewsLetterStatus")
+                    b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("NewsLetterId");
+                    b.HasKey("Id");
 
                     b.ToTable("NewsLetters");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Notification", b =>
                 {
-                    b.Property<int>("NotificationId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("NotificationDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("NotificationStatus")
-                        .HasColumnType("bit");
 
                     b.Property<int>("NotificationSymbolId")
                         .HasColumnType("int");
@@ -287,7 +292,10 @@ namespace DataAccess.Migrations
                     b.Property<int>("NotificationTypeId")
                         .HasColumnType("int");
 
-                    b.HasKey("NotificationId");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("NotificationSymbolId");
 
@@ -298,24 +306,24 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.NotificationInformation", b =>
                 {
-                    b.Property<int>("NotificationInformationsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Detail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Header")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
-
-                    b.Property<string>("NotificationDetail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NotificationHeader")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NotificationId")
                         .HasColumnType("int");
 
-                    b.HasKey("NotificationInformationsId");
+                    b.HasKey("Id");
 
                     b.HasIndex("LanguageId");
 
@@ -326,30 +334,30 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.NotificationSymbol", b =>
                 {
-                    b.Property<int>("NotificationSymbolId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("SymbolName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("NotificationSymbolId");
+                    b.HasKey("Id");
 
                     b.ToTable("NotificationSymbols");
                 });
 
             modelBuilder.Entity("Entities.Concrete.NotificationType", b =>
                 {
-                    b.Property<int>("NotificationTypeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("NotificationTypeName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("NotificationTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("NotificationTypes");
                 });
@@ -389,6 +397,9 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("About")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -438,9 +449,6 @@ namespace DataAccess.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
-
-                    b.Property<string>("UserAbout")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
@@ -569,7 +577,7 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("Entities.Concrete.User", "User")
-                        .WithMany()
+                        .WithMany("Blogs")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -594,10 +602,12 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Entities.Concrete.Blog", "Blog")
                         .WithMany("Comments")
-                        .HasForeignKey("BlogId");
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Entities.Concrete.User", "User")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Blog");
@@ -739,6 +749,13 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concrete.NotificationType", b =>
                 {
                     b.Navigation("Notifications");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.User", b =>
+                {
+                    b.Navigation("Blogs");
+
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

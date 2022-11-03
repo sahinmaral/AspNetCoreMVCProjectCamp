@@ -22,7 +22,7 @@ namespace CoreDemo.ViewComponents
         {
             List<ReadBlogViewModel> viewModels = new List<ReadBlogViewModel>();
 
-            List<Blog> last3Blogs = _blogService.GetAll().TakeLast(3).ToList();
+            List<Blog> last3Blogs = _blogService.GetAll().OrderByDescending(x => x.CreatedAt).Take(3).ToList();
 
             viewModels = _mapper.Map(last3Blogs, viewModels);
 

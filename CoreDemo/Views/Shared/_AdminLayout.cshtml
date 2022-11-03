@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -11,6 +10,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+
     <title>@ViewData["Title"] | ASP.NET Core MVC</title>
 
     <link href="~/adminTemplate/css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +22,7 @@
     <link href="~/adminTemplate/css/plugins/toastr/toastr.min.css" rel="stylesheet" />
     <link href="~/adminTemplate/css/popup.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/writerTemplate/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link href="~/css/site.css" rel='stylesheet' type='text/css' />
 
 </head>
 
@@ -66,15 +68,27 @@
     <!-- Toastr -->
     <script src="~/adminTemplate/js/plugins/toastr/toastr.min.js"></script>
 
+    <!-- CkEditor -->
+    <script src="~/ckeditor/ckeditor.js"></script>
+
     <script>
         $(document).ready(function () {
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green'
             });
-        });</script>
+        });
+    </script>
 
-@await RenderSectionAsync("scripts" , required: false)
+    <script>
+
+        window.onload = function () {
+        @Html.Raw(TempData["Message"])
+                }
+
+    </script>
+
+    @await RenderSectionAsync("scripts" , required: false)
 </body>
 
 </html>

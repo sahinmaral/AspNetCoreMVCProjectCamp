@@ -6,15 +6,16 @@ using Entities.Concrete;
 
 namespace CoreDemo.Models
 {
-    public class ReadBlogViewModel
+    public class ReadBlogViewModel : BaseViewModel
     {
-        public int BlogId { get; set; }
-        public string BlogTitle { get; set; }
-        public string BlogContent { get; set; }
-        public string BlogThumbnailImage { get; set; }
-        public string BlogMainImage { get; set; }
-        public string BlogCreateDate { get; set; }
-        public bool BlogStatus { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Slug { get; set; }
+        public string Content { get; set; }
+        public string ThumbnailImage { get; set; }
+        public string MainImage { get; set; }
+        public string CreatedAt { get; set; }
+        public bool Status { get; set; }
 
         public ReadUserViewModel UserViewModel { get; set; }
         public ReadCategoryViewModel CategoryViewModel { get; set; }

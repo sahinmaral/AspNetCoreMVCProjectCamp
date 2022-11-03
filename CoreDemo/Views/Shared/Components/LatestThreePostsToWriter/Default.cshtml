@@ -1,22 +1,29 @@
 ﻿@model List<ReadBlogViewModel>
 
-<h4>Yazarın Diğer Postları</h4>
+@if (Model.Count != 0)
+{
+    <h4>@ViewLocalizer["Title"]</h4>
+}else{
+    <h4>@ViewLocalizer["Title"]</h4>
+    <h6>@ViewLocalizer["NoneBlog"]</h6>
+}
+
 
 @foreach (ReadBlogViewModel blog in Model)
 {
     <div class="blog-grids row mb-3">
         <div class="col-md-5 blog-grid-left">
-            <a href="/Blog/GetById/@blog.BlogId">
-                <img src="~/images/@blog.BlogThumbnailImage" class="card-img-top img-fluid" alt="">
+            <a href="/Blog/GetById/@blog.Id">
+                <img src="~/images/@blog.ThumbnailImage" class="card-img-top img-fluid" alt="">
             </a>
         </div>
         <div class="col-md-7 blog-grid-right">
             <h5>
-                <a href="/Blog/GetById/@blog.BlogId">@blog.BlogTitle</a>
+                <a href="/Blog/GetById/@blog.Id">@blog.Title</a>
             </h5>
             <div class="sub-meta">
                 <span>
-                    <i class="far fa-clock"></i> @blog.BlogCreateDate
+                    <i class="far fa-clock"></i> @blog.CreatedAt
                 </span>
             </div>
         </div>

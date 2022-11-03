@@ -123,6 +123,9 @@
   <data name="CategoryName" xml:space="preserve">
     <value>Başlık</value>
   </data>
+  <data name="Discard" xml:space="preserve">
+    <value>İptal Et</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Gönder</value>
   </data>

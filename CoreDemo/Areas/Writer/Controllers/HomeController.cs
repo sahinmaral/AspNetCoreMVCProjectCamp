@@ -19,6 +19,9 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Core.Helper.Toastr.OptionEnums;
+using Core.Helper.Toastr;
+using Microsoft.Extensions.Localization;
 
 namespace CoreDemo.Areas.Writer.Controllers
 {
@@ -30,13 +33,14 @@ namespace CoreDemo.Areas.Writer.Controllers
         private readonly IBlogService _blogService;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
-
-        public HomeController(IBlogService blogService, IMapper mapper, ICategoryService categoryService, UserManager<User> userManager)
+        private readonly IStringLocalizer<HomeController> _localizer;
+        public HomeController(IBlogService blogService, IMapper mapper, ICategoryService categoryService, UserManager<User> userManager, IStringLocalizer<HomeController> localizer)
         {
             _blogService = blogService;
             _mapper = mapper;
             _categoryService = categoryService;
             _userManager = userManager;
+            _localizer = localizer;
         }
 
         public PartialViewResult WriterSidebar()
@@ -71,11 +75,14 @@ namespace CoreDemo.Areas.Writer.Controllers
             }
 
             User user = await _userManager.FindByNameAsync(User.Identity.Name);
-            user.UserAbout = viewModel.UserAbout;
+            user.About = viewModel.About;
+            user.NameSurname = viewModel.NameSurname;
 
             await _userManager.UpdateAsync(user);
+            TempData["Message"] = ToastrNotification.Show(_localizer["ProfileInformationsSuccessfullyChanged"], position: Position.BottomRight,
+                type: ToastType.success);
 
-            return RedirectToAction(nameof(Homepage), nameof(BlogController).Replace("Controller", ""));
+            return Redirect($"/{nameof(Writer)}/{nameof(HomeController).Replace("Controller","")}/{nameof(HomeController.Homepage)}");
         }
 
         [HttpGet]
@@ -93,21 +100,34 @@ namespace CoreDemo.Areas.Writer.Controllers
             }
 
             User user = await _userManager.FindByNameAsync(User.Identity.Name);
-            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, viewModel.NewPassword);
 
-            await _userManager.UpdateAsync(user);
+            PasswordVerificationResult result = _userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, viewModel.NewPassword);
+            if(result == PasswordVerificationResult.Success) {
+                TempData["Message"] = ToastrNotification.Show(_localizer["OldAndNewPasswordsCannotBeSame"], position: Position.BottomRight,
+                    type: ToastType.error);
 
-            return RedirectToAction(nameof(Homepage), nameof(HomeController).Replace("Controller", ""));
+                return View(viewModel);
+            }
+            else
+            {
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, viewModel.NewPassword);
+                await _userManager.UpdateAsync(user);
+                TempData["Message"] = ToastrNotification.Show(_localizer["PasswordSuccessfullyChanged"], position: Position.BottomRight,
+                    type: ToastType.success);
+                return Redirect($"/{nameof(Writer)}/{nameof(HomeController).Replace("Controller", "")}/{nameof(HomeController.Homepage)}");
+            }
+
+            
         }
 
         [HttpGet]
         public IActionResult ChangeProfilePhoto()
         {
-            return View(new UserPictureViewModel());
+            return View(new UserImageViewModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeProfilePhoto(UserPictureViewModel viewModel)
+        public async Task<IActionResult> ChangeProfilePhoto(UserImageViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -119,11 +139,13 @@ namespace CoreDemo.Areas.Writer.Controllers
             if (user.ImageUrl != null)
                 RemoveOldProfilePicture(user.ImageUrl);
 
-            user.ImageUrl = AssignFormFileAndReturnName(viewModel.ProfilePhoto);
+            user.ImageUrl = AssignFormFileAndReturnName(viewModel.ProfileImage);
 
             await _userManager.UpdateAsync(user);
+            TempData["Message"] = ToastrNotification.Show(_localizer["ProfileImageSuccessfullyChanged"], position: Position.BottomRight,
+                    type: ToastType.success);
 
-            return RedirectToAction(nameof(Homepage), nameof(HomeController).Replace("Controller", ""));
+            return Redirect($"/{nameof(Writer)}/{nameof(HomeController).Replace("Controller", "")}/{nameof(HomeController.Homepage)}");
         }
 
         private void RemoveOldProfilePicture(string path)

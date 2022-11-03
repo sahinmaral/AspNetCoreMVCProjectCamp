@@ -1,4 +1,4 @@
-﻿@model UserPictureViewModel
+﻿@model UserImageViewModel
 
 @{
     ViewBag.Title = ViewLocalizer["Title"];
@@ -15,9 +15,9 @@
                 <div class="form-group">
                     <label for="exampleTextarea1">@ViewLocalizer["ProfilePhoto"]</label>
                     
-                    @Html.TextBoxFor(x=>x.ProfilePhoto , new { @class = "form-control border border-dark", type = "file"})
+                    @Html.TextBoxFor(x=>x.ProfileImage , new { @class = "form-control border border-dark", type = "file"})
 
-                    @Html.ValidationMessageFor(x => x.ProfilePhoto, "", new { style = "color:darkred" })
+                    @Html.ValidationMessageFor(x => x.ProfileImage, "", new { style = "color:darkred" })
                 </div>
 
                 <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>

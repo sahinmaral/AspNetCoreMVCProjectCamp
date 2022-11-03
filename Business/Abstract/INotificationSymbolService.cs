@@ -5,7 +5,7 @@ using Entities.Concrete;
 
 namespace Business.Abstract
 {
-    interface INotificationSymbolService : IGenericRepositoryService<NotificationSymbol>
+    public interface INotificationSymbolService : IGenericRepositoryService<NotificationSymbol>
     {
     }
 }

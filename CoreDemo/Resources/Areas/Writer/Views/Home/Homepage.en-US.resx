@@ -120,25 +120,10 @@
   <data name="AboutYou" xml:space="preserve">
     <value>About you</value>
   </data>
-  <data name="BlogTitle" xml:space="preserve">
-    <value>Blog Title</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>Details</value>
-  </data>
   <data name="Homepage" xml:space="preserve">
     <value>Homepage</value>
   </data>
   <data name="LatestWritten10Blogs" xml:space="preserve">
     <value>Latest Written Ten Blogs</value>
-  </data>
-  <data name="PublishedDate" xml:space="preserve">
-    <value>Published Date</value>
-  </data>
-  <data name="ThumbnailPhoto" xml:space="preserve">
-    <value>Thumbnail Image</value>
   </data>
 </root>

@@ -37,38 +37,47 @@ namespace CoreDemo.Areas.Writer.Controllers
 
             viewModels = _mapper.Map(messages, viewModels);
 
-            //foreach (var message in messages)
-            //{
-            //    ReadMessageViewModel viewModel = new ReadMessageViewModel();
-            //    viewModel = _mapper.Map(message, viewModel);
-            //    viewModels.Add(viewModel);
-            //}
+            return View(viewModels);
+        }
+
+        public async Task<IActionResult> ViewSentbox()
+        {
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            var messages = _messageService.GetAll(x => x.SenderId == user.Id);
+
+            List<ReadMessageViewModel> viewModels = new List<ReadMessageViewModel>(messages.Count);
+
+            viewModels = _mapper.Map(messages, viewModels);
 
             return View(viewModels);
         }
 
         public IActionResult GetMessageDetail(int id)
         {
-            Message message = _messageService.Get(x => x.MessageId == id);
+            Message message = _messageService.Get(x => x.Id == id);
             ReadMessageViewModel viewModel = _mapper.Map(message, new ReadMessageViewModel());
-            message.MessageOpened = true;
-            _messageService.Update(message);
+            if(viewModel.Sender.Username != User.Identity.Name)
+            {
+                message.IsMessageOpened = true; _messageService.Update(message);
+            }
+
+            
             return View(viewModel);
         }
 
         [HttpGet]
         [Route("/Writer/Message/SendMessage/{receiverUsername}")]
-        public async Task<IActionResult> SendMessage(string receiverUsername)
+        public async Task<IActionResult> SendMessage([FromRoute]string receiverUsername)
         {
             User receiverUser = await _userManager.FindByNameAsync(receiverUsername);
             User senderUser = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            CreateMessageViewModel viewModel = new CreateMessageViewModel();
-            ReadUserViewModel receiverViewModel = _mapper.Map(receiverUser, new ReadUserViewModel());
-            ReadUserViewModel senderViewModel = _mapper.Map(senderUser, new ReadUserViewModel());
-
-            viewModel.Receiver = receiverViewModel;
-            viewModel.Sender = senderViewModel;
+            CreateMessageViewModel viewModel = new CreateMessageViewModel
+            {
+                Receiver = _mapper.Map(receiverUser, new ReadUserViewModel()),
+                Sender = _mapper.Map(senderUser, new ReadUserViewModel())
+            };
 
             return View(viewModel);
         }
@@ -82,12 +91,12 @@ namespace CoreDemo.Areas.Writer.Controllers
             }
 
             Message newMessage = _mapper.Map(viewModel, new Message());
-            newMessage.ReceiverId = viewModel.Receiver.UserId;
-            newMessage.SenderId = viewModel.Sender.UserId;
+            newMessage.ReceiverId = viewModel.Receiver.Id;
+            newMessage.SenderId = viewModel.Sender.Id;
 
             _messageService.Add(newMessage);
 
-            return RedirectToAction("Homepage", "Home");
+            return Redirect($"/{nameof(Writer)}/{nameof(HomeController).Replace("Controller", "")}/{nameof(HomeController.Homepage)}");
         }
     }
 }

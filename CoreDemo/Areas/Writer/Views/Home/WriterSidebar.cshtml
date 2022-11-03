@@ -1,9 +1,15 @@
-﻿
+﻿@{
+    string writerArea = nameof(CoreDemo.Areas.Writer);
+    string homeController = nameof(CoreDemo.Areas.Writer.Controllers.HomeController).Replace("Controller","");
+    string messageController = nameof(CoreDemo.Areas.Writer.Controllers.MessageController).Replace("Controller","");
+    string blogController = nameof(CoreDemo.Areas.Writer.Controllers.BlogController).Replace("Controller","");
+
+}
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" href="/Writer/Home/Homepage">
+            <a class="nav-link" href="/@writerArea/@homeController/@nameof(CoreDemo.Areas.Writer.Controllers.HomeController.Homepage)">
                 <span class="menu-title">@ViewLocalizer["Homepage"]</span>
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
@@ -17,17 +23,17 @@
             <div class="collapse" id="my-profile">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Writer/Home/ChangeProfileInformations">
+                        <a class="nav-link" href="/@writerArea/@homeController/@nameof(CoreDemo.Areas.Writer.Controllers.HomeController.ChangeProfileInformations)">
                             <span class="menu-title">@ViewLocalizer["ChangeProfileInfos"]</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Writer/Home/ChangePassword">
+                        <a class="nav-link" href="/@writerArea/@homeController/@nameof(CoreDemo.Areas.Writer.Controllers.HomeController.ChangePassword)">
                             <span class="menu-title">@ViewLocalizer["ChangePassword"]</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Writer/Home/ChangeProfilePhoto">
+                        <a class="nav-link" href="/@writerArea/@homeController/@nameof(CoreDemo.Areas.Writer.Controllers.HomeController.ChangeProfilePhoto)">
                             <span class="menu-title">@ViewLocalizer["ChangeProfilePhoto"]</span>
                         </a>
                     </li>
@@ -43,12 +49,12 @@
             <div class="collapse" id="blog-processes">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Writer/Blog/MyBlog">
+                        <a class="nav-link" href="/@writerArea/@blogController/@nameof(CoreDemo.Areas.Writer.Controllers.BlogController.MyBlogs)">
                             <span class="menu-title">@ViewLocalizer["MyBlogs"]</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Writer/Blog/AddBlog">
+                        <a class="nav-link" href="/@writerArea/@blogController/@nameof(CoreDemo.Areas.Writer.Controllers.BlogController.AddBlog)">
                             <span class="menu-title">@ViewLocalizer["NewBlog"]</span>
                         </a>
                     </li>
@@ -56,13 +62,28 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Writer/Message/ViewInbox">
+            <a class="nav-link" data-toggle="collapse" href="#messages" aria-expanded="false" aria-controls="general-pages">
                 <span class="menu-title">@ViewLocalizer["Messages"]</span>
+                <i class="menu-arrow"></i>
                 <i class="mdi mdi-message menu-icon"></i>
             </a>
+            <div class="collapse" id="messages">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/@writerArea/@messageController/@nameof(CoreDemo.Areas.Writer.Controllers.MessageController.ViewInbox)">
+                            <span class="menu-title">@ViewLocalizer["IncomingMessages"]</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/@writerArea/@messageController/@nameof(CoreDemo.Areas.Writer.Controllers.MessageController.ViewSentbox)">
+                            <span class="menu-title">@ViewLocalizer["SentMessages"]</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Blog/GetAll">
+            <a class="nav-link" href="/@nameof(CoreDemo.Controllers.BlogController).Replace("Controller","")/@nameof(CoreDemo.Controllers.BlogController.GetAll)">
                 <span class="menu-title">@ViewLocalizer["GoBackToSite"]</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
             </a>

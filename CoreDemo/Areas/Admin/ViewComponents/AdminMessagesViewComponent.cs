@@ -25,7 +25,7 @@ namespace CoreDemo.Areas.Admin.ViewComponents
         {
             User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            var messages = _messageService.GetAll(x => x.ReceiverId == user.Id && !x.MessageOpened);
+            var messages = _messageService.GetAll(x => x.ReceiverId == user.Id && !x.IsMessageOpened);
 
             List<ReadMessageViewModel> viewModels = new List<ReadMessageViewModel>(messages.Count);
 

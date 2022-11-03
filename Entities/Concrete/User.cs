@@ -10,7 +10,9 @@ namespace Entities.Concrete
     {
         public string NameSurname { get; set; }
         public string ImageUrl { get; set; }
-        public string UserAbout { get; set; }
+        public string About { get; set; }
 
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Blog> Blogs { get; set; }
     }
 }

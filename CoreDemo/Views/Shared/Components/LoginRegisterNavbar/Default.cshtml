@@ -1,14 +1,12 @@
-﻿@model CoreDemo.Models.ReadUserViewModel
-
-@inject IStringLocalizer<UserLayoutController> Localizer
+﻿@model ReadUserViewModel
 
 <div class="col-md-4 top-forms mt-lg-3 mt-md-1 mt-0 d-flex">
-    <span>@Localizer["Welcome"] </span>
+    <span>@ViewLocalizer["Welcome"] </span>
     <div class="mx-lg-4 mx-md-2 mx-1">
         @if (Model.Username == null)
         {
             <a href="/@nameof(UserController).Replace("Controller", "")/@nameof(UserController.Login)" style="color:gray">
-                <i class="fas fa-lock"></i> @Localizer["Login"]
+                <i class="fas fa-lock"></i> @ViewLocalizer["Login"]
             </a>
         }
         else
@@ -21,13 +19,20 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @if (User.IsInRole("Admin"))
                         {
-                            <a class="dropdown-item" href="/Admin/Category/GetCategories">@Localizer["AdminPanel"]</a>
+                            <a class="dropdown-item" href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.HomeController).Replace("Controller", "")/@nameof(CoreDemo.Areas.Admin.Controllers.HomeController.Homepage)">@ViewLocalizer["AdminPanel"]</a>
+                            <div class="dropdown-divider"></div>
                         }
 
                         @if (User.IsInRole("Writer"))
                         {
-                            <a class="dropdown-item" href="/Writer/Home/Homepage">@Localizer["WriterPanel"]</a>
+                            <a class="dropdown-item" href="/@nameof(CoreDemo.Areas.Writer)/@nameof(CoreDemo.Areas.Writer.Controllers.HomeController).Replace("Controller", "")/@nameof(CoreDemo.Areas.Writer.Controllers.HomeController.Homepage)">@ViewLocalizer["WriterPanel"]</a>
+                            <div class="dropdown-divider"></div>
                         }
+
+
+                        <a class="dropdown-item" href="/@nameof(UserController).Replace("Controller", "")/@nameof(UserController.SeeProfile)/@Model.Username">
+                            @ViewLocalizer["SeeProfile"]
+                        </a>
 
                     </div>
                 </li>
@@ -38,13 +43,13 @@
         @if (Model.Username == null)
         {
             <a href="/@nameof(UserController).Replace("Controller", "")/@nameof(UserController.Register)">
-                <i class="far fa-user"></i> @Localizer["Signup"]
+                <i class="far fa-user"></i> @ViewLocalizer["Signup"]
             </a>
         }
         else
         {
             <a href="/@nameof(UserController).Replace("Controller", "")/@nameof(UserController.LogOut)">
-                <i class="fas fa-sign-out-alt"></i> @Localizer["Logout"]
+                <i class="fas fa-sign-out-alt"></i> @ViewLocalizer["Logout"]
             </a>
         }
     </span>

@@ -1,0 +1,81 @@
+﻿@model ReadBlogViewModel
+
+@{
+    ViewData["Title"] = @Model.Title;
+    Layout = "_UserLayout";
+}
+
+<style>
+    .blog-info-middle ul li {
+        color: white;
+        font-size:15px;
+    }
+</style>
+
+<div class="row">
+    <!--left-->
+    <div class="col-lg-9 left-blog-info-w3layouts-agileits text-left">
+        <div class="blog-grid-top">
+            <div class="b-grid-top">
+                <div class="blog_info_left_grid">
+                    <img src="~/images/@Model.MainImage" class="img-fluid" alt="">
+                </div>
+                <div class="blog-info-middle">
+                    <ul>
+                        <li>
+                            <i class="far fa-calendar-alt"></i> @Model.CreatedAt
+                        </li>
+                        <li class="mx-2">
+                            <i class="far fa-thumbs-up"></i> 0 @ViewLocalizer["Like"]
+                        </li>
+                        <li>
+                            <i class="far fa-comment"></i> @Model.CommentViewModels.Count @ViewLocalizer["Comment"]
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <h3>
+                @Model.Title
+            </h3>
+            <div class="blog-content-raw">
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+
+        <div class="comment-top">
+
+            <h4>@ViewLocalizer["Comments"]</h4>
+            <div class="media">
+                <div class="media-body">
+
+                    @await Component.InvokeAsync(nameof(CoreDemo.ViewComponents.CommentListByBlogViewComponent).Replace("ViewComponent",""), new { id = Model.Id })
+
+                </div>
+            </div>
+
+        </div>
+        <div class="comment-top">
+
+            @await Html.PartialAsync("../Blog/AddComment", new CreateCommentViewModel()
+            {
+            BlogSlug = Model.Slug
+            })
+        </div>
+    </div>
+
+    <!--//left-->
+    <!--right-->
+    <aside class="col-lg-3 agileits-w3ls-right-blog-con text-right">
+        <div class="right-blog-info text-left">
+
+            <div class="tech-btm">
+                @await Component.InvokeAsync(nameof(CoreDemo.ViewComponents.LatestThreePostsToWriterViewComponent).Replace("ViewComponent",""), new { writerId = @Model.UserViewModel.Id, currentBlogId = @Model.Id })
+            </div>
+        </div>
+
+    </aside>
+    <!--//right-->
+</div>
+

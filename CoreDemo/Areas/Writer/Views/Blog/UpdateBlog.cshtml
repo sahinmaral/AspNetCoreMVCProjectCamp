@@ -1,47 +1,65 @@
 ﻿@model UpdateBlogViewModel
 
 @{
-    ViewData["Title"] = @Model.BlogTitle + " adlı blogu düzenleme";
+    ViewData["Title"] = ViewLocalizer["MainTitle",Model.Title];
     Layout = "_WriterLayout";
 }
+
 
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title" style="margin-bottom:3em">Yeni Blog Oluştur</h4>
-            @using (Html.BeginForm("UpdateBlog", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.HiddenFor(x=>x.BlogId)
-                @Html.HiddenFor(x=>x.BlogStatus)
+            <form asp-action="@nameof(CoreDemo.Areas.Writer.Controllers.BlogController.UpdateBlog)"
+                  asp-controller="@nameof(CoreDemo.Areas.Writer.Controllers.BlogController).Replace("Controller","")"
+                  asp-area="@nameof(CoreDemo.Areas.Writer)"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <input type="hidden" asp-for="Status" value="@Model.Status" />
+
 
                 <div class="form-group">
-                    <label>Başlık</label>
-                    @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control", style = "border:1px solid black", placeholder = "Başlık" })
-                    @Html.ValidationMessageFor(x => x.BlogTitle, "", new { style = "color:darkred" })
+                    <label asp-for="Title">@ViewLocalizer["Title"]</label>
+                    <input type="text" asp-for="Title" class="form-control"/>
+                    <span asp-validation-for="Title" class="validation-span"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleTextarea1">İçerik</label>
-                    @Html.TextAreaFor(x => x.BlogContent, new { @class = "form-control", style = "border:1px solid black", placeholder = "İçerik", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.BlogContent, "", new { style = "color:darkred" })
+                    <label asp-for="Content">@ViewLocalizer["Content"]</label>
+                    <textarea asp-for="Content" class="ckeditor" id="blogContentForm"></textarea>
+                    <span asp-validation-for="Content" class="validation-span"></span>
                 </div>
                 <div class="form-group">
-                    <label>Kategori</label>
-                    @Html.DropDownListFor(x => x.CategoryViewModel.CategoryId, (List<SelectListItem>)ViewData["Categories"], new { @class = "form-control", style = "border:1px solid black" })
+                    <label asp-for="CategoryViewModel.Id">@ViewLocalizer["Category"]</label>
+                    <select asp-for="CategoryViewModel.Id" class="form-control"
+                            asp-items='(List<SelectListItem>)ViewData["Categories"]'>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ThumbnailImage">@ViewLocalizer["ThumbnailImage"]</label>
+                    <input type="file" class="form-control" asp-for="ThumbnailImage" />
+                    <span asp-validation-for="ThumbnailImage" class="validation-span"></span>
                 </div>
                 <div class="form-group">
-                    <label>Kapak resmi</label>
-                    <input type="file" class="form-control" name="BlogThumbnailImage" />
-                    @Html.ValidationMessageFor(x => x.BlogThumbnailImage, "", new { style = "color:darkred" })
+                    <label asp-for="MainImage">@ViewLocalizer["MainImage"]</label>
+                    <input type="file" class="form-control" asp-for="MainImage" />
+                    <span asp-validation-for="MainImage" class="validation-span"></span>
                 </div>
-                <div class="form-group">
-                    <label>Ana resim</label>
-                    <input type="file" class="form-control" name="BlogMainImage" />
-                    @Html.ValidationMessageFor(x => x.BlogMainImage, "", new { style = "color:darkred" })
-                </div>
-                <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
-                <button class="btn btn-light">İptal Et</button>
-            }
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-light">@ViewLocalizer["Discard"]</button>
+
+            </form>
         </div>
     </div>
 </div>
+
+<script>
+
+    CKEDITOR.replace('blogContentForm',
+        {
+            toolbar: 'Basic', 
+            uiColor: '#9AB8F3'
+        });
+</script>

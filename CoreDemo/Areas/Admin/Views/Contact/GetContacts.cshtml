@@ -1,0 +1,90 @@
+﻿@model List<ReadContactViewModel>
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title"];
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 animated fadeInRight">
+        <div class="mail-box-header">
+
+            <h2>
+                @ViewLocalizer["Title"] @(Model.Count(x => x.IsOpened == false) > 0 ? String.Concat("(", Model.Count(x => x.IsOpened == false), ")") : "")
+            </h2>
+            <div class="mail-tools tooltip-demo m-t-md">
+                <div class="btn-group float-right">
+                    <button class="btn btn-white btn-sm"><i class="fa fa-arrow-left"></i></button>
+                    <button class="btn btn-white btn-sm"><i class="fa fa-arrow-right"></i></button>
+                </div>
+
+                @*<a 
+                    class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="@ViewLocalizer["MarkAsRead"]"><i class="fa fa-eye"></i> </a>*@
+            </div>
+        </div>
+
+        <div class="mail-box">
+            <table class="table table-hover table-mail" id="contact-table">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>@ViewLocalizer["NameSurname"]</td>
+                        <td>@ViewLocalizer["Email"]</td>
+                        <td>@ViewLocalizer["Subject"]</td>
+                        <td>@ViewLocalizer["SentAt"]</td>
+                        <td>@ViewLocalizer["IsAnswered"]</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ReadContactViewModel contact in Model)
+                    {
+                        if (contact.IsOpened)
+                        {
+                            <tr class="read">
+                                <td class="check-mail">
+                                    <input type="checkbox" class="i-checks">
+                                </td>
+
+                                <td><a href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController.GetContactDetail)/@contact.Id">@contact.NameSurname</a></td>
+                                <td><a href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController.GetContactDetail)/@contact.Id">@contact.Email</a></td>
+                                <td><a href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController.GetContactDetail)/@contact.Id">@contact.Subject</a></td>
+                                <td>@contact.CreatedAt.ToShortDateString() @contact.CreatedAt.ToShortTimeString()</td>
+                                <td>
+                                    @if(contact.IsAnswered){
+                                        <span class="badge badge-primary">@ViewLocalizer["Yes"]</span>
+                                    }else{
+                                        <span class="badge badge-danger">@ViewLocalizer["No"]</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="unread">
+                                <td class="check-mail">
+                                    <input type="checkbox" class="i-checks">
+                                </td>
+                                <td><a href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController.GetContactDetail)/@contact.Id">@contact.NameSurname</a></td>
+                                <td><a href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController.GetContactDetail)/@contact.Id">@contact.Email</a></td>
+                                <td><a href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.ContactController.GetContactDetail)/@contact.Id">@contact.Subject</a></td>
+                                <td>@contact.CreatedAt.ToShortDateString() @contact.CreatedAt.ToShortTimeString()</td>
+                                <td>
+                                    @if (contact.IsAnswered)
+                                    {
+                                            <span class="badge badge-primary">@ViewLocalizer["Yes"]</span>
+                                    }
+                                    else
+                                    {
+                                                <span class="badge badge-danger">@ViewLocalizer["No"]</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

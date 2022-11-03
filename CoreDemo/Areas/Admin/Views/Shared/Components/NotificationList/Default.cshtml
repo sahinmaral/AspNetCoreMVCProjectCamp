@@ -1,4 +1,4 @@
-﻿@using CoreDemo.Areas.Writer.Models
+﻿
 @using Microsoft.AspNetCore.Builder
 @model List<ReadNotificationViewModel>
 
@@ -22,13 +22,13 @@
     {
         <a class="dropdown-item preview-item">
             <div class="preview-thumbnail">
-                <div class="preview-icon @notification.NotificationType.NotificationTypeName">
-                    <i class="@notification.NotificationSymbol.SymbolName"></i>
+                <div class="preview-icon @notification.NotificationType.Name">
+                    <i class="@notification.NotificationSymbol.Name"></i>
                 </div>
             </div>
             <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                <h6 class="preview-subject font-weight-normal mb-1">@notification.NotificationInformations.First(x=>x.Language.LanguageShortName == culture.RequestCulture.UICulture.Name).NotificationHeader</h6>
-                <p class="text-gray ellipsis mb-0">@notification.NotificationInformations.First(x=>x.Language.LanguageShortName == culture.RequestCulture.UICulture.Name).NotificationDetail</p>
+                <h6 class="preview-subject font-weight-normal mb-1">@notification.NotificationInformations.First(x=>x.Language.ShortName == culture.RequestCulture.UICulture.Name).Header</h6>
+                <p class="text-gray ellipsis mb-0">@notification.NotificationInformations.First(x=>x.Language.ShortName == culture.RequestCulture.UICulture.Name).Detail</p>
             </div>
         </a>
     }

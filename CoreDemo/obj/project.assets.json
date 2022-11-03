@@ -1899,6 +1899,19 @@
           }
         }
       },
+      "Slugify.Core/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.4",
+          "system.Text.Encoding.CodePages": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Slugify.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Slugify.Core.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/6.3.0": {
         "type": "package",
         "dependencies": {
@@ -6221,6 +6234,18 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "Slugify.Core/3.0.0": {
+      "sha512": "lJiN2OUUu/zOErZzuv+rUnR2S7qvXthhuF+xoqiymoTx+YnqtOjzPwp+c9i7zVrKHFqCOSV1PSJeUEE4hiofBw==",
+      "type": "package",
+      "path": "slugify.core/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Slugify.Core.dll",
+        "slugify.core.3.0.0.nupkg.sha512",
+        "slugify.core.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/6.3.0": {
@@ -10799,6 +10824,7 @@
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 3.1.18",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.13",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
+      "Slugify.Core >= 3.0.0",
       "X.PagedList >= 8.1.0",
       "X.PagedList.Mvc.Core >= 8.1.0",
       "toastr >= 2.1.1"
@@ -10903,6 +10929,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[5.0.2, )"
+          },
+          "Slugify.Core": {
+            "target": "Package",
+            "version": "[3.0.0, )"
           },
           "X.PagedList": {
             "target": "Package",

@@ -41,8 +41,8 @@ namespace CoreDemo.Areas.Admin.Controllers
             {
                 CategoryChartViewModel viewModel = new CategoryChartViewModel
                 {
-                    BlogCount = _blogService.GetAll(x => x.CategoryId == category.CategoryId).Count,
-                    CategoryName = category.CategoryName
+                    BlogCount = _blogService.GetAll(x => x.CategoryId == category.Id).Count,
+                    CategoryName = category.Name
                 };
                 viewModels.Add(viewModel);
             }

@@ -1,0 +1,70 @@
+﻿@model ReadUserViewModel 
+
+
+@{
+    ViewData["Title"] = ViewLocalizer["Homepage"];
+    Layout = "_AdminLayout";
+}
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+    
+        <div class="row my-3">
+            
+            @await Component.InvokeAsync("AdminStatistics",new {id = @Model.Id}) 
+           
+        </div>
+        <div class="row my-3">
+            <div class="col-12 grid-margin">
+                <div class="card mx-auto" style="width:70%">
+                    <div class="card-body">
+                        <h4 class="card-title">@ViewLocalizer["LatestWritten10Blogs"]</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                        <th> @ViewLocalizer["ThumbnailPhoto"] </th>
+                                        <th> @ViewLocalizer["BlogTitle"] </th>
+                                        <th> @ViewLocalizer["Category"] </th>
+                                        <th> @ViewLocalizer["PublishedDate"] </th>
+                                        <th> @ViewLocalizer["Details"] </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @await Component.InvokeAsync("LatestTenPostsToAdmin", new { id = @Model.Id })
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row my-3">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <h4 class="card-title mt-5 ml-5">@ViewLocalizer["AboutYou"]</h4>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <img src="~/images/@Model.ImageUrl" class="img-sm rounded-circle mr-3">
+                            <div class="mb-0 flex-grow">
+                                <h5 class="mr-2 mb-2">@Model.NameSurname - @Model.Username</h5>
+                                <p class="mb-0 font-weight-light">
+                                    @Model.About
+                                </p>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="/Writer/Home/ChangeProfile">
+                                    <i class="mdi mdi-settings-outline text-muted">
+                                    </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

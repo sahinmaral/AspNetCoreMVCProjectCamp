@@ -2,8 +2,8 @@
 
 
 @{
-    ViewData["Title"] = ViewLocalizer["Title"];
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = ViewLocalizer["Title",Model.Title];
+    Layout = "_AdminLayout";
 }
 
 <div class="col-12 grid-margin stretch-card">
@@ -11,35 +11,50 @@
         <div class="card-body">
             <h3 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title"]</h3>
 
-            <form asp-action="UpdateAbout" asp-controller="About" asp-area="Admin" method="post">
+            <form asp-action="@nameof(CoreDemo.Areas.Admin.Controllers.AboutController.UpdateAbout)"
+                  asp-controller="@nameof(CoreDemo.Areas.Admin.Controllers.AboutController).Replace("Controller","")"
+                  asp-area="@nameof(CoreDemo.Areas.Admin)" method="post">
 
-                <input type="hidden" asp-for="AboutId" name="AboutId"/>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group">
+                    <label>@ViewLocalizer["AboutTitle"]</label>
+                    <input type="text" asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="validation-span"></span>
+                </div>
 
                 <div class="form-group">
                     <label>@ViewLocalizer["AboutDetail"]</label>
-                    @*//TODO : Text Editor ile yapilabilir.*@
-
-                    <textarea class="form-control" style="border:1px solid black" rows="4" asp-for="AboutDetail" name="AboutDetail"></textarea>
-                    <span asp-validation-for="AboutDetail" style="color:darkred"></span>
+                    <textarea asp-for="Detail" class="ckeditor" id="aboutDetailForm"></textarea>
+                    <span asp-validation-for="Detail" class="validation-span"></span>
                 </div>
 
                 <div class="form-group">
                     <label>@ViewLocalizer["AboutMapLocation"]</label>
-                    <input type="text" asp-for="@Model.AboutMapLocation" name="AboutMapLocation" class="form-control" style="border:1px solid black" />
-                    <span asp-validation-for="AboutMapLocation" style="color:darkred"></span>
+                    <input type="text" asp-for="@Model.MapLocation" class="form-control" />
+                    <span asp-validation-for="MapLocation" class="validation-span"></span>
                 </div>
 
                 <div class="form-group">
                     <label>@ViewLocalizer["AboutImage"]</label>
-                    <input type="text" asp-for="@Model.AboutImage" name="AboutImage" class="form-control" style="border:1px solid black" />
-                    <span asp-validation-for="AboutImage" style="color:darkred"></span>
+                    <input type="text" asp-for="@Model.ImageUrl" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="validation-span"></span>
                 </div>
 
 
-                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">@ViewLocalizer["Submit"]</button>
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-light mr-2">@ViewLocalizer["Discard"]</button>
             </form>
 
         </div>
     </div>
 </div>
 
+<script>
+
+    CKEDITOR.replace('aboutDetailForm',
+        {
+            toolbar: 'Basic',
+            uiColor: '#9AB8F3'
+        });
+</script>

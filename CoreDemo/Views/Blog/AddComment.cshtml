@@ -1,10 +1,101 @@
 ﻿@model CreateCommentViewModel
 
+<style>
+
+        .blog-comment-buttons i{
+            margin:5px;
+        }
+
+        .input-icons i {
+            position: absolute;
+        }
+
+        .input-icons {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .icon {
+            padding: 10px;
+            min-width: 40px;
+        }
+
+        .input-icons input[type=checkbox] {
+            width:40px;
+            height:40px;
+            opacity:0;
+        }
+
+</style>
+
 <h4>@ViewLocalizer["Title"]</h4>
 <div class="comment-bottom">
     <form asp-controller="@nameof(BlogController).Replace("Controller","")" method="post" asp-action="@nameof(BlogController.AddComment)">
-        <input type="hidden" value="@Model.BlogId" asp-for=BlogId name=BlogId />
-        <textarea asp-for="CommentAbout" class="form-control" name="CommentAbout"></textarea>
+        <input type="hidden" value="@Model.BlogSlug" asp-for=BlogSlug  />
+        <div class="row">
+            <div class="col-10">
+                <textarea asp-for="Detail" class="form-control" style="height:100px;"></textarea>
+            </div>
+            <div class="col-2 text-center d-flex flex-column blog-comment-buttons">
+
+                <div class="input-icons">
+                    <i id="blog-comment-like" class="fas fa-arrow-up fa-2x"></i>
+                    <input onclick="changeLikeOrDislikeStatus('like')"
+                           onmouseover="notifyLikeOrDislikeStatus('like')"
+                           onmouseout="notifyLikeOrDislikeStatus('out')"
+                           type="checkbox"
+                           asp-for="LikeOrDislikeStatus" value="True" />
+                </div>
+
+                <div class="input-icons">
+                    <i id="blog-comment-dislike" class="fas fa-arrow-down fa-2x"></i>
+                    <input onclick="changeLikeOrDislikeStatus('dislike')"
+                           onmouseover="notifyLikeOrDislikeStatus('dislike')"
+                           onmouseout="notifyLikeOrDislikeStatus('out')"
+                           type="checkbox"
+                           asp-for="LikeOrDislikeStatus" value="False" />
+                </div>
+                
+            </div>
+        </div>
+
+
         <button id="addCommentButton" class="btn btn-primary" type="submit">@ViewLocalizer["Submit"]</button>
     </form>
 </div>
+
+
+
+<script>
+    let commentStatus = "out";
+
+    function changeLikeOrDislikeStatus(status) {
+        if (status == "like") {
+            commentStatus = "like";
+            document.getElementById("blog-comment-like").style.color = "green"
+        } else {
+            commentStatus = "dislike";
+            document.getElementById("blog-comment-dislike").style.color = "red"
+        }
+    }
+
+    function notifyLikeOrDislikeStatus(status) {
+        if (status == "like") {
+            document.getElementById("blog-comment-like").style.color = "green"
+        } else if (status == "dislike") {
+            document.getElementById("blog-comment-dislike").style.color = "red"
+        } 
+        else {
+            if (commentStatus == "like") {
+                document.getElementById("blog-comment-like").style.color = "green"
+                document.getElementById("blog-comment-dislike").style.color = "black"
+            } else if (commentStatus == "dislike") {
+                document.getElementById("blog-comment-dislike").style.color = "red"
+                document.getElementById("blog-comment-like").style.color = "black"
+            }else{
+                document.getElementById("blog-comment-dislike").style.color = "black"
+                document.getElementById("blog-comment-like").style.color = "black"
+            }
+        }
+    }
+</script>

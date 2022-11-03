@@ -9,13 +9,12 @@ namespace Entities.Concrete
     {
         public Message()
         {
-            MessageOpened = false;
-            MessageDateTime = DateTime.Now;
+            IsMessageOpened = false;
+            CreatedAt = DateTime.Now;
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int MessageId { get; set; }
+
+        public int Id { get; set; }
 
         [Column("SenderId")]
         public int? SenderId { get; set; }
@@ -25,9 +24,9 @@ namespace Entities.Concrete
         public int? ReceiverId { get; set; }
         public User Receiver { get; set; }
 
-        public string MessageSubject { get; set; }
-        public string MessageDetail { get; set; }
-        public DateTime MessageDateTime { get; set; }
-        public bool MessageOpened { get; set; }
+        public string Subject { get; set; }
+        public string Detail { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public bool IsMessageOpened { get; set; }
     }
 }

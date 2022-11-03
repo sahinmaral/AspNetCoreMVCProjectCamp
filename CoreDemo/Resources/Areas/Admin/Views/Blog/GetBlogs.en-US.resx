@@ -135,6 +135,9 @@
   <data name="Like" xml:space="preserve">
     <value>{0} Like</value>
   </data>
+  <data name="NoBlogWrote" xml:space="preserve">
+    <value>There are no blog has been written</value>
+  </data>
   <data name="NoButtonText" xml:space="preserve">
     <value>No</value>
   </data>

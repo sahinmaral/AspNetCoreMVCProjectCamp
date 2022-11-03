@@ -102,9 +102,9 @@
     <h6 class="p-3 mb-0" style="font-weight:bold; font-size:15px;">@ViewLocalizer["Messages"]</h6>
     @foreach (ReadMessageViewModel message in Model)
     {
-        CalculateSubstract(message.MessageDateTime);
+        CalculateSubstract(message.CreatedAt);
 
-        <a class="dropdown-item preview-item" href="/Message/GetMessageDetail/@message.MessageId">
+        <a class="dropdown-item preview-item" href="/Message/GetMessageDetail/@message.Id">
             <div class="preview-thumbnail">
                 <img src="~/images/@message.Sender.ImageUrl" alt="image" class="profile-pic">
             </div>

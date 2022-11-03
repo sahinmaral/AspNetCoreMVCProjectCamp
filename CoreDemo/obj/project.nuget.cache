@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pgBk1PGUwyCg+UQYdWlLZ9SVjLQJtQx3TpXJ3MzqMhIJz1hR7r6AzfJ2GlKq9L30OKUVx7gsyulqAqhfJ89Ksg==",
+  "dgSpecHash": "7Jz3Wn4ILAIkoAUHzTwlH6ujtris78XXVQB9uiQ2gfwhto406SU5ESMj4ZjmYAWP0cOpYidznNa9//eG1orQsQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\sahin\\OneDrive\\Desktop\\Files\\GithubRepositories\\AspNetCoreMVCProjectCamp\\CoreDemo\\CoreDemo.csproj",
   "expectedPackageFiles": [
@@ -111,6 +111,7 @@
     "C:\\Users\\sahin\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\sahin\\.nuget\\packages\\slugify.core\\3.0.0\\slugify.core.3.0.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\swashbuckle.aspnetcore\\6.3.0\\swashbuckle.aspnetcore.6.3.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.3.0\\swashbuckle.aspnetcore.swagger.6.3.0.nupkg.sha512",
     "C:\\Users\\sahin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.3.0\\swashbuckle.aspnetcore.swaggergen.6.3.0.nupkg.sha512",

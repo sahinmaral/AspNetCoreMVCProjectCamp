@@ -1,35 +1,28 @@
-using System.Collections.Generic;
-using System.Globalization;
 using AutoMapper;
-
 using Business.Abstract;
 using Business.Concrete;
-
 using DataAccess.Abstract;
 using DataAccess.Concrete;
-
+using Entities.Concrete;
 using FluentValidation.AspNetCore;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.WebEncoders;
-
+using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
-
-using Entities.Concrete;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace CoreDemo
 {
@@ -45,6 +38,13 @@ namespace CoreDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<FormOptions>(options =>
+            {
+                options.ValueLengthLimit = int.MaxValue;
+                options.MultipartBodyLengthLimit = int.MaxValue;
+                options.MultipartHeadersLengthLimit = int.MaxValue;
+            });
+
             services.AddSingleton<ICategoryService, CategoryManager>();
             services.AddSingleton<ICategoryDal, EfCategoryDal>();
 
@@ -69,7 +69,17 @@ namespace CoreDemo
             services.AddSingleton<INotificationService, NotificationManager>();
             services.AddSingleton<INotificationDal, EfNotificationDal>();
 
-            //NotificationType and NotificationSymbol will be added
+            services.AddSingleton<INotificationTypeService, NotificationTypeManager>();
+            services.AddSingleton<INotificationTypeDal, EfNotificationTypeDal>();
+
+            services.AddSingleton<INotificationSymbolService, NotificationSymbolManager>();
+            services.AddSingleton<INotificationSymbolDal, EfNotificationSymbolDal>();
+
+            services.AddSingleton<INotificationInformationService, NotificationInformationManager>();
+            services.AddSingleton<INotificationInformationDal, EfNotificationInformationDal>();
+
+            services.AddSingleton<ILanguageService, LanguageManager>();
+            services.AddSingleton<ILanguageDal, EfLanguageDal>();
 
             services.AddSingleton<IMessageService, MessageManager>();
             services.AddSingleton<IMessageDal, EfMessageDal>();
@@ -101,7 +111,7 @@ namespace CoreDemo
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
-                options.DefaultRequestCulture = new RequestCulture("tr-TR","tr-TR");
+                options.DefaultRequestCulture = new RequestCulture("tr-TR", "tr-TR");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
                 options.RequestCultureProviders = new List<IRequestCultureProvider>
@@ -136,6 +146,9 @@ namespace CoreDemo
 
             services.AddDbContext<Context>();
             services.AddIdentity<User, Role>().AddEntityFrameworkStores<Context>();
+
+            
+
 
         }
 
@@ -183,7 +196,7 @@ namespace CoreDemo
                     pattern: "{controller=Blog}/{action=GetAll}/{id?}");
             });
 
-            
+
         }
     }
 }

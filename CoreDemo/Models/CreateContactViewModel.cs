@@ -1,10 +1,10 @@
 ﻿namespace CoreDemo.Models
 {
-    public class CreateContactViewModel
+    public class CreateContactViewModel : BaseViewModel
     {
-        public string ContactNameSurname { get; set; }
-        public string ContactMail { get; set; }
-        public string ContactSubject { get; set; }
-        public string ContactMessage { get; set; }
+        public string NameSurname { get; set; }
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
     }
 }

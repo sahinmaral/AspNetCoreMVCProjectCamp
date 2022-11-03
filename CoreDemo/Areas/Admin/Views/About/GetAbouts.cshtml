@@ -2,8 +2,10 @@
 
 @{
     ViewData["Title"] = ViewLocalizer["Title"];
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "_AdminLayout";
 }
+
+<h2>@ViewLocalizer["Title"]</h2>
 
 <div class="row mt-5">
     <div class="col-12">
@@ -13,7 +15,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>@ViewLocalizer["AboutDetail"]</th>
+                            <th>@ViewLocalizer["AboutTitle"]</th>
                             <th>@ViewLocalizer["AboutStatus"]</th>
                             <th>@ViewLocalizer["SetActive"]</th>
                             <th>@ViewLocalizer["Edit"]</th>
@@ -23,18 +25,18 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.AboutId</td>
-                                <td>@item.AboutDetail</td>
-                                <td>@item.AboutStatus</td>
+                                <td>@item.Id</td>
+                                <td>@item.Title</td>
+                                <td>@item.Status</td>
                                 <td>
-                                    @if(item.AboutStatus){
-                                       <button class="btn btn-primary text-white" onclick="setAboutActived(@item.AboutId,'true')">@ViewLocalizer["SetActive"]</button> 
+                                    @if(item.Status){
+                                        <button class="btn btn-primary text-white" onclick="setAboutActived(@item.Id,'true')">@ViewLocalizer["SetActive"]</button>
                                     }else{
-                                        <button class="btn btn-primary text-white" onclick="setAboutActived(@item.AboutId,'false')">@ViewLocalizer["SetActive"]</button>
+                                        <button class="btn btn-primary text-white" onclick="setAboutActived(@item.Id,'false')">@ViewLocalizer["SetActive"]</button>
                                     }
                                     
                                 </td>
-                                <td><a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn btn-success">@ViewLocalizer["Edit"]</a></td>
+                                <td><a href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.AboutController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.AboutController.UpdateAbout)/@item.Id" class="btn btn-success">@ViewLocalizer["Edit"]</a></td>
                             </tr>
                         }
                     </tbody>

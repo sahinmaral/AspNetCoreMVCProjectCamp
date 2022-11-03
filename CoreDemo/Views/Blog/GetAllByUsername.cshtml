@@ -1,0 +1,85 @@
+﻿@model List<ReadBlogViewModel>
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title", ViewData["Username"]];
+    Layout = "_UserLayout";
+}
+
+<style>
+    .blog-icons li span {
+        color: #7f8c8d;
+    }
+</style>
+
+
+@{
+    string CheckBlogContent(string content)
+    {
+        if (content != null && content.Length > 50)
+        {
+            return content.Substring(0, content.Substring(0,50).LastIndexOf(" ")) + " ...";
+        }
+
+        return content;
+    }
+}
+
+<h3 class="tittle">@ViewLocalizer["Title",ViewData["Username"]]</h3>
+<div class="inner-sec">
+    <div class="left-blog-info-w3layouts-agileits text-left">
+        <div class="row">
+            @foreach (ReadBlogViewModel blog in Model)
+            {
+                <div class="col-lg-4 card">
+                    <img src="~/images/@blog.ThumbnailImage" class="card-img-top img-fluid" alt="BlogThumbnailImage">
+                    <div class="card-body">
+                        <ul class="blog-icons my-4 mx-1">
+                            <li>
+                                    <i class="far fa-calendar-alt"></i><span>&nbsp;@blog.CreatedAt</span>
+                            </li>
+                            <li>
+                                <i class="far fa-comment"></i><span>&nbsp;@blog.CommentViewModels.Count</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-eye"></i><span>&nbsp;@blog.CategoryViewModel.Name</span>
+                            </li>
+                        </ul>
+                        <ul class="blog-icons my-4">
+                            <li class="nav-item dropdown">
+                                @ViewLocalizer["Writer"] :
+                                <a class="mx-1 dropdown-toggle text-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                                    <i class="fas fa-user"></i>@blog.UserViewModel.Username
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/User/SeeProfile/@blog.UserViewModel.Username">@ViewLocalizer["ShowProfile"]</a>
+
+                                    <div class="dropdown-divider"></div>
+
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <a class="dropdown-item" href="/Admin/Message/SendMessage/@blog.UserViewModel.Username">@ViewLocalizer["SendMessage"]</a>
+                                    }
+                                    @if (User.IsInRole("Writer"))
+                                    {
+                                        <a class="dropdown-item" href="/Writer/Message/SendMessage/@blog.UserViewModel.Username">@ViewLocalizer["SendMessage"]</a>
+                                    }
+                                </div>
+                            </li>
+                        </ul>
+                        <h5 class="card-title">
+                            <a href="GetById/@blog.Id">@blog.Title</a>
+                        </h5>
+                        <p class="card-text mb-3">
+                            @CheckBlogContent(blog.Content)
+                        </p>
+                        <a href="/Blog/GetById/@blog.Id" class="btn btn-primary read-m">@ViewLocalizer["BlogDetail"] </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--//left-->
+    </div>
+</div>
+
+
+

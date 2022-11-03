@@ -1,0 +1,30 @@
+﻿@model UserLockoutViewModel
+
+@{
+    ViewBag.Title = ViewLocalizer["Title"];
+    Layout = "_AdminLayout";
+}
+
+<form asp-action="@nameof(CoreDemo.Areas.Admin.Controllers.UserController.BanUser)"
+      asp-area="@nameof(CoreDemo.Areas.Admin)"
+      asp-controller="@nameof(CoreDemo.Areas.Admin.Controllers.UserController).Replace("Controller","")"
+      method="post">
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">@ViewLocalizer["MainTitle", Model.UserViewModel.Username]</h2>
+
+                <input type="hidden" asp-for="UserViewModel.Username" value="@Model.UserViewModel.Username"/>
+
+                <div class="form-group">
+                    <input type="date" class="form-control" asp-for="LockoutEnd"/>
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary mr-2" style="height:40px">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-gradient-primary mr-2" style="height:40px">@ViewLocalizer["Discard"]</button>
+
+            </div>
+        </div>
+    </div>
+</form>

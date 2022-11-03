@@ -58,8 +58,6 @@ C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApi
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\net5.0\BlogApiDemo.pdb
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\net5.0\BlogApiDemo.genruntimeconfig.cache
 C:\Users\sahin\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\net5.0\ref\BlogApiDemo.dll
-C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\appsettings.Development.json
-C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\appsettings.json
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\BlogApiDemo.exe
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\BlogApiDemo.deps.json
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\BlogApiDemo.runtimeconfig.json
@@ -67,6 +65,7 @@ C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCam
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\BlogApiDemo.dll
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\BlogApiDemo.pdb
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Humanizer.dll
+C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -117,4 +116,4 @@ C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCam
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\net5.0\BlogApiDemo.pdb
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\net5.0\BlogApiDemo.genruntimeconfig.cache
 C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\obj\Debug\net5.0\ref\BlogApiDemo.dll
-C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\sahin\OneDrive\Desktop\Files\GithubRepositories\AspNetCoreMVCProjectCamp\BlogApiDemo\bin\Debug\net5.0\appsettings.json

@@ -120,6 +120,9 @@
   <data name="Content" xml:space="preserve">
     <value>Content</value>
   </data>
+  <data name="Discard" xml:space="preserve">
+    <value>Discard</value>
+  </data>
   <data name="FormTitle" xml:space="preserve">
     <value>Send message to {0}</value>
   </data>

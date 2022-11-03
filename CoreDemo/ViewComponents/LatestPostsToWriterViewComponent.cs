@@ -22,9 +22,9 @@ namespace CoreDemo.ViewComponents
         {
             List<ReadBlogViewModel> viewModels = new List<ReadBlogViewModel>();
 
-            List<Blog> last3Blogs = _blogService.GetAllWithDetails(x=>x.UserId == writerId).TakeLast(3).ToList();
+            List<Blog> last3Blogs = _blogService.GetAllWithDetails(x=>x.UserId == writerId).OrderByDescending(x=>x.CreatedAt).Take(3).ToList();
 
-            last3Blogs.Remove(last3Blogs.Single(x=>x.BlogId == currentBlogId));
+            last3Blogs.Remove(last3Blogs.Single(x=>x.Id == currentBlogId));
 
             viewModels = _mapper.Map(last3Blogs, viewModels);
 

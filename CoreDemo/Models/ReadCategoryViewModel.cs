@@ -4,11 +4,12 @@ using Entities.Concrete;
 
 namespace CoreDemo.Models
 {
-    public class ReadCategoryViewModel
+    public class ReadCategoryViewModel : BaseViewModel
     {
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
-        public string CategoryDescription { get; set; }
-        public bool CategoryStatus { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Slug { get; set; }
+        public string Description { get; set; }
+        public bool Status { get; set; }
     }
 }

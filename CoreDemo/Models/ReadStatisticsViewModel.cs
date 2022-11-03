@@ -6,7 +6,7 @@ using CoreDemo.Areas.Admin.Models;
 
 namespace CoreDemo.Models
 {
-    public class ReadStatisticsViewModel
+    public class ReadStatisticsViewModel : BaseViewModel
     {
         public int TotalBlogCount { get; set; }
         public int NewContactCount { get; set; }

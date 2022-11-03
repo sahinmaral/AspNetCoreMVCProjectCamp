@@ -25,7 +25,7 @@ namespace CoreDemo.ViewComponents
 
             List<Blog> last3Blogs = _blogService.GetAllWithDetails(x=>x.UserId == writerId).TakeLast(3).ToList();
 
-            last3Blogs.Remove(last3Blogs.Single(x=>x.BlogId == currentBlogId));
+            last3Blogs.Remove(last3Blogs.Single(x=>x.Id == currentBlogId));
 
             viewModels = _mapper.Map(last3Blogs, viewModels);
 

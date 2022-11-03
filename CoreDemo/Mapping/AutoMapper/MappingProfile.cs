@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using AutoMapper;
 using CoreDemo.Areas.Admin.Models;
-using CoreDemo.Areas.Writer.Models;
 using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
@@ -12,30 +11,48 @@ namespace CoreDemo.Mapping.AutoMapper
     {
         public MappingProfile()
         {
+            CreateMap<User, UserLockoutViewModel>()
+                .ForMember(obj => obj.UserViewModel, opt => opt.MapFrom(src => src))
+                .ForMember(obj => obj.LockoutEnd, opt => opt.MapFrom(src => src.LockoutEnd))
+                
+                ;
+
             CreateMap<Blog, ReadBlogViewModel>()
-                .ForMember(obj => obj.BlogCreateDate, opt => opt.MapFrom(src => src.BlogCreatedDate.ToString("dd-MMM-yyyy")))
+                .ForMember(obj => obj.CommentViewModels, opt => opt.MapFrom(src => src.Comments))
                 .ForMember(obj => obj.CategoryViewModel, opt => opt.MapFrom(src => src.Category))
-                .ForMember(x => x.CommentViewModels, opt => opt.MapFrom(src => src.Comments))
-                .ForMember(x => x.UserViewModel, opt => opt.MapFrom(src => src.User));
+                .ForMember(obj => obj.UserViewModel, opt => opt.MapFrom(src => src.User))
+                .ForMember(obj => obj.CreatedAt, opt => opt.MapFrom(src => src.CreatedAt.ToString("dd-MMM-yyyy")));
 
             CreateMap<Blog, UpdateBlogViewModel>()
-                .ForMember(obj => obj.BlogCreateDate,
-                    opt => opt.MapFrom(src => src.BlogCreatedDate.ToShortDateString()))
-                .ForMember(obj => obj.CategoryViewModel, opt => opt.MapFrom(src => src.Category))
-                .ForMember(x => x.CommentViewModels, opt => opt.MapFrom(src => src.Comments));
+                .ForMember(x => x.ThumbnailImage, opt => opt.Ignore())
+                .ForMember(x => x.MainImage, opt => opt.Ignore())
+                .ForMember(obj => obj.CreatedAt,
+                    opt => opt.MapFrom(src => src.CreatedAt.ToString("dd-MMM-yyyy")))
+                .ForMember(obj => obj.WriterViewModel,
+                    opt => opt.MapFrom(src => src.User))
+                .ForMember(obj => obj.CategoryViewModel,
+                    opt => opt.MapFrom(src => src.Category))
+                .ForMember(obj => obj.CommentViewModels,
+                    opt => opt.MapFrom(src => src.Comments))
+                ;
 
             CreateMap<UpdateBlogViewModel, Blog>();
-
             CreateMap<CreateBlogViewModel, Blog>();
 
+            CreateMap<Contact, ReadContactViewModel>();
+            CreateMap<Contact, RespondContactedUserViewModel>()
+                .ForMember(obj => obj.SentAt,
+                    opt => opt.MapFrom(src => src.CreatedAt));
 
             CreateMap<Category, ReadCategoryViewModel>();
             CreateMap<ReadCategoryViewModel, Category>();
 
+            CreateMap<Category, UpdateCategoryViewModel>();
+            CreateMap<UpdateCategoryViewModel, Category>();
+
             CreateMap<CreateCategoryViewModel, Category>();
 
-            CreateMap<CreateNewsLetterViewModel, NewsLetter>()
-                .ForMember(obj => obj.NewsLetterMail, opt => opt.MapFrom(src => src.Email));
+            CreateMap<CreateNewsLetterViewModel, NewsLetter>();
 
             CreateMap<CreateCommentViewModel, Comment>();
 
@@ -44,13 +61,13 @@ namespace CoreDemo.Mapping.AutoMapper
                 .ForMember(obj => obj.BlogViewModel, opt => opt.MapFrom(src => src.Blog));
 
             CreateMap<Comment, UpdateCommentViewModel>()
-                .ForMember(obj => obj.BlogTitle, opt => opt.MapFrom(src => src.Blog.BlogTitle))
-                .ForMember(obj => obj.BlogId, opt => opt.MapFrom(src => src.Blog.BlogId));
+                .ForMember(obj => obj.BlogTitle, opt => opt.MapFrom(src => src.Blog.Title))
+                .ForMember(obj => obj.BlogId, opt => opt.MapFrom(src => src.Blog.Id));
 
             CreateMap<About, ReadAboutViewModel>();
+            CreateMap<CreateAboutViewModel,About>();
 
-            CreateMap<CreateContactViewModel, Contact>()
-                .ForMember(obj => obj.ContactNameSurname , opt => opt.MapFrom(src=>src.ContactNameSurname));
+            CreateMap<CreateContactViewModel, Contact>();
 
             CreateMap<Message, ReadMessageViewModel>();
 
@@ -58,16 +75,16 @@ namespace CoreDemo.Mapping.AutoMapper
 
             CreateMap<ReadUserViewModel, User>();
 
-            CreateMap<User, ReadUserViewModel>()
-                .ForMember(obj => obj.Username, opt => opt.MapFrom(src => src.UserName))
-                .ForMember(obj => obj.UserId, opt => opt.MapFrom(src => src.Id));
+            CreateMap<User, ReadUserViewModel>();
 
-            CreateMap<UserSignUpViewModel, User>()
-                .ForMember(obj => obj.NameSurname, opt => opt.MapFrom(src => src.NameSurname))
-                .ForMember(obj => obj.Email, opt => opt.MapFrom(src => src.Mail))
-                .ForMember(obj => obj.UserName, opt => opt.MapFrom(src => src.Username));
+            CreateMap<UserSignUpViewModel, User>();
+
+            CreateMap<Language, ReadLanguageViewModel>();
 
             CreateMap<Notification, ReadNotificationViewModel>();
+
+            
+
         }
     }
 }

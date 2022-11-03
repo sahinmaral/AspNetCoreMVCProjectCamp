@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace DataAccess.Concrete
 {
@@ -9,7 +10,7 @@ namespace DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=CoreBlogDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Data Source=SQL8003.site4now.net;Initial Catalog=db_a8e6e0_coreblogdb;User Id=db_a8e6e0_coreblogdb_admin;Password=ASPNETCOREMVC1234");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -49,8 +50,8 @@ namespace DataAccess.Concrete
             builder.Entity<IdentityUserToken<int>>(entity =>
             {
                 entity.ToTable("UserTokens");
-
             });
+
         }
 
         public DbSet<About> Abouts { get; set; }

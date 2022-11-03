@@ -5,21 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Resources\Views\Shared\**" />
-      <Content Remove="Resources\Views\Shared\**" />
-      <EmbeddedResource Remove="Resources\Views\Shared\**" />
-      <None Remove="Resources\Views\Shared\**" />
-    </ItemGroup>
-
-    <!--<ItemGroup>
-      <Compile Remove="wwwroot\writerProfileImages\**" />
-      <Content Remove="wwwroot\writerProfileImages\**" />
-      <EmbeddedResource Remove="wwwroot\writerProfileImages\**" />
-      <None Remove="wwwroot\writerProfileImages\**" />
-    </ItemGroup>-->
-
-    <ItemGroup>
-      <Content Remove="Views\Shared\Components\LatestTenPostsToWriter\Default.cshtml" />
+      <Content Remove="appsettings.Development.json" />
+      <Content Remove="appsettings.json" />
     </ItemGroup>
 
     <ItemGroup>
@@ -36,6 +23,7 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+      <PackageReference Include="Slugify.Core" Version="3.0.0" />
       <PackageReference Include="toastr" Version="2.1.1" />
       <PackageReference Include="X.PagedList" Version="8.1.0" />
       <PackageReference Include="X.PagedList.Mvc.Core" Version="8.1.0" />
@@ -49,19 +37,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Views\NewsLetter\" />      <Folder Include="wwwroot\weblogTemplate" />
+      <None Include="appsettings.Development.json" />
+      <None Include="appsettings.json">
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
-    <ItemGroup>
-      <UpToDateCheckInput Remove="Views\Shared\Components\LatestTenPostsToWriter\Default.cshtml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Views\Shared\Components\LatestTenPostsToWriter\Default.cshtml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="Views\Shared\Components\LatestTenPostsToWriter\Default.cshtml" />
-    </ItemGroup>
 
 </Project>

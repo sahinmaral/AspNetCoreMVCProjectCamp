@@ -1,11 +1,12 @@
 ﻿namespace CoreDemo.Models
 {
-    public class ReadAboutViewModel
+    public class ReadAboutViewModel : BaseViewModel
     {
-        public int AboutId { get; set; }
-        public string AboutDetail { get; set; }
-        public string AboutImage { get; set; }
-        public string AboutMapLocation { get; set; }
-        public bool AboutStatus { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Detail { get; set; }
+        public string ImageUrl { get; set; }
+        public string MapLocation { get; set; }
+        public bool Status { get; set; }
     }
 }

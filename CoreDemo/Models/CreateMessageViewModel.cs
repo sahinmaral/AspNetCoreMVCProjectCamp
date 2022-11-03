@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CoreDemo.Models
+﻿namespace CoreDemo.Models
 {
-    public class CreateMessageViewModel
+    public class CreateMessageViewModel : BaseViewModel
     {
         public ReadUserViewModel Sender { get; set; }
         public ReadUserViewModel Receiver { get; set; }
 
-        public string MessageSubject { get; set; }
-        public string MessageDetail { get; set; }
+        public string Subject { get; set; }
+        public string Detail { get; set; }
     }
 }

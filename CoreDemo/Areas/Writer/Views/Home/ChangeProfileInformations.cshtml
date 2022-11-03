@@ -12,7 +12,7 @@
         <div class="card-body">
             @using (Html.BeginForm("ChangeProfileInformations", "Home", FormMethod.Post))
             {
-                @Html.HiddenFor(x=>x.UserId)
+                @Html.HiddenFor(x=>x.Id)
 
                 <div class="form-group">
                     @Html.LabelFor(x=>x.NameSurname,ViewLocalizer["NameSurname"].Value)
@@ -20,9 +20,9 @@
                     @Html.ValidationMessageFor(x => x.NameSurname, "", new { style = "color:darkred" })
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(x=>x.UserAbout,ViewLocalizer["About"].Value)
-                    @Html.TextAreaFor(x => x.UserAbout, new { @class = "form-control", style = "border:1px solid black", placeholder = "", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.UserAbout, "", new { style = "color:darkred" })
+                    @Html.LabelFor(x=>x.About,ViewLocalizer["About"].Value)
+                    @Html.TextAreaFor(x => x.About, new { @class = "form-control", style = "border:1px solid black", placeholder = "", rows = "4" })
+                    @Html.ValidationMessageFor(x => x.About, "", new { style = "color:darkred" })
                 </div>
                 <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
             }

@@ -123,6 +123,9 @@
   <data name="CategoryName" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="Discard" xml:space="preserve">
+    <value>Discard</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>

@@ -33,7 +33,7 @@ namespace DataAccess.Concrete
                     .Where(filter).ToList();
         }
 
-        public Blog GetByBlogIdWithDetails(int blogId)
+        public Blog GetByIdWithDetails(int id)
         {
             using Context context = new Context();
             return context.Blogs
@@ -41,7 +41,18 @@ namespace DataAccess.Concrete
                 .Include(x => x.User)
                 .Include(x => x.BlogRatio)
                 .Include(x => x.Comments)
-                .SingleOrDefault(x => x.BlogId == blogId);
+                .SingleOrDefault(x => x.Id == id);
+        }
+
+        public Blog GetBySlugWithDetails(string slug)
+        {
+            using Context context = new Context();
+            return context.Blogs
+                .Include(x => x.Category)
+                .Include(x => x.User)
+                .Include(x => x.BlogRatio)
+                .Include(x => x.Comments)
+                .SingleOrDefault(x => x.Slug == slug);
         }
     }
 }

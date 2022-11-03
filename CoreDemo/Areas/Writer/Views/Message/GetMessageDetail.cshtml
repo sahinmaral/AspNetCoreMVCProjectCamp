@@ -10,24 +10,33 @@
         <div class="card-body">
             <h4 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title"]</h4>
             <div class="form-group">
-                <label>@ViewLocalizer["MessageSubject"]</label>
-                @Html.TextBoxFor(x => x.MessageSubject, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "" })
+                <label asp-for="Subject">@ViewLocalizer["MessageSubject"]</label>
+                <input type="text" asp-for="Subject" class="form-control" disabled="disabled" />
             </div>
             <div class="form-group">
-                <label>@ViewLocalizer["Sender"]</label>
-                @Html.TextBoxFor(x => x.Sender.NameSurname, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "" })
+                <label asp-for="Sender.Username">@ViewLocalizer["Sender"]</label>
+                <input type="text" asp-for=Sender.Username class="form-control" disabled="disabled" />
             </div>
             <div class="form-group">
                 <label>@ViewLocalizer["SentDate"]</label>
-                @Html.TextBoxFor(x => x.MessageDateTime, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "" })
+                <input type="text" asp-for=CreatedAt class="form-control" disabled="disabled" />
             </div>
             <div class="form-group">
                 <label>@ViewLocalizer["MessageContent"]</label>
-                @Html.TextAreaFor(x => x.MessageDetail, new { @class = "form-control", disabled = "true", style = "border:1px solid black", placeholder = "" })
+                <textarea asp-for="Detail" class="ckeditor" disabled="true" id="messageContentForm"></textarea>
             </div>
-            <a class="btn btn-dark" href="/Writer/Message/ViewInbox">@ViewLocalizer["GoBackToIncomingMessages"]</a>
+            <a class="btn btn-dark" href="/@nameof(CoreDemo.Areas.Writer)/@nameof(CoreDemo.Areas.Writer.Controllers.MessageController).Replace("Controller","")/@nameof(CoreDemo.Areas.Writer.Controllers.MessageController.ViewInbox)">@ViewLocalizer["GoBackToIncomingMessages"]</a>
         </div>
     </div>
 
-    
+
 </div>
+
+<script>
+
+    CKEDITOR.replace('messageContentForm',
+        {
+            toolbar: 'Basic',
+            uiColor: '#9AB8F3'
+        });
+</script>

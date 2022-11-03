@@ -1,0 +1,71 @@
+﻿@using System.Text.RegularExpressions
+@model List<ReadMessageViewModel>
+
+@{
+    ViewBag.Title = ViewLocalizer["Title"];
+    Layout = "_WriterLayout";
+
+    string ShrinkMessageDetail(string messageDetail)
+    {
+        return messageDetail.Length < 15 ? messageDetail : messageDetail.Substring(0, 15) + "...";
+    }
+    
+}
+<style>
+    .unreaded-message-td {
+        font-weight: bold;
+    }
+</style>
+
+<h2 class="ml-5">@ViewLocalizer["Title"]</h2>
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th> @ViewLocalizer["MessageSubject"] </th>
+                        <th> @ViewLocalizer["MessageContent"] </th>
+                        <th> @ViewLocalizer["ReceiverUsername"] </th>
+                        <th> @ViewLocalizer["SentDate"] </th>
+                        <th> @ViewLocalizer["Details"] </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ReadMessageViewModel message in Model)
+                    {
+                        message.Detail = Regex.Replace(message.Detail, @"<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;", " ");
+
+                        if (!message.IsMessageOpened)
+                        {
+                            <tr>
+                                <td> @message.Subject </td>
+                                <td> @ShrinkMessageDetail(message.Detail)</td>
+                                <td> @message.Sender.Username </td>
+                                <td> @message.CreatedAt.ToShortDateString() </td>
+                                <td>
+                                    <a href="GetMessageDetail/@message.Id" class="btn btn-primary">@ViewLocalizer["More"]</a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td> @message.Subject </td>
+                                <td> @ShrinkMessageDetail(message.Detail)</td>
+                                <td> @message.Sender.Username </td>
+                                <td> @message.CreatedAt.ToShortDateString() </td>
+                                <td>
+                                    <a href="GetMessageDetail/@message.Id" class="btn btn-primary">@ViewLocalizer["More"]</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
+

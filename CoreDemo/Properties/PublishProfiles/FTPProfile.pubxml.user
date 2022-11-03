@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAc59RKyGx/kGTyHJm5peb6gAAAAACAAAAAAAQZgAAAAEAACAAAAA90eBjBbv/XIYXDxDtXZo1ds8C5FxwVg0xcB40L5hOkAAAAAAOgAAAAAIAACAAAAAciZ5SXPc2wKWVo4FiyJ+9fEOc2Qm4ahnvXN/z4uTURyAAAACjd5T7tqxRmyYNmmraP/DaRFeQaIEPXVLeE6xWFY+b+0AAAADycvex0w+1lsd8nM0fhkktmslzF1hdootgkzPjUnyw0jCSfnWx8us7zD35gBn69xr8mSqTwOVRvKE2hJ77yBAW</EncryptedPassword>
+    <History>False|2022-10-21T19:43:17.4327904Z;</History>
+    <LastFailureDetails />
+    <_PublishTargetUrl>ftp://win8032.site4now.net/</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.json">
+      <publishTime>10/18/2022 15:08:32</publishTime>
+    </File>
+    <File Include="AutoMapper.dll">
+      <publishTime>07/01/2020 19:00:54</publishTime>
+    </File>
+    <File Include="AutoMapper.Extensions.Microsoft.DependencyInjection.dll">
+      <publishTime>08/12/2019 16:19:42</publishTime>
+    </File>
+    <File Include="BlogApiDemo.dll">
+      <publishTime>10/18/2022 15:10:17</publishTime>
+    </File>
+    <File Include="BlogApiDemo.exe">
+      <publishTime>10/18/2022 15:10:17</publishTime>
+    </File>
+    <File Include="BlogApiDemo.pdb">
+      <publishTime>10/18/2022 15:10:17</publishTime>
+    </File>
+    <File Include="BlogApiDemo.runtimeconfig.json">
+      <publishTime>10/18/2022 14:54:49</publishTime>
+    </File>
+    <File Include="Business.dll">
+      <publishTime>10/18/2022 14:54:50</publishTime>
+    </File>
+    <File Include="Business.pdb">
+      <publishTime>10/18/2022 14:54:50</publishTime>
+    </File>
+    <File Include="ClosedXML.dll">
+      <publishTime>12/16/2020 12:59:00</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

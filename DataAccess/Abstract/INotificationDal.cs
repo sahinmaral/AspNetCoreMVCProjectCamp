@@ -10,5 +10,6 @@ namespace DataAccess.Abstract
     public interface INotificationDal : IEntityRepository<Notification>
     {
         public List<Notification> GetAllWithDetails(Expression<Func<Notification, bool>> filter = null);
+        public Notification GetByIdWithDetails(int id);
     }
 }

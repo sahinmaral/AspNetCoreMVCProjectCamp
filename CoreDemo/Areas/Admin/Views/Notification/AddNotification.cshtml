@@ -1,0 +1,73 @@
+﻿@model CreateNotificationViewModel
+
+@{
+    ViewBag.Title = @ViewLocalizer["Title"];
+    Layout = "_AdminLayout";
+
+}
+
+@{
+    var languages = ViewData["Languages"] as List<ReadLanguageViewModel>;
+}
+
+<h2 class="card-title ml-3">@ViewLocalizer["Title"]</h2>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+
+            <form asp-controller="@nameof(CoreDemo.Areas.Admin.Controllers.NotificationController).Replace("Controller","")"
+                  asp-action="@nameof(CoreDemo.Areas.Admin.Controllers.NotificationController.AddNotification)"
+                  asp-area="@nameof(CoreDemo.Areas.Admin)"
+                  enctype="multipart/form-data"
+                  method="post">
+
+
+                <div class="form-group">
+                    <label asp-for="NotificationType.Id">@ViewLocalizer["NotificationType"]</label>
+                    <select asp-for="NotificationType.Id"
+                            asp-items="@((List<SelectListItem>)ViewData["NotificationTypes"])"
+                            class="form-control"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="NotificationSymbol.Id">@ViewLocalizer["NotificationSymbol"]</label>
+                    <select asp-for="NotificationSymbol.Id"
+                            asp-items="@((List<SelectListItem>)ViewData["NotificationSymbols"])"
+                            class="form-control"></select>
+                </div>
+
+
+                @for (int i = 0; i < languages.Count; i++)
+                {
+                    Model.NotificationInformations[i].Language.ShortName = languages[i].ShortName;
+                    
+                    <input type="hidden" 
+                        asp-for="NotificationInformations[i].Language.ShortName"
+                       value="@Model.NotificationInformations[i].Language.ShortName" />
+
+                    <span class="badge badge-primary">@languages[i].ShortName</span>
+                    <div class="form-group">
+                        <label asp-for="@Model.NotificationInformations[i].Header">@ViewLocalizer["NotificationInformationHeader"]</label>
+                        <input class="form-control"
+                           asp-for="@Model.NotificationInformations[i].Header"
+                           value="@Model.NotificationInformations[i].Header" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="@Model.NotificationInformations[i].Detail">@ViewLocalizer["NotificationInformationDetail"]</label>
+                        <textarea class="form-control"
+                              asp-for="@Model.NotificationInformations[i].Detail">
+                            @Model.NotificationInformations[i].Detail</textarea>
+                    </div>
+                }
+
+
+                <button type="submit" class="btn btn-gradient-primary">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-gradient-primary">@ViewLocalizer["Discard"]</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

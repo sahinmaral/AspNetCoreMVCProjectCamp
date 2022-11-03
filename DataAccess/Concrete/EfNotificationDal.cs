@@ -25,5 +25,16 @@ namespace DataAccess.Concrete
 
             return filter == null ? notifications.ToList() : notifications.Where(filter).ToList();
         }
+
+        public Notification GetByIdWithDetails(int id)
+        {
+            using Context context = new Context();
+            return context.Notifications
+                .Include(x => x.NotificationSymbol)
+                .Include(r => r.NotificationInformations)
+                .ThenInclude(p => (p as NotificationInformation).Language)
+                .Include(x => x.NotificationType)
+                .SingleOrDefault(x => x.Id == id);
+        }
     }
 }

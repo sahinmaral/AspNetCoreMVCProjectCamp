@@ -117,58 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConfirmPasswordCannotBeEmpty" xml:space="preserve">
-    <value>Confirm password cannot be empty</value>
-  </data>
-  <data name="ConfirmPasswordCannotBeNull" xml:space="preserve">
-    <value>Confirm password cannot be null</value>
-  </data>
-  <data name="ConfirmPasswordIsNotEqualToPassword" xml:space="preserve">
-    <value>Passwords do not match</value>
-  </data>
-  <data name="IsPoliciesAccepted" xml:space="preserve">
-    <value>For sign up our page , you have to accept our privilege policies</value>
+  <data name="Banned" xml:space="preserve">
+    <value>You have been banned until {0}</value>
   </data>
   <data name="LoginedSuccessfully" xml:space="preserve">
     <value>Logined successfully</value>
   </data>
-  <data name="PasswordAtLeastLowerCaseLetter" xml:space="preserve">
-    <value>Password should contain at least one lower case letter</value>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
   </data>
-  <data name="PasswordAtLeastNumber" xml:space="preserve">
-    <value>Password should contain at least one numeric value</value>
-  </data>
-  <data name="PasswordAtLeastSpecialCaseCharacter" xml:space="preserve">
-    <value>Password should contain at least one special case characters</value>
-  </data>
-  <data name="PasswordAtLeastUpperCaseLetter" xml:space="preserve">
-    <value>Password should contain at least one upper case letter</value>
-  </data>
-  <data name="PasswordCannotBeEmpty" xml:space="preserve">
-    <value>Password cannot be empty</value>
-  </data>
-  <data name="PasswordCannotBeNull" xml:space="preserve">
-    <value>Password cannot be null</value>
-  </data>
-  <data name="PasswordMaximumLength" xml:space="preserve">
-    <value>Maximum length of password must be 30</value>
-  </data>
-  <data name="PasswordMinimumLength" xml:space="preserve">
-    <value>Minimum length of password must be 8</value>
+  <data name="PasswordOrUsernameIncorrect" xml:space="preserve">
+    <value>Username or password is incorrect</value>
   </data>
   <data name="RegisteredSuccessfully" xml:space="preserve">
     <value>Registered successfully</value>
-  </data>
-  <data name="UsernameCannotBeEmpty" xml:space="preserve">
-    <value>Username cannot be empty</value>
-  </data>
-  <data name="UsernameCannotBeNull" xml:space="preserve">
-    <value>Username cannot be null</value>
-  </data>
-  <data name="UsernameMaximumLength" xml:space="preserve">
-    <value>Maximum length of username must be 30</value>
-  </data>
-  <data name="UsernameMinimumLength" xml:space="preserve">
-    <value>Minimum length of username must be 5</value>
   </data>
 </root>

@@ -5,6 +5,7 @@ using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using System.Collections.Generic;
 using System.IO;
 using X.PagedList;
@@ -17,15 +18,17 @@ namespace CoreDemo.Areas.Admin.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
+        private readonly IStringLocalizer<CategoryController> _localizer;
 
-        public CategoryController(ICategoryService categoryService, IMapper mapper)
+        public CategoryController(ICategoryService categoryService, IMapper mapper, IStringLocalizer<CategoryController> localizer)
         {
             _categoryService = categoryService;
             _mapper = mapper;
+            _localizer = localizer;
         }
         public IActionResult GetCategories(int page = 1)
         {
-            
+
             List<ReadCategoryViewModel> viewModels = new List<ReadCategoryViewModel>();
 
             viewModels = _mapper.Map(_categoryService.GetAll(), viewModels);
@@ -56,11 +59,11 @@ namespace CoreDemo.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult UpdateCategory(int id)
         {
-            return View(_mapper.Map(_categoryService.Get(x=>x.CategoryId == id),new ReadCategoryViewModel()));
+            return View(_mapper.Map(_categoryService.Get(x=>x.Id == id),new UpdateCategoryViewModel()));
         }
 
         [HttpPost]
-        public IActionResult UpdateCategory(ReadCategoryViewModel viewModel)
+        public IActionResult UpdateCategory(UpdateCategoryViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -76,8 +79,8 @@ namespace CoreDemo.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult DisableCategory(int id)
         {
-            Category category = _categoryService.Get(x => x.CategoryId == id);
-            category.CategoryStatus = false;
+            Category category = _categoryService.Get(x => x.Id == id);
+            category.Status = false;
 
             _categoryService.Update(category);
 
@@ -87,8 +90,8 @@ namespace CoreDemo.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult EnableCategory(int id)
         {
-            Category category = _categoryService.Get(x => x.CategoryId == id);
-            category.CategoryStatus = true;
+            Category category = _categoryService.Get(x => x.Id == id);
+            category.Status = true;
 
             _categoryService.Update(category);
 
@@ -97,28 +100,29 @@ namespace CoreDemo.Areas.Admin.Controllers
 
         public IActionResult ExportStaticExcelCategories()
         {
+           
             using var workBook = new XLWorkbook();
 
-            var worksheet = workBook.Worksheets.Add("Kategori Listesi");
-            worksheet.Cell(1, 1).Value = "Kategori Id";
-            worksheet.Cell(1, 2).Value = "Kategori Adı";
-            worksheet.Cell(1, 3).Value = "Kategori Açıklaması";
-            worksheet.Cell(1, 4).Value = "Kategori Durumu";
+            var worksheet = workBook.Worksheets.Add(_localizer["CategoryList"]);
+            worksheet.Cell(1, 1).Value = _localizer["CategoryName"];
+            worksheet.Cell(1, 2).Value = _localizer["CategorySlug"];
+            worksheet.Cell(1, 3).Value = _localizer["CategoryStatus"];
+            worksheet.Cell(1, 4).Value = _localizer["CategoryDescription"];
+
 
             int count = 2;
             List<Category> categories = _categoryService.GetAll();
 
             foreach (Category category in categories)
             {
-                worksheet.Cell(count, 1).Value = category.CategoryId;
-                worksheet.Cell(count, 2).Value = category.CategoryName;
-                worksheet.Cell(count, 3).Value = category.CategoryDescription;
-                worksheet.Cell(count, 4).Value = category.CategoryStatus;
-
+                worksheet.Cell(count, 1).Value = category.Name;
+                worksheet.Cell(count, 2).Value = category.Slug;
+                worksheet.Cell(count, 3).Value = category.Status;
+                worksheet.Cell(count, 4).Value = category.Description;
                 count++;
             }
 
-            string fileName = "Kategori Listesi " + ".xlsx";
+            string fileName = _localizer["CategoryList"] + ".xlsx";
 
             using var stream = new MemoryStream();
 

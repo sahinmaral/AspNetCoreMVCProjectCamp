@@ -8,9 +8,7 @@ namespace Entities.Concrete
 {
     public class BlogRatio
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BlogRatioId { get; set; }
+        public int Id { get; set; }
 
         public Blog Blog { get; set; }
         public int BlogId { get; set; }

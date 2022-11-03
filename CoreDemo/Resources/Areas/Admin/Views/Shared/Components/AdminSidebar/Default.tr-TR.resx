@@ -120,8 +120,17 @@
   <data name="About" xml:space="preserve">
     <value>Hakkımızda</value>
   </data>
+  <data name="AddAbout" xml:space="preserve">
+    <value>Yeni Hakkında Ekle</value>
+  </data>
+  <data name="AddBlog" xml:space="preserve">
+    <value>Yeni Blog</value>
+  </data>
   <data name="AddNewCategory" xml:space="preserve">
     <value>Yeni Kategori Ekle</value>
+  </data>
+  <data name="AddNotification" xml:space="preserve">
+    <value>Yeni Bildirim Ekle</value>
   </data>
   <data name="Blogs" xml:space="preserve">
     <value>Bloglar</value>
@@ -131,6 +140,18 @@
   </data>
   <data name="CategoryDonutGraph" xml:space="preserve">
     <value>Kategori Donut Grafiği</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Şifresini Değiştir</value>
+  </data>
+  <data name="ChangeProfileInfos" xml:space="preserve">
+    <value>Profil Bilgilerini Değiştir</value>
+  </data>
+  <data name="ChangeProfilePhoto" xml:space="preserve">
+    <value>Profil Fotoğrafını Değiştir</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>İletişim</value>
   </data>
   <data name="DownloadCategoriesAsExcelFile" xml:space="preserve">
     <value>Kategorileri Excel Dosyası Olarak İndir</value>
@@ -153,6 +174,15 @@
   <data name="Messages" xml:space="preserve">
     <value>Mesajlar</value>
   </data>
+  <data name="MyBlogs" xml:space="preserve">
+    <value>Bloglarım</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>Profilim</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Bildirimler</value>
+  </data>
   <data name="SentMessages" xml:space="preserve">
     <value>Gönderilen Mesajlar</value>
   </data>
@@ -162,7 +192,13 @@
   <data name="Users" xml:space="preserve">
     <value>Kullanıcılar</value>
   </data>
+  <data name="ViewAbouts" xml:space="preserve">
+    <value>Hakkındaları Görüntüle</value>
+  </data>
   <data name="ViewBlogs" xml:space="preserve">
     <value>Blogları Görüntüle</value>
+  </data>
+  <data name="ViewNotifications" xml:space="preserve">
+    <value>Bildirimleri Görüntüle</value>
   </data>
 </root>

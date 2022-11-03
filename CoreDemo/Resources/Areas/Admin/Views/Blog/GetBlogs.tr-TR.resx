@@ -135,6 +135,9 @@
   <data name="Like" xml:space="preserve">
     <value>{0} Beğenme</value>
   </data>
+  <data name="NoBlogWrote" xml:space="preserve">
+    <value>Herhangi bir blog yazılmamıştır</value>
+  </data>
   <data name="NoButtonText" xml:space="preserve">
     <value>Hayır</value>
   </data>

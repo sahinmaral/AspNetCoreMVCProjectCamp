@@ -120,9 +120,6 @@
   <data name="About" xml:space="preserve">
     <value>Hakkımızda</value>
   </data>
-  <data name="AdminPanel" xml:space="preserve">
-    <value>Admin arayüzü</value>
-  </data>
   <data name="Contact" xml:space="preserve">
     <value>İletişim</value>
   </data>
@@ -132,31 +129,7 @@
   <data name="Homepage" xml:space="preserve">
     <value>Anasayfa</value>
   </data>
-  <data name="LatestPosts" xml:space="preserve">
-    <value>Son postlar</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Giriş yap</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Çıkış yap</value>
-  </data>
   <data name="More" xml:space="preserve">
     <value>Daha fazlası</value>
-  </data>
-  <data name="Signup" xml:space="preserve">
-    <value>Kayıt ol</value>
-  </data>
-  <data name="SubscribeNewsletterButton" xml:space="preserve">
-    <value>Abone ol</value>
-  </data>
-  <data name="SubscribeNewsletterTitle" xml:space="preserve">
-    <value>Mail bültenine abone olun</value>
-  </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Hoşgeldiniz</value>
-  </data>
-  <data name="WriterPanel" xml:space="preserve">
-    <value>Yazar arayüzü</value>
   </data>
 </root>

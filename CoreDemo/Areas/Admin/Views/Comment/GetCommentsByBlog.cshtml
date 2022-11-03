@@ -37,10 +37,10 @@
                                     @comment.UserViewModel.Username
                                 </td>
                                 <td>
-                                    @ShrinkMessageDetail(comment.CommentAbout)
+                                    @ShrinkMessageDetail(comment.Detail)
                                 </td>
                                 <td>
-                                    @comment.CommentCreatedDate
+                                    @comment.CreatedAt
                                 </td>
                                 <td>
                                     @if (comment.LikeOrDislikeStatus)
@@ -58,8 +58,8 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                            <a onclick="sendToastrQuestion(@comment.CommentId)" class="btn-danger text-white btn btn-xs">@ViewLocalizer["DeleteCommentButtonText"]</a>
-                                            <a href="/Admin/Comment/UpdateComment/@comment.CommentId" class="btn-primary btn btn-xs text-white">@ViewLocalizer["UpdateCommentButtonText"]</a>
+                                            <a onclick="sendToastrQuestion(@comment.Id)" class="btn-danger text-white btn btn-xs">@ViewLocalizer["DeleteCommentButtonText"]</a>
+                                            <a href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.CommentController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.CommentController.UpdateComment)/@comment.Id" class="btn-primary btn btn-xs text-white">@ViewLocalizer["UpdateCommentButtonText"]</a>
                                     </div>
                                 </td>
                             </tr>
@@ -109,7 +109,7 @@
                     });
                     //Just like Thread.Sleep
                     await new Promise(resolve => setTimeout(resolve, 3000));
-                    window.location.href = "/Admin/Comment/DeleteComment/" + id
+                        window.location.href = "/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.CommentController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.CommentController.DeleteComment)/" + id
                     break;
                 case "false":
                     break;

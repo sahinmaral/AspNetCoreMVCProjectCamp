@@ -1,0 +1,38 @@
+﻿@model ReadUserViewModel
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title"];
+    Layout = "_AdminLayout";
+}
+
+<h1 class="card-title ml-3">@ViewLocalizer["Title"]</h1>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <form asp-area="@nameof(CoreDemo.Areas.Admin)"
+                  asp-action="@nameof(CoreDemo.Areas.Admin.Controllers.HomeController.ChangeProfileInformations)"
+                  asp-controller="@nameof(CoreDemo.Areas.Admin.Controllers.HomeController).Replace("Controller","")"
+                  method="post">
+
+                <input type="hidden" asp-for="Username" value="@Model.Username" />
+
+                <div class="form-group">
+                    <label asp-for="NameSurname">@ViewLocalizer["NameSurname"]</label>
+                    <input type="text" asp-for="NameSurname" class="form-control" />
+                    <span asp-validation-for="NameSurname" class="validation-span"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="About">@ViewLocalizer["About"]</label>
+                    <textarea asp-for="About" class="form-control"></textarea>
+                    <span asp-validation-for="About" class="validation-span"></span>
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Discard"]</button>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -9,52 +9,45 @@
     <div class="card">
         <div class="card-body">
             <h3 style="margin-bottom:2em; font-size:20px">@ViewLocalizer["SubTitle",@Model.Receiver.Username]</h3>
-            @using (Html.BeginForm("SendMessage", "Message", FormMethod.Post))
-            {
-                @Html.HiddenFor(x => x.Receiver.UserId)
-                @Html.HiddenFor(x => x.Sender.UserId)
+            <form method="post"
+                  asp-area="@nameof(CoreDemo.Areas.Writer)"
+                  asp-action="@nameof(CoreDemo.Areas.Writer.Controllers.MessageController.SendMessage)"
+                  asp-controller="@nameof(CoreDemo.Areas.Writer.Controllers.MessageController).Replace("Controller","")">
+
+                <input type="hidden" asp-for="Receiver.Id" value="@Model.Receiver.Id" />
+                <input type="hidden" asp-for="Sender.Id" value="@Model.Sender.Id" />
 
                 <div class="form-group">
-                    @Html.LabelFor(x=>x.Receiver.Username,ViewLocalizer["ReceiverUsername"].Value)
-                    @Html.TextBoxFor(x => x.Receiver.Username, new { @class = "form-control", style = "border:1px solid black", disabled = "true" })
+                    <label asp-for="Receiver.Username">@ViewLocalizer["ReceiverUsername"]</label>
+                    <input type="text" asp-for="Receiver.Username" class="form-control" disabled="disabled"/>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(x=>x.MessageSubject,ViewLocalizer["MessageSubject"].Value)
-                    @Html.TextBoxFor(x => x.MessageSubject, new { @class = "form-control", style = "border:1px solid black", placeholder = "", rows = "4" })
-                    @Html.ValidationMessageFor(x => x.MessageSubject, "", new { style = "color:darkred" })
+                    <label asp-for="Subject">@ViewLocalizer["MessageSubject"]</label>
+                    <input type="text" asp-for="Subject" class="form-control" />
+                    <span asp-validation-for="Subject" class="validation-span"></span>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(x=>x.MessageDetail,ViewLocalizer["MessageContent"].Value)
-                    @Html.TextAreaFor(x => x.MessageDetail, new { @class = "form-control", style = "border:1px solid black", placeholder = "", rows = "4" })
+                    <label asp-for="Detail">@ViewLocalizer["MessageContent"]</label>
+                    <textarea asp-for="Detail" class="ckeditor" id="messageContentForm"></textarea>
+                    <span asp-validation-for="Subject" class="validation-span"></span>
                 </div>
 
                 <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
-            //TODO : Emin misiniz seklinde alert gonderebiliriz.
-            }
+                <button type="reset" class="btn btn-light mr-2">@ViewLocalizer["Discard"]</button>
+              
+              </form>
 
-            
+
         </div>
     </div>
 </div>
 
 <script>
-    function VerifySendingMessage(e){
-        e.preventDefault();
-        swal({
-            title: "test",
-            text: "test",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    toastr.success("ok");
-                    setTimeout(function(){},2000)
-                    window.location.href = "/Writer/Blog/MyBlog";
-                }
 
-            });
-    }
+    CKEDITOR.replace('messageContentForm',
+        {
+            toolbar: 'Basic',
+            uiColor: '#9AB8F3'
+        });
 </script>

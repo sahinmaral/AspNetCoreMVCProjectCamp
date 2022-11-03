@@ -1,0 +1,130 @@
+﻿@using Core.Helper.Toastr
+@using Core.Helper.Toastr.OptionEnums
+@model UserProfileViewModel
+
+@{
+    ViewData["Title"] = "See Profile";
+    Layout = "_UserLayout";
+}
+
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+
+    .profile-leftArea {
+        background-color: #FFF6BF;
+        width: auto;
+        height: 300px;
+        margin-top: 30px;
+        padding: 20px;
+    }
+
+    #profile-leftArea-buttons {
+        margin-top: 110px;
+    }
+
+        #profile-leftArea-buttons button {
+            margin: 5px;
+        }
+
+    .profile-rightArea {
+        background-color: #FFF6BF;
+        width: auto;
+        height: 550px;
+        margin-top: 30px;
+        padding: 20px;
+    }
+
+    .statistic-area {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+</style>
+
+
+<div class="row">
+    <!--left-->
+    <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+        <div class="blog-grid-top">
+            <div class="b-grid-top">
+                <div class="blog_info_left_grid">
+                    <img src="~/images/@Model.UserViewModel.ImageUrl"
+                         style="border-radius:50%; width:200px; height:200px;"
+                         class="center"
+                         alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-leftArea text-center">
+            <h3 class="my-2">@Model.UserViewModel.NameSurname</h3>
+
+            <label class="my-3">
+                @Model.UserViewModel.About
+            </label>
+
+            <div id="profile-leftArea-buttons">
+                
+                @if (!string.IsNullOrEmpty(User.Identity.Name) && User.Identity.Name != Model.UserViewModel.Username)
+                {
+                    @if (Model.UserViewModel.MainRole == "Admin")
+                    {
+                        <a class="btn btn-success" href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.MessageController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.MessageController.SendMessage)/@Model.UserViewModel.Username">Send Message</a>
+                    }
+                    @if (Model.UserViewModel.MainRole == "Writer")
+                    {
+                        <a class="btn btn-success" href="/@nameof(CoreDemo.Areas.Writer)/@nameof(CoreDemo.Areas.Writer.Controllers.MessageController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.MessageController.SendMessage)/@Model.UserViewModel.Username">Send Message</a>
+                    }
+
+                }
+
+                <a class="btn btn-primary" href="/@nameof(BlogController).Replace("Controller","")/@nameof(BlogController.GetAllByUsername)/@Model.UserViewModel.Username">See User's Blogs</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!--//left-->
+    <!--right-->
+    <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+        <div class="profile-rightArea">
+            <div class="statistic-area">
+                <label>@Model.UserViewModel.MainRole</label>
+                <p>Unvan</p>
+            </div>
+
+            <div class="statistic-area">
+                <label>@Model.BlogWrittenCount</label>
+                <p>Blog yazma</p>
+            </div>
+
+            <div class="statistic-area">
+                <label>@Model.FavouriteCategoryName</label>
+                <p>Blog yazdigi favori kategorisi</p>
+            </div>
+
+            <div class="statistic-area">
+                <label>@Model.LikedBlogCount</label>
+                <p>Blog begenme</p>
+            </div>
+
+            <div class="statistic-area">
+                <label>@Model.DislikedBlogCount</label>
+                <p>Blog begenmeme</p>
+            </div>
+
+            <div class="statistic-area">
+                <label>@Model.CommentWrittenCount</label>
+                <p>Yorum yazma</p>
+            </div>
+
+        </div>
+    </aside>
+    <!--//right-->
+</div>
+

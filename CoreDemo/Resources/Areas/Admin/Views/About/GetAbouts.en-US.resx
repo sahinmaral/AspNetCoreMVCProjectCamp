@@ -129,6 +129,9 @@
   <data name="AboutSuccessfullyActive" xml:space="preserve">
     <value>About that you chose has been successfully activated</value>
   </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
   <data name="Activated" xml:space="preserve">
     <value>Activated</value>
   </data>

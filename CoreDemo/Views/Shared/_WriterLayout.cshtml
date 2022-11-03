@@ -17,46 +17,58 @@
     <link rel="stylesheet" href="~/writerTemplate/assets/css/style.css">
     <!-- Toastr -->
     <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel='stylesheet' type='text/css' />
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="~/writerTemplate/assets/images/favicon.ico" />
+
 </head>
 <body>
-<div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
         @await Component.InvokeAsync("WriterNavbar")
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
-            @await Html.PartialAsync("../Home/WriterSidebar")
         <!-- partial -->
-        <div class="main-panel">
-            <div class="content-wrapper">
-                @RenderBody()
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            @await Html.PartialAsync("../Home/WriterSidebar")
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
             </div>
+            <!-- main-panel ends -->
         </div>
-        <!-- main-panel ends -->
+        <!-- page-body-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-</div>
-<!-- container-scroller -->
-<!-- plugins:js -->
-<script src="~/writerTemplate/assets/vendors/js/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="~/writerTemplate/assets/vendors/chart.js/Chart.min.js"></script>
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="~/writerTemplate/assets/js/off-canvas.js"></script>
-<script src="~/writerTemplate/assets/js/hoverable-collapse.js"></script>
-<script src="~/writerTemplate/assets/js/misc.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page -->
-<script src="~/writerTemplate/assets/js/dashboard.js"></script>
-<script src="~/writerTemplate/assets/js/todolist.js"></script>
-<!-- Sweet Alert -->
-<script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
-<!-- Toastr -->
-<script src="~/lib/toastr/toastr.min.js"></script>
-<!-- End custom js for this page -->
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/writerTemplate/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/writerTemplate/assets/vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/writerTemplate/assets/js/off-canvas.js"></script>
+    <script src="~/writerTemplate/assets/js/hoverable-collapse.js"></script>
+    <script src="~/writerTemplate/assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="~/writerTemplate/assets/js/dashboard.js"></script>
+    <script src="~/writerTemplate/assets/js/todolist.js"></script>
+    <!-- Sweet Alert -->
+    <script src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Toastr -->
+    <script src="~/lib/toastr/toastr.min.js"></script>
+    <!-- CkEditor -->
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <!-- End custom js for this page -->
 </body>
+
+<script>
+
+    window.onload = function () {
+    @Html.Raw(TempData["Message"])
+    }
+
+</script>
+
 </html>

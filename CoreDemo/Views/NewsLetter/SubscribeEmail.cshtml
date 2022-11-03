@@ -1,13 +1,15 @@
 ﻿@model CreateNewsLetterViewModel
 
-@inject IStringLocalizer<UserLayoutController> Localizer
 
-<div class="mb-3">
-    <h3 style="text-align: center;" class="mb-3">@Localizer["SubscribeNewsletterTitle"]</h3>
-    @using (Html.BeginForm("SubscribeEmail", "NewsLetter", FormMethod.Post))
-    {
-        @Html.TextBoxFor(x=>x.Email , new {placeholder="Email" , @class = "form-control"})
-        <br />
-        <button type="submit" class="btn btn-primary submit" id="subscribeButton">@Localizer["SubscribeNewsletterButton"]</button>
-    }
+<div class="mb-3 text-center">
+    <h4 class="mb-3">@ViewLocalizer["SubscribeNewsletterTitle"]</h4>
+    <form asp-controller="@nameof(CoreDemo.Controllers.NewsLetterController).Replace("Controller","")"
+            asp-action="@nameof(CoreDemo.Controllers.NewsLetterController.SubscribeEmail)"
+            method="post"
+    >
+
+        <input type="text" asp-for="Email" class="form-control mb-3" placeholder="Email"/>
+        <button type="submit" class="btn btn-primary w-100" id="subscribeButton">@ViewLocalizer["SubscribeNewsletterButton"]</button>
+
+    </form>
 </div>

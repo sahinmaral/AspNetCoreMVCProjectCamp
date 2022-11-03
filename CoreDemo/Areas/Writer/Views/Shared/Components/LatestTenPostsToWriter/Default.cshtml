@@ -1,0 +1,33 @@
+﻿@using CoreDemo.Models
+@model List<ReadBlogViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> # </th>
+            <th> @ViewLocalizer["ThumbnailPhoto"] </th>
+            <th> @ViewLocalizer["BlogTitle"] </th>
+            <th> @ViewLocalizer["BlogTitle"] </th>
+            <th> @ViewLocalizer["PublishedDate"] </th>
+            <th> @ViewLocalizer["Details"] </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var readBlogViewModel in Model)
+        {
+            <tr>
+                <td>@readBlogViewModel.Id</td>
+                <td><img src="~/images/@readBlogViewModel.ThumbnailImage" /></td>
+                <td>@readBlogViewModel.Title</td>
+                <td>
+                    <label class="badge badge-gradient-success">
+                        @readBlogViewModel.CategoryViewModel.Name
+                    </label>
+                </td>
+                <td> @readBlogViewModel.CreatedAt</td>
+                <td>
+                    <a href="/@nameof(CoreDemo.Controllers.BlogController).Replace("Controller","")/@nameof(CoreDemo.Controllers.BlogController.GetBySlug)/@readBlogViewModel.Slug">@ViewLocalizer["Detail"]</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

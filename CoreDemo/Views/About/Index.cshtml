@@ -2,55 +2,37 @@
 
 @{
     Layout = "_UserLayout";
-    ViewData["Title"] = "Hakkında";
+    ViewData["Title"] = ViewLocalizer["MainTitle"];
 }
 
 
-    <h3 class="tittle">About</h3>
-    <div class="row inner-sec">
-        <!--left-->
-        <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
-            <div class="blog-grid-top">
+<h3 class="tittle">@ViewLocalizer["MainTitle"]</h3>
+<div class="row inner-sec">
+    <!--left-->
+    <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+        <div class="blog-grid-top">
 
-                <div class="blog_info_left_grid">
-                    <a href="single.html">
-                        <img src="@Model.AboutImage" class="img-fluid" alt="AboutImage">
-                    </a>
-                </div>
-                <h3>
-                    Biz Kimiz & Misyonumuz & Vizyonumuz
-                </h3>
-                <p style="margin-bottom:0">
-                    @Model.AboutDetail
-                </p>
+            <div class="blog_info_left_grid">
+                <img src="@Model.ImageUrl" class="img-fluid" alt="AboutImage">
             </div>
-
+            <h3>
+                @ViewLocalizer["HeaderTitle"]
+            </h3>
+            <p>
+                @Html.Raw(Model.Detail)
+            </p>
         </div>
-        <!--//left-->
-        <!--right-->
-        <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
-            <div class="right-blog-info text-left">
-                <div class="tech-btm">
-                    @await Html.PartialAsync("../NewsLetter/SubscribeEmail",new CreateNewsLetterViewModel())
 
-                </div>
-                <div class="tech-btm widget_social">
-                    @await Component.InvokeAsync("AboutSocialMedia")
-                </div>
-
-                
-                <div class="tech-btm">
-                    @await Component.InvokeAsync("LatestPosts")
-                </div>
-            </div>
-
-        </aside>
-        <!--//right-->
     </div>
+    <!--//left-->
+    <!--right-->
+    <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+        <div class="right-blog-info text-left">
+            <div class="tech-btm widget_social">
+                @await Component.InvokeAsync(nameof(CoreDemo.ViewComponents.AboutSocialMediaViewComponent).Replace("ViewComponent",""))
+            </div>
+        </div>
 
-    <script>
-
-    window.onload = function () {
-        @Html.Raw(TempData["Message"])
-    }
-    </script>
+    </aside>
+    <!--//right-->
+</div>

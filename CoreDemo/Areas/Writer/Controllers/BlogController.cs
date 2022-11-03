@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace CoreDemo.Areas.Writer.Controllers
@@ -35,11 +36,11 @@ namespace CoreDemo.Areas.Writer.Controllers
             _userManager = userManager;
             _categoryService = categoryService;
         }
-        public async Task<IActionResult> MyBlog()
+        public async Task<IActionResult> MyBlogs()
         {
             User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            List<Blog> writerBlogs = _blogService.GetAllWithDetails(x => x.UserId == user.Id).Where(x => x.BlogStatus).ToList();
+            List<Blog> writerBlogs = _blogService.GetAllWithDetails(x => x.UserId == user.Id).Where(x => x.Status).ToList();
 
             List<ReadBlogViewModel> readBlogViewModels = new List<ReadBlogViewModel>();
 
@@ -61,8 +62,8 @@ namespace CoreDemo.Areas.Writer.Controllers
             List<SelectListItem> categoryValues = (from x in _categoryService.GetAll()
                                                    select new SelectListItem()
                                                    {
-                                                       Text = x.CategoryName,
-                                                       Value = x.CategoryId.ToString()
+                                                       Text = x.Name,
+                                                       Value = x.Id.ToString()
                                                    }).ToList();
 
             ViewData["Categories"] = categoryValues;
@@ -79,46 +80,36 @@ namespace CoreDemo.Areas.Writer.Controllers
 
             User user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            string thumbnailImageName = AssignFormFileAndReturnName(viewModel.BlogThumbnailImage);
-            string mainImageName = AssignFormFileAndReturnName(viewModel.BlogMainImage);
+            string thumbnailImageName = AssignFormFileAndReturnName(viewModel.ThumbnailImage);
+            string mainImageName = AssignFormFileAndReturnName(viewModel.MainImage);
 
             Blog newBlog = _mapper.Map(viewModel, new Blog());
-            newBlog.BlogMainImage = mainImageName;
-            newBlog.BlogThumbnailImage = thumbnailImageName;
+            newBlog.MainImage = mainImageName;
+            newBlog.ThumbnailImage = thumbnailImageName;
             newBlog.User = user;
 
             _blogService.Add(newBlog);
 
-            return RedirectToAction("MyBlog");
+            return RedirectToAction(nameof(MyBlogs));
         }
-
-        [Route("/Writer/DeleteBlog/{blogId}")]
-        public IActionResult DeleteBlog(int blogId)
+        public IActionResult DeleteBlog(int id)
         {
-            Blog deletedBlog = _blogService.Get(x => x.BlogId == blogId);
-            _blogService.Delete(deletedBlog);
+            Blog deletedBlog = _blogService.Get(x => x.Id == id);
+            deletedBlog.Status = false;
+            _blogService.Update(deletedBlog);
 
-            return RedirectToAction("MyBlog", "Blog");
+            return RedirectToAction(nameof(MyBlogs), nameof(BlogController));
         }
 
         [HttpGet]
-        [Route("/Writer/UpdateBlog/{blogId}")]
-        public IActionResult UpdateBlog(int blogId)
+        public IActionResult UpdateBlog(int id)
         {
-            Blog editedBlog = _blogService.GetByBlogIdWithDetails(blogId);
+            Blog editedBlog = _blogService.GetByIdWithDetails(id);
 
-            UpdateBlogViewModel blogViewModel = new UpdateBlogViewModel
-            {
-                BlogId = editedBlog.BlogId,
-                BlogTitle = editedBlog.BlogTitle,
-                BlogContent = editedBlog.BlogContent,
-                BlogCreateDate = Convert.ToString(editedBlog.BlogCreatedDate, CultureInfo.InvariantCulture),
-                BlogStatus = editedBlog.BlogStatus,
-                CategoryViewModel = _mapper.Map(editedBlog.Category, new ReadCategoryViewModel()),
-                WriterViewModel = _mapper.Map(editedBlog.User, new ReadUserViewModel()),
-                CommentViewModels = _mapper.Map(editedBlog.Comments, new List<ReadCommentViewModel>())
-            };
+            UpdateBlogViewModel blogViewModel = new UpdateBlogViewModel();
 
+            blogViewModel = _mapper.Map(editedBlog, blogViewModel);
+           
             GetCategories();
 
             return View(blogViewModel);
@@ -133,36 +124,36 @@ namespace CoreDemo.Areas.Writer.Controllers
                 return View(blogViewModel);
             }
 
-            Blog blog = _blogService.Get(x => x.BlogId == blogViewModel.BlogId);
+            Blog blog = _blogService.Get(x => x.Id == blogViewModel.Id);
 
             string thumbnailImageName = "";
             string mainImageName = "";
 
-            if (blogViewModel.BlogThumbnailImage != null)
+            if (blogViewModel.ThumbnailImage != null)
             {
-                if (System.IO.File.Exists($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogThumbnailImage}"))
-                    System.IO.File.Delete($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogThumbnailImage}");
+                if (System.IO.File.Exists($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.ThumbnailImage}"))
+                    System.IO.File.Delete($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.ThumbnailImage}");
 
-                thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.BlogThumbnailImage);
-                blog.BlogThumbnailImage = thumbnailImageName;
+                thumbnailImageName = AssignFormFileAndReturnName(blogViewModel.ThumbnailImage);
+                blog.ThumbnailImage = thumbnailImageName;
             }
 
-            if (blogViewModel.BlogMainImage != null)
+            if (blogViewModel.MainImage != null)
             {
-                if (System.IO.File.Exists($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogMainImage}"))
-                    System.IO.File.Delete($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.BlogMainImage}");
+                if (System.IO.File.Exists($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.MainImage}"))
+                    System.IO.File.Delete($"{Directory.GetCurrentDirectory()}//wwwroot//images//{blog.MainImage}");
 
-                mainImageName = AssignFormFileAndReturnName(blogViewModel.BlogMainImage);
-                blog.BlogMainImage = mainImageName;
+                mainImageName = AssignFormFileAndReturnName(blogViewModel.MainImage);
+                blog.MainImage = mainImageName;
             }
 
-            blog.BlogContent = blogViewModel.BlogContent;
-            blog.BlogTitle = blogViewModel.BlogTitle;
-            blog.CategoryId = blogViewModel.CategoryViewModel.CategoryId;
+            blog.Content = blogViewModel.Content;
+            blog.Title = blogViewModel.Title;
+            blog.CategoryId = blogViewModel.CategoryViewModel.Id;
 
             _blogService.Update(blog);
 
-            return RedirectToAction("MyBlog", "Blog");
+            return RedirectToAction(nameof(MyBlogs), nameof(BlogController).Replace("Controller",""));
         }
 
         private string AssignFormFileAndReturnName(IFormFile file)

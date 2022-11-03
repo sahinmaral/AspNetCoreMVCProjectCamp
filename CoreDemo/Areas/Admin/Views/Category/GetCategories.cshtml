@@ -8,6 +8,7 @@
     Layout = "_AdminLayout";
 }
 
+<h1 class="card-title">@ViewLocalizer["Title"]</h1>
 
 <div class="row mt-5">
     <div class="col-12">
@@ -27,20 +28,20 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.CategoryId</td>
-                                <td>@item.CategoryName</td>
-                                @if (item.CategoryStatus)
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                @if (item.Status)
                                 {
                                     <td><a class="btn btn-danger disabled text-white">@ViewLocalizer["SetActive"]</a></td>
-                                    <td><a class="btn btn-warning text-white" onclick="confirmActiveDeactive(true,@item.CategoryId)">@ViewLocalizer["SetDeactive"]</a></td>
+                                    <td><a class="btn btn-warning text-white" onclick="confirmActiveDeactive(true,@item.Id)">@ViewLocalizer["SetDeactive"]</a></td>
                                 }
                                 else
                                 {
-                                    <td><a class="btn btn-danger text-white" onclick="confirmActiveDeactive(false,@item.CategoryId)">@ViewLocalizer["SetActive"]</a></td>
+                                    <td><a class="btn btn-danger text-white" onclick="confirmActiveDeactive(false,@item.Id)">@ViewLocalizer["SetActive"]</a></td>
                                     <td><a class="btn btn-warning text-white disabled">@ViewLocalizer["SetDeactive"]</a></td>
                                 }
 
-                                <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">@ViewLocalizer["Edit"]</a></td>
+                                <td><a href="/Admin/Category/UpdateCategory/@item.Id" class="btn btn-success">@ViewLocalizer["Edit"]</a></td>
 
                             </tr>
                         }

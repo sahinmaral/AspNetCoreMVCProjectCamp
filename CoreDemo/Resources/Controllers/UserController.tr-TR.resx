@@ -117,58 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConfirmPasswordCannotBeEmpty" xml:space="preserve">
-    <value>Şifre tekrarı boş olamaz</value>
-  </data>
-  <data name="ConfirmPasswordCannotBeNull" xml:space="preserve">
-    <value>Şifre tekrarı girilmelidir</value>
-  </data>
-  <data name="ConfirmPasswordIsNotEqualToPassword" xml:space="preserve">
-    <value>Şifreleriniz uyuşmuyor</value>
-  </data>
-  <data name="IsPoliciesAccepted" xml:space="preserve">
-    <value>Sayfamiza kayit olabilmek için gizlilik sözlesmesini kabul etmeniz gerekmektedir</value>
+  <data name="Banned" xml:space="preserve">
+    <value>{0} tarihine kadar banlandınız</value>
   </data>
   <data name="LoginedSuccessfully" xml:space="preserve">
     <value>Başarılı bir şekilde giriş yaptınız</value>
   </data>
-  <data name="PasswordAtLeastLowerCaseLetter" xml:space="preserve">
-    <value>Şifrenizde en az bir tane küçük harf bulunmalıdır</value>
+  <data name="None" xml:space="preserve">
+    <value>Yok</value>
   </data>
-  <data name="PasswordAtLeastNumber" xml:space="preserve">
-    <value>Şifrenizde en az bir tane sayı bulunmalıdır</value>
-  </data>
-  <data name="PasswordAtLeastSpecialCaseCharacter" xml:space="preserve">
-    <value>Şifrenizde en az bir tane özel harf bulunmalıdır</value>
-  </data>
-  <data name="PasswordAtLeastUpperCaseLetter" xml:space="preserve">
-    <value>Şifrenizde en az bir tane büyük harf bulunmalıdır</value>
-  </data>
-  <data name="PasswordCannotBeEmpty" xml:space="preserve">
-    <value>Şifre girilmelidir</value>
-  </data>
-  <data name="PasswordCannotBeNull" xml:space="preserve">
-    <value>Şifre boş olamaz</value>
-  </data>
-  <data name="PasswordMaximumLength" xml:space="preserve">
-    <value>Şifre en fazla 30 karakter olmalıdır</value>
-  </data>
-  <data name="PasswordMinimumLength" xml:space="preserve">
-    <value>Şifre en az 8 karakter olmalıdır</value>
+  <data name="PasswordOrUsernameIncorrect" xml:space="preserve">
+    <value>Kullanıcı adı veya şifre yanlış</value>
   </data>
   <data name="RegisteredSuccessfully" xml:space="preserve">
     <value>Başarılı bir şekilde kayıt oldunuz</value>
-  </data>
-  <data name="UsernameCannotBeEmpty" xml:space="preserve">
-    <value>Kullanıcı adı girilmelidir</value>
-  </data>
-  <data name="UsernameCannotBeNull" xml:space="preserve">
-    <value>Kullanıcı adı boş olamaz</value>
-  </data>
-  <data name="UsernameMaximumLength" xml:space="preserve">
-    <value>Kullanıcı adı en fazla 30 karakter olmalıdır</value>
-  </data>
-  <data name="UsernameMinimumLength" xml:space="preserve">
-    <value>Kullanıcı adı en az 5 karakter olmalıdır</value>
   </data>
 </root>

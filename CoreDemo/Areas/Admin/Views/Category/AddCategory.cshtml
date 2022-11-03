@@ -5,25 +5,31 @@
     Layout = "_AdminLayout";
 }
 
+<h1 class="card-title ml-3">@ViewLocalizer["Title"]</h1>
+
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title"]</h4>
 
-            <form asp-area="Admin" asp-action="AddCategory" asp-controller="Category" method="post">
+            <form 
+                asp-area="@nameof(CoreDemo.Areas.Admin)"
+                  asp-action="@nameof(CoreDemo.Areas.Admin.Controllers.CategoryController.AddCategory)"
+                  asp-controller="@nameof(CoreDemo.Areas.Admin.Controllers.CategoryController).Replace("Controller","")" 
+            method="post">
                 <div class="form-group">
-                    <label>@ViewLocalizer["CategoryName"]</label>
-                    <input type="text" class="form-control" name="CategoryName" style="border:1px solid black" asp-for="CategoryName" />
-                    <span asp-validation-for="CategoryName" style="color:darkred"></span>
+                    <label>@ViewLocalizer["Name"]</label>
+                    <input type="text" class="form-control" asp-for="Name" />
+                    <span asp-validation-for="Name" class="validation-span"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="CategoryDescription">@ViewLocalizer["CategoryDescription"]</label>
-                    <textarea asp-for=CategoryDescription style="border:1px solid black" class="form-control" rows="4" name="CategoryDescription"></textarea>
-                    <span asp-validation-for="CategoryDescription" style="color:darkred"></span>
+                    <label asp-for="Description">@ViewLocalizer["CategoryDescription"]</label>
+                    <textarea asp-for=Description  class="form-control" name="Description"></textarea>
+                    <span asp-validation-for="Description" class="validation-span"></span>
                 </div>
 
-                <button type="submit" class="btn btn-success mr-2 w-100" style="height:50px">@ViewLocalizer["Submit"]</button>
+                <button type="submit" class="btn btn-success">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-success">@ViewLocalizer["Discard"]</button>
 
             </form>
         </div>

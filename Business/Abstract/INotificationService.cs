@@ -9,5 +9,6 @@ namespace Business.Abstract
     public interface INotificationService : IGenericRepositoryService<Notification>
     {
         public List<Notification> GetAllWithDetails(Expression<Func<Notification, bool>> filter = null);
+        public Notification GetByIdWithDetails(int id);
     }
 }

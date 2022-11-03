@@ -1,86 +1,93 @@
-﻿@model List<ReadBlogViewModel>
-
-@inject IViewLocalizer Localizer
+﻿@using System.Text.RegularExpressions
+@model List<ReadBlogViewModel>
 
 @{
-    ViewData["Title"] = Localizer["TabTitle"];
+    ViewData["Title"] = ViewLocalizer["TabTitle"];
     Layout = "_UserLayout";
 }
+
+<style>
+    .blog-icons li span{
+        color: #7f8c8d;
+    }
+</style>
 
 @{
     string CheckBlogContent(string content)
     {
         if (content != null && content.Length > 50)
         {
-            return content.Substring(0, content.Substring(0,50).LastIndexOf(" ")) + " ...";
+            return content.Substring(0, content.Substring(0, 50).LastIndexOf(" ")) + " ...";
         }
 
         return content;
     }
 }
 
-<h3 class="tittle">@Localizer["MainTitle"]</h3>
+<h3 class="tittle">@ViewLocalizer["MainTitle"]</h3>
 <div class="inner-sec">
     <div class="left-blog-info-w3layouts-agileits text-left">
         <div class="row">
             @foreach (ReadBlogViewModel blog in Model)
             {
+
+                blog.Content = Regex.Replace(blog.Content, @"<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;", " ");
+                
                 <div class="col-lg-4 card">
-                    <img src="~/images/@blog.BlogThumbnailImage" class="card-img-top img-fluid" alt="">
+                    <img src="~/images/@blog.ThumbnailImage" class="card-img-top img-fluid" alt="BlogThumbnailImage">
                     <div class="card-body">
                         <ul class="blog-icons my-4 mx-1">
                             <li>
-                                <a href="Blog/GetById/@blog.BlogId">
-                                    <i class="far fa-calendar-alt"></i>&nbsp;@blog.BlogCreateDate
-                                </a>
+                                <i class="far fa-calendar-alt"></i>
+                                <span>&nbsp;@blog.CreatedAt</span>
                             </li>
                             <li>
-                                <a href="Blog/GetById/@blog.BlogId">
-                                    <i class="far fa-comment"></i>&nbsp;@blog.CommentViewModels.Count
-                                </a>
+                                <i class="far fa-comment"></i>
+                                <span>&nbsp;@blog.CommentViewModels.Count</span>
+                                    
                             </li>
                             <li>
-                                <a href="Blog/GetById/@blog.BlogId">
-                                    <i class="fas fa-eye"></i>&nbsp;@blog.CategoryViewModel.CategoryName
-                                </a>
+                                <i class="fas fa-eye"></i>
+                                <span>&nbsp;@blog.CategoryViewModel.Name</span>
                             </li>
                         </ul>
                         <ul class="blog-icons my-4">
                             <li class="nav-item dropdown">
-                                @Localizer["Writer"] :
+                                @ViewLocalizer["Writer"] :
                                 <a class="mx-1 dropdown-toggle text-secondary" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
                                     <i class="fas fa-user"></i>@blog.UserViewModel.Username
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">@Localizer["ShowProfile"]</a>
-                                    @* //TODO : Eger gonderilecek kisi ile su anki kisi ayniysa alert gondersin. *@
-                                    @if (User.IsInRole("Admin"))
-                                    {
-                                        <a class="dropdown-item" href="/Admin/Message/SendMessage/@blog.UserViewModel.Username">@Localizer["SendMessage"]</a>
-                                    }
-                                    @if (User.IsInRole("Writer"))
-                                    {
-                                        <a class="dropdown-item" href="/Writer/Message/SendMessage/@blog.UserViewModel.Username">@Localizer["SendMessage"]</a>
+                                    <a class="dropdown-item" href="/@nameof(CoreDemo.Controllers.UserController).Replace("Controller","")/@nameof(CoreDemo.Controllers.UserController.SeeProfile)/@blog.UserViewModel.Username">@ViewLocalizer["ShowProfile"]</a>
+
+                                    @if(!string.IsNullOrEmpty(User.Identity.Name) && User.Identity.Name != blog.UserViewModel.Username){
+                                        <div class="dropdown-divider"></div>
+
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a class="dropdown-item" href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.MessageController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.MessageController.SendMessage)/@blog.UserViewModel.Username">@ViewLocalizer["SendMessage"]</a>
+                                        }
+                                        @if (User.IsInRole("Writer"))
+                                        {
+                                            <a class="dropdown-item" href="/@nameof(CoreDemo.Areas.Writer)/@nameof(CoreDemo.Areas.Writer.Controllers.MessageController).Replace("Controller","")/@nameof(CoreDemo.Areas.Writer.Controllers.MessageController.SendMessage)/@blog.UserViewModel.Username">@ViewLocalizer["SendMessage"]</a>
+                                        }
                                     }
 
 
-                                    @*<div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>*@
                                 </div>
                             </li>
                         </ul>
                         <h5 class="card-title">
-                            <a href="GetById/@blog.BlogId">@blog.BlogTitle</a>
+                            @blog.Title
                         </h5>
                         <p class="card-text mb-3">
-                            @CheckBlogContent(blog.BlogContent)
+                            @CheckBlogContent(blog.Content)
                         </p>
-                        <a href="/Blog/GetById/@blog.BlogId" class="btn btn-primary read-m">@Localizer["BlogDetail"] </a>
+                        <a href="/@nameof(CoreDemo.Controllers.BlogController).Replace("Controller","")/@nameof(CoreDemo.Controllers.BlogController.GetBySlug)/@blog.Slug" class="btn btn-primary read-m">@ViewLocalizer["BlogDetail"] </a>
                     </div>
                 </div>
             }
         </div>
-        <!--//left-->
     </div>
 </div>
 

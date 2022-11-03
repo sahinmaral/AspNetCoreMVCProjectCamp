@@ -46,9 +46,14 @@ namespace Business.Concrete
             return _blogDal.GetAllWithDetails(filter);
         }
 
-        public Blog GetByBlogIdWithDetails(int blogId)
+        public Blog GetBySlugWithDetails(string slug)
         {
-            return _blogDal.GetByBlogIdWithDetails(blogId);
+            return _blogDal.GetBySlugWithDetails(slug);
+        }
+
+        public Blog GetByIdWithDetails(int id)
+        {
+            return _blogDal.GetByIdWithDetails(id);
         }
     }
 }

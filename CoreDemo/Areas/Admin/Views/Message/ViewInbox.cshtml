@@ -1,4 +1,5 @@
-﻿@model List<ReadMessageViewModel>
+﻿@using System.Text.RegularExpressions
+@model List<ReadMessageViewModel>
 
 @{
     Layout = "_AdminLayout";
@@ -29,7 +30,7 @@
             </form>*@
 
             <h2>
-                @ViewLocalizer["Title"] @(Model.Count(x => x.MessageOpened == false) > 0 ? String.Concat("(", Model.Count(x => x.MessageOpened == false), ")") : "")
+                @ViewLocalizer["Title"] @(Model.Count(x => x.IsMessageOpened == false) > 0 ? String.Concat("(", Model.Count(x => x.IsMessageOpened == false), ")") : "")
             </h2>
             <div class="mail-tools tooltip-demo m-t-md">
                 <div class="btn-group float-right">
@@ -38,10 +39,7 @@
 
                 </div>
                 <a class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="@ViewLocalizer["Refresh"]" href="/Admin/Message/ViewInbox"><i class="fa fa-refresh"></i> @ViewLocalizer["Refresh"]</a>
-                @{
-                    //TODO : Mark as read kismi yapilacak
-                }
-                <a class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="@ViewLocalizer["MarkAsRead"]"><i class="fa fa-eye"></i> </a>
+                @*<a class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="@ViewLocalizer["MarkAsRead"]"><i class="fa fa-eye"></i> </a>*@
             </div>
         </div>
 
@@ -59,16 +57,18 @@
                 <tbody>
                 @foreach (ReadMessageViewModel message in Model)
                 {
-                    if (message.MessageOpened)
+                    message.Detail = Regex.Replace(message.Detail, @"<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;", " ");
+
+                    if (message.IsMessageOpened)
                     {
                         <tr class="read">
                             <td class="check-mail">
                                 <input type="checkbox" class="i-checks">
                             </td>
-                            <td class="mail-ontact"><a href="/Admin/Message/GetMessageDetail/@message.MessageId">@message.Sender.Username</a></td>
-                            <td class="mail-subject"><a href="/Admin/Message/GetMessageDetail/@message.MessageId">@message.MessageSubject</a></td>
-                            <td class="">@ShrinkMessageDetail(message.MessageDetail)</td>
-                            <td class="mail-date">@message.MessageDateTime.ToShortDateString() @message.MessageDateTime.ToShortTimeString()</td>
+                            <td class="mail-ontact"><a href="/Admin/Message/GetMessageDetail/@message.Id">@message.Sender.Username</a></td>
+                                <td class="mail-subject"><a href="/Admin/Message/GetMessageDetail/@message.Id">@message.Subject</a></td>
+                            <td class="">@ShrinkMessageDetail(message.Detail)</td>
+                            <td class="mail-date">@message.CreatedAt.ToShortDateString() @message.CreatedAt.ToShortTimeString()</td>
                         </tr>
                     }
                     else
@@ -77,10 +77,10 @@
                             <td class="check-mail">
                                 <input type="checkbox" class="i-checks">
                             </td>
-                            <td class="mail-ontact"><a href="/Admin/Message/GetMessageDetail/@message.MessageId">@message.Sender.Username</a></td>
-                            <td class="mail-subject"><a href="/Admin/Message/GetMessageDetail/@message.MessageId">@message.MessageSubject</a></td>
-                            <td class="">@ShrinkMessageDetail(message.MessageDetail)</td>
-                            <td class="mail-date">@message.MessageDateTime.ToShortDateString() @message.MessageDateTime.ToShortTimeString()</td>
+                                <td class="mail-ontact"><a href="/Admin/Message/GetMessageDetail/@message.Id">@message.Sender.Username</a></td>
+                            <td class="mail-subject"><a href="/Admin/Message/GetMessageDetail/@message.Id">@message.Subject</a></td>
+                            <td class="">@ShrinkMessageDetail(message.Detail)</td>
+                            <td class="mail-date">@message.CreatedAt.ToShortDateString() @message.CreatedAt.ToShortTimeString()</td>
                         </tr>
                     }
                 }

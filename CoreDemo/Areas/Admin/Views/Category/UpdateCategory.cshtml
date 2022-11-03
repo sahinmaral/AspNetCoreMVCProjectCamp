@@ -1,31 +1,37 @@
-﻿@model ReadCategoryViewModel
+﻿@model UpdateCategoryViewModel
 
 @{
-    ViewBag.Title = @ViewLocalizer["Title",Model.CategoryName];
+    ViewBag.Title = @ViewLocalizer["Title",Model.Name];
     Layout = "_AdminLayout";
 }
+
+<h2 class="card-title ml-3">@ViewLocalizer["Title",Model.Name]</h2>
 
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title",Model.CategoryName]</h4>
-            <form asp-controller="Category" asp-action="UpdateCategory" asp-area="Admin" method="post">
+            
+            <form 
+                asp-controller="@nameof(CoreDemo.Areas.Admin.Controllers.CategoryController).Replace("Controller","")" 
+                asp-action="@nameof(CoreDemo.Areas.Admin.Controllers.CategoryController.UpdateCategory)"
+                  asp-area="@nameof(CoreDemo.Areas.Admin)"
+                  method="post">
 
-                <input type="hidden" value="@Model.CategoryId" name="CategoryId" />
-                <input type="hidden" value="@Model.CategoryStatus" name="CategoryStatus" />
+                <input type="hidden" value="@Model.Id" asp-for="Id" />
 
                 <div class="form-group">
-                    <label asp-for="CategoryName">@ViewLocalizer["CategoryName"]</label>
-                    <input type="text" class="form-control" name="CategoryName" style="border:1px solid black" asp-for="CategoryName"/>
-                    <span asp-validation-for="CategoryName" style="color:darkred"></span>
+                    <label asp-for="Name">@ViewLocalizer["CategoryName"]</label>
+                    <input type="text" class="form-control" asp-for="Name" />
+                    <span asp-validation-for="Name" class="validation-span"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="CategoryDescription">@ViewLocalizer["CategoryDescription"]</label>
-                    <textarea asp-for="CategoryDescription" name="CategoryDescription" class="form-control" style="border:1px solid black" rows="4"></textarea>
-                    <span asp-validation-for="CategoryDescription" style="color:darkred"></span>
+                    <label asp-for="Description">@ViewLocalizer["CategoryDescription"]</label>
+                    <textarea asp-for="Description" class="form-control rows="4"></textarea>
+                    <span asp-validation-for="Description" class="validation-span"></span>
                 </div>
-                <button type="submit" class="btn btn-gradient-primary mr-2 w-100" style="height:50px">@ViewLocalizer["Update"]</button>
+                <button type="submit" class="btn btn-gradient-primary">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-gradient-primary">@ViewLocalizer["Discard"]</button>
             
             </form>
 

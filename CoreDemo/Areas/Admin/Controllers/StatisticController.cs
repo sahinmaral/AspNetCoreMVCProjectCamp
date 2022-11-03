@@ -55,15 +55,15 @@ namespace CoreDemo.Areas.Admin.Controllers
             ReadUserViewModel userViewModel = _mapper.Map(user, new ReadUserViewModel());
 
             ReadBlogViewModel lastBlogViewModel = new ReadBlogViewModel();
-            lastBlogViewModel = _mapper.Map(_blogService.GetAllWithDetails().OrderByDescending(x => x.BlogCreatedDate).First(), lastBlogViewModel);
+            lastBlogViewModel = _mapper.Map(_blogService.GetAllWithDetails().OrderByDescending(x => x.CreatedAt).First(), lastBlogViewModel);
 
             ReadStatisticsViewModel viewModel = new ReadStatisticsViewModel
             {
                 WeatherAppViewModel = weatherAppViewModel,
                 TotalBlogCount = _blogService.GetAllWithDetails().Count,
-                NewContactCount = _contactService.GetAll(x=>x.ContactStatus).Count,
-                NewMessageCount = _messageService.GetAll(x=>x.Receiver.UserName == user.UserName && x.MessageOpened == false).Count,
-                TotalCommentCount = _commentService.GetAll(x=>x.CommentStatus).Count,
+                NewContactCount = _contactService.GetAll(x=>x.IsOpened == false).Count,
+                NewMessageCount = _messageService.GetAll(x=>x.Receiver.UserName == user.UserName && x.IsMessageOpened == false).Count,
+                TotalCommentCount = _commentService.GetAll(x=>x.Status).Count,
                 LastBlogViewModel = lastBlogViewModel,
                 UserViewModel = userViewModel
             };

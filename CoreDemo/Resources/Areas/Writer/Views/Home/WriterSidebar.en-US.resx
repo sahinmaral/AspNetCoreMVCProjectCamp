@@ -135,6 +135,9 @@
   <data name="Homepage" xml:space="preserve">
     <value>Homepage</value>
   </data>
+  <data name="IncomingMessages" xml:space="preserve">
+    <value>Incoming Messages</value>
+  </data>
   <data name="Messages" xml:space="preserve">
     <value>Messages</value>
   </data>
@@ -146,5 +149,8 @@
   </data>
   <data name="NewBlog" xml:space="preserve">
     <value>New Blog</value>
+  </data>
+  <data name="SentMessages" xml:space="preserve">
+    <value>Sent Messages</value>
   </data>
 </root>

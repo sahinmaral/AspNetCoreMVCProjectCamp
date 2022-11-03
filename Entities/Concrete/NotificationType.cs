@@ -7,10 +7,8 @@ namespace Entities.Concrete
 {
     public class NotificationType : IEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int NotificationTypeId { get; set; }
-        public string NotificationTypeName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Notification> Notifications { get; set; }
     }

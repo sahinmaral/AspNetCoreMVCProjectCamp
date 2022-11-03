@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Banned" xml:space="preserve">
+    <value>Banned</value>
+  </data>
+  <data name="BanUser" xml:space="preserve">
+    <value>Ban User</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="EnterUsername" xml:space="preserve">
     <value>Enter user's username</value>
   </data>
@@ -135,14 +144,23 @@
   <data name="ListUsersByUsername" xml:space="preserve">
     <value>List users by username</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="NoUserHasBeenFoundByThisUsername" xml:space="preserve">
     <value>No user found according to the username that has been written</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
     <value>User AJAX Processes</value>
   </data>
+  <data name="RemoveBanFromUser" xml:space="preserve">
+    <value>Unban User</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="UserBanSuccessfullyRemoved" xml:space="preserve">
+    <value>The user you have selected has been unbanned</value>
   </data>
   <data name="UserNameSurname" xml:space="preserve">
     <value>Name Surname</value>
@@ -150,7 +168,19 @@
   <data name="UserProcesses" xml:space="preserve">
     <value>User Processes</value>
   </data>
+  <data name="UserRemoveOrAddBan" xml:space="preserve">
+    <value>Ban / Unban</value>
+  </data>
+  <data name="UserState" xml:space="preserve">
+    <value>State</value>
+  </data>
   <data name="UserUsername" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="VerifyRemovingBanFromUser" xml:space="preserve">
+    <value>Are you sure you want to unban selected user ?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

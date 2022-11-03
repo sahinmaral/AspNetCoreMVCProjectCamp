@@ -1,0 +1,59 @@
+﻿@model RespondContactedUserViewModel
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title", Model.NameSurname];
+    Layout = "_AdminLayout";
+}
+
+<h2 class="card-title ml-3">@ViewLocalizer["Title",Model.NameSurname]</h2>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            
+                <form 
+                    asp-action="@nameof(CoreDemo.Areas.Admin.Controllers.ContactController.RespondContactedUser)"
+                    asp-area="@nameof(CoreDemo.Areas.Admin)"
+                    asp-controller="@nameof(CoreDemo.Areas.Admin.Controllers.ContactController).Replace("Controller","")"
+                    method="post"
+                >
+
+                <input type="hidden" value="@Model.Id" asp-for="Id" />
+
+                <div class="form-group">
+                    <label asp-for="NameSurname">@ViewLocalizer["NameSurname"]</label>
+                    <input type="text" readonly value="@Model.NameSurname" asp-for="NameSurname" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email">@ViewLocalizer["Email"]</label>
+                    <input type="text" readonly value="@Model.Email" asp-for="Email" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Subject">@ViewLocalizer["Subject"]</label>
+                    <input type="text" asp-for="Subject" class="form-control" />
+                    <span asp-validation-for="Subject" class="validation-span"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Message">@ViewLocalizer["Message"]</label>
+                    <textarea asp-for="Message" class="ckeditor" id="contactMessageForm"></textarea>
+                    <span asp-validation-for="Message" class="validation-span"></span>
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Discard"]</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    CKEDITOR.replace('contactMessageForm',
+        {
+            toolbar: 'Basic',
+            uiColor: '#9AB8F3'
+        });
+</script>

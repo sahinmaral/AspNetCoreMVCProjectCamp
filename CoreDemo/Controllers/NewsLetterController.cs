@@ -45,10 +45,11 @@ namespace CoreDemo.Controllers
                 foreach (var error in modelErrors)
                 {
                     errors += error.ErrorMessage;
+                    errors += "<br/>";
                 }
 
                 TempData["Message"] = ToastrNotification.Show(errors, position: Position.BottomRight,
-                    type: ToastType.success);
+                    type: ToastType.error);
 
                 return RedirectToRoute(new
                 {
@@ -58,7 +59,9 @@ namespace CoreDemo.Controllers
 
             }
 
+            NewsLetter newEntity = _mapper.Map(viewModel, new NewsLetter());
 
+            _newsLetterService.Add(newEntity);
 
             TempData["Message"] = ToastrNotification.Show(_stringLocalizer["SubscribedSuccessfully"], position: Position.BottomRight,
                 type: ToastType.success);

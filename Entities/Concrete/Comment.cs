@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Core.Entities.Abstract;
 
@@ -9,25 +8,21 @@ namespace Entities.Concrete
     {
         public Comment()
         {
-            CommentCreatedDate = DateTime.Now;
-            CommentStatus = true;
+            CreatedAt = DateTime.Now;
+            Status = true;
         }
         
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CommentId { get; set; }
+        public int Id { get; set; }
         
-        public string CommentAbout { get; set; }
+        public string Detail { get; set; }
 
-        public DateTime CommentCreatedDate { get; set; }
+        public DateTime CreatedAt { get; set; }
         
-        public bool CommentStatus { get; set; }
+        public bool Status { get; set; }
 
-        [Column("BlogId")]
-        public int? BlogId { get; set; }
+        public int BlogId { get; set; }
         public Blog Blog { get; set; }
 
-        [Column("UserId")]
         public int? UserId { get; set; }
         public User User { get; set; }
 

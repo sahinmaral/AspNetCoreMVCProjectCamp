@@ -1,42 +1,37 @@
-﻿using System;
+﻿using Core.Entities.Abstract;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Core.Entities.Abstract;
 
 namespace Entities.Concrete
 {
-    public class Blog:IEntity
+    public class Blog : IEntity
     {
         public Blog()
         {
-            BlogCreatedDate = DateTime.Now;
-            BlogStatus = true;
+            CreatedAt = DateTime.Now;
+            Status = true;
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BlogId { get; set; }
+        public int Id { get; set; }
 
-        public string BlogTitle { get; set; }
-        
-        public string BlogContent { get; set; }
+        public string Title { get; set; }
+        public string Slug { get; set; }
 
-        public string BlogThumbnailImage { get; set; }
-        
-        public string BlogMainImage { get; set; }
-        
-        public DateTime BlogCreatedDate { get; set; }
-        
-        public bool BlogStatus { get; set; }
+        public string Content { get; set; }
 
-        [Column("CategoryId")]
+        public string ThumbnailImage { get; set; }
+
+        public string MainImage { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public bool Status { get; set; }
+
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
 
-        [Column("UserId")]
         public int UserId { get; set; }
         public User User { get; set; }
 

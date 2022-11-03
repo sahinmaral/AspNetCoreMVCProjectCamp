@@ -1,0 +1,85 @@
+﻿@model HomepageStatisticsViewModel
+
+<style>
+    .card{
+        border:0;
+    }
+
+    .stretch-card {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        -webkit-box-pack: stretch;
+        -ms-flex-pack: stretch;
+        justify-content: stretch;
+    }
+
+        .stretch-card > .card {
+            width: 100%;
+            min-width: 100%;
+        }
+
+    .bg-gradient-danger {
+        background: -webkit-gradient(linear, left top, right top, from(#ffbf96), to(#fe7096)) !important;
+        background: linear-gradient(to right, #ffbf96, #fe7096) !important;
+    }
+
+    .bg-gradient-success {
+        background: -webkit-gradient(linear, left top, right top, from(#84d9d2), to(#07cdae)) !important;
+        background: linear-gradient(to right, #84d9d2, #07cdae) !important;
+    }
+
+    .bg-gradient-info {
+        background: -webkit-gradient(linear, left top, right top, from(#90caf9), color-stop(99%, #047edf)) !important;
+        background: linear-gradient(to right, #90caf9, #047edf 99%) !important;
+    }
+
+    .card.card-img-holder {
+        position: relative;
+    }
+
+        .card.card-img-holder .card-img-absolute {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+        }
+</style>
+
+
+<div class="col-md-4 stretch-card grid-margin">
+    <div class="card bg-gradient-danger card-img-holder text-white">
+        <div class="card-body">
+            <img src="~/writerTemplate/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+            <h4 class="font-weight-normal mb-3">
+                @ViewLocalizer["TotalWrittenBlogCount"] <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+            </h4>
+            <h2 class="mb-5">@Model.TotalWrittenBlogCount</h2>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 stretch-card grid-margin">
+    <div class="card bg-gradient-info card-img-holder text-white">
+        <div class="card-body">
+            <img src="~/writerTemplate/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+            <h4 class="font-weight-normal mb-3">
+                @ViewLocalizer["MostWrittenCategoryName"] <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+            </h4>
+            <h2 class="mb-5">@Model.FavouriteCategoryName</h2>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 stretch-card grid-margin">
+    <div class="card bg-gradient-success card-img-holder text-white">
+        <div class="card-body">
+            <img src="~/writerTemplate/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+            <h4 class="font-weight-normal mb-3">
+                @ViewLocalizer["Last1WeekWrittenBlogCount"] <i class="mdi mdi-diamond mdi-24px float-right"></i>
+            </h4>
+            <h2 class="mb-5">@Model.LastOneWeekWritedBlogCount</h2>
+        </div>
+    </div>
+</div>

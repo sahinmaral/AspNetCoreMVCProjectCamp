@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Abstract;
 using Core.Helper.Toastr;
 using Core.Helper.Toastr.OptionEnums;
@@ -13,9 +7,13 @@ using CoreDemo.Models;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CoreDemo.Areas.Admin.Controllers
 {
@@ -26,12 +24,14 @@ namespace CoreDemo.Areas.Admin.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
+        private readonly IStringLocalizer<UserController> _localizer;
 
-        public UserController(IMapper mapper, UserManager<User> userManager, RoleManager<Role> roleManager)
+        public UserController(IMapper mapper, UserManager<User> userManager, RoleManager<Role> roleManager, IStringLocalizer<UserController> localizer)
         {
             _mapper = mapper;
             _userManager = userManager;
             _roleManager = roleManager;
+            _localizer = localizer;
         }
         public IActionResult GetUsers()
         {
@@ -42,7 +42,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         {
             ICollection<User> users = await _userManager.GetUsersInRoleAsync("User");
 
-            List<ReadUserViewModel> userViewModels = _mapper.Map(users.Where(x=>x.UserName != User.Identity.Name), new List<ReadUserViewModel>());
+            List<ReadUserViewModel> userViewModels = _mapper.Map(users.Where(x => x.UserName != User.Identity.Name), new List<ReadUserViewModel>());
 
             var jsonUsers = JsonConvert.SerializeObject(userViewModels);
 
@@ -66,23 +66,30 @@ namespace CoreDemo.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateRolesToUser(int id)
         {
             User user = await _userManager.FindByIdAsync(id.ToString());
-            List<Role> roles = _roleManager.Roles.ToList();
-
-            List<RoleViewModel> roleViewModels = new List<RoleViewModel>();
+            List<Role> roles = _roleManager.Roles.ToList().Where(x => x.Name != "User").ToList();
+            RoleViewModel userRole = new RoleViewModel();
 
             foreach (Role role in roles)
             {
                 bool isInRole = await _userManager.IsInRoleAsync(user, role.Name);
-                roleViewModels.Add(new RoleViewModel()
+                if (isInRole)
                 {
-                    IsInRole = isInRole,
-                    RoleName = role.Name
-                });
+                    userRole = new RoleViewModel();
+                    userRole.RoleName = role.Name;
+                    userRole.IsInRole = true;
+                }
             }
+
+            ViewData["Roles"] = (from x in roles
+                                 select new SelectListItem()
+                                 {
+                                     Text = x.Name,
+                                     Value = x.Name.ToString()
+                                 }).ToList();
 
             UserRoleViewModel viewModel = new UserRoleViewModel()
             {
-                RoleViewModels = roleViewModels,
+                RoleViewModel = userRole,
                 UserViewModel = _mapper.Map(user, new ReadUserViewModel())
             };
 
@@ -93,32 +100,58 @@ namespace CoreDemo.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateRolesToUser(UserRoleViewModel viewModel)
         {
-            User user = await _userManager.FindByIdAsync(viewModel.UserViewModel.UserId.ToString());
+            User user = await _userManager.FindByNameAsync(viewModel.UserViewModel.Username);
 
-            foreach (RoleViewModel roleViewModel in viewModel.RoleViewModels)
+            var roles = _roleManager.Roles.ToList().Where(x => x.Name != "User").ToList();
+
+            foreach (Role role in roles)
             {
-                bool isInRoleSaved = await _userManager.IsInRoleAsync(user, roleViewModel.RoleName);
-
-                if (!isInRoleSaved && roleViewModel.IsInRole)
-                    await _userManager.AddToRoleAsync(user, roleViewModel.RoleName);
-
-                else if (isInRoleSaved && !roleViewModel.IsInRole)
-                    await _userManager.RemoveFromRoleAsync(user, roleViewModel.RoleName);
+                await _userManager.RemoveFromRoleAsync(user, role.Name);
             }
 
-            TempData["Message"] = ToastrNotification.Show("Sectiginiz kullanicinin rolleri duzenlenmistir.", position: Position.BottomRight,
+
+            await _userManager.AddToRoleAsync(user, viewModel.RoleViewModel.RoleName);
+
+
+            TempData["Message"] = ToastrNotification.Show(_localizer["RolesSuccessfullyUpdated"], position: Position.BottomRight,
                 type: ToastType.success);
 
-            return RedirectToAction("GetUsers");
+            return RedirectToAction(nameof(GetUsers));
         }
 
-        //public async Task EnableOrDisableUser(int id)
-        //{
-        //    AppUser user = await _userManager.FindByIdAsync(id.ToString());
+        [HttpGet]
+        public async Task<IActionResult> BanUser(int id)
+        {
+            User user = await _userManager.FindByIdAsync(id.ToString());
 
-        //    user.LockoutEnabled = !user.LockoutEnabled;
+            UserLockoutViewModel viewModel = _mapper.Map(user, new UserLockoutViewModel());
 
-        //    await _userManager.UpdateAsync(user);
-        //}
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BanUser(UserLockoutViewModel viewModel)
+        {
+            User user = await _userManager.FindByNameAsync(viewModel.UserViewModel.Username);
+
+            user.LockoutEnd = viewModel.LockoutEnd;
+            user.LockoutEnabled = true;
+
+            await _userManager.UpdateAsync(user);
+
+            return RedirectToAction(nameof(GetUsers));
+        }
+
+        public async Task<IActionResult> RemoveBanFromUser(int id)
+        {
+            User user = await _userManager.FindByIdAsync(id.ToString());
+
+            user.LockoutEnabled = false;
+            user.LockoutEnd = null;
+
+            await _userManager.UpdateAsync(user);
+
+            return RedirectToAction(nameof(GetUsers));
+        }
     }
 }

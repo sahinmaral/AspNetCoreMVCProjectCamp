@@ -19,13 +19,13 @@ namespace CoreDemo.Controllers
             switch (code)
             {
                 case 404:
-                    viewModel.ErrorMessage = "Oops! Sayfa Bulunamadı!";
+                    viewModel.Message = "Oops! Sayfa Bulunamadı!";
                     break;
                 case 403:
-                    viewModel.ErrorMessage = "Oops! Bu sayfaya gitmeniz için yetkiniz yok.";
+                    viewModel.Message = "Oops! Bu sayfaya gitmeniz için yetkiniz yok.";
                     break;
                 case 401:
-                    viewModel.ErrorMessage = "Oops! Giriş Yapmanız Gerekiyor!";
+                    viewModel.Message = "Oops! Giriş Yapmanız Gerekiyor!";
                     break;
             }
 

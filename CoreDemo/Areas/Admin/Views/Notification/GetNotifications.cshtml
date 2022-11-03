@@ -1,0 +1,72 @@
+﻿
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@model IPagedList<ReadNotificationViewModel>
+
+@{
+    ViewBag.Title = ViewLocalizer["Title"];
+    Layout = "_AdminLayout";
+}
+
+<h1 class="card-title">@ViewLocalizer["Title"]</h1>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="ibox ">
+            <div class="ibox-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@ViewLocalizer["Symbol"]</th>
+                            <th>@ViewLocalizer["Type"]</th>
+                            <th>@ViewLocalizer["Message"]</th>
+                            <th>@ViewLocalizer["Processes"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><i class="mdi-24px @item.NotificationSymbol.Name"></i></td>
+                                <td><span class="badge @item.NotificationType.Name">@item.NotificationType.Name</span></td>
+                                <td>@item.NotificationInformations[0].Detail</td>
+                                <td>
+                                    <a onclick="DeleteNotification(@item.Id)" class="btn btn-danger text-white">@ViewLocalizer["DeleteNotification"]</a>
+                                    <a href="/@nameof(CoreDemo.Areas.Admin)/@nameof(CoreDemo.Areas.Admin.Controllers.NotificationController).Replace("Controller","")/@nameof(CoreDemo.Areas.Admin.Controllers.NotificationController.UpdateNotification)/@item.Id" 
+                                    
+                                    class="btn btn-primary">@ViewLocalizer["UpdateNotification"]</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin: auto; width: 50%; margin-left: 40%;">
+    @Html.PagedListPager(Model, pageNumber => Url.Action(nameof(CoreDemo.Areas.Admin.Controllers.NotificationController.GetNotifications), new { page = pageNumber }))
+</div>
+
+<script>
+    function DeleteNotification(id){
+        swal({
+            title: "@ViewLocalizer["SwalTitle"]",
+            text: "@ViewLocalizer["VerifyDeleteNotificationMessage"]",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        })
+            .then(async (willDelete) => {
+                if (willDelete) {
+                    swal("@ViewLocalizer["NotificationSuccessfullyDeleted"]", { icon: "success" });
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    window.location.href = "/Admin/Notification/DeleteNotification/" + id
+                }
+
+            });
+    }
+</script>

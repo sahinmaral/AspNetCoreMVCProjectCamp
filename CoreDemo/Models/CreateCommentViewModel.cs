@@ -2,17 +2,18 @@
 
 namespace CoreDemo.Models
 {
-    public class CreateCommentViewModel
+    public class CreateCommentViewModel:BaseViewModel
     {
         public CreateCommentViewModel()
         {
-            CommentCreateDate = DateTime.Now;
-            CommentStatus = true;
+            CreatedAt = DateTime.Now;
+            Status = true;
         }
-        public string CommentAbout { get; set; }
-        public DateTime CommentCreateDate { get; set; }
-        public bool CommentStatus { get; set; }
-        public int BlogId { get; set; }
+        public string Detail { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public bool Status { get; set; }
+        public bool LikeOrDislikeStatus { get; set; }
+        public string BlogSlug { get; set; }
         public int UserId { get; set; }
     }
 }

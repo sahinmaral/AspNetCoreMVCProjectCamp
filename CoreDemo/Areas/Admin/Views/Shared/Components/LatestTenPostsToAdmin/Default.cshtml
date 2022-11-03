@@ -1,0 +1,18 @@
+﻿@model List<ReadBlogViewModel>
+
+@foreach (var readBlogViewModel in Model)
+{
+    <tr>
+        <td>
+            <img src="~/images/@readBlogViewModel.ThumbnailImage" style="width: 36px;height: 36px;border-radius: 50%;" />
+        </td>
+        <td>@readBlogViewModel.Title</td>
+        <td>
+            <label class="badge badge-gradient-success">
+                @readBlogViewModel.CategoryViewModel.Name
+            </label>
+        </td>
+        <td> @readBlogViewModel.CreatedAt</td>
+        <td><a class="btn btn-success" href="/Blog/GetById/@readBlogViewModel.Id">@ViewLocalizer["Detail"]</a></td>
+    </tr>
+}

@@ -1,76 +1,87 @@
 ﻿@model CoreDemo.Models.UserSignUpViewModel
 
-@inject IViewLocalizer Localizer
-
 @{
-    ViewData["Title"] = Localizer["Register"];
+    ViewData["Title"] = ViewLocalizer["Register"];
     Layout = "_UserLayout";
 }
+
+<style>
+    .validation-summary-valid h6 {
+        display: none;
+    }
+</style>
 
 
 <section class="main-content-w3layouts-agileits">
     <div class="container">
-        <h3 class="tittle">@Localizer["RegisterTitle"]</h3>
+        <h3 class="tittle">@ViewLocalizer["RegisterTitle"]</h3>
         <div class="inner-sec">
             <div class="login p-5 bg-light mx-auto mw-100">
-                @using (Html.BeginForm(nameof(UserController.Register), nameof(UserController).Replace("Controller", ""), FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
+                
+                <form 
+                    novalidate
+                    asp-action="@nameof(UserController.Register)" 
+                    asp-controller="@nameof(UserController).Replace("Controller", "")" 
+                    method="post" 
+                    enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-3">
-                            @Html.LabelFor(x=>x.NameSurname,Localizer["NameSurname"].Value)
-                            @Html.TextBoxFor(x=>x.NameSurname , new {@class="form-control mb-2" , placeholder=""})
-                            @Html.ValidationMessageFor(x => x.NameSurname, "", new { @style = "font-weight: bold; color: darkred;" })
+                            <label asp-for="NameSurname">@ViewLocalizer["NameSurname"]</label>
+                            <input type="text" class="form-control mb-2" asp-for="NameSurname" />
+                            <span asp-validation-for="NameSurname" class="validation-span"></span>
                         </div>
 
                         <div class="form-group col-md-6 mb-3">
-                            @Html.LabelFor(x=>x.Username,Localizer["Username"].Value)
-                            @Html.TextBoxFor(x=>x.Username , new {@class="form-control mb-2" , placeholder=""})
-                            @Html.ValidationMessageFor(x => x.Username, "", new { @style = "font-weight: bold; color: darkred;" })
+                            <label asp-for="Username">@ViewLocalizer["Username"]</label>
+                            <input type="text" class="form-control mb-2" asp-for="Username" />
+                            <span asp-validation-for="Username" class="validation-span"></span>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            @Html.LabelFor(x=>x.Mail,Localizer["Email"].Value)
-                            @Html.TextBoxFor(x=>x.Mail , new {@class="form-control mb-2" , placeholder=""})
-                            @Html.ValidationMessageFor(x => x.Mail, "", new { @style = "font-weight: bold; color: darkred;" })
+                            <label asp-for="Email">@ViewLocalizer["Email"]</label>
+                            <input type="email" class="form-control mb-2" asp-for="Email" />
+                            <span asp-validation-for="Email" class="validation-span"></span>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            @Html.LabelFor(x=>x.ProfileImage,Localizer["ProfilePhoto"].Value)
-                            @Html.TextBoxFor(x=>x.ProfileImage , new {@class="form-control mb-2" , placeholder="" , type="file"})
-                            @Html.ValidationMessageFor(x => x.ProfileImage, "", new { @style = "font-weight: bold; color: darkred;" })
+                            <label asp-for="ProfileImage">@ViewLocalizer["ProfilePhoto"]</label>
+                            <input type="file" class="form-control mb-2" asp-for="ProfileImage" />
+                            <span asp-validation-for="ProfileImage" class="validation-span"></span>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            @Html.LabelFor(x=>x.Password,Localizer["Password"].Value)
-                            @Html.PasswordFor(x=>x.Password , new {@class="form-control mb-2" , placeholder=""})
-                            @Html.ValidationMessageFor(x => x.Password, "", new { @style = "font-weight: bold; color: darkred;" })
+                            <label asp-for="Password">@ViewLocalizer["Password"]</label>
+                            <input type="password" class="form-control mb-2" asp-for="Password" />
+                            <span asp-validation-for="Password" class="validation-span"></span>
                         </div>
                         <div class="form-group col-md-6">
-                            @Html.LabelFor(x=>x.ConfirmPassword,Localizer["ConfirmPassword"].Value)
-                            @Html.PasswordFor(x=>x.ConfirmPassword , new {@class="form-control mb-2" , placeholder=""})
-                            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @style = "font-weight: bold; color: darkred;" })
+                            <label asp-for="ConfirmPassword">@ViewLocalizer["ConfirmPassword"]</label>
+                            <input type="password" class="form-control mb-2" asp-for="ConfirmPassword" />
+                            <span asp-validation-for="ConfirmPassword" class="validation-span"></span>
                         </div>
                     </div>
 
                     <div class="form-row mb-2">
                         <div class="form-check mb-2 ml-1">
-                            @Html.CheckBoxFor(x=>x.IsPoliciesAccepted,new {@class="form-check-input"})
+                            <input type="checkbox" asp-for="IsPoliciesAccepted" class="form-check-input" />
                             <p style="color: blue; cursor: pointer;" onclick="ShowAllPoliciesAlert()">
-                                <b>@Localizer["AcceptedPolicies"]</b>
+                                <b>@ViewLocalizer["AcceptedPolicies"]</b>
                             </p>
-                            @Html.ValidationMessageFor(x => x.IsPoliciesAccepted, "", new { @style = "font-weight: bold; color: darkred;" })
+                            <span asp-validation-for="IsPoliciesAccepted" class="validation-span"></span>
                         </div>
                     </div>
 
-                    <button type="submit" id="submit-button" class="btn btn-primary submit mb-5">@Localizer["Register"]</button>
+                    <button type="submit" id="submit-button" class="btn btn-primary submit mb-5">@ViewLocalizer["Register"]</button>
 
-                    @Html.ValidationSummary(false, "", new { @style = "font-weight: bold; color: darkred;" })
 
-                }
+                    <div asp-validation-summary=All class="validation-summary-span">
+                        <h6 class="my-3">Please correct the following errors</h6>
+                    </div>
+                </form>
 
 
             </div>
@@ -80,6 +91,7 @@
 
 <script>
     function ShowAllPoliciesAlert() {
-        swal("@Localizer["SitePoliciesTitle"]", "@Localizer["SitePoliciesContent"]");
+        swal("@ViewLocalizer["SitePoliciesTitle"]", "@ViewLocalizer["SitePoliciesContent"]");
     }
 </script>
+

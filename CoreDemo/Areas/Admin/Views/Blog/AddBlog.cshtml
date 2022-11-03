@@ -1,0 +1,66 @@
+﻿@model CreateBlogViewModel
+
+@{
+    ViewData["Title"] = ViewLocalizer["Title"];
+    Layout = "_AdminLayout";
+}
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title"]</h4>
+
+            <form asp-action="@nameof(CoreDemo.Areas.Admin.Controllers.BlogController.AddBlog)"
+                  asp-area="@nameof(CoreDemo.Areas.Admin)"
+                  asp-controller="@nameof(CoreDemo.Areas.Admin.Controllers.BlogController).Replace("Controller","")"
+                  enctype="multipart/form-data"
+                  method="post">
+
+                <div class="form-group">
+                    <label asp-for="Title">@ViewLocalizer["BlogTitle"]</label>
+                    <input type="text" asp-for="Title" class="form-control"/>
+                    <span asp-validation-for="Title" class="validation-span"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Content">@ViewLocalizer["BlogContent"]</label>
+                    <textarea asp-for="Content" class="ckeditor" id="blogContentForm"></textarea>
+                    <span asp-validation-for="Content" class="validation-span"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CategoryId">@ViewLocalizer["Category"]</label>
+                    <select asp-for="CategoryId"
+                            asp-items="@((List<SelectListItem>)ViewData["Categories"])"
+                            class="form-control"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ThumbnailImage">@ViewLocalizer["ThumbnailImage"]</label>
+                    <input type="file" asp-for="ThumbnailImage" class="form-control" />
+                    <span asp-validation-for="ThumbnailImage" class="validation-span"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="MainImage">@ViewLocalizer["BlogMainImage"]</label>
+                    <input type="file" asp-for="MainImage" class="form-control" />
+                    <span asp-validation-for="MainImage" class="validation-span"></span>
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Submit"]</button>
+                <button type="reset" class="btn btn-gradient-primary mr-2">@ViewLocalizer["Discard"]</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    CKEDITOR.replace('blogContentForm',
+        {
+            toolbar: 'Basic',
+            uiColor: '#9AB8F3'
+        });
+</script>

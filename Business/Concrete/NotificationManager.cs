@@ -45,5 +45,10 @@ namespace Business.Concrete
         {
             _notificationDal.Update(entity);
         }
+
+        public Notification GetByIdWithDetails(int id)
+        {
+            return _notificationDal.GetByIdWithDetails(id);
+        }
     }
 }

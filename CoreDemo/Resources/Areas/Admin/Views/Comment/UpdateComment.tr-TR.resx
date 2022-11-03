@@ -123,6 +123,9 @@
   <data name="Comment" xml:space="preserve">
     <value>Yorum</value>
   </data>
+  <data name="Discard" xml:space="preserve">
+    <value>İptal Et</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Gönder</value>
   </data>

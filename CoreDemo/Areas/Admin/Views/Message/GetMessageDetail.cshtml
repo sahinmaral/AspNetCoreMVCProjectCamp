@@ -11,19 +11,19 @@
             <h4 class="card-title" style="margin-bottom:3em">@ViewLocalizer["Title"]</h4>
             <div class="form-group">
                 <label>@ViewLocalizer["Subject"]</label>
-                <input type="text" asp-for="MessageSubject" class="form-control"  disabled="true" style="border:1px solid black" />
+                <input type="text" asp-for="Subject" class="form-control"  disabled="true"/>
             </div>
             <div class="form-group">
                 <label>@ViewLocalizer["Sender"]</label>
-                <input type="text" asp-for="Sender.NameSurname" class="form-control" disabled="true" style="border:1px solid black" />
+                <input type="text" asp-for="Sender.NameSurname" class="form-control" disabled="true" />
             </div>
             <div class="form-group">
                 <label>@ViewLocalizer["SentAt"]</label>
-                <input type="text" asp-for="MessageDateTime" class="form-control" disabled="true" style="border:1px solid black" />
+                <input type="text" asp-for="CreatedAt" class="form-control" disabled="true" />
             </div>
             <div class="form-group">
                 <label>@ViewLocalizer["Content"]</label>
-                <textarea asp-for="MessageDetail" class="form-control" disabled="true" style="border:1px solid black" name="MessageDetail"></textarea>
+                <textarea asp-for="Detail" class="ckeditor" disabled="true" id="messageContentForm"></textarea>
             </div>
             <a class="btn btn-dark" href="/Admin/Message/ViewInbox">@ViewLocalizer["GoBack"]</a>
         </div>
@@ -31,3 +31,12 @@
 
     
 </div>
+
+<script>
+
+    CKEDITOR.replace('messageContentForm',
+        {
+            toolbar: 'Basic',
+            uiColor: '#9AB8F3'
+        });
+</script>

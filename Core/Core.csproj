@@ -5,12 +5,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
-      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.10" />
+      <Compile Remove="Entities\Concrete\**" />
+      <EmbeddedResource Remove="Entities\Concrete\**" />
+      <None Remove="Entities\Concrete\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Entities\Concrete\" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
+      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.10" />
     </ItemGroup>
 
 </Project>
